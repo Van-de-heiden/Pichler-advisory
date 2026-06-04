@@ -50,15 +50,21 @@ const values = [
     <div class="max-w-[1240px] mx-auto px-10 pb-20">
       <div class="grid lg:grid-cols-2 gap-16 items-start">
 
-        <!-- Quote plate -->
+        <!-- Photo + quote plate -->
         <div class="reveal">
-          <div class="rounded-xl bg-mist border border-stone/50 p-8 relative overflow-hidden">
-            <img src="/assets/shield.png" alt="" class="absolute top-5 right-5 h-12 w-auto opacity-10" />
-            <p class="font-display text-[28px] font-medium text-ink leading-snug tracking-tight mb-5">
-              "Ich will die erste Generation sein, die das aufbaut — mit echten Betrieben, echten Zahlen und echtem Nutzen."
-            </p>
-            <div class="w-10 h-px bg-bordeaux-300 mb-4"></div>
-            <p class="text-[14px] text-taupe">Maurus Nic Ramon Pichler, Gründer</p>
+          <div class="rounded-xl overflow-hidden shadow-md relative bg-mist border border-stone/50" style="aspect-ratio: 4/3;">
+            <img
+              src="/assets/maurus.jpg"
+              alt="Maurus Pichler, Gründer von Pichler Advisory"
+              class="w-full h-full object-cover object-center"
+              onerror="this.style.display='none';"
+            />
+            <div class="absolute bottom-0 left-0 right-0 p-6" style="background: linear-gradient(to top, rgba(30,27,30,0.8) 0%, transparent 100%);">
+              <p class="font-display text-[19px] font-medium text-ivory/90 leading-snug tracking-tight mb-2">
+                "Ich will das aufbauen mit echten Betrieben, echten Zahlen und echtem Nutzen."
+              </p>
+              <p class="text-[12px] text-stone/60">Maurus Pichler, Gründer</p>
+            </div>
           </div>
 
           <!-- Stats -->

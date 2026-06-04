@@ -6,6 +6,7 @@ interface Props {
   description: string;
   image?: string;
   noIndex?: boolean;
+  jsonLd?: object;
 }
 
 const {
@@ -13,13 +14,40 @@ const {
   description,
   image = '/og-image.png',
   noIndex = false,
+  jsonLd,
 } = Astro.props;
+
+const SITE = 'https://pichleradvisory.ch';
 
 const siteTitle = title === 'Startseite'
   ? 'Pichler Advisory — Operative Klarheit für Betriebe mit Substanz'
   : `${title} — Pichler Advisory`;
 
-const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? 'https://pichleradvisory.ch');
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? SITE);
+const ogImage = new URL(image, Astro.site ?? SITE);
+
+const defaultJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: 'Pichler Advisory',
+  description: 'Operative Unternehmensberatung für KMU in der Schweiz. Betriebsanalyse, operative Verbesserung, digitale Systeme.',
+  url: SITE,
+  founder: {
+    '@type': 'Person',
+    name: 'Maurus Pichler',
+  },
+  areaServed: {
+    '@type': 'Country',
+    name: 'Switzerland',
+  },
+  contactPoint: {
+    '@type': 'ContactPoint',
+    email: 'info@pichleradvisory.ch',
+    contactType: 'customer service',
+    availableLanguage: 'German',
+  },
+  sameAs: [],
+};
 ---
 
 <!doctype html>
@@ -29,18 +57,34 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? 'https://pichlera
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="canonical" href={canonicalUrl} />
 
-  {noIndex && <meta name="robots" content="noindex,nofollow" />}
+  {noIndex
+    ? <meta name="robots" content="noindex,nofollow" />
+    : <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1" />
+  }
 
   <title>{siteTitle}</title>
   <meta name="description" content={description} />
+  <meta name="author" content="Maurus Pichler" />
 
+  <!-- Open Graph -->
   <meta property="og:type"        content="website" />
   <meta property="og:url"         content={canonicalUrl} />
   <meta property="og:title"       content={siteTitle} />
   <meta property="og:description" content={description} />
-  <meta property="og:image"       content={new URL(image, Astro.site ?? 'https://pichleradvisory.ch')} />
+  <meta property="og:image"       content={ogImage} />
+  <meta property="og:image:width"  content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta property="og:locale"      content="de_CH" />
-  <meta name="twitter:card"       content="summary_large_image" />
+  <meta property="og:site_name"   content="Pichler Advisory" />
+
+  <!-- Twitter card -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content={siteTitle} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image"       content={ogImage} />
+
+  <!-- JSON-LD structured data -->
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd ?? defaultJsonLd)} />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

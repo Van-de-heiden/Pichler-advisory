@@ -45,47 +45,35 @@ const features = [
         </button>
       </div>
 
-      <!-- Right: dashboard mockup -->
+      <!-- Right: cockpit photo -->
       <div class="reveal">
-        <div class="rounded-xl bg-charcoal overflow-hidden shadow-lg border border-stone/10">
-          <!-- Mockup topbar -->
-          <div class="flex items-center justify-between px-5 py-3 border-b border-white/10">
-            <div class="flex items-center gap-2">
-              <img src="/assets/shield.png" alt="" class="h-5 w-auto brightness-0 invert opacity-70" />
-              <span class="text-[12px] font-medium tracking-[0.12em] uppercase text-stone/70">Pichler Advisory Cockpit</span>
-            </div>
-            <span class="text-[11px] text-stone/40">Demo</span>
-          </div>
-
-          <!-- KPI tiles -->
-          <div class="grid grid-cols-3 gap-px bg-white/5 m-4 rounded-lg overflow-hidden">
-            {[
-              { label: 'Umsatz MTD', value: 'CHF 48k', trend: '+12%' },
-              { label: 'Offene Aufträge', value: '7', trend: '+2' },
-              { label: 'Leads aktiv', value: '14', trend: '↑' },
-            ].map((kpi) => (
-              <div class="bg-graphite px-4 py-4">
-                <p class="text-[10.5px] tracking-[0.1em] uppercase text-stone/50 mb-1">{kpi.label}</p>
-                <p class="font-display text-[22px] font-medium text-ivory leading-none mb-1">{kpi.value}</p>
-                <p class="text-[11px] text-gold-500">{kpi.trend}</p>
+        <div class="rounded-xl overflow-hidden shadow-lg aspect-[4/3] relative bg-charcoal">
+          <img
+            src="/assets/cockpit-screen.jpg"
+            alt="Performance Cockpit auf Laptop"
+            class="w-full h-full object-cover"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
+          />
+          <!-- Fallback: the code mockup -->
+          <div class="absolute inset-0 hidden bg-charcoal border border-stone/10" style="display:none;">
+            <div class="flex items-center justify-between px-5 py-3 border-b border-white/10">
+              <div class="flex items-center gap-2">
+                <img src="/assets/shield.png" alt="" class="h-5 w-auto brightness-0 invert opacity-70" />
+                <span class="text-[12px] font-medium tracking-[0.12em] uppercase text-stone/70">Pichler Advisory Cockpit</span>
               </div>
-            ))}
-          </div>
-
-          <!-- Chart placeholder -->
-          <div class="mx-4 mb-4 rounded-lg bg-graphite px-4 py-4">
-            <p class="text-[10.5px] tracking-[0.1em] uppercase text-stone/50 mb-3">Umsatzentwicklung — letzten 6 Monate</p>
-            <div class="flex items-end gap-1.5 h-16">
-              {[35, 48, 42, 61, 55, 72].map((h, i) => (
-                <div
-                  class="flex-1 rounded-sm transition-all"
-                  style={`height: ${h}%; background: ${i === 5 ? '#5A0F1B' : 'rgba(90,15,27,0.3)'}; opacity: ${0.5 + i * 0.1}`}
-                ></div>
-              ))}
+              <span class="text-[11px] text-stone/40">Demo</span>
             </div>
-            <div class="flex justify-between mt-2">
-              {['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun'].map((m) => (
-                <span class="text-[9px] text-stone/30">{m}</span>
+            <div class="grid grid-cols-3 gap-px bg-white/5 m-4 rounded-lg overflow-hidden">
+              {[
+                { label: 'Umsatz MTD', value: 'CHF 48k', trend: '+12%' },
+                { label: 'Offene Aufträge', value: '7', trend: '+2' },
+                { label: 'Leads aktiv', value: '14', trend: '↑' },
+              ].map((kpi) => (
+                <div class="bg-graphite px-4 py-4">
+                  <p class="text-[10.5px] tracking-[0.1em] uppercase text-stone/50 mb-1">{kpi.label}</p>
+                  <p class="font-display text-[22px] font-medium text-ivory leading-none mb-1">{kpi.value}</p>
+                  <p class="text-[11px] text-gold-500">{kpi.trend}</p>
+                </div>
               ))}
             </div>
           </div>

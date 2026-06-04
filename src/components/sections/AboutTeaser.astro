@@ -6,23 +6,28 @@
 
     <!-- Image plate -->
     <div class="reveal order-2 lg:order-1">
-      <div class="rounded-xl bg-mist border border-stone/50 overflow-hidden shadow-sm aspect-[4/3] relative">
-        <div class="absolute inset-0 flex items-end p-8">
-          <div class="w-full">
-            <!-- Quote -->
-            <p class="font-display text-[22px] font-medium text-ink/80 leading-snug tracking-tight mb-4">
-              "Betriebe substanziell besser machen — das ist der einzige Massstab."
-            </p>
-            <div class="w-14 h-px bg-bordeaux-300 mb-3"></div>
-            <p class="text-[13px] text-taupe">Maurus Pichler, Gründer</p>
-          </div>
-        </div>
-        <!-- Shield watermark -->
+      <div class="rounded-xl overflow-hidden shadow-md aspect-[4/3] relative bg-mist">
         <img
-          src="/assets/shield.png"
-          alt=""
-          class="absolute top-6 right-6 h-16 w-auto opacity-10 pointer-events-none"
+          src="/assets/maurus.jpg"
+          alt="Maurus Pichler, Gründer von Pichler Advisory"
+          class="w-full h-full object-cover object-center"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
         />
+        <!-- Fallback with quote -->
+        <div class="absolute inset-0 hidden flex-col justify-end p-8 bg-mist border border-stone/50" style="display:none;">
+          <p class="font-display text-[22px] font-medium text-ink/80 leading-snug tracking-tight mb-4">
+            "Betriebe substanziell besser machen — das ist der einzige Massstab."
+          </p>
+          <div class="w-14 h-px bg-bordeaux-300 mb-3"></div>
+          <p class="text-[13px] text-taupe">Maurus Pichler, Gründer</p>
+        </div>
+        <!-- Quote overlay on photo -->
+        <div class="absolute bottom-0 left-0 right-0 p-6" style="background: linear-gradient(to top, rgba(30,27,30,0.75) 0%, transparent 100%);">
+          <p class="font-display text-[17px] font-medium text-ivory/90 leading-snug tracking-tight mb-2">
+            "Betriebe substanziell besser machen — das ist der einzige Massstab."
+          </p>
+          <p class="text-[12px] text-stone/70">Maurus Pichler, Gründer</p>
+        </div>
       </div>
     </div>
 
