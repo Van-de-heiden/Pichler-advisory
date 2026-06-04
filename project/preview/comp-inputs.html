@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html, body { margin: 0; }
+  body { background: var(--base-white); padding: 24px 28px; font-family: var(--font-body); display: flex; flex-direction: column; gap: 16px; max-width: 440px; }
+  .field label { display: block; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--taupe); font-weight: 600; margin-bottom: 7px; }
+  .field input, .field select { width: 100%; box-sizing: border-box; font-family: var(--font-body); font-size: 15px; color: var(--ink); padding: 12px 14px; border: 1px solid var(--stone); border-radius: var(--radius-md); background: var(--base-white); outline: none; transition: border-color var(--duration-base) var(--ease-standard), box-shadow var(--duration-base) var(--ease-standard); }
+  .field input::placeholder { color: var(--taupe); }
+  .field.focused input { border-color: var(--bordeaux-700); box-shadow: 0 0 0 3px var(--bordeaux-50); }
+  .check { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--slate); }
+  .box { width: 18px; height: 18px; border-radius: var(--radius-sm); background: var(--bordeaux-700); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 12px; }
+</style>
+</head>
+<body>
+  <div class="field focused">
+    <label>Email</label>
+    <input value="partner@pichlercapital.com">
+  </div>
+  <div class="field">
+    <label>Enquiry</label>
+    <input placeholder="Start a confidential conversation">
+  </div>
+  <div class="check"><span class="box">✓</span> I have read the risk considerations</div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html, body { margin: 0; }
+  body { background: var(--base-ivory); padding: 26px 28px; font-family: var(--font-body); display: flex; gap: 18px; }
+  .card { flex: 1; background: var(--base-white); border: 1px solid var(--mist); border-radius: var(--radius-lg); padding: 22px; box-shadow: var(--shadow-md); position: relative; overflow: hidden; }
+  .card.premium::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--bordeaux-700); }
+  .eyebrow { display: block; margin-bottom: 12px; }
+  .gold { color: var(--gold-700); }
+  .title { font-family: var(--font-display); font-size: 24px; font-weight: 500; letter-spacing: -0.02em; color: var(--ink); margin: 0 0 8px; }
+  .desc { font-size: 14px; line-height: 1.6; color: var(--slate); margin: 0 0 18px; }
+  .stat { font-family: var(--font-display); font-size: 38px; font-weight: 500; color: var(--bordeaux-700); line-height: 1; }
+  .statlbl { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--taupe); margin-top: 6px; }
+</style>
+</head>
+<body>
+  <div class="card premium">
+    <span class="eyebrow gold">Focus area</span>
+    <h3 class="title">Private holdings</h3>
+    <p class="desc">Long-term ownership in resilient, cash-generative businesses with disciplined governance.</p>
+    <div class="stat">€420M</div>
+    <div class="statlbl">Capital under stewardship</div>
+  </div>
+  <div class="card">
+    <span class="eyebrow">Investment thesis</span>
+    <h3 class="title">Measured conviction</h3>
+    <p class="desc">Every opportunity must justify its place — through thesis, timing, risk profile and execution path.</p>
+    <div class="stat">12</div>
+    <div class="statlbl">Active positions</div>
+  </div>
+</body>
+</html>

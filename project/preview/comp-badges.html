@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html, body { margin: 0; }
+  body { background: var(--base-white); padding: 26px 28px; font-family: var(--font-body); display: flex; flex-direction: column; gap: 18px; }
+  .row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  .tag { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; padding: 5px 12px; border-radius: var(--radius-pill); }
+  .brand { background: var(--bordeaux-50); color: var(--bordeaux-700); }
+  .neutral { background: var(--mist); color: var(--slate); }
+  .gold { background: transparent; color: var(--gold-700); border: 1px solid var(--gold-500); }
+  .chip { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; padding: 5px 12px; border-radius: var(--radius-pill); }
+  .dot { width: 7px; height: 7px; border-radius: 50%; }
+  .pos { background: var(--positive-soft); color: var(--positive); }
+  .neg { background: var(--negative-soft); color: var(--negative); }
+  .warn { background: var(--warning-soft); color: var(--warning); }
+</style>
+</head>
+<body>
+  <div class="row">
+    <span class="tag brand">Private capital</span>
+    <span class="tag neutral">Long-term</span>
+    <span class="tag gold">Premium</span>
+  </div>
+  <div class="row">
+    <span class="chip pos"><span class="dot" style="background:var(--positive)"></span>+12.4%</span>
+    <span class="chip neg"><span class="dot" style="background:var(--negative)"></span>−3.1%</span>
+    <span class="chip warn"><span class="dot" style="background:var(--warning)"></span>Under review</span>
+  </div>
+</body>
+</html>

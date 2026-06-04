@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html, body { margin: 0; }
+  body { background: var(--base-white); padding: 0; font-family: var(--font-body); }
+  .nav { display: flex; align-items: center; justify-content: space-between; padding: 20px 30px; border-bottom: 1px solid var(--mist); }
+  .brand { display: flex; align-items: center; gap: 12px; }
+  .brand img { height: 30px; }
+  .links { display: flex; gap: 30px; }
+  .nav-link { position: relative; font-size: 14px; font-weight: 500; color: var(--ink); text-decoration: none; padding-bottom: 3px; }
+  .nav-link::after { content: ""; position: absolute; left: 0; bottom: 0; display: block; width: 0; height: 1px; background: var(--bordeaux-700); transition: width var(--duration-base) var(--ease-standard); }
+  .nav-link:hover::after, .nav-link[aria-current="page"]::after { width: 100%; }
+  .nav-link[aria-current="page"] { color: var(--bordeaux-700); }
+  .cta { font-size: 13px; font-weight: 600; color: #fff; background: var(--bordeaux-700); padding: 9px 18px; border-radius: var(--radius-pill); text-decoration: none; }
+</style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="brand"><img src="../assets/pcg-shield.png" alt="PCG"><span style="font-family:var(--font-display); font-size:18px; letter-spacing:0.18em; color:var(--bordeaux-700)">PICHLER</span></div>
+    <div class="links">
+      <a class="nav-link" aria-current="page" href="#">Approach</a>
+      <a class="nav-link" href="#">Thesis</a>
+      <a class="nav-link" href="#">Focus areas</a>
+      <a class="nav-link" href="#">Contact</a>
+    </div>
+    <a class="cta" href="#">Investor login</a>
+  </nav>
+</body>
+</html>

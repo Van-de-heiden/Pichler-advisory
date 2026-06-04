@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html, body { margin: 0; }
+  body { background: var(--base-white); padding: 22px 26px; font-family: var(--font-body); }
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .pair { border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-sm); }
+  .solid { height: 64px; display: flex; flex-direction: column; justify-content: flex-end; padding: 9px; box-sizing: border-box; color: #fff; }
+  .solid .n { font-size: 11px; font-weight: 600; }
+  .solid .h { font-size: 10px; opacity: 0.85; }
+  .soft { height: 30px; display: flex; align-items: center; padding: 0 9px; font-size: 10px; font-weight: 600; }
+  .lbl { display: flex; align-items: baseline; gap: 10px; margin-bottom: 12px; }
+  .lbl .t { font-family: var(--font-display); font-size: 22px; font-weight: 500; color: var(--ink); }
+  .lbl .d { font-size: 12px; color: var(--slate); }
+</style>
+</head>
+<body>
+  <div class="lbl"><span class="t">Semantic</span><span class="d">Financial indicators only — Risk Red is never confused with brand Bordeaux</span></div>
+  <div class="grid">
+    <div class="pair">
+      <div class="solid" style="background:var(--positive)"><span class="n">Positive</span><span class="h">#2F6B4F</span></div>
+      <div class="soft" style="background:var(--positive-soft); color:var(--positive)">#E6F1EB</div>
+    </div>
+    <div class="pair">
+      <div class="solid" style="background:var(--negative)"><span class="n">Negative</span><span class="h">#9C2F3A</span></div>
+      <div class="soft" style="background:var(--negative-soft); color:var(--negative)">#F5E7E9</div>
+    </div>
+    <div class="pair">
+      <div class="solid" style="background:var(--warning)"><span class="n">Warning</span><span class="h">#A66A1F</span></div>
+      <div class="soft" style="background:var(--warning-soft); color:var(--warning)">#F7EEDC</div>
+    </div>
+    <div class="pair">
+      <div class="solid" style="background:var(--info)"><span class="n">Info</span><span class="h">#2F536B</span></div>
+      <div class="soft" style="background:var(--info-soft); color:var(--info)">#E6EEF2</div>
+    </div>
+  </div>
+</body>
+</html>

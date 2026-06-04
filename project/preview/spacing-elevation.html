@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html, body { margin: 0; }
+  body { background: var(--base-ivory); padding: 26px 26px 34px; font-family: var(--font-body); }
+  .lbl { font-family: var(--font-display); font-size: 22px; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
+  .sub { font-size: 12px; color: var(--slate); margin-bottom: 22px; }
+  .grid { display: flex; gap: 22px; }
+  .item { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+  .box { width: 96px; height: 60px; background: var(--base-white); border-radius: var(--radius-md); }
+  .t { font-size: 11px; color: var(--slate); }
+</style>
+</head>
+<body>
+  <div class="lbl">Elevation</div>
+  <div class="sub">Soft, warm, low-opacity — built on ink, never harsh black</div>
+  <div class="grid">
+    <div class="item"><span class="box" style="box-shadow:var(--shadow-xs)"></span><span class="t">xs</span></div>
+    <div class="item"><span class="box" style="box-shadow:var(--shadow-sm)"></span><span class="t">sm</span></div>
+    <div class="item"><span class="box" style="box-shadow:var(--shadow-md)"></span><span class="t">md</span></div>
+    <div class="item"><span class="box" style="box-shadow:var(--shadow-lg)"></span><span class="t">lg</span></div>
+    <div class="item"><span class="box" style="box-shadow:var(--shadow-brand); background:var(--bordeaux-700)"></span><span class="t">brand</span></div>
+  </div>
+</body>
+</html>

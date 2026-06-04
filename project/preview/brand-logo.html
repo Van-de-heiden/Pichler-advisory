@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html, body { margin: 0; }
+  body { background: var(--base-ivory); padding: 24px; font-family: var(--font-body); display: flex; gap: 22px; align-items: center; }
+  .plate { flex: 1; display: flex; align-items: center; justify-content: center; height: 150px; border-radius: var(--radius-lg); border: 1px solid var(--mist); }
+  .light { background: var(--base-white); }
+  .dark { background: var(--charcoal); }
+  .light img, .dark img { height: 120px; }
+</style>
+</head>
+<body>
+  <div class="plate light"><img src="../assets/pcg-logo-transparent.png" alt="Pichler Capital Group lockup"></div>
+  <div class="plate dark"><img src="../assets/pcg-logo-transparent.png" alt="Pichler Capital Group lockup on dark" style="filter:brightness(0) invert(1) sepia(0.2) saturate(2) hue-rotate(-15deg); opacity:0.95"></div>
+</body>
+</html>
