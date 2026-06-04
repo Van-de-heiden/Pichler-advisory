@@ -11,11 +11,11 @@
       <h1 class="font-display font-medium text-ink m-0 mb-6 leading-[0.98] tracking-[-0.04em]"
           style="font-size: clamp(3.5rem, 6vw, 5rem);">
         Operative Klarheit für Betriebe
-        <em class="italic text-bordeaux-700 not-italic" style="font-style: italic;">mit Substanz.</em>
+        <em class="italic text-bordeaux-700" style="font-style: italic;">mit Substanz.</em>
       </h1>
 
       <p class="text-[19px] leading-[1.65] text-slate max-w-[46ch] m-0 mb-[34px]">
-        Wir helfen KMU-Inhabern dabei, digitale Präsenz, interne Abläufe und unternehmerische Steuerung substanziell zu verbessern — ohne Agenturkitsch und ohne leere Versprechen.
+        Ich unterstütze KMU-Inhaber dabei, ihren Betrieb klarer zu sehen, digitale Schwachstellen zu beheben und Abläufe so zu verbessern, dass im Alltag mehr Übersicht entsteht.
       </p>
 
       <div class="flex items-center gap-3.5 mb-[52px] flex-wrap">
@@ -28,7 +28,6 @@
         <a href="/leistungen" class="btn-ghost">Leistungen ansehen</a>
       </div>
 
-      <!-- Meta row -->
       <div class="flex items-center gap-7 flex-wrap">
         <div class="flex flex-col gap-1">
           <span class="font-display text-[30px] font-medium text-ink leading-none whitespace-nowrap">2026</span>
@@ -47,23 +46,35 @@
       </div>
     </div>
 
-    <!-- Image plate -->
-    <div class="reveal shadow-lg rounded-xl overflow-hidden aspect-[3/4] relative bg-charcoal lg:block hidden">
-      <!-- Bordeaux wash -->
-      <div class="absolute inset-0 pointer-events-none"
-           style="background: radial-gradient(80% 120% at 85% 0%, rgba(90,15,27,0.5), transparent 60%);"></div>
-      <!-- Shield watermark -->
+    <!-- Image -->
+    <div class="reveal shadow-lg rounded-xl overflow-hidden aspect-[3/4] relative lg:block hidden">
+      <!-- Real photo: public/assets/hero-office.jpg -->
       <img
-        src="/assets/shield.png"
-        alt=""
-        class="absolute w-3/5 max-w-[200px] opacity-[0.06] invert pointer-events-none select-none"
-        style="top:50%;left:50%;transform:translate(-50%,-50%)"
+        src="/assets/hero-office.jpg"
+        alt="Büro"
+        class="absolute inset-0 w-full h-full object-cover"
+        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
       />
-      <!-- Corner label -->
-      <div class="absolute bottom-6 left-6 right-6">
-        <span class="text-[11px] tracking-[0.18em] uppercase text-stone/50">Schweiz · Advisory · 2026</span>
+      <!-- Fallback charcoal plate -->
+      <div class="absolute inset-0 bg-charcoal hidden flex-col justify-end p-6"
+           style="display:flex; background:#262126;">
+        <div class="absolute inset-0 pointer-events-none"
+             style="background: radial-gradient(80% 120% at 85% 0%, rgba(90,15,27,0.5), transparent 60%);"></div>
+        <img src="/assets/shield.png" alt="" class="absolute w-3/5 max-w-[200px] opacity-[0.06] invert pointer-events-none"
+             style="top:50%;left:50%;transform:translate(-50%,-50%)" />
+        <span class="relative text-[11px] tracking-[0.18em] uppercase text-stone/50">Schweiz · Advisory · 2026</span>
       </div>
     </div>
 
   </div>
 </section>
+
+<script>
+  // Show fallback if image fails
+  document.querySelectorAll('.hero-img-fallback').forEach(el => {
+    const img = el.previousElementSibling as HTMLImageElement;
+    if (img && !img.complete) {
+      img.addEventListener('error', () => { img.style.display = 'none'; (el as HTMLElement).style.display = 'flex'; });
+    }
+  });
+</script>

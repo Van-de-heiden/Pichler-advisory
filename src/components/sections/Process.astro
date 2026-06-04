@@ -3,32 +3,32 @@ const phases = [
   {
     num: '01',
     title: 'Verstehen',
-    desc: 'Wir lernen Ihren Betrieb kennen — Situation, Ziele, Engpässe und Potenziale. Ohne Checklisten, dafür mit echtem Interesse am Unternehmen.',
+    desc: 'Ich will wissen, wie Ihr Betrieb wirklich funktioniert — nicht wie er auf dem Papier aussieht. Was läuft gut, was frisst zu viel Kraft, wo fehlt Übersicht?',
   },
   {
     num: '02',
     title: 'Analysieren',
-    desc: 'Systematische Betrachtung: Aussenwirkung, Prozesse, Kennzahlen, digitale Infrastruktur und Kundenansprache. Schwächen und ungenutzte Hebel werden sichtbar gemacht.',
+    desc: 'Ich schaue mir den Betrieb systematisch an: Aussenwirkung, Abläufe, Kennzahlen, digitale Infrastruktur. Was funktioniert, was nicht — und wo liegt ungenutztes Potenzial?',
   },
   {
     num: '03',
     title: 'Priorisieren',
-    desc: 'Nicht alles auf einmal. Wir bestimmen gemeinsam mit Ihnen die wichtigsten Massnahmen — nach Impact, Aufwand und strategischer Bedeutung.',
+    desc: 'Nicht alles auf einmal. Ich helfe Ihnen, die Massnahmen zu bestimmen, die wirklich etwas bewegen — nach Impact und Aufwand. Quick Wins zuerst.',
   },
   {
     num: '04',
     title: 'Umsetzen',
-    desc: 'Keine endlosen Konzepte. Wir setzen konkrete Verbesserungen um: neue Website, bessere Prozesse, ein Dashboard, ein strukturiertes Angebot — was Ihr Betrieb braucht.',
+    desc: 'Ich setze konkrete Dinge um: neue Website, bessere Prozesse, ein einfaches Cockpit, klarere Angebotsstruktur. Keine Konzepte, die in der Schublade landen.',
   },
   {
     num: '05',
     title: 'Messen',
-    desc: 'Wirkung muss nachvollziehbar sein. Wir schaffen einfache Messpunkte, damit klar ist, was sich verbessert hat und wo weiter angesetzt werden soll.',
+    desc: 'Ich definiere einfache Messpunkte, damit klar ist, was sich wirklich verändert hat — und wo weiter angesetzt werden soll.',
   },
   {
     num: '06',
     title: 'Weiterentwickeln',
-    desc: 'Ein Betrieb ist nie fertig. Auf Wunsch begleiten wir Sie laufend — monatlich, im Retainer oder projektweise — und entwickeln Ihr Unternehmen kontinuierlich weiter.',
+    desc: 'Auf Wunsch begleite ich Sie laufend weiter — monatlich, projektweise oder bei Bedarf. Ein Betrieb ist nie fertig.',
   },
 ];
 ---
@@ -36,20 +36,27 @@ const phases = [
 <section class="max-w-[1240px] mx-auto px-10 py-24" id="vorgehen">
   <div class="grid lg:grid-cols-[0.85fr_1.15fr] gap-16 items-start">
 
-    <!-- Left: heading + image -->
+    <!-- Left: heading -->
     <div class="reveal lg:sticky lg:top-28">
-      <span class="eyebrow block mb-4">Wie wir vorgehen</span>
+      <span class="eyebrow block mb-4">Wie ich vorgehe</span>
       <h2 class="font-display font-medium text-ink mt-4 mb-[18px]"
           style="font-size: clamp(2.2rem, 3.4vw, 3rem); line-height: 1.08; letter-spacing: -0.03em;">
-        Sechs Phasen.<br />Ein Ergebnis.
+        Erst verstehen.<br />
+        <em class="italic text-bordeaux-700" style="font-style:italic;">Dann umsetzen.</em>
       </h2>
       <p class="text-[18px] leading-[1.65] text-slate mb-8">
-        Unser Vorgehen ist strukturiert, aber nicht starr. Wir passen uns dem Betrieb an — nicht umgekehrt.
+        Ich beginne nicht mit fertigen Lösungen. Ich will zuerst verstehen, wie der Betrieb wirklich funktioniert — dann wird priorisiert und Schritt für Schritt umgesetzt.
       </p>
 
-      <!-- Decorative plate -->
       <div class="rounded-xl overflow-hidden aspect-[4/3] relative bg-mist border border-stone/50 shadow-sm">
-        <div class="absolute inset-0 flex items-center justify-center p-10">
+        <!-- Real photo: public/assets/workshop.jpg -->
+        <img
+          src="/assets/workshop.jpg"
+          alt="Arbeitsweise"
+          class="w-full h-full object-cover"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        />
+        <div class="absolute inset-0 hidden items-center justify-center p-10" style="display:flex; background:#EEEAE3;">
           <div class="flex flex-col items-center gap-3 text-center">
             <img src="/assets/shield.png" alt="" class="h-16 w-auto opacity-15" />
             <p class="font-display text-[20px] font-medium text-ink/40 tracking-tight leading-snug">

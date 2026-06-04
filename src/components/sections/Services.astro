@@ -17,17 +17,17 @@ const services: Service[] = [
     tag: 'Einstieg',
     tagStyle: 'core',
     title: 'Betriebsanalyse',
-    desc: 'Wir analysieren Ihren Betrieb — Aussenwirkung, Prozesse, Kennzahlen und digitale Präsenz — und liefern konkrete Quick Wins und einen priorisierten Massnahmenplan.',
+    desc: 'Ich schaue mir Ihren Betrieb an — Aussenwirkung, Abläufe, Kennzahlen, digitale Präsenz. Das Ergebnis sind konkrete Quick Wins und ein priorisierter Massnahmenplan, kein abstrakter Bericht.',
     stat: '1–3 Tage',
-    statLabel: 'Sprint',
+    statLabel: 'Dauer',
   },
   {
     id: 'operative-verbesserung',
     icon: `<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>`,
-    tag: 'Umsetzung',
+    tag: 'Abläufe',
     tagStyle: 'core',
     title: 'Operative Verbesserung',
-    desc: 'Offert-, Kunden- und Verwaltungsprozesse vereinfachen, interne Abläufe straffen und Reibung im Tagesgeschäft systematisch reduzieren.',
+    desc: 'Offerten, Kundenkontakte, Verwaltung, interne Abläufe — ich schaue, wo im Alltag täglich Zeit und Übersicht verloren gehen, und helfe dabei, das zu ändern.',
     stat: 'CHF 2k–20k',
     statLabel: 'Typisches Mandat',
   },
@@ -37,9 +37,9 @@ const services: Service[] = [
     tag: 'Systeme',
     tagStyle: 'core',
     title: 'Digitale Systeme',
-    desc: 'Einfache Cockpits und Dashboards, die Umsatz, Aufträge, Leads und operative Performance sichtbar machen — damit der Unternehmer seinen Betrieb besser sieht und steuert.',
+    desc: 'Ich baue einfache Cockpits, die zeigen was wirklich wichtig ist: Umsatz, Aufträge, Leads, Projekte. Damit der Inhaber den Betrieb sieht, statt ihn nur zu spüren.',
     stat: 'Cockpit',
-    statLabel: 'Pichler Advisory',
+    statLabel: 'Eigenes System',
   },
   {
     id: 'aussenwirkung',
@@ -47,7 +47,7 @@ const services: Service[] = [
     tag: 'Auftritt',
     tagStyle: 'selective',
     title: 'Aussenwirkung',
-    desc: 'Website, Positionierung und digitale Präsenz professionalisieren — mehr Vertrauen bei Kunden, Partnern und potenziellen Nachfolgern.',
+    desc: 'Viele Betriebe haben eine veraltete oder schwache Aussenwirkung — die Arbeit stimmt, aber die Darstellung nach aussen nicht. Ich ändere das.',
     stat: 'Website',
     statLabel: 'Positionierung',
   },
@@ -57,9 +57,9 @@ const services: Service[] = [
     tag: 'Wachstum',
     tagStyle: 'selective',
     title: 'Wachstum & Akquise',
-    desc: 'Kundengewinnung und Verkaufsprozesse analysieren, Lead-Prozesse verbessern und pragmatische Wachstumsmassnahmen aufbauen — ohne leere Marketingversprechen.',
+    desc: 'Ich schaue, wie Kunden heute zu Ihnen kommen — und wo im Prozess Anfragen verloren gehen oder unnötig viel Zeit kosten.',
     stat: 'CHF 300–1k+',
-    statLabel: 'Monatlicher Retainer',
+    statLabel: 'Monatlich',
   },
   {
     id: 'turnaround',
@@ -67,7 +67,7 @@ const services: Service[] = [
     tag: 'Turnaround',
     tagStyle: 'selective',
     title: 'Turnaround-Unterstützung',
-    desc: 'Betriebe mit guter Substanz, die aber schwach geführt, schlecht positioniert oder digital rückständig sind — wir helfen, diese wieder klar, modern und leistungsfähig aufzustellen.',
+    desc: 'Betriebe mit Substanz, die gerade nicht rund laufen. Ich helfe dabei zu erkennen, was wirklich fehlt — und das gezielt anzugehen.',
     stat: 'Substanz',
     statLabel: 'Erkennen & Heben',
   },
@@ -76,14 +76,17 @@ const services: Service[] = [
 
 <section class="bg-ivory" id="leistungen">
   <div class="max-w-[1240px] mx-auto px-10 py-24">
-    <div class="max-w-[620px] mb-14 reveal">
-      <span class="eyebrow block mb-4">Was wir tun</span>
-      <h2 class="font-display font-medium text-ink mt-4 mb-[18px]"
+
+    <!-- Problem statement first -->
+    <div class="max-w-[720px] mb-16 reveal">
+      <span class="eyebrow block mb-4">Was ich tue</span>
+      <h2 class="font-display font-medium text-ink mt-4 mb-5"
           style="font-size: clamp(2.2rem, 3.4vw, 3rem); line-height: 1.08; letter-spacing: -0.03em;">
-        Sechs Bereiche. Ein Ziel.
+        Viele Betriebe haben mehr Potenzial,<br />
+        <em class="italic text-bordeaux-700" style="font-style:italic;">als man von aussen erkennt.</em>
       </h2>
-      <p class="text-[18px] leading-[1.65] text-slate m-0">
-        Pichler Advisory deckt die wichtigsten Hebel für KMU-Inhaber ab — von der ersten Analyse bis zur laufenden Weiterentwicklung.
+      <p class="text-[18px] leading-[1.75] text-slate m-0">
+        Die Arbeit ist da, die Kunden sind da, die Erfahrung ist da. Trotzdem gehen im Alltag Zeit, Übersicht und Wirkung verloren — weil Abläufe zu kompliziert sind, die digitale Präsenz nicht stimmt oder keine klare Übersicht über Zahlen und Aufträge besteht. Genau dort setze ich an.
       </p>
     </div>
 
@@ -166,7 +169,5 @@ const services: Service[] = [
     box-shadow: 0 4px 14px rgba(21,20,23,0.07), 0 2px 5px rgba(21,20,23,0.04);
     border-color: #D8D2C8;
   }
-  .focus-card:hover::before {
-    transform: scaleY(1);
-  }
+  .focus-card:hover::before { transform: scaleY(1); }
 </style>
