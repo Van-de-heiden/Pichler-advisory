@@ -96,10 +96,10 @@ const values = [
               Unternehmerisch aktiv seit 17: mit einer eigenen Kleidermarke gestartet, um praktische Erfahrung zu sammeln, danach diverse Projekte für Freunde und Familie aufgebaut. Kein künstliches Unternehmerbild, sondern echter Start.
             </p>
             <p>
-              Pichler Advisory ist der nächste Schritt: eine fokussierte, ernsthafte Advisory für KMU-Inhaber — mit dem Anspruch, Betriebe wirklich von innen zu verstehen, digital zu stärken und operativ besser aufzustellen.
+              Ich kenne die neuesten Technologien — KI-gestützte Prozesse, Automatisierungen, digitale Cockpits, moderne Systemlandschaften. Und ich weiss, wie sie im Alltag eines echten Betriebs konkret eingesetzt werden. Nicht im Labor. Nicht als Konzept. Sondern in der Praxis.
             </p>
             <p>
-              Langfristig ist Pichler Advisory der Eintrittspunkt in die Welt echter Unternehmen — der erste Baustein auf dem Weg zur Pichler Capital Group. Aber zuerst kommt das Fundament: Kompetenz, Referenzen, Netzwerk, echte Ergebnisse.
+              Diese Lücke interessiert mich: zwischen dem, was heute technologisch möglich ist, und dem, was ein KMU-Inhaber im Alltag tatsächlich nutzt. Pichler Advisory überbrückt genau diese Lücke — direkt, ohne Umweg, ohne Agenturaufwand.
             </p>
           </div>
         </div>
@@ -131,22 +131,42 @@ const values = [
       </div>
     </div>
 
-    <!-- Vision -->
+    <!-- What drives me -->
     <div class="relative bg-charcoal overflow-hidden">
       <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(70% 110% at 80% 0%, rgba(90,15,27,0.5), transparent 60%);"></div>
       <div class="relative max-w-[1240px] mx-auto px-10 py-24 reveal">
-        <div class="max-w-[640px]">
-          <span class="eyebrow eyebrow-gold block mb-4">Langfristige Vision</span>
-          <h2 class="font-display font-medium text-ivory mt-4 mb-5"
-              style="font-size: clamp(2rem, 3vw, 2.8rem); line-height: 1.1; letter-spacing: -0.03em;">
-            Advisory als Fundament. Capital Group als Ziel.
-          </h2>
-          <p class="text-[17px] leading-[1.7] text-stone mb-5">
-            Pichler Advisory ist der erste operative Schritt — weil zuerst Kompetenz, Cashflow, Netzwerk und echtes Verständnis für Betriebe aufgebaut werden müssen, bevor Kapital wirklich sinnvoll eingesetzt werden kann.
-          </p>
-          <p class="text-[17px] leading-[1.7] text-stone">
-            Die langfristige Vision ist die Pichler Capital Group: eine unternehmerisch geprägte Holding, die in Betriebe investiert, sie entwickelt und ihren Wert nachhaltig steigert. Advisory ist der erste Eintrittspunkt in diese Welt.
-          </p>
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+          <div>
+            <span class="eyebrow eyebrow-gold block mb-4">Was mich antreibt</span>
+            <h2 class="font-display font-medium text-ivory mt-4 mb-5"
+                style="font-size: clamp(2rem, 3vw, 2.8rem); line-height: 1.1; letter-spacing: -0.03em;">
+              Wissen teilen.<br />
+              <em class="italic" style="font-style:italic;">Wirkung erzeugen.</em>
+            </h2>
+            <p class="text-[17px] leading-[1.7] text-stone mb-5">
+              Ich kenne die Möglichkeiten moderner Technologie — und ich kenne die Best Practices, wie man sie so einsetzt, dass sie wirklich etwas verändern. Dieses Wissen interessiert mich nicht als Selbstzweck, sondern als Werkzeug für echte Betriebe.
+            </p>
+            <p class="text-[17px] leading-[1.7] text-stone">
+              KMU-Inhaber arbeiten 50, 60 Stunden die Woche. Sie haben keine Zeit, sich durch Software-Demos zu kämpfen oder teure Agenturen zu briefen. Ich bringe das Wissen direkt — und setze um, was wirklich hilft.
+            </p>
+          </div>
+          <div class="flex flex-col gap-5">
+            {[
+              { icon: `<path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>`, label: 'Technologie-Expertise', text: 'KI, Automatisierung, digitale Systeme — ich kenne die Werkzeuge und wie man sie ohne IT-Abteilung einsetzt.' },
+              { icon: `<polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>`, label: 'Direkte Umsetzung', text: 'Kein Konzeptpapier. Ich setze konkrete Massnahmen um — von der Website bis zum Cockpit.' },
+              { icon: `<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>` , label: 'Auf Augenhöhe', text: 'Ich spreche mit Inhabern, nicht über sie. Ich verstehe den Betrieb zuerst — dann handle ich.' },
+            ].map(item => (
+              <div class="flex gap-4 items-start">
+                <span class="flex-shrink-0 w-10 h-10 rounded-lg bg-bordeaux-900/50 border border-bordeaux-700/30 text-bordeaux-300 flex items-center justify-center">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" set:html={item.icon} />
+                </span>
+                <div>
+                  <p class="text-[14px] font-semibold text-ivory/90 mb-1">{item.label}</p>
+                  <p class="text-[14px] leading-[1.6] text-stone/70">{item.text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>

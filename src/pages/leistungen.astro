@@ -4,95 +4,74 @@ import Nav from '../components/layout/Nav.astro';
 import Footer from '../components/layout/Footer.astro';
 import ContactModal from '../components/ui/ContactModal.astro';
 
-const services = [
-  {
-    id: 'betriebsanalyse',
-    icon: `<line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>`,
-    tag: 'Einstieg',
-    tagStyle: 'core',
-    title: 'Betriebsanalyse',
-    lede: 'Der strukturierte Blick auf Ihren Betrieb — in 1 bis 3 Tagen.',
-    body: [
-      'Ich schaue mir Ihren Betrieb systematisch an: Aussenwirkung, digitale Präsenz, interne Abläufe, Kundenansprache, Kennzahlen und operative Struktur.',
-      'Das Ergebnis ist ein konkreter Bericht mit Schwachstellenanalyse, Quick Wins und priorisierten Massnahmenempfehlungen — keine theoretischen Konzepte, sondern direkt nutzbare Erkenntnisse.',
-      'Die Betriebsanalyse ist der ideale Einstieg: Sie schaffen Klarheit darüber, wo Ihr Betrieb wirklich steht und welche Hebel am stärksten wirken.',
-    ],
-    includes: ['Analyse der Website und digitalen Präsenz', 'Bewertung interner Abläufe', 'Kennzahlen und Steuerungssituation', 'Quick Wins und Massnahmenplan', 'Persönliches Feedbackgespräch'],
-    duration: '1–3 Tage Sprint',
-    price: 'Auf Anfrage',
-  },
+const featured = {
+  id: 'betriebsanalyse',
+  icon: `<line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>`,
+  title: 'Betriebsanalyse',
+  lede: 'Der strukturierte Blick auf Ihren Betrieb — in 1 bis 3 Tagen.',
+  desc: 'Ich schaue mir Ihren Betrieb systematisch an: Aussenwirkung, digitale Präsenz, interne Abläufe, Kundenansprache und Kennzahlen. Das Ergebnis sind konkrete Quick Wins und ein priorisierter Massnahmenplan — keine Theorie, sondern direkt nutzbare Erkenntnisse.',
+  includes: [
+    'Analyse der Website und digitalen Präsenz',
+    'Bewertung interner Abläufe und Prozesse',
+    'Kennzahlen und Steuerungssituation',
+    'Quick Wins und priorisierter Massnahmenplan',
+    'Persönliches Feedbackgespräch',
+  ],
+  duration: '1–3 Tage Sprint',
+  price: 'Auf Anfrage',
+};
+
+const coreServices = [
   {
     id: 'operative-verbesserung',
     icon: `<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>`,
-    tag: 'Umsetzung',
-    tagStyle: 'core',
     title: 'Operative Verbesserung',
-    lede: 'Reibung raus, Abläufe straffen, täglich Zeit zurückgewinnen.',
-    body: [
-      'Viele Betriebe funktionieren gut — aber langsamer und aufwändiger als nötig. Offertprozesse, Kundenkommunikation, Verwaltung und interne Abstimmungen kosten täglich unnötig Zeit und Nerven.',
-      'Ich schaue, wo die Reibung entsteht, und helfe dabei, das zu ändern: klarere Abläufe, bessere Vorlagen, weniger manuelle Handgriffe, mehr Übersicht im Tagesgeschäft.',
-    ],
-    includes: ['Prozessanalyse und Optimierung', 'Vereinfachung von Offert- und Kundenprozessen', 'Digitale Organisation und Ablagestruktur', 'Aufbau klarerer Arbeitsabläufe', 'Reduktion administrativen Aufwands'],
+    lede: 'Reibung raus, täglich Zeit zurückgewinnen.',
+    desc: 'Viele Betriebe funktionieren gut — aber langsamer und aufwändiger als nötig. Ich schaue, wo Offertprozesse, Kundenkommunikation und Verwaltung unnötig Zeit fressen, und helfe dabei, das zu ändern.',
+    includes: ['Prozessanalyse und Optimierung', 'Vereinfachung von Offert- und Kundenprozessen', 'Digitale Organisation und Ablagestruktur', 'Aufbau klarerer Arbeitsabläufe'],
     duration: 'Projektbasis',
     price: 'CHF 2\'000 – 20\'000',
   },
   {
     id: 'digitale-systeme',
     icon: `<rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>`,
-    tag: 'Systeme',
-    tagStyle: 'core',
     title: 'Digitale Systeme & Cockpit',
     lede: 'Die richtigen Zahlen. Auf einen Blick.',
-    body: [
-      'Viele Inhaber führen ihren Betrieb aus dem Bauch heraus — weil Daten verstreut, unübersichtlich oder gar nicht vorhanden sind. Ich baue einfache, visuelle Systeme, die das ändern.',
-      'Ob Umsatzcockpit, Lead-Tracker, Projektübersicht oder operative Kennzahlen: Ich schaffe die Grundlage für klarere Entscheidungen — ohne IT-Projekt, ohne Overkill.',
-    ],
-    includes: ['Performance-Cockpit und Dashboard', 'Umsatz- und Auftragsübersicht', 'Lead- und Akquise-Tracking', 'Projekt- und Aufgabenübersicht', 'Datenverbindung und Automatisierung'],
+    desc: 'Ich baue einfache, visuelle Systeme — Umsatzcockpit, Lead-Tracker, Projektübersicht — die die Grundlage für klarere Entscheidungen schaffen. Ohne IT-Projekt, ohne Overkill.',
+    includes: ['Performance-Cockpit und Dashboard', 'Umsatz- und Auftragsübersicht', 'Lead- und Akquise-Tracking', 'Datenverbindung und Automatisierung'],
     duration: 'Aufbau + optional Retainer',
     price: 'CHF 2\'000 – 10\'000 Aufbau',
   },
+];
+
+const selectiveServices = [
   {
     id: 'aussenwirkung',
     icon: `<circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>`,
-    tag: 'Auftritt',
-    tagStyle: 'selective',
     title: 'Aussenwirkung & Positionierung',
     lede: 'Professionell. Glaubwürdig. Merkbar.',
-    body: [
-      'Ein Betrieb mit guter Substanz verdient einen Auftritt, der das zeigt. Viele KMU haben eine schwache oder veraltete digitale Präsenz — und verlieren dadurch Vertrauen bei Kunden, Partnern und potenziellen Nachfolgern.',
-      'Ich verbessere Website, Positionierung und Angebotskommunikation: nicht mit Agenturkitsch, sondern mit Klarheit, Substanz und professionellem Ausdruck.',
-    ],
-    includes: ['Website-Analyse und Neuaufbau', 'Angebotskommunikation und Positionierung', 'Digitale Präsenz und Auftritt', 'Vertrauensaufbau bei Zielgruppen', 'Konsistentes Erscheinungsbild'],
+    desc: 'Ein Betrieb mit guter Substanz verdient einen Auftritt, der das zeigt. Ich verbessere Website, Positionierung und Angebotskommunikation — ohne Agenturkitsch.',
+    includes: ['Website-Analyse und Neuaufbau', 'Angebotskommunikation und Positionierung', 'Konsistentes Erscheinungsbild'],
     duration: 'Projektbasis',
     price: 'Auf Anfrage',
   },
   {
     id: 'wachstum',
     icon: `<polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>`,
-    tag: 'Wachstum',
-    tagStyle: 'selective',
     title: 'Wachstum & Akquise',
     lede: 'Saubere Hebel statt leerer Versprechen.',
-    body: [
-      'Wachstum ist kein Marketing-Begriff. Es ist das Ergebnis von klarer Kundenansprache, funktionierenden Lead-Prozessen und einem Angebot, das überzeugt.',
-      'Ich schaue, wie Ihr Betrieb heute Kunden gewinnt — und wo im Prozess Anfragen verloren gehen oder unnötig viel Zeit kosten. Keine teuren Kampagnen, keine Heilsversprechen.',
-    ],
-    includes: ['Analyse Kundengewinnung und Vertriebsprozess', 'Lead-Prozesse und Follow-up', 'Angebotsstruktur und Kommunikation', 'Pragmatische Wachstumsmassnahmen', 'Monatlicher Retainer möglich'],
+    desc: 'Ich schaue, wie Ihr Betrieb heute Kunden gewinnt — und wo im Prozess Anfragen verloren gehen oder unnötig viel Zeit kosten. Keine teuren Kampagnen, keine Heilsversprechen.',
+    includes: ['Analyse Kundengewinnung und Vertrieb', 'Lead-Prozesse und Follow-up', 'Angebotsstruktur und Kommunikation'],
     duration: 'Analyse + Umsetzung',
-    price: 'CHF 300 – 1\'000+/Monat Retainer',
+    price: 'CHF 300 – 1\'000+/Monat',
   },
   {
     id: 'turnaround',
     icon: `<polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>`,
-    tag: 'Turnaround',
-    tagStyle: 'selective',
     title: 'Turnaround-Unterstützung',
     lede: 'Substanz erkennen und heben.',
-    body: [
-      'Besonders interessant für mich sind Betriebe, die eigentlich gute Substanz haben — aber schlecht geführt, schwach positioniert, digital rückständig oder intern unübersichtlich sind.',
-      'In solchen Situationen gibt es oft grosse Hebel. Ich helfe, diese zu identifizieren, zu priorisieren und umzusetzen — mit unternehmerischem Verstand und ohne beschönigende Beratungssprache.',
-    ],
-    includes: ['Tiefe Betriebsanalyse', 'Identifikation von Substanz und Schwächen', 'Sofortmassnahmen und Prioritäten', 'Operative Begleitung und Umsetzung', 'Strategische Neuausrichtung'],
+    desc: 'Betriebe mit guter Substanz, die gerade nicht rund laufen. Ich helfe dabei zu erkennen, was wirklich fehlt — und das gezielt anzugehen.',
+    includes: ['Tiefe Betriebsanalyse', 'Identifikation von Substanz und Schwächen', 'Sofortmassnahmen und Umsetzung'],
     duration: 'Auf Anfrage',
     price: 'Auf Anfrage',
   },
@@ -112,7 +91,7 @@ const services = [
         <span class="eyebrow block mb-4">Leistungen</span>
         <h1 class="font-display font-medium text-ink m-0 mb-5"
             style="font-size: clamp(3rem, 5vw, 4.5rem); line-height: 1.0; letter-spacing: -0.03em;">
-          Was ich für Ihren Betrieb tun kann.
+          Was ich für Ihren<br />Betrieb tun kann.
         </h1>
         <p class="text-[19px] leading-[1.65] text-slate m-0">
           Von der ersten Analyse bis zur laufenden Begleitung — sechs Bereiche, die zusammen oder einzeln echte Wirkung entfalten.
@@ -120,69 +99,164 @@ const services = [
       </div>
     </div>
 
-    <!-- Service detail list -->
-    <div class="max-w-[1240px] mx-auto px-10 pb-24">
-      <div class="flex flex-col gap-20">
-        {services.map((s, i) => (
-          <div id={s.id} class="grid lg:grid-cols-[1fr_2fr] gap-12 items-start pt-10 border-t border-mist reveal">
+    <!-- ═══ FEATURED: Betriebsanalyse ═══ -->
+    <div class="max-w-[1240px] mx-auto px-10 pb-16">
+      <div id={featured.id} class="featured-card reveal">
+        <div class="featured-card-inner">
+          <!-- Left -->
+          <div class="featured-left">
+            <div class="flex items-center gap-4 mb-6">
+              <span class="flex-shrink-0 inline-flex items-center justify-center w-14 h-14 rounded-xl bg-bordeaux-700 text-ivory">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" set:html={featured.icon} />
+              </span>
+              <span class="text-[11px] tracking-[0.14em] uppercase font-semibold text-bordeaux-700 bg-bordeaux-50 px-3 py-1.5 rounded-pill border border-bordeaux-100">
+                Idealer Einstieg
+              </span>
+            </div>
+            <h2 class="font-display font-medium text-ink mb-2"
+                style="font-size: clamp(1.8rem, 2.8vw, 2.5rem); line-height: 1.08; letter-spacing: -0.02em;">
+              {featured.title}
+            </h2>
+            <p class="text-[17px] font-medium text-bordeaux-700 mb-4 leading-snug">{featured.lede}</p>
+            <p class="text-[16px] leading-[1.7] text-slate mb-6">{featured.desc}</p>
+            <ul class="flex flex-col gap-2.5 mb-6">
+              {featured.includes.map(item => (
+                <li class="flex items-center gap-3 text-[14.5px] text-slate">
+                  <span class="flex-shrink-0 w-4 h-4 rounded-full bg-bordeaux-700 text-ivory flex items-center justify-center">
+                    <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                  </span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
 
-            <!-- Left: icon + meta -->
-            <div>
-              <span class="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-bordeaux-50 text-bordeaux-700 mb-5">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" set:html={s.icon} />
-              </span>
-              <span class:list={[
-                'inline-block text-[10.5px] tracking-[0.12em] uppercase font-semibold px-3 py-[5px] rounded-pill mb-4',
-                s.tagStyle === 'core'
-                  ? 'bg-bordeaux-50 text-bordeaux-700'
-                  : 'border border-gold-500 text-gold-700'
-              ]}>
-                {s.tag}
-              </span>
-              <div class="mt-2 flex flex-col gap-3 text-[14px] text-slate">
-                <div>
-                  <span class="block text-[11px] tracking-[0.1em] uppercase text-taupe mb-1">Dauer</span>
-                  <span class="text-ink font-medium">{s.duration}</span>
-                </div>
-                <div>
-                  <span class="block text-[11px] tracking-[0.1em] uppercase text-taupe mb-1">Investition</span>
-                  <span class="text-ink font-medium">{s.price}</span>
-                </div>
+          <!-- Right -->
+          <div class="featured-right">
+            <div class="flex flex-col gap-4 mb-8">
+              <div class="stat-block">
+                <span class="stat-label">Dauer</span>
+                <span class="font-display text-[32px] font-medium text-ink leading-none">{featured.duration}</span>
+              </div>
+              <div class="stat-block">
+                <span class="stat-label">Investition</span>
+                <span class="font-display text-[32px] font-medium text-ink leading-none">{featured.price}</span>
               </div>
             </div>
+            <button data-open-contact class="btn-primary btn-block">
+              Betriebsanalyse anfragen
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </button>
+            <p class="text-[12px] text-taupe text-center mt-3">Kein Angebot von der Stange. Ich schaue mir Ihren Betrieb an.</p>
+          </div>
+        </div>
+      </div>
+    </div>
 
-            <!-- Right: body -->
-            <div>
-              <h2 class="font-display font-medium text-ink mb-2"
-                  style="font-size: clamp(1.8rem, 2.6vw, 2.4rem); line-height: 1.1; letter-spacing: -0.02em;">
-                {s.title}
-              </h2>
-              <p class="text-[18px] font-medium text-bordeaux-700 mb-5 leading-snug">{s.lede}</p>
-
-              {s.body.map((p) => (
-                <p class="text-[16px] leading-[1.7] text-slate mb-4">{p}</p>
-              ))}
-
-              <div class="mt-6 p-5 bg-mist rounded-xl border border-stone/50">
-                <p class="text-[11px] tracking-[0.1em] uppercase text-taupe font-semibold mb-3">Umfang</p>
-                <ul class="flex flex-col gap-2 list-none p-0 m-0">
-                  {s.includes.map((item) => (
-                    <li class="flex items-center gap-2.5 text-[14.5px] text-slate">
-                      <span class="flex-shrink-0 w-4 h-4 rounded-full bg-bordeaux-50 text-bordeaux-700 flex items-center justify-center">
-                        <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                          <polyline points="20 6 9 17 4 12"/>
-                        </svg>
-                      </span>
+    <!-- ═══ OPERATIVE LEISTUNGEN ═══ -->
+    <div class="bg-mist/40 border-y border-stone/20">
+      <div class="max-w-[1240px] mx-auto px-10 py-16">
+        <div class="mb-10 reveal">
+          <span class="eyebrow block mb-2">Operative Leistungen</span>
+          <h2 class="font-display font-medium text-ink"
+              style="font-size: clamp(1.6rem, 2.4vw, 2rem); line-height: 1.1; letter-spacing: -0.02em;">
+            Abläufe und Systeme, die wirklich funktionieren.
+          </h2>
+        </div>
+        <div class="grid md:grid-cols-2 gap-6">
+          {coreServices.map((s, i) => (
+            <div id={s.id} class="service-card reveal" style={`transition-delay: ${i * 60}ms`}>
+              <div class="flex items-start justify-between mb-5">
+                <span class="inline-flex items-center justify-center w-11 h-11 rounded-lg bg-bordeaux-50 text-bordeaux-700">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" set:html={s.icon} />
+                </span>
+                <div class="text-right">
+                  <span class="text-[11px] tracking-[0.1em] uppercase text-taupe block">{s.duration}</span>
+                  <span class="text-[13px] font-semibold text-ink">{s.price}</span>
+                </div>
+              </div>
+              <h3 class="font-display text-[22px] font-medium text-ink mb-1.5 leading-tight">{s.title}</h3>
+              <p class="text-[13.5px] font-medium text-bordeaux-700 mb-3">{s.lede}</p>
+              <p class="text-[14.5px] leading-[1.65] text-slate mb-4">{s.desc}</p>
+              <details class="service-details">
+                <summary class="flex items-center gap-2 cursor-pointer text-[13px] font-medium text-taupe hover:text-ink transition-colors select-none list-none">
+                  <svg class="chevron w-4 h-4 transition-transform duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"/>
+                  </svg>
+                  Was ist enthalten
+                </summary>
+                <ul class="mt-3 flex flex-col gap-2 pl-6">
+                  {s.includes.map(item => (
+                    <li class="flex items-center gap-2.5 text-[13.5px] text-slate">
+                      <span class="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-bordeaux-400"></span>
                       {item}
                     </li>
                   ))}
                 </ul>
+              </details>
+              <div class="mt-5 pt-4 border-t border-mist">
+                <button data-open-contact class="btn-ghost px-0 text-[13.5px]">
+                  Anfragen
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7 17L17 7M7 7h10v10"/>
+                  </svg>
+                </button>
               </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
 
-              <button data-open-contact class="btn-primary mt-6">
-                Anfragen
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
+    <!-- ═══ SELEKTIVE LEISTUNGEN ═══ -->
+    <div class="max-w-[1240px] mx-auto px-10 py-16">
+      <div class="mb-10 reveal">
+        <span class="eyebrow eyebrow-gold block mb-2">Selektive Leistungen</span>
+        <h2 class="font-display font-medium text-ink"
+            style="font-size: clamp(1.6rem, 2.4vw, 2rem); line-height: 1.1; letter-spacing: -0.02em;">
+          Je nach Situation und Bedarf.
+        </h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-5">
+        {selectiveServices.map((s, i) => (
+          <div id={s.id} class="service-card selective reveal" style={`transition-delay: ${i * 60}ms`}>
+            <div class="flex items-start justify-between mb-5">
+              <span class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-gold-50 text-gold-700" style="background: rgba(181,141,78,0.08);">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" set:html={s.icon} />
+              </span>
+              <span class="text-[10px] tracking-[0.12em] uppercase font-semibold text-gold-700 border border-gold-500/40 px-2.5 py-1 rounded-pill"
+                    style="color: #8A6B2E; border-color: rgba(181,141,78,0.4);">
+                Selektiv
+              </span>
+            </div>
+            <h3 class="font-display text-[20px] font-medium text-ink mb-1.5 leading-tight">{s.title}</h3>
+            <p class="text-[12.5px] font-semibold text-gold-700 mb-3 tracking-wide" style="color: #8A6B2E;">{s.lede}</p>
+            <p class="text-[14px] leading-[1.65] text-slate mb-4">{s.desc}</p>
+            <details class="service-details">
+              <summary class="flex items-center gap-2 cursor-pointer text-[12.5px] font-medium text-taupe hover:text-ink transition-colors select-none list-none">
+                <svg class="chevron w-3.5 h-3.5 transition-transform duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+                Was ist enthalten
+              </summary>
+              <ul class="mt-3 flex flex-col gap-2 pl-5">
+                {s.includes.map(item => (
+                  <li class="flex items-center gap-2 text-[13px] text-slate">
+                    <span class="flex-shrink-0 w-1.5 h-1.5 rounded-full" style="background: #B58D4E;"></span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </details>
+            <div class="mt-5 pt-4 border-t border-stone/20 flex items-center justify-between">
+              <span class="text-[12px] text-taupe">{s.price}</span>
+              <button data-open-contact class="text-taupe hover:text-ink transition-colors duration-[180ms]">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M7 17L17 7M7 7h10v10"/>
                 </svg>
               </button>
             </div>
@@ -211,3 +285,78 @@ const services = [
   <Footer />
   <ContactModal />
 </Base>
+
+<style>
+  /* Featured card */
+  .featured-card {
+    background: white;
+    border: 1.5px solid #E8E4DC;
+    border-left: 4px solid #5A0F1B;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(21,20,23,0.06);
+  }
+  .featured-card-inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  @media (min-width: 768px) {
+    .featured-card-inner {
+      grid-template-columns: 1fr 280px;
+    }
+  }
+  .featured-left {
+    padding: 36px 32px;
+  }
+  .featured-right {
+    padding: 36px 32px;
+    background: #F8F5EF;
+    border-left: 1px solid #E8E4DC;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  @media (max-width: 767px) {
+    .featured-right {
+      border-left: none;
+      border-top: 1px solid #E8E4DC;
+    }
+  }
+  .stat-block {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .stat-label {
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #8A8078;
+    font-weight: 600;
+  }
+
+  /* Service cards */
+  .service-card {
+    background: white;
+    border: 1px solid #EEEAE3;
+    border-radius: 12px;
+    padding: 26px;
+    box-shadow: 0 1px 4px rgba(21,20,23,0.05);
+    transition: transform 260ms cubic-bezier(0.2,0,0,1),
+                box-shadow 260ms cubic-bezier(0.2,0,0,1),
+                border-color 260ms cubic-bezier(0.2,0,0,1);
+  }
+  .service-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(21,20,23,0.08);
+    border-color: #D8D2C8;
+  }
+  .service-card.selective:hover {
+    border-color: rgba(181,141,78,0.3);
+  }
+
+  /* Details/summary */
+  details summary::-webkit-details-marker { display: none; }
+  details[open] .chevron { transform: rotate(180deg); }
+</style>
