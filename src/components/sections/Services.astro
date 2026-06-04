@@ -1,0 +1,172 @@
+---
+interface Service {
+  id: string;
+  icon: string;
+  tag: string;
+  tagStyle: 'core' | 'selective';
+  title: string;
+  desc: string;
+  stat: string;
+  statLabel: string;
+}
+
+const services: Service[] = [
+  {
+    id: 'betriebsanalyse',
+    icon: `<line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>`,
+    tag: 'Einstieg',
+    tagStyle: 'core',
+    title: 'Betriebsanalyse',
+    desc: 'Wir analysieren Ihren Betrieb — Aussenwirkung, Prozesse, Kennzahlen und digitale Präsenz — und liefern konkrete Quick Wins und einen priorisierten Massnahmenplan.',
+    stat: '1–3 Tage',
+    statLabel: 'Sprint',
+  },
+  {
+    id: 'operative-verbesserung',
+    icon: `<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>`,
+    tag: 'Umsetzung',
+    tagStyle: 'core',
+    title: 'Operative Verbesserung',
+    desc: 'Offert-, Kunden- und Verwaltungsprozesse vereinfachen, interne Abläufe straffen und Reibung im Tagesgeschäft systematisch reduzieren.',
+    stat: 'CHF 2k–20k',
+    statLabel: 'Typisches Mandat',
+  },
+  {
+    id: 'digitale-systeme',
+    icon: `<rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>`,
+    tag: 'Systeme',
+    tagStyle: 'core',
+    title: 'Digitale Systeme',
+    desc: 'Einfache Cockpits und Dashboards, die Umsatz, Aufträge, Leads und operative Performance sichtbar machen — damit der Unternehmer seinen Betrieb besser sieht und steuert.',
+    stat: 'Cockpit',
+    statLabel: 'Pichler Advisory',
+  },
+  {
+    id: 'aussenwirkung',
+    icon: `<circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>`,
+    tag: 'Auftritt',
+    tagStyle: 'selective',
+    title: 'Aussenwirkung',
+    desc: 'Website, Positionierung und digitale Präsenz professionalisieren — mehr Vertrauen bei Kunden, Partnern und potenziellen Nachfolgern.',
+    stat: 'Website',
+    statLabel: 'Positionierung',
+  },
+  {
+    id: 'wachstum',
+    icon: `<polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>`,
+    tag: 'Wachstum',
+    tagStyle: 'selective',
+    title: 'Wachstum & Akquise',
+    desc: 'Kundengewinnung und Verkaufsprozesse analysieren, Lead-Prozesse verbessern und pragmatische Wachstumsmassnahmen aufbauen — ohne leere Marketingversprechen.',
+    stat: 'CHF 300–1k+',
+    statLabel: 'Monatlicher Retainer',
+  },
+  {
+    id: 'turnaround',
+    icon: `<polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>`,
+    tag: 'Turnaround',
+    tagStyle: 'selective',
+    title: 'Turnaround-Unterstützung',
+    desc: 'Betriebe mit guter Substanz, die aber schwach geführt, schlecht positioniert oder digital rückständig sind — wir helfen, diese wieder klar, modern und leistungsfähig aufzustellen.',
+    stat: 'Substanz',
+    statLabel: 'Erkennen & Heben',
+  },
+];
+---
+
+<section class="bg-ivory" id="leistungen">
+  <div class="max-w-[1240px] mx-auto px-10 py-24">
+    <div class="max-w-[620px] mb-14 reveal">
+      <span class="eyebrow block mb-4">Was wir tun</span>
+      <h2 class="font-display font-medium text-ink mt-4 mb-[18px]"
+          style="font-size: clamp(2.2rem, 3.4vw, 3rem); line-height: 1.08; letter-spacing: -0.03em;">
+        Sechs Bereiche. Ein Ziel.
+      </h2>
+      <p class="text-[18px] leading-[1.65] text-slate m-0">
+        Pichler Advisory deckt die wichtigsten Hebel für KMU-Inhaber ab — von der ersten Analyse bis zur laufenden Weiterentwicklung.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {services.map((s, i) => (
+        <div class="focus-card reveal" id={s.id} style={`transition-delay: ${(i % 2) * 60}ms`}>
+          <div class="flex items-center justify-between mb-[22px]">
+            <span class="inline-flex items-center justify-center w-[46px] h-[46px] rounded-md bg-bordeaux-50 text-bordeaux-700">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" set:html={s.icon} />
+            </span>
+            <span class:list={[
+              'text-[10.5px] tracking-[0.12em] uppercase font-semibold px-[11px] py-[5px] rounded-pill',
+              s.tagStyle === 'core'
+                ? 'bg-bordeaux-50 text-bordeaux-700'
+                : 'border border-gold-500 text-gold-700 bg-transparent'
+            ]}>
+              {s.tag}
+            </span>
+          </div>
+
+          <h3 class="font-display text-[26px] font-medium text-ink m-0 mb-2.5 leading-tight tracking-tight">
+            {s.title}
+          </h3>
+          <p class="text-[15px] leading-[1.62] text-slate m-0 mb-6 max-w-[42ch]">
+            {s.desc}
+          </p>
+
+          <div class="flex items-end justify-between">
+            <div class="flex flex-col gap-1">
+              <span class="font-display text-[28px] font-medium text-bordeaux-700 leading-none">{s.stat}</span>
+              <span class="text-[11px] tracking-[0.1em] uppercase text-taupe">{s.statLabel}</span>
+            </div>
+            <a href={`/leistungen#${s.id}`} class="text-taupe transition-all duration-[180ms] ease-standard hover:text-bordeaux-700 hover:translate-x-0.5 hover:-translate-y-0.5">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M7 17L17 7M7 7h10v10"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-10 text-center reveal">
+      <a href="/leistungen" class="btn-ghost text-[15px]">
+        Alle Leistungen im Detail ansehen
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .focus-card {
+    background: white;
+    border: 1px solid #EEEAE3;
+    border-radius: 12px;
+    padding: 30px;
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(21,20,23,0.06);
+    transition: transform 280ms cubic-bezier(0.2,0,0,1),
+                box-shadow 280ms cubic-bezier(0.2,0,0,1),
+                border-color 280ms cubic-bezier(0.2,0,0,1);
+  }
+  .focus-card::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: #5A0F1B;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 280ms cubic-bezier(0.2,0,0,1);
+  }
+  .focus-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 14px rgba(21,20,23,0.07), 0 2px 5px rgba(21,20,23,0.04);
+    border-color: #D8D2C8;
+  }
+  .focus-card:hover::before {
+    transform: scaleY(1);
+  }
+</style>

@@ -1,0 +1,91 @@
+---
+const phases = [
+  {
+    num: '01',
+    title: 'Verstehen',
+    desc: 'Wir lernen Ihren Betrieb kennen — Situation, Ziele, Engpässe und Potenziale. Ohne Checklisten, dafür mit echtem Interesse am Unternehmen.',
+  },
+  {
+    num: '02',
+    title: 'Analysieren',
+    desc: 'Systematische Betrachtung: Aussenwirkung, Prozesse, Kennzahlen, digitale Infrastruktur und Kundenansprache. Schwächen und ungenutzte Hebel werden sichtbar gemacht.',
+  },
+  {
+    num: '03',
+    title: 'Priorisieren',
+    desc: 'Nicht alles auf einmal. Wir bestimmen gemeinsam mit Ihnen die wichtigsten Massnahmen — nach Impact, Aufwand und strategischer Bedeutung.',
+  },
+  {
+    num: '04',
+    title: 'Umsetzen',
+    desc: 'Keine endlosen Konzepte. Wir setzen konkrete Verbesserungen um: neue Website, bessere Prozesse, ein Dashboard, ein strukturiertes Angebot — was Ihr Betrieb braucht.',
+  },
+  {
+    num: '05',
+    title: 'Messen',
+    desc: 'Wirkung muss nachvollziehbar sein. Wir schaffen einfache Messpunkte, damit klar ist, was sich verbessert hat und wo weiter angesetzt werden soll.',
+  },
+  {
+    num: '06',
+    title: 'Weiterentwickeln',
+    desc: 'Ein Betrieb ist nie fertig. Auf Wunsch begleiten wir Sie laufend — monatlich, im Retainer oder projektweise — und entwickeln Ihr Unternehmen kontinuierlich weiter.',
+  },
+];
+---
+
+<section class="max-w-[1240px] mx-auto px-10 py-24" id="vorgehen">
+  <div class="grid lg:grid-cols-[0.85fr_1.15fr] gap-16 items-start">
+
+    <!-- Left: heading + image -->
+    <div class="reveal lg:sticky lg:top-28">
+      <span class="eyebrow block mb-4">Wie wir vorgehen</span>
+      <h2 class="font-display font-medium text-ink mt-4 mb-[18px]"
+          style="font-size: clamp(2.2rem, 3.4vw, 3rem); line-height: 1.08; letter-spacing: -0.03em;">
+        Sechs Phasen.<br />Ein Ergebnis.
+      </h2>
+      <p class="text-[18px] leading-[1.65] text-slate mb-8">
+        Unser Vorgehen ist strukturiert, aber nicht starr. Wir passen uns dem Betrieb an — nicht umgekehrt.
+      </p>
+
+      <!-- Decorative plate -->
+      <div class="rounded-xl overflow-hidden aspect-[4/3] relative bg-mist border border-stone/50 shadow-sm">
+        <div class="absolute inset-0 flex items-center justify-center p-10">
+          <div class="flex flex-col items-center gap-3 text-center">
+            <img src="/assets/shield.png" alt="" class="h-16 w-auto opacity-15" />
+            <p class="font-display text-[20px] font-medium text-ink/40 tracking-tight leading-snug">
+              Substanz erkennen.<br />Systeme bauen.<br />Wirkung erzeugen.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: phase list -->
+    <div class="flex flex-col gap-6">
+      {phases.map((p, i) => (
+        <div
+          class="border-t border-mist pt-[22px] flex gap-5 items-start reveal"
+          style={`transition-delay: ${i * 60}ms`}
+        >
+          <span class="font-display text-[20px] font-medium text-gold-700 flex-shrink-0 w-8 mt-0.5">
+            {p.num}
+          </span>
+          <div>
+            <h3 class="text-[17px] font-semibold text-ink m-0 mb-[5px]">{p.title}</h3>
+            <p class="text-[15px] leading-[1.6] text-slate m-0">{p.desc}</p>
+          </div>
+        </div>
+      ))}
+
+      <div class="pt-6 reveal">
+        <a href="/vorgehen" class="btn-ghost px-0">
+          Vorgehen im Detail ansehen
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>

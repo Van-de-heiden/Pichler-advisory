@@ -1,0 +1,55 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/layout/Nav.astro';
+import Footer from '../components/layout/Footer.astro';
+---
+
+<Base
+  title="Impressum"
+  description="Impressum von Pichler Advisory."
+  noIndex={true}
+>
+  <Nav />
+  <main class="max-w-[760px] mx-auto px-10 pt-[140px] pb-24">
+    <h1 class="font-display font-medium text-ink mb-10"
+        style="font-size: clamp(2.4rem, 4vw, 3.2rem); line-height: 1.06; letter-spacing: -0.03em;">
+      Impressum
+    </h1>
+
+    <div class="flex flex-col gap-8 text-[16px] leading-[1.7] text-slate">
+      <section>
+        <h2 class="font-body text-[13px] font-semibold tracking-[0.1em] uppercase text-taupe mb-3">Angaben gemäss Schweizer Recht</h2>
+        <p class="text-ink font-medium mb-1">Pichler Advisory</p>
+        <p>Inhabergeführtes Einzelunternehmen</p>
+        <p>Schweiz</p>
+      </section>
+
+      <section>
+        <h2 class="font-body text-[13px] font-semibold tracking-[0.1em] uppercase text-taupe mb-3">Kontakt</h2>
+        <p>
+          E-Mail: <a href="mailto:info@pichlercapital.ch" class="text-bordeaux-700 hover:text-bordeaux-800 transition-colors">info@pichlercapital.ch</a>
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-body text-[13px] font-semibold tracking-[0.1em] uppercase text-taupe mb-3">Verantwortlich für den Inhalt</h2>
+        <p>Maurus Nic Ramon Pichler</p>
+      </section>
+
+      <section>
+        <h2 class="font-body text-[13px] font-semibold tracking-[0.1em] uppercase text-taupe mb-3">Haftungsausschluss</h2>
+        <p>
+          Die Inhalte dieser Website wurden mit grösster Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte übernehmen wir keine Gewähr. Die Nutzung der Inhalte erfolgt auf eigene Gefahr.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-body text-[13px] font-semibold tracking-[0.1em] uppercase text-taupe mb-3">Urheberrecht</h2>
+        <p>
+          Die auf dieser Website veröffentlichten Inhalte und Werke unterliegen dem schweizerischen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung ausserhalb der Grenzen des Urheberrechts bedarf der schriftlichen Zustimmung von Pichler Advisory.
+        </p>
+      </section>
+    </div>
+  </main>
+  <Footer />
+</Base>

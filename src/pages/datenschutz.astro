@@ -1,0 +1,78 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/layout/Nav.astro';
+import Footer from '../components/layout/Footer.astro';
+---
+
+<Base
+  title="Datenschutz"
+  description="Datenschutzerklärung von Pichler Advisory."
+  noIndex={true}
+>
+  <Nav />
+  <main class="max-w-[760px] mx-auto px-10 pt-[140px] pb-24">
+    <h1 class="font-display font-medium text-ink mb-10"
+        style="font-size: clamp(2.4rem, 4vw, 3.2rem); line-height: 1.06; letter-spacing: -0.03em;">
+      Datenschutzerklärung
+    </h1>
+
+    <div class="flex flex-col gap-8 text-[16px] leading-[1.7] text-slate">
+
+      <section>
+        <h2 class="font-body text-[13px] font-semibold tracking-[0.1em] uppercase text-taupe mb-3">1. Verantwortlicher</h2>
+        <p>
+          Verantwortlich für die Datenverarbeitung auf dieser Website ist:<br />
+          Maurus Nic Ramon Pichler, Pichler Advisory, Schweiz<br />
+          E-Mail: <a href="mailto:info@pichlercapital.ch" class="text-bordeaux-700 hover:text-bordeaux-800 transition-colors">info@pichlercapital.ch</a>
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-body text-[13px] font-semibold tracking-[0.1em] uppercase text-taupe mb-3">2. Erhobene Daten</h2>
+        <p>
+          Beim Besuch dieser Website werden keine personenbezogenen Daten automatisch erhoben. Wenn Sie das Kontaktformular nutzen, werden die von Ihnen eingegebenen Daten (Name, E-Mail-Adresse, Firma, Nachricht) ausschliesslich zum Zweck der Bearbeitung Ihrer Anfrage gespeichert und verarbeitet.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-body text-[13px] font-semibold tracking-[0.1em] uppercase text-taupe mb-3">3. Zweck der Datenverarbeitung</h2>
+        <p>
+          Die über das Kontaktformular erhobenen Daten werden ausschliesslich zur Bearbeitung und Beantwortung Ihrer Anfrage verwendet. Eine Weitergabe an Dritte erfolgt nicht.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-body text-[13px] font-semibold tracking-[0.1em] uppercase text-taupe mb-3">4. Hosting</h2>
+        <p>
+          Diese Website wird auf Cloudflare Pages gehostet. Cloudflare kann technische Zugriffsdaten (IP-Adressen, Browser-Informationen) im Rahmen der Bereitstellung des Dienstes verarbeiten. Weitere Informationen finden Sie in der Datenschutzerklärung von Cloudflare: <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener" class="text-bordeaux-700 hover:text-bordeaux-800 transition-colors">cloudflare.com/privacypolicy</a>
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-body text-[13px] font-semibold tracking-[0.1em] uppercase text-taupe mb-3">5. Schriftarten</h2>
+        <p>
+          Diese Website verwendet Google Fonts. Dabei wird eine Verbindung zu Google-Servern hergestellt. Google kann dabei Daten verarbeiten. Weitere Informationen: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" class="text-bordeaux-700 hover:text-bordeaux-800 transition-colors">policies.google.com/privacy</a>
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-body text-[13px] font-semibold tracking-[0.1em] uppercase text-taupe mb-3">6. Ihre Rechte</h2>
+        <p>
+          Sie haben das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung Ihrer Daten sowie das Recht auf Datenübertragbarkeit. Für Anfragen wenden Sie sich an: <a href="mailto:info@pichlercapital.ch" class="text-bordeaux-700 hover:text-bordeaux-800 transition-colors">info@pichlercapital.ch</a>
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-body text-[13px] font-semibold tracking-[0.1em] uppercase text-taupe mb-3">7. Cookies</h2>
+        <p>
+          Diese Website verwendet keine Tracking-Cookies oder Marketing-Cookies. Es werden keine Analytics-Dienste wie Google Analytics eingesetzt.
+        </p>
+      </section>
+
+      <p class="text-[13px] text-taupe border-t border-mist pt-6">
+        Stand: Juni 2026. Diese Datenschutzerklärung kann jederzeit angepasst werden.
+      </p>
+    </div>
+  </main>
+  <Footer />
+</Base>

@@ -1,0 +1,165 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/layout/Nav.astro';
+import Footer from '../components/layout/Footer.astro';
+import ContactModal from '../components/ui/ContactModal.astro';
+
+const values = [
+  {
+    title: 'Unternehmerisch, nicht akademisch',
+    desc: 'Wir denken und handeln wie Unternehmer — nicht wie Berater, die Konzepte abliefern. Was nicht umgesetzt wird, zählt nicht.',
+  },
+  {
+    title: 'Substanz über Oberfläche',
+    desc: 'Uns interessieren echte Verbesserungen: bessere Prozesse, bessere Zahlen, bessere Steuerung — nicht nur ein schöneres Deckblatt.',
+  },
+  {
+    title: 'Ehrlichkeit vor Gefälligkeit',
+    desc: 'Wir sagen, was wirklich los ist. Auch wenn es unbequem ist. Denn nur mit einer ehrlichen Analyse entsteht echte Verbesserung.',
+  },
+  {
+    title: 'Nah am Betrieb',
+    desc: 'Wir wollen Betriebe wirklich kennenlernen: Prozesse, Zahlen, Engpässe, Potenziale. Nicht aus der Distanz, sondern von innen.',
+  },
+];
+---
+
+<Base
+  title="Über uns"
+  description="Pichler Advisory ist eine junge, inhabergeführte Advisory-Marke aus der Schweiz. Gegründet von Maurus Pichler — unternehmerisch aktiv seit 17, mit dem Anspruch, echte Betriebe substanziell besser zu machen."
+>
+  <Nav currentPath="/ueber-uns" />
+  <main>
+
+    <!-- Page hero -->
+    <div class="max-w-[1240px] mx-auto px-10 pt-[140px] pb-16">
+      <div class="max-w-[680px] reveal">
+        <span class="eyebrow block mb-4">Über Pichler Advisory</span>
+        <h1 class="font-display font-medium text-ink m-0 mb-5"
+            style="font-size: clamp(3rem, 5vw, 4.5rem); line-height: 1.0; letter-spacing: -0.03em;">
+          Eine erste Generation.<br />
+          <em class="italic text-bordeaux-700">Ein klarer Anspruch.</em>
+        </h1>
+        <p class="text-[19px] leading-[1.65] text-slate m-0">
+          Pichler Advisory ist keine künstliche Grösse. Wir sind neu, jung und ehrlich — mit dem Anspruch, Betriebe wirklich substanziell besser zu machen.
+        </p>
+      </div>
+    </div>
+
+    <!-- Founder story -->
+    <div class="max-w-[1240px] mx-auto px-10 pb-20">
+      <div class="grid lg:grid-cols-2 gap-16 items-start">
+
+        <!-- Quote plate -->
+        <div class="reveal">
+          <div class="rounded-xl bg-mist border border-stone/50 p-8 relative overflow-hidden">
+            <img src="/assets/shield.png" alt="" class="absolute top-5 right-5 h-12 w-auto opacity-10" />
+            <p class="font-display text-[28px] font-medium text-ink leading-snug tracking-tight mb-5">
+              "Ich will die erste Generation sein, die das aufbaut — mit echten Betrieben, echten Zahlen und echtem Nutzen."
+            </p>
+            <div class="w-10 h-px bg-bordeaux-300 mb-4"></div>
+            <p class="text-[14px] text-taupe">Maurus Nic Ramon Pichler, Gründer</p>
+          </div>
+
+          <!-- Stats -->
+          <div class="grid grid-cols-3 gap-px bg-stone/30 rounded-xl overflow-hidden mt-4">
+            {[
+              { f: '2026', l: 'Gründungsjahr' },
+              { f: '< 20', l: 'Alter des Gründers' },
+              { f: '17',   l: 'Unternehmerisch seit' },
+            ].map((s) => (
+              <div class="bg-white px-5 py-4">
+                <span class="font-display text-[28px] font-medium text-bordeaux-700 leading-none block mb-1">{s.f}</span>
+                <span class="text-[11px] tracking-[0.08em] uppercase text-taupe">{s.l}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Story -->
+        <div class="reveal">
+          <h2 class="font-display font-medium text-ink mb-5"
+              style="font-size: clamp(1.8rem, 2.4vw, 2.2rem); line-height: 1.1; letter-spacing: -0.02em;">
+            Wer steckt hinter Pichler Advisory?
+          </h2>
+          <div class="flex flex-col gap-4 text-[16px] leading-[1.75] text-slate">
+            <p>
+              Pichler Advisory ist eine junge, inhabergeführte Advisory-Marke, die von Maurus Nic Ramon Pichler gegründet wurde — einem jungen Unternehmer und Entwickler aus der Schweiz.
+            </p>
+            <p>
+              Unternehmerisch aktiv seit 17: mit einer eigenen Kleidermarke gestartet, um praktische Erfahrung zu sammeln, danach diverse Projekte für Freunde und Familie aufgebaut. Kein künstliches Unternehmerbild, sondern echter Start.
+            </p>
+            <p>
+              Pichler Advisory ist der nächste Schritt: eine fokussierte, ernsthafte Advisory für KMU-Inhaber — mit dem Anspruch, Betriebe wirklich von innen zu verstehen, digital zu stärken und operativ besser aufzustellen.
+            </p>
+            <p>
+              Langfristig ist Pichler Advisory der Eintrittspunkt in die Welt echter Unternehmen — der erste Baustein auf dem Weg zur Pichler Capital Group. Aber zuerst kommt das Fundament: Kompetenz, Referenzen, Netzwerk, echte Ergebnisse.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Values -->
+    <div class="bg-ivory border-t border-mist">
+      <div class="max-w-[1240px] mx-auto px-10 py-20">
+        <div class="max-w-[560px] mb-12 reveal">
+          <span class="eyebrow block mb-4">Unsere Haltung</span>
+          <h2 class="font-display font-medium text-ink mt-4"
+              style="font-size: clamp(2rem, 3vw, 2.6rem); line-height: 1.08; letter-spacing: -0.03em;">
+            Was uns antreibt.
+          </h2>
+        </div>
+        <div class="grid md:grid-cols-2 gap-6">
+          {values.map((v, i) => (
+            <div
+              class="bg-white border border-mist rounded-xl p-7 shadow-sm reveal"
+              style={`transition-delay: ${(i % 2) * 60}ms`}
+            >
+              <h3 class="font-body text-[17px] font-semibold text-ink mb-3">{v.title}</h3>
+              <p class="text-[15px] leading-[1.65] text-slate m-0">{v.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Vision -->
+    <div class="relative bg-charcoal overflow-hidden">
+      <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(70% 110% at 80% 0%, rgba(90,15,27,0.5), transparent 60%);"></div>
+      <div class="relative max-w-[1240px] mx-auto px-10 py-24 reveal">
+        <div class="max-w-[640px]">
+          <span class="eyebrow eyebrow-gold block mb-4">Langfristige Vision</span>
+          <h2 class="font-display font-medium text-ivory mt-4 mb-5"
+              style="font-size: clamp(2rem, 3vw, 2.8rem); line-height: 1.1; letter-spacing: -0.03em;">
+            Advisory als Fundament. Capital Group als Ziel.
+          </h2>
+          <p class="text-[17px] leading-[1.7] text-stone mb-5">
+            Pichler Advisory ist der erste operative Schritt — weil zuerst Kompetenz, Cashflow, Netzwerk und echtes Verständnis für Betriebe aufgebaut werden müssen, bevor Kapital wirklich sinnvoll eingesetzt werden kann.
+          </p>
+          <p class="text-[17px] leading-[1.7] text-stone">
+            Die langfristige Vision ist die Pichler Capital Group: eine unternehmerisch geprägte Holding, die in Betriebe investiert, sie entwickelt und ihren Wert nachhaltig steigert. Advisory ist der erste Eintrittspunkt in diese Welt.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="max-w-[1240px] mx-auto px-10 py-20 text-center reveal">
+      <h2 class="font-display font-medium text-ink m-0 mb-4"
+          style="font-size: clamp(2rem, 3vw, 2.6rem); line-height: 1.08; letter-spacing: -0.03em;">
+        Klingt das nach dem richtigen Partner?
+      </h2>
+      <p class="text-[17px] leading-[1.65] text-slate mb-8 max-w-[40ch] mx-auto">
+        Wir freuen uns auf ein offenes Erstgespräch — unverbindlich, direkt und ohne Agenturfloskeln.
+      </p>
+      <button data-open-contact class="btn-primary btn-lg">
+        Erstgespräch vereinbaren
+      </button>
+    </div>
+
+  </main>
+  <Footer />
+  <ContactModal />
+</Base>

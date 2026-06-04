@@ -1,0 +1,31 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/layout/Nav.astro';
+import Footer from '../components/layout/Footer.astro';
+import ContactModal from '../components/ui/ContactModal.astro';
+import Hero from '../components/sections/Hero.astro';
+import Services from '../components/sections/Services.astro';
+import Process from '../components/sections/Process.astro';
+import DarkBand from '../components/sections/DarkBand.astro';
+import CockpitTeaser from '../components/sections/CockpitTeaser.astro';
+import AboutTeaser from '../components/sections/AboutTeaser.astro';
+import CTABanner from '../components/sections/CTABanner.astro';
+---
+
+<Base
+  title="Startseite"
+  description="Pichler Advisory unterstützt KMU-Inhaber dabei, digitale Präsenz, interne Abläufe und unternehmerische Steuerung substanziell zu verbessern. Betriebsanalyse, operative Verbesserung und digitale Systeme für Betriebe mit Substanz."
+>
+  <Nav currentPath="/" />
+  <main>
+    <Hero />
+    <Services />
+    <Process />
+    <DarkBand />
+    <CockpitTeaser />
+    <AboutTeaser />
+    <CTABanner />
+  </main>
+  <Footer />
+  <ContactModal />
+</Base>

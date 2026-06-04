@@ -1,0 +1,64 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-ink text-stone">
+  <div class="section-inner pt-[72px] pb-10 flex justify-between gap-[60px] flex-wrap">
+
+    <!-- Brand col -->
+    <div class="flex flex-col gap-4 max-w-[260px]">
+      <div class="flex items-center gap-3">
+        <img src="/assets/shield.png" alt="" class="h-9 w-auto brightness-0 invert opacity-90" />
+        <span class="font-display text-[16px] font-semibold tracking-[0.16em] text-ivory uppercase">
+          Pichler Advisory
+        </span>
+      </div>
+      <p class="text-[14px] text-taupe leading-relaxed">
+        Operative Klarheit für Betriebe mit Substanz.<br />
+        Schweiz, gegründet 2026.
+      </p>
+    </div>
+
+    <!-- Links -->
+    <div class="flex gap-[72px] flex-wrap">
+      <div class="flex flex-col gap-3">
+        <span class="text-[11px] tracking-[0.14em] uppercase text-taupe mb-1">Leistungen</span>
+        <a href="/leistungen#betriebsanalyse" class="text-[14.5px] text-stone hover:text-ivory transition-colors duration-[180ms] ease-standard">Betriebsanalyse</a>
+        <a href="/leistungen#operative-verbesserung" class="text-[14.5px] text-stone hover:text-ivory transition-colors duration-[180ms] ease-standard">Operative Verbesserung</a>
+        <a href="/leistungen#digitale-systeme" class="text-[14.5px] text-stone hover:text-ivory transition-colors duration-[180ms] ease-standard">Digitale Systeme</a>
+        <a href="/leistungen#aussenwirkung" class="text-[14.5px] text-stone hover:text-ivory transition-colors duration-[180ms] ease-standard">Aussenwirkung</a>
+      </div>
+      <div class="flex flex-col gap-3">
+        <span class="text-[11px] tracking-[0.14em] uppercase text-taupe mb-1">Unternehmen</span>
+        <a href="/vorgehen" class="text-[14.5px] text-stone hover:text-ivory transition-colors duration-[180ms] ease-standard">Vorgehen</a>
+        <a href="/#cockpit" class="text-[14.5px] text-stone hover:text-ivory transition-colors duration-[180ms] ease-standard">Cockpit</a>
+        <a href="/ueber-uns" class="text-[14.5px] text-stone hover:text-ivory transition-colors duration-[180ms] ease-standard">Über uns</a>
+        <a href="/kontakt" class="text-[14.5px] text-stone hover:text-ivory transition-colors duration-[180ms] ease-standard">Kontakt</a>
+      </div>
+      <div class="flex flex-col gap-3">
+        <span class="text-[11px] tracking-[0.14em] uppercase text-taupe mb-1">Kontakt</span>
+        <a href="mailto:info@pichlercapital.ch" class="text-[14.5px] text-stone hover:text-ivory transition-colors duration-[180ms] ease-standard flex items-center gap-2">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0 1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+          </svg>
+          info@pichlercapital.ch
+        </a>
+        <span class="text-[14.5px] text-stone flex items-center gap-2">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+          </svg>
+          Schweiz
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Base row -->
+  <div class="section-inner border-t border-white/10 py-6 flex justify-between gap-4 flex-wrap text-[12.5px] text-taupe">
+    <span>© {year} Pichler Advisory. Alle Rechte vorbehalten.</span>
+    <div class="flex gap-5">
+      <a href="/impressum" class="hover:text-stone transition-colors duration-[180ms] ease-standard">Impressum</a>
+      <a href="/datenschutz" class="hover:text-stone transition-colors duration-[180ms] ease-standard">Datenschutz</a>
+    </div>
+  </div>
+</footer>

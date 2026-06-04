@@ -1,0 +1,53 @@
+---
+const markers = [
+  { f: '2026',   l: 'Gründungsjahr' },
+  { f: '01',     l: 'Erste Generation' },
+  { f: 'KMU',   l: 'Fokus' },
+  { f: '100%',   l: 'Inhabergeführt' },
+];
+---
+
+<section class="relative bg-charcoal text-ivory overflow-hidden">
+  <!-- Bordeaux radial wash -->
+  <div
+    class="absolute inset-0 pointer-events-none"
+    style="background: radial-gradient(80% 120% at 85% 0%, rgba(90,15,27,0.5), transparent 60%);"
+  ></div>
+
+  <div class="relative max-w-[1240px] mx-auto px-10 py-[104px]">
+
+    <div class="max-w-[640px] mb-16 reveal">
+      <span class="eyebrow eyebrow-gold block mb-4">Der Gründer</span>
+      <h2 class="font-display font-medium text-ivory mt-4 mb-[18px]"
+          style="font-size: clamp(2.2rem, 3.6vw, 3.1rem); line-height: 1.08; letter-spacing: -0.03em;">
+        Nicht Agentur. Nicht Berater. Operativer Partner.
+      </h2>
+      <p class="text-[18px] leading-[1.65] text-stone m-0">
+        Pichler Advisory ist eine junge, inhabergeführte Advisory, die Betriebe wirklich von innen kennenlernt: Prozesse, Zahlen, Engpässe, Potenziale. Gegründet von Maurus Pichler — unternehmerisch aktiv seit 17, aufgewachsen mit digitalen Systemen, mit dem Anspruch, echte Substanz zu schaffen und Betriebe substanziell besser zu führen.
+      </p>
+    </div>
+
+    <!-- Figures -->
+    <div
+      class="grid grid-cols-2 lg:grid-cols-4 border-t"
+      style="border-color: rgba(216,210,200,0.18);"
+    >
+      {markers.map((x, i) => (
+        <div
+          class="pt-[34px] pb-6 flex flex-col gap-4 reveal"
+          style={`
+            transition-delay: ${i * 70}ms;
+            border-right: ${i < markers.length - 1 ? '1px solid rgba(216,210,200,0.12)' : 'none'};
+            padding-left: ${i === 0 ? '0' : '28px'};
+            padding-right: 28px;
+          `}
+        >
+          <span class="font-display text-[48px] font-medium leading-none text-ivory">{x.f}</span>
+          <span class="block w-7 h-px bg-gold-500"></span>
+          <span class="text-[13px] tracking-[0.06em] text-stone">{x.l}</span>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

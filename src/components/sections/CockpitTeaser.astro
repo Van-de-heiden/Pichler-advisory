@@ -1,0 +1,97 @@
+---
+const features = [
+  'Umsatz und Auftragsvolumen auf einen Blick',
+  'Lead-Tracking und Akquise-Pipeline',
+  'Projektfortschritt und offene Aufgaben',
+  'Operative Performance-Indikatoren',
+  'Monatliche Entwicklung und Trends',
+];
+---
+
+<section class="bg-ivory" id="cockpit">
+  <div class="max-w-[1240px] mx-auto px-10 py-24">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+      <!-- Left: copy -->
+      <div class="reveal">
+        <span class="eyebrow block mb-4">Performance Cockpit</span>
+        <h2 class="font-display font-medium text-ink mt-4 mb-[18px]"
+            style="font-size: clamp(2.2rem, 3.4vw, 3rem); line-height: 1.08; letter-spacing: -0.03em;">
+          Ihr Betrieb.<br />
+          <em class="italic text-bordeaux-700">Klar im Blick.</em>
+        </h2>
+        <p class="text-[18px] leading-[1.65] text-slate mb-6">
+          Das Performance Cockpit von Pichler Advisory gibt Unternehmern eine einfache, visuelle Übersicht über die wichtigsten Kennzahlen — zentral, aktuell, ohne technischen Aufwand.
+        </p>
+
+        <ul class="flex flex-col gap-3 mb-8 list-none p-0 m-0">
+          {features.map((f) => (
+            <li class="flex items-center gap-3 text-[15px] text-slate">
+              <span class="flex-shrink-0 w-5 h-5 rounded-full bg-bordeaux-50 text-bordeaux-700 flex items-center justify-center">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+              </span>
+              {f}
+            </li>
+          ))}
+        </ul>
+
+        <button data-open-contact class="btn-primary">
+          Cockpit anfragen
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Right: dashboard mockup -->
+      <div class="reveal">
+        <div class="rounded-xl bg-charcoal overflow-hidden shadow-lg border border-stone/10">
+          <!-- Mockup topbar -->
+          <div class="flex items-center justify-between px-5 py-3 border-b border-white/10">
+            <div class="flex items-center gap-2">
+              <img src="/assets/shield.png" alt="" class="h-5 w-auto brightness-0 invert opacity-70" />
+              <span class="text-[12px] font-medium tracking-[0.12em] uppercase text-stone/70">Pichler Advisory Cockpit</span>
+            </div>
+            <span class="text-[11px] text-stone/40">Demo</span>
+          </div>
+
+          <!-- KPI tiles -->
+          <div class="grid grid-cols-3 gap-px bg-white/5 m-4 rounded-lg overflow-hidden">
+            {[
+              { label: 'Umsatz MTD', value: 'CHF 48k', trend: '+12%' },
+              { label: 'Offene Aufträge', value: '7', trend: '+2' },
+              { label: 'Leads aktiv', value: '14', trend: '↑' },
+            ].map((kpi) => (
+              <div class="bg-graphite px-4 py-4">
+                <p class="text-[10.5px] tracking-[0.1em] uppercase text-stone/50 mb-1">{kpi.label}</p>
+                <p class="font-display text-[22px] font-medium text-ivory leading-none mb-1">{kpi.value}</p>
+                <p class="text-[11px] text-gold-500">{kpi.trend}</p>
+              </div>
+            ))}
+          </div>
+
+          <!-- Chart placeholder -->
+          <div class="mx-4 mb-4 rounded-lg bg-graphite px-4 py-4">
+            <p class="text-[10.5px] tracking-[0.1em] uppercase text-stone/50 mb-3">Umsatzentwicklung — letzten 6 Monate</p>
+            <div class="flex items-end gap-1.5 h-16">
+              {[35, 48, 42, 61, 55, 72].map((h, i) => (
+                <div
+                  class="flex-1 rounded-sm transition-all"
+                  style={`height: ${h}%; background: ${i === 5 ? '#5A0F1B' : 'rgba(90,15,27,0.3)'}; opacity: ${0.5 + i * 0.1}`}
+                ></div>
+              ))}
+            </div>
+            <div class="flex justify-between mt-2">
+              {['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun'].map((m) => (
+                <span class="text-[9px] text-stone/30">{m}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

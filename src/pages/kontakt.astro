@@ -1,0 +1,160 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/layout/Nav.astro';
+import Footer from '../components/layout/Footer.astro';
+---
+
+<Base
+  title="Kontakt"
+  description="Nehmen Sie Kontakt mit Pichler Advisory auf. Betriebsanalyse anfragen, Erstgespräch vereinbaren oder direkt schreiben."
+>
+  <Nav currentPath="/kontakt" />
+  <main>
+
+    <div class="max-w-[1240px] mx-auto px-10 pt-[140px] pb-24">
+      <div class="grid lg:grid-cols-[1fr_1.2fr] gap-16 items-start">
+
+        <!-- Left: info -->
+        <div class="reveal">
+          <span class="eyebrow block mb-4">Kontakt</span>
+          <h1 class="font-display font-medium text-ink m-0 mb-5"
+              style="font-size: clamp(2.8rem, 4.5vw, 4rem); line-height: 1.02; letter-spacing: -0.03em;">
+            Gespräch anfangen.
+          </h1>
+          <p class="text-[18px] leading-[1.65] text-slate mb-10">
+            Wir antworten auf jede ernsthafte Anfrage — persönlich, direkt und ohne Warteliste.
+          </p>
+
+          <div class="flex flex-col gap-6">
+            <div class="flex items-start gap-4">
+              <span class="flex-shrink-0 w-10 h-10 rounded-md bg-bordeaux-50 text-bordeaux-700 flex items-center justify-center mt-0.5">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0 1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+                </svg>
+              </span>
+              <div>
+                <p class="text-[11px] tracking-[0.1em] uppercase text-taupe font-semibold mb-1">E-Mail</p>
+                <a href="mailto:info@pichlercapital.ch" class="text-[16px] text-ink hover:text-bordeaux-700 transition-colors duration-[180ms] ease-standard">
+                  info@pichlercapital.ch
+                </a>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <span class="flex-shrink-0 w-10 h-10 rounded-md bg-bordeaux-50 text-bordeaux-700 flex items-center justify-center mt-0.5">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+                </svg>
+              </span>
+              <div>
+                <p class="text-[11px] tracking-[0.1em] uppercase text-taupe font-semibold mb-1">Standort</p>
+                <p class="text-[16px] text-ink m-0">Schweiz</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <span class="flex-shrink-0 w-10 h-10 rounded-md bg-bordeaux-50 text-bordeaux-700 flex items-center justify-center mt-0.5">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+                </svg>
+              </span>
+              <div>
+                <p class="text-[11px] tracking-[0.1em] uppercase text-taupe font-semibold mb-1">Antwortzeit</p>
+                <p class="text-[16px] text-ink m-0">In der Regel innerhalb von 24 Stunden</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tone note -->
+          <div class="mt-10 p-5 bg-mist rounded-xl border border-stone/50">
+            <p class="text-[14.5px] leading-[1.6] text-slate m-0">
+              <strong class="text-ink">Keine Verpflichtung.</strong> Ein erstes Gespräch oder eine kurze Analyse dient zuerst dem gegenseitigen Kennenlernen. Wir schauen gemeinsam, ob und wie wir helfen können.
+            </p>
+          </div>
+        </div>
+
+        <!-- Right: form -->
+        <div class="reveal">
+          <div class="bg-white border border-mist rounded-xl p-8 shadow-sm">
+            <h2 class="font-display font-medium text-ink mb-2"
+                style="font-size: 1.8rem; line-height: 1.1; letter-spacing: -0.02em;">
+              Anfrage senden
+            </h2>
+            <p class="text-[15px] text-slate mb-6 leading-relaxed">
+              Beschreiben Sie kurz, was Sie beschäftigt — wir melden uns persönlich.
+            </p>
+
+            <!-- Form (wire up action to your email backend) -->
+            <form id="contact-page-form" class="flex flex-col gap-4">
+              <div class="grid sm:grid-cols-2 gap-4">
+                <label class="flex flex-col gap-1.5">
+                  <span class="text-[11px] tracking-[0.1em] uppercase text-taupe font-semibold">Name *</span>
+                  <input
+                    type="text" name="name" placeholder="Ihr Name" required
+                    class="font-body text-[15px] text-ink px-3.5 py-3 border border-stone rounded-md bg-white outline-none transition-all duration-[180ms] ease-standard focus:border-bordeaux-700 focus:ring-2 focus:ring-bordeaux-50 placeholder:text-taupe"
+                  />
+                </label>
+                <label class="flex flex-col gap-1.5">
+                  <span class="text-[11px] tracking-[0.1em] uppercase text-taupe font-semibold">Firma / Betrieb</span>
+                  <input
+                    type="text" name="company" placeholder="Ihr Betrieb"
+                    class="font-body text-[15px] text-ink px-3.5 py-3 border border-stone rounded-md bg-white outline-none transition-all duration-[180ms] ease-standard focus:border-bordeaux-700 focus:ring-2 focus:ring-bordeaux-50 placeholder:text-taupe"
+                  />
+                </label>
+              </div>
+              <label class="flex flex-col gap-1.5">
+                <span class="text-[11px] tracking-[0.1em] uppercase text-taupe font-semibold">E-Mail *</span>
+                <input
+                  type="email" name="email" placeholder="ihre@firma.ch" required
+                  class="font-body text-[15px] text-ink px-3.5 py-3 border border-stone rounded-md bg-white outline-none transition-all duration-[180ms] ease-standard focus:border-bordeaux-700 focus:ring-2 focus:ring-bordeaux-50 placeholder:text-taupe"
+                />
+              </label>
+              <label class="flex flex-col gap-1.5">
+                <span class="text-[11px] tracking-[0.1em] uppercase text-taupe font-semibold">Telefon (optional)</span>
+                <input
+                  type="tel" name="phone" placeholder="+41 xx xxx xx xx"
+                  class="font-body text-[15px] text-ink px-3.5 py-3 border border-stone rounded-md bg-white outline-none transition-all duration-[180ms] ease-standard focus:border-bordeaux-700 focus:ring-2 focus:ring-bordeaux-50 placeholder:text-taupe"
+                />
+              </label>
+              <label class="flex flex-col gap-1.5">
+                <span class="text-[11px] tracking-[0.1em] uppercase text-taupe font-semibold">Was soll verbessert werden? *</span>
+                <textarea
+                  name="message" rows="4" placeholder="Kurze Beschreibung Ihrer Situation, Ihres Anliegens oder der Bereiche, in denen Sie Unterstützung suchen." required
+                  class="font-body text-[15px] text-ink px-3.5 py-3 border border-stone rounded-md bg-white outline-none resize-none transition-all duration-[180ms] ease-standard focus:border-bordeaux-700 focus:ring-2 focus:ring-bordeaux-50 placeholder:text-taupe"
+                ></textarea>
+              </label>
+              <button type="submit" class="btn-primary btn-block mt-1">
+                Analyse anfragen
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </button>
+            </form>
+
+            <!-- Success state -->
+            <div id="contact-page-success" class="hidden text-center py-8">
+              <span class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-positive-soft text-positive mb-4">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"/>
+                </svg>
+              </span>
+              <h3 class="font-display font-medium text-[24px] text-ink mb-2">Anfrage erhalten.</h3>
+              <p class="text-[15px] text-slate leading-relaxed">Vielen Dank. Wir melden uns innerhalb von 24 Stunden persönlich bei Ihnen.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+  <Footer />
+</Base>
+
+<script>
+  document.getElementById('contact-page-form')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    document.getElementById('contact-page-form')?.classList.add('hidden');
+    document.getElementById('contact-page-success')?.classList.remove('hidden');
+  });
+</script>

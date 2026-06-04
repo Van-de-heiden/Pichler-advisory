@@ -1,0 +1,93 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  noIndex?: boolean;
+}
+
+const {
+  title,
+  description,
+  image = '/og-image.png',
+  noIndex = false,
+} = Astro.props;
+
+const siteTitle = title === 'Startseite'
+  ? 'Pichler Advisory — Operative Klarheit für Betriebe mit Substanz'
+  : `${title} — Pichler Advisory`;
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? 'https://pichleradvisory.ch');
+---
+
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="canonical" href={canonicalUrl} />
+
+  {noIndex && <meta name="robots" content="noindex,nofollow" />}
+
+  <title>{siteTitle}</title>
+  <meta name="description" content={description} />
+
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content={canonicalUrl} />
+  <meta property="og:title"       content={siteTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image"       content={new URL(image, Astro.site ?? 'https://pichleradvisory.ch')} />
+  <meta property="og:locale"      content="de_CH" />
+  <meta name="twitter:card"       content="summary_large_image" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+</head>
+<body>
+  <slot />
+
+  <script>
+    /* Scroll reveal */
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+    /* Nav scrolled state */
+    const nav = document.getElementById('site-nav');
+    const onScroll = () => nav?.classList.toggle('is-scrolled', window.scrollY > 24);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    /* Mobile menu toggle */
+    document.getElementById('mobile-menu-btn')?.addEventListener('click', () => {
+      document.getElementById('mobile-menu')?.classList.toggle('hidden');
+    });
+
+    /* Contact modal open/close */
+    const modal = document.getElementById('contact-modal') as HTMLDialogElement | null;
+    document.querySelectorAll('[data-open-contact]').forEach((btn) =>
+      btn.addEventListener('click', () => modal?.showModal())
+    );
+    document.getElementById('modal-close-btn')?.addEventListener('click', () => modal?.close());
+    modal?.addEventListener('click', (e) => { if (e.target === modal) modal.close(); });
+
+    /* Contact form submit (simulated — wire up a real backend) */
+    document.getElementById('contact-form')?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      document.getElementById('form-state')?.classList.add('hidden');
+      document.getElementById('success-state')?.classList.remove('hidden');
+    });
+  </script>
+</body>
+</html>
