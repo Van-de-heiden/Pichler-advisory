@@ -22,11 +22,7 @@ export async function onRequestPost(context) {
   const validUser = env.AUTH_USERNAME;
   const validPass = env.AUTH_PASSWORD;
 
-  if (!validUser || !validPass) {
-    return new Response('Auth not configured', { status: 500 });
-  }
-
-  if (username === validUser && password === validPass) {
+  if (username === validUser && password === validPass && validUser && validPass) {
     const secret = env.SESSION_SECRET || 'pichler-advisory-secret-2026';
     const token = await createToken(secret);
 
