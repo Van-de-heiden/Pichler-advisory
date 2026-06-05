@@ -5,4 +5,7 @@
   <url><loc>https://pichler-advisory.ch/vorgehen/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://pichler-advisory.ch/ueber-uns/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://pichler-advisory.ch/kontakt/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pichler-advisory.ch/impressum/</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://pichler-advisory.ch/agb/</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://pichler-advisory.ch/datenschutz/</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
 </urlset>
