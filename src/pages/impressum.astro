@@ -4,51 +4,66 @@ import Nav from '../components/layout/Nav.astro';
 import Footer from '../components/layout/Footer.astro';
 ---
 
-<Base
-  title="Impressum"
-  description="Impressum von Pichler Advisory."
-  noIndex={true}
->
-  <Nav />
+<Base title="Impressum" description="Impressum von Pichler Advisory." noIndex={true}>
+  <Nav currentPath="/impressum" />
   <main class="max-w-[760px] mx-auto px-10 pt-[140px] pb-24">
+
+    <span class="eyebrow block mb-4">Rechtliches</span>
     <h1 class="font-display font-medium text-ink mb-10"
         style="font-size: clamp(2.4rem, 4vw, 3.2rem); line-height: 1.06; letter-spacing: -0.03em;">
       Impressum
     </h1>
 
-    <div class="flex flex-col gap-8 text-[16px] leading-[1.7] text-slate">
+    <div class="flex flex-col gap-8 text-[16px] leading-[1.75] text-slate">
+
       <section>
-        <h2 class="font-body text-[13px] font-semibold tracking-[0.1em] uppercase text-taupe mb-3">Angaben gemäss Schweizer Recht</h2>
-        <p class="text-ink font-medium mb-1">Pichler Advisory</p>
-        <p>Inhabergeführtes Einzelunternehmen</p>
-        <p>Schweiz</p>
+        <h2 class="font-body text-[13px] font-semibold tracking-[0.1em] uppercase text-taupe mb-3">Verantwortliche Person</h2>
+        <p>
+          Maurus Nic Ramon Pichler<br />
+          Pichler Advisory<br />
+          Häberlbodenstrasse 17<br />
+          8725 Ernetschwil<br />
+          Schweiz
+        </p>
       </section>
 
       <section>
         <h2 class="font-body text-[13px] font-semibold tracking-[0.1em] uppercase text-taupe mb-3">Kontakt</h2>
         <p>
-          E-Mail: <a href="mailto:info@pichlercapital.ch" class="text-bordeaux-700 hover:text-bordeaux-800 transition-colors">info@pichlercapital.ch</a>
+          E-Mail: <a href="mailto:info@pichler-advisory.ch" class="text-bordeaux-700 hover:underline">info@pichler-advisory.ch</a><br />
+          Telefon: <a href="tel:+41775383064" class="text-bordeaux-700 hover:underline">+41 77 538 30 64</a>
         </p>
       </section>
 
       <section>
-        <h2 class="font-body text-[13px] font-semibold tracking-[0.1em] uppercase text-taupe mb-3">Verantwortlich für den Inhalt</h2>
-        <p>Maurus Nic Ramon Pichler</p>
+        <h2 class="font-body text-[13px] font-semibold tracking-[0.1em] uppercase text-taupe mb-3">Unternehmensform</h2>
+        <p>Einzelunternehmen, nicht im Handelsregister eingetragen.</p>
+      </section>
+
+      <section>
+        <h2 class="font-body text-[13px] font-semibold tracking-[0.1em] uppercase text-taupe mb-3">Mehrwertsteuer</h2>
+        <p>Pichler Advisory ist nicht mehrwertsteuerpflichtig.</p>
       </section>
 
       <section>
         <h2 class="font-body text-[13px] font-semibold tracking-[0.1em] uppercase text-taupe mb-3">Haftungsausschluss</h2>
         <p>
-          Die Inhalte dieser Website wurden mit grösster Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte übernehmen wir keine Gewähr. Die Nutzung der Inhalte erfolgt auf eigene Gefahr.
+          Die Inhalte dieser Website wurden mit grösster Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte wird keine Gewähr übernommen. Die Nutzung der angebotenen Inhalte erfolgt auf eigene Gefahr. Verweise auf externe Websites liegen ausserhalb des Verantwortungsbereichs von Pichler Advisory.
         </p>
       </section>
 
       <section>
         <h2 class="font-body text-[13px] font-semibold tracking-[0.1em] uppercase text-taupe mb-3">Urheberrecht</h2>
         <p>
-          Die auf dieser Website veröffentlichten Inhalte und Werke unterliegen dem schweizerischen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung ausserhalb der Grenzen des Urheberrechts bedarf der schriftlichen Zustimmung von Pichler Advisory.
+          Die auf dieser Website veröffentlichten Inhalte unterliegen dem schweizerischen Urheberrecht. Jede Art der Vervielfältigung, Bearbeitung oder Nutzung ausserhalb der Grenzen des Urheberrechts bedarf der vorherigen schriftlichen Zustimmung von Pichler Advisory.
         </p>
       </section>
+
+      <section>
+        <h2 class="font-body text-[13px] font-semibold tracking-[0.1em] uppercase text-taupe mb-3">Anwendbares Recht</h2>
+        <p>Es gilt schweizerisches Recht. Gerichtsstand ist Ernetschwil, Kanton St. Gallen.</p>
+      </section>
+
     </div>
   </main>
   <Footer />
