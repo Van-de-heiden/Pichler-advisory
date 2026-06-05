@@ -3,4 +3,4 @@ Allow: /
 Disallow: /login
 Disallow: /api/
 
-Sitemap: https://pichleradvisory.ch/sitemap.xml
+Sitemap: https://pichler-advisory.ch/sitemap.xml

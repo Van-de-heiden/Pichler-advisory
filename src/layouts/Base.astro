@@ -17,10 +17,10 @@ const {
   jsonLd,
 } = Astro.props;
 
-const SITE = 'https://pichleradvisory.ch';
+const SITE = 'https://pichler-advisory.ch';
 
 const siteTitle = title === 'Startseite'
-  ? 'Pichler Advisory — Operative Klarheit für Betriebe mit Substanz'
+  ? 'Pichler Advisory — Beratung für KMU-Inhaber in der Schweiz'
   : `${title} — Pichler Advisory`;
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? SITE);
@@ -30,11 +30,22 @@ const defaultJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'ProfessionalService',
   name: 'Pichler Advisory',
-  description: 'Operative Unternehmensberatung für KMU in der Schweiz. Betriebsanalyse, operative Verbesserung, digitale Systeme.',
+  description: 'Unternehmensberatung für KMU-Inhaber in der Schweiz. Betriebsanalyse, operative Verbesserung und digitale Systeme für Betriebe mit Substanz.',
   url: SITE,
+  telephone: '+41775383064',
+  email: 'info@pichler-advisory.ch',
   founder: {
     '@type': 'Person',
     name: 'Maurus Pichler',
+    jobTitle: 'Inhaber & Berater',
+  },
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Häberlbodenstrasse 17',
+    addressLocality: 'Ernetschwil',
+    postalCode: '8725',
+    addressCountry: 'CH',
+    addressRegion: 'Kanton St. Gallen',
   },
   areaServed: {
     '@type': 'Country',
@@ -42,7 +53,8 @@ const defaultJsonLd = {
   },
   contactPoint: {
     '@type': 'ContactPoint',
-    email: 'info@pichleradvisory.ch',
+    telephone: '+41775383064',
+    email: 'info@pichler-advisory.ch',
     contactType: 'customer service',
     availableLanguage: 'German',
   },
