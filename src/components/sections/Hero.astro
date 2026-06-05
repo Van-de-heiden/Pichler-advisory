@@ -1,38 +1,40 @@
 ---
 ---
 
-<section class="relative overflow-hidden" id="top" style="min-height: 88vh;">
+<section class="relative overflow-hidden" id="top" style="min-height: 82vh;">
 
-  <!-- Full-bleed image right side (desktop) -->
-  <div class="absolute inset-y-0 right-0 w-[58%] lg:block hidden">
+  <!-- Full-bleed background image -->
+  <div class="absolute inset-0 lg:block hidden">
     <img
       src="/assets/maurus-welcome.png"
       alt="Maurus Pichler, Gründer von Pichler Advisory"
-      class="w-full h-full object-cover object-center"
+      class="w-full h-full object-cover"
+      style="object-position: 70% center;"
       onerror="this.style.display='none';"
     />
-    <!-- Gradient fade to left -->
-    <div class="absolute inset-0 pointer-events-none" style="background: linear-gradient(to right, #F5F1EB 0%, rgba(245,241,235,0.6) 25%, transparent 55%);"></div>
+    <!-- Ivory fade: solid left, fades out toward right -->
+    <div class="absolute inset-0 pointer-events-none"
+         style="background: linear-gradient(to right, #F5F1EB 0%, #F5F1EB 32%, rgba(245,241,235,0.82) 48%, rgba(245,241,235,0.2) 65%, transparent 80%);"></div>
   </div>
 
   <!-- Content -->
-  <div class="relative max-w-[1240px] mx-auto px-10 pt-[168px] pb-20">
-    <div class="lg:max-w-[560px] reveal">
+  <div class="relative max-w-[1240px] mx-auto px-10 pt-[160px] pb-16">
+    <div class="lg:max-w-[520px] reveal">
 
       <span class="eyebrow block mb-[22px]">Advisory · Schweiz · Gegründet 2026</span>
 
-      <h1 class="font-display font-medium text-ink m-0 mb-6 leading-[0.98] tracking-[-0.04em]"
-          style="font-size: clamp(3.5rem, 5.5vw, 5rem);">
+      <h1 class="font-display font-medium text-ink m-0 mb-6 leading-[0.97] tracking-[-0.04em]"
+          style="font-size: clamp(3.2rem, 5vw, 4.8rem);">
         Operative Klarheit<br />
         für Betriebe
         <em class="italic text-bordeaux-700" style="font-style: italic;">mit Substanz.</em>
       </h1>
 
-      <p class="text-[19px] leading-[1.65] text-slate max-w-[44ch] m-0 mb-[34px]">
+      <p class="text-[18px] leading-[1.65] text-slate max-w-[42ch] m-0 mb-8">
         Ich unterstütze KMU-Inhaber dabei, klarer zu sehen, digitale Schwachstellen zu beheben und Abläufe so zu verbessern, dass im Alltag mehr Übersicht entsteht.
       </p>
 
-      <div class="flex items-center gap-3.5 mb-[52px] flex-wrap">
+      <div class="flex items-center gap-3.5 mb-10 flex-wrap">
         <button data-open-contact class="btn-primary btn-lg">
           Betriebsanalyse anfragen
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -43,40 +45,40 @@
       </div>
 
       <!-- Three pillars -->
-      <div class="flex items-start gap-5 flex-wrap">
-        <div class="flex items-center gap-3">
-          <span class="flex-shrink-0 w-8 h-8 rounded-md bg-bordeaux-50 text-bordeaux-700 flex items-center justify-center">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <div class="flex items-center gap-5 flex-wrap">
+        <div class="flex items-center gap-2.5">
+          <span class="flex-shrink-0 w-7 h-7 rounded-md bg-bordeaux-50 text-bordeaux-700 flex items-center justify-center">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
             </svg>
           </span>
           <div>
-            <span class="text-[11px] tracking-[0.1em] uppercase font-semibold text-ink block leading-none mb-0.5">Analyse</span>
-            <span class="text-[12px] text-taupe">Betrieb verstehen</span>
+            <span class="text-[10.5px] tracking-[0.1em] uppercase font-semibold text-ink block leading-none mb-0.5">Analyse</span>
+            <span class="text-[11.5px] text-taupe">Betrieb verstehen</span>
           </div>
         </div>
-        <span class="w-px h-8 bg-stone self-center hidden sm:block"></span>
-        <div class="flex items-center gap-3">
-          <span class="flex-shrink-0 w-8 h-8 rounded-md bg-bordeaux-50 text-bordeaux-700 flex items-center justify-center">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+        <span class="w-px h-7 bg-stone/60"></span>
+        <div class="flex items-center gap-2.5">
+          <span class="flex-shrink-0 w-7 h-7 rounded-md bg-bordeaux-50 text-bordeaux-700 flex items-center justify-center">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
             </svg>
           </span>
           <div>
-            <span class="text-[11px] tracking-[0.1em] uppercase font-semibold text-ink block leading-none mb-0.5">Klarheit</span>
-            <span class="text-[12px] text-taupe">Prioritäten schaffen</span>
+            <span class="text-[10.5px] tracking-[0.1em] uppercase font-semibold text-ink block leading-none mb-0.5">Klarheit</span>
+            <span class="text-[11.5px] text-taupe">Prioritäten schaffen</span>
           </div>
         </div>
-        <span class="w-px h-8 bg-stone self-center hidden sm:block"></span>
-        <div class="flex items-center gap-3">
-          <span class="flex-shrink-0 w-8 h-8 rounded-md bg-bordeaux-50 text-bordeaux-700 flex items-center justify-center">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <span class="w-px h-7 bg-stone/60"></span>
+        <div class="flex items-center gap-2.5">
+          <span class="flex-shrink-0 w-7 h-7 rounded-md bg-bordeaux-50 text-bordeaux-700 flex items-center justify-center">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>
             </svg>
           </span>
           <div>
-            <span class="text-[11px] tracking-[0.1em] uppercase font-semibold text-ink block leading-none mb-0.5">Umsetzung</span>
-            <span class="text-[12px] text-taupe">Konkrete Schritte gehen</span>
+            <span class="text-[10.5px] tracking-[0.1em] uppercase font-semibold text-ink block leading-none mb-0.5">Umsetzung</span>
+            <span class="text-[11.5px] text-taupe">Konkrete Schritte gehen</span>
           </div>
         </div>
       </div>
@@ -85,11 +87,12 @@
   </div>
 
   <!-- Mobile image -->
-  <div class="lg:hidden mx-10 mb-12 rounded-xl overflow-hidden relative" style="aspect-ratio: 4/3;">
+  <div class="lg:hidden mx-10 mb-10 rounded-xl overflow-hidden relative" style="aspect-ratio: 4/3;">
     <img
       src="/assets/maurus-welcome.png"
       alt="Maurus Pichler, Gründer von Pichler Advisory"
-      class="w-full h-full object-cover object-center"
+      class="w-full h-full object-cover"
+      style="object-position: 60% center;"
       onerror="this.style.display='none';"
     />
   </div>
