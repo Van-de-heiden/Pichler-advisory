@@ -52,7 +52,7 @@ const values = [
 
         <!-- Photo + quote plate -->
         <div class="reveal">
-          <div class="rounded-xl overflow-hidden shadow-md relative bg-mist border border-stone/50" style="aspect-ratio: 3/4;">
+          <div class="rounded-xl overflow-hidden shadow-md relative bg-mist border border-stone/50" style="aspect-ratio: 4/3;">
             <img
               src="/assets/maurus.jpg"
               alt="Maurus Pichler, Gründer von Pichler Advisory"
@@ -70,13 +70,13 @@ const values = [
           <!-- Stats -->
           <div class="grid grid-cols-3 gap-px bg-stone/30 rounded-xl overflow-hidden mt-4">
             {[
-              { f: '2026',    l: 'Gründungsjahr' },
-              { f: 'EDB EFZ', l: 'Digitales Business' },
-              { f: 'Dominus', l: 'Eigenes Venture' },
+              { title: 'Eigene Projekte',   desc: 'Von Idee bis Umsetzung' },
+              { title: 'Digitale Praxis',   desc: 'Werkzeuge sinnvoll genutzt' },
+              { title: 'Echte Betriebe',    desc: 'Nah an Alltag und Wirkung' },
             ].map((s) => (
-              <div class="bg-white px-5 py-4">
-                <span class="font-display text-[28px] font-medium text-bordeaux-700 leading-none block mb-1">{s.f}</span>
-                <span class="text-[11px] tracking-[0.08em] uppercase text-taupe">{s.l}</span>
+              <div class="bg-white px-4 py-4">
+                <span class="text-[13px] font-semibold text-ink leading-tight block mb-1">{s.title}</span>
+                <span class="text-[11px] leading-[1.4] text-taupe block">{s.desc}</span>
               </div>
             ))}
           </div>
