@@ -26,7 +26,7 @@ const values = [
 
 <Base
   title="Über uns"
-  description="Pichler Advisory ist eine junge, inhabergeführte Advisory-Marke aus der Schweiz. Gegründet von Maurus Pichler — unternehmerisch aktiv seit 17, mit dem Anspruch, echte Betriebe substanziell besser zu machen."
+  description="Pichler Advisory ist eine inhabergeführte Advisory-Marke aus der Schweiz. Gegründet von Maurus Pichler — mit dem Anspruch, echte Betriebe substanziell besser zu machen."
 >
   <Nav currentPath="/ueber-uns" />
   <main>
@@ -52,11 +52,11 @@ const values = [
 
         <!-- Photo + quote plate -->
         <div class="reveal">
-          <div class="rounded-xl overflow-hidden shadow-md relative bg-mist border border-stone/50" style="aspect-ratio: 4/3;">
+          <div class="rounded-xl overflow-hidden shadow-md relative bg-mist border border-stone/50" style="aspect-ratio: 3/4;">
             <img
               src="/assets/maurus.jpg"
               alt="Maurus Pichler, Gründer von Pichler Advisory"
-              class="w-full h-full object-cover object-center"
+              class="w-full h-full object-cover object-top"
               onerror="this.style.display='none';"
             />
             <div class="absolute bottom-0 left-0 right-0 p-6" style="background: linear-gradient(to top, rgba(30,27,30,0.8) 0%, transparent 100%);">
@@ -70,9 +70,9 @@ const values = [
           <!-- Stats -->
           <div class="grid grid-cols-3 gap-px bg-stone/30 rounded-xl overflow-hidden mt-4">
             {[
-              { f: '2026', l: 'Gründungsjahr' },
-              { f: '< 20', l: 'Alter des Gründers' },
-              { f: '17',   l: 'Unternehmerisch seit' },
+              { f: '2026',    l: 'Gründungsjahr' },
+              { f: 'Schweiz', l: 'Standort' },
+              { f: 'KMU',     l: 'Fokus' },
             ].map((s) => (
               <div class="bg-white px-5 py-4">
                 <span class="font-display text-[28px] font-medium text-bordeaux-700 leading-none block mb-1">{s.f}</span>
@@ -90,16 +90,16 @@ const values = [
           </h2>
           <div class="flex flex-col gap-4 text-[16px] leading-[1.75] text-slate">
             <p>
-              Pichler Advisory ist eine junge, inhabergeführte Advisory-Marke, die von Maurus Nic Ramon Pichler gegründet wurde — einem jungen Unternehmer und Entwickler aus der Schweiz.
+              Pichler Advisory ist eine inhabergeführte Advisory-Marke, gegründet von Maurus Pichler — einem Unternehmer und Entwickler aus der Schweiz.
             </p>
             <p>
-              Unternehmerisch aktiv seit 17: mit einer eigenen Kleidermarke gestartet, um praktische Erfahrung zu sammeln, danach diverse Projekte für Freunde und Familie aufgebaut. Kein künstliches Unternehmerbild, sondern echter Start.
+              Ich habe früh begonnen, unternehmerisch zu denken und zu handeln — durch eigene Projekte, durch das Aufbauen von Systemen und durch die Erfahrung, wie schwierig es ist, im Alltag den Überblick zu behalten. Das hat meinen Blick geschärft: für Potenziale, die andere übersehen, und für Probleme, die sich lösen lassen.
             </p>
             <p>
-              Ich kenne die neuesten Technologien — KI-gestützte Prozesse, Automatisierungen, digitale Cockpits, moderne Systemlandschaften. Und ich weiss, wie sie im Alltag eines echten Betriebs konkret eingesetzt werden. Nicht im Labor. Nicht als Konzept. Sondern in der Praxis.
+              Ich kenne die neuesten Technologien — KI-gestützte Prozesse, Automatisierungen, digitale Systeme. Und ich weiss, wie sie im Alltag eines echten Betriebs konkret eingesetzt werden. Nicht im Labor. Nicht als Konzept. Sondern in der Praxis.
             </p>
             <p>
-              Diese Lücke interessiert mich: zwischen dem, was heute technologisch möglich ist, und dem, was ein KMU-Inhaber im Alltag tatsächlich nutzt. Pichler Advisory überbrückt genau diese Lücke — direkt, ohne Umweg, ohne Agenturaufwand.
+              Diese Lücke interessiert mich: zwischen dem, was heute möglich ist, und dem, was ein KMU-Inhaber im Alltag tatsächlich nutzt. Pichler Advisory überbrückt genau diese Lücke — direkt, ohne Umweg, ohne Agenturaufwand.
             </p>
           </div>
         </div>
