@@ -29,6 +29,9 @@ export async function onRequest(context) {
 
   if (isPublic) return next();
 
+  // If no credentials configured, site is public
+  if (!env.AUTH_USERNAME || !env.AUTH_PASSWORD) return next();
+
   // Validate session cookie
   const cookieStr = request.headers.get('Cookie') || '';
   const cookies = Object.fromEntries(
