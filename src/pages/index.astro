@@ -13,8 +13,8 @@ import CTABanner from '../components/sections/CTABanner.astro';
 ---
 
 <Base
-  title="Startseite"
-  description="Pichler Advisory — Unternehmensberatung für KMU-Inhaber in der Schweiz. Betriebsanalyse, operative Verbesserung und digitale Systeme. Maurus Pichler, Ernetschwil, Kanton St. Gallen."
+  title="Pichler Advisory – KMU-Beratung für Klarheit, Wachstum und operative Entlastung"
+  description="Pichler Advisory unterstützt KMU-Inhaber in der Schweiz dabei, Prozesse zu schärfen, digitale Lösungen sinnvoll einzusetzen und operative Klarheit zu gewinnen. Inhabergeführte Beratung aus der Ostschweiz."
 >
   <Nav currentPath="/" />
   <main>
@@ -25,6 +25,42 @@ import CTABanner from '../components/sections/CTABanner.astro';
     <CockpitTeaser />
     <AboutTeaser />
     <CTABanner />
+
+    <!-- SEO-Abschnitt: Für wen / regionale Relevanz -->
+    <section class="bg-mist/40 border-t border-stone/20">
+      <div class="max-w-[1240px] mx-auto px-10 py-20">
+        <div class="grid lg:grid-cols-3 gap-10 reveal">
+          <div>
+            <h2 class="font-display font-medium text-ink mb-4"
+                style="font-size: 1.5rem; line-height: 1.15; letter-spacing: -0.02em;">
+              Für wen ist Pichler Advisory?
+            </h2>
+            <p class="text-[15px] leading-[1.7] text-slate">
+              Für KMU-Inhaber in der Schweiz, die ihren Betrieb gut kennen, aber im Tagesgeschäft kaum Zeit finden, ihn von aussen zu betrachten. Besonders häufig arbeite ich mit Betrieben aus der Ostschweiz — Kanton St. Gallen, Thurgau, Appenzell — die 5 bis 50 Mitarbeitende haben und spüren, dass irgendwo Reibung, Unübersicht oder ungenutztes Potenzial steckt.
+            </p>
+          </div>
+          <div>
+            <h2 class="font-display font-medium text-ink mb-4"
+                style="font-size: 1.5rem; line-height: 1.15; letter-spacing: -0.02em;">
+              Welche Probleme löse ich?
+            </h2>
+            <p class="text-[15px] leading-[1.7] text-slate">
+              Zu viele manuelle Abläufe, die täglich Zeit fressen. Keine klare Übersicht über Zahlen, Aufträge und Entwicklung. Eine Aussenwirkung, die der echten Qualität des Betriebs nicht gerecht wird. Oder einfach das Gefühl: Es müsste effizienter gehen — aber man kommt nicht dazu, es anzugehen.
+            </p>
+          </div>
+          <div>
+            <h2 class="font-display font-medium text-ink mb-4"
+                style="font-size: 1.5rem; line-height: 1.15; letter-spacing: -0.02em;">
+              Wie unterscheidet sich der Ansatz?
+            </h2>
+            <p class="text-[15px] leading-[1.7] text-slate">
+              Keine grossen Beratungskonzepte, die in der Schublade landen. Ich schaue mir Ihren Betrieb konkret an, priorisiere was wirklich zählt, und setze die Verbesserungen direkt um — persönlich, ohne Umweg über ein Team, das Ihren Betrieb nicht kennt.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
   <Footer />
   <ContactModal />

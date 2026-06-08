@@ -6,7 +6,8 @@ interface Props {
   description: string;
   image?: string;
   noIndex?: boolean;
-  jsonLd?: object;
+  jsonLd?: object | object[];
+  breadcrumbs?: Array<{ name: string; url: string }>;
 }
 
 const {
@@ -15,29 +16,33 @@ const {
   image = '/og-image.png',
   noIndex = false,
   jsonLd,
+  breadcrumbs,
 } = Astro.props;
 
 const SITE = 'https://pichler-advisory.ch';
 
-const siteTitle = title === 'Startseite'
-  ? 'Pichler Advisory — Beratung für KMU-Inhaber in der Schweiz'
-  : `${title} — Pichler Advisory`;
+const siteTitle = title;
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? SITE);
 const ogImage = new URL(image, Astro.site ?? SITE);
 
 const defaultJsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'ProfessionalService',
+  '@type': ['ProfessionalService', 'LocalBusiness'],
   name: 'Pichler Advisory',
-  description: 'Unternehmensberatung für KMU-Inhaber in der Schweiz. Betriebsanalyse, operative Verbesserung und digitale Systeme für Betriebe mit Substanz.',
+  alternateName: 'Pichler Advisory KMU-Beratung',
+  description: 'Unternehmensberatung für KMU-Inhaber in der Schweiz. Betriebsanalyse, operative Verbesserung, Prozessoptimierung und digitale Systeme für Betriebe mit Substanz. Schwerpunkt Ostschweiz und St. Gallen.',
   url: SITE,
+  logo: `${SITE}/assets/shield.png`,
+  image: `${SITE}/og-image.png`,
   telephone: '+41775383064',
   email: 'info@pichler-advisory.ch',
+  priceRange: 'CHF 2000–20000',
   founder: {
     '@type': 'Person',
     name: 'Maurus Pichler',
     jobTitle: 'Inhaber & Berater',
+    worksFor: { '@type': 'Organization', name: 'Pichler Advisory' },
   },
   address: {
     '@type': 'PostalAddress',
@@ -47,19 +52,45 @@ const defaultJsonLd = {
     addressCountry: 'CH',
     addressRegion: 'Kanton St. Gallen',
   },
-  areaServed: {
-    '@type': 'Country',
-    name: 'Switzerland',
-  },
+  areaServed: [
+    { '@type': 'Country', name: 'Switzerland' },
+    { '@type': 'AdministrativeArea', name: 'Ostschweiz' },
+    { '@type': 'City', name: 'St. Gallen' },
+  ],
   contactPoint: {
     '@type': 'ContactPoint',
     telephone: '+41775383064',
     email: 'info@pichler-advisory.ch',
-    contactType: 'customer service',
-    availableLanguage: 'German',
+    contactType: 'Kundenberatung',
+    availableLanguage: ['German'],
+    contactOption: 'TollFree',
+  },
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'KMU-Beratungsleistungen',
+    itemListElement: [
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Betriebsanalyse', description: 'Strukturierter Blick auf Ihren Betrieb in 1–3 Tagen.' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Operative Verbesserung', description: 'Prozessoptimierung und Ablaufverbesserung für KMU.' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Digitale Systeme & Cockpit', description: 'Umsatzcockpit, Lead-Tracker und Projektübersicht für KMU.' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Aussenwirkung & Positionierung', description: 'Website-Neuaufbau und Markenkommunikation für KMU.' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Wachstum & Akquise', description: 'Kundengewinnungsprozesse und Lead-Management.' } },
+    ],
   },
   sameAs: [],
 };
+
+const breadcrumbJsonLd = breadcrumbs && breadcrumbs.length > 0 ? {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: breadcrumbs.map((crumb, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: crumb.name,
+    item: `${SITE}${crumb.url}`,
+  })),
+} : null;
+
+const allJsonLd = jsonLd ?? defaultJsonLd;
 ---
 
 <!doctype html>
@@ -96,7 +127,10 @@ const defaultJsonLd = {
   <meta name="twitter:image"       content={ogImage} />
 
   <!-- JSON-LD structured data -->
-  <script type="application/ld+json" set:html={JSON.stringify(jsonLd ?? defaultJsonLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(allJsonLd)} />
+  {breadcrumbJsonLd && (
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
+  )}
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
