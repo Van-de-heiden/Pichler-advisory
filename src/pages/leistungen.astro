@@ -79,8 +79,9 @@ const selectiveServices = [
 ---
 
 <Base
-  title="Leistungen"
-  description="Betriebsanalyse, operative Verbesserung, digitale Systeme, Aussenwirkung, Wachstum und Turnaround-Unterstützung für KMU in der Schweiz."
+  title="Leistungen – Beratung, Digitalisierung und Prozessoptimierung für KMU | Pichler Advisory"
+  description="Von der Betriebsanalyse über operative Verbesserung bis zu digitalen Systemen: Pichler Advisory hilft KMU-Inhabern in der Schweiz, Komplexität zu reduzieren und Wirkung zu erhöhen."
+  breadcrumbs={[{ name: 'Startseite', url: '/' }, { name: 'Leistungen', url: '/leistungen/' }]}
 >
   <Nav currentPath="/leistungen" />
   <main>
@@ -93,8 +94,11 @@ const selectiveServices = [
             style="font-size: clamp(3rem, 5vw, 4.5rem); line-height: 1.0; letter-spacing: -0.03em;">
           Was ich für Ihren<br />Betrieb tun kann.
         </h1>
-        <p class="text-[19px] leading-[1.65] text-slate m-0">
+        <p class="text-[19px] leading-[1.65] text-slate m-0 mb-5">
           Von der ersten Analyse bis zur laufenden Begleitung — sechs Bereiche, die zusammen oder einzeln echte Wirkung entfalten.
+        </p>
+        <p class="text-[16px] leading-[1.7] text-slate m-0">
+          Pichler Advisory arbeitet mit KMU-Inhabern in der ganzen Schweiz zusammen, mit Schwerpunkt auf der Ostschweiz — Kanton St. Gallen, Thurgau und Umgebung. Alle Beratungsleistungen sind auf den konkreten Betrieb zugeschnitten: keine Standardofferten, keine Berater-Konzepte, die niemand umsetzt.
         </p>
       </div>
     </div>
@@ -146,12 +150,12 @@ const selectiveServices = [
                 <span class="text-[12px] text-taupe mt-1">Keine Standardofferte. Ich schaue, was Ihr Betrieb braucht.</span>
               </div>
             </div>
-            <button data-open-contact class="btn-primary btn-block">
+            <a href="/kontakt" class="btn-primary btn-block">
               Betriebsanalyse anfragen
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M5 12h14M12 5l7 7-7 7"/>
               </svg>
-            </button>
+            </a>
             <p class="text-[12px] text-taupe text-center mt-3">Kein Angebot von der Stange. Ich schaue mir Ihren Betrieb an.</p>
           </div>
         </div>
@@ -275,9 +279,9 @@ const selectiveServices = [
         <p class="text-[17px] leading-[1.65] text-slate mb-8 max-w-[42ch] mx-auto">
           Oft ist eine kurze Betriebsanalyse der beste Einstieg — sie zeigt, wo der Hebel am grössten ist.
         </p>
-        <button data-open-contact class="btn-primary btn-lg">
-          Betriebsanalyse anfragen
-        </button>
+        <a href="/kontakt" class="btn-primary btn-lg">
+          Für ein Erstgespräch kontaktieren
+        </a>
       </div>
     </div>
 

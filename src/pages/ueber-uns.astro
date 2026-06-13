@@ -25,8 +25,25 @@ const values = [
 ---
 
 <Base
-  title="Über uns"
-  description="Pichler Advisory ist eine inhabergeführte Advisory-Marke aus der Schweiz. Gegründet von Maurus Pichler — mit dem Anspruch, echte Betriebe substanziell besser zu machen."
+  title="Über uns – Maurus Pichler, KMU-Berater aus der Schweiz | Pichler Advisory"
+  description="Pichler Advisory wurde von Maurus Pichler aus Ernetschwil, Kanton St. Gallen gegründet. Unternehmerische Beratung für KMU mit Substanz – persönlich, direkt und umsetzungsnah."
+  breadcrumbs={[{ name: 'Startseite', url: '/' }, { name: 'Über uns', url: '/ueber-uns/' }]}
+  jsonLd={{
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    name: 'Über Pichler Advisory',
+    description: 'Maurus Pichler, Gründer von Pichler Advisory – KMU-Berater aus Ernetschwil, Kanton St. Gallen.',
+    url: 'https://pichler-advisory.ch/ueber-uns/',
+    mainEntity: {
+      '@type': 'Person',
+      name: 'Maurus Pichler',
+      jobTitle: 'Inhaber & Berater',
+      worksFor: { '@type': 'Organization', name: 'Pichler Advisory', url: 'https://pichler-advisory.ch' },
+      address: { '@type': 'PostalAddress', addressLocality: 'Ernetschwil', postalCode: '8725', addressCountry: 'CH', addressRegion: 'Kanton St. Gallen' },
+      email: 'info@pichler-advisory.ch',
+      telephone: '+41775383064',
+    },
+  }}
 >
   <Nav currentPath="/ueber-uns" />
   <main>
@@ -180,9 +197,9 @@ const values = [
       <p class="text-[17px] leading-[1.65] text-slate mb-8 max-w-[40ch] mx-auto">
         Ich freue mich auf ein offenes Erstgespräch — unverbindlich, direkt und ohne Floskeln.
       </p>
-      <button data-open-contact class="btn-primary btn-lg">
-        Erstgespräch vereinbaren
-      </button>
+      <a href="/kontakt" class="btn-primary btn-lg">
+        Kontakt für ein Erstgespräch
+      </a>
     </div>
 
   </main>

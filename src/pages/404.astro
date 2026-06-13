@@ -1,0 +1,37 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/layout/Nav.astro';
+import Footer from '../components/layout/Footer.astro';
+---
+
+<Base
+  title="Seite nicht gefunden – Pichler Advisory"
+  description="Diese Seite existiert nicht. Besuchen Sie die Startseite von Pichler Advisory oder sehen Sie sich die Leistungen an."
+  noIndex={true}
+>
+  <Nav currentPath="/" />
+  <main>
+    <div class="max-w-[1240px] mx-auto px-10 pt-[160px] pb-32 text-center">
+      <span class="font-display text-[120px] font-medium text-bordeaux-700/10 leading-none block mb-4">404</span>
+      <h1 class="font-display font-medium text-ink mb-5"
+          style="font-size: clamp(2rem, 3.5vw, 3rem); line-height: 1.05; letter-spacing: -0.03em;">
+        Diese Seite gibt es nicht.
+      </h1>
+      <p class="text-[18px] leading-[1.65] text-slate mb-10 max-w-[42ch] mx-auto">
+        Vielleicht wurde die Seite verschoben oder die URL ist falsch. Hier geht es weiter:
+      </p>
+      <div class="flex items-center justify-center gap-4 flex-wrap">
+        <a href="/" class="btn-primary btn-lg">
+          Zur Startseite
+        </a>
+        <a href="/leistungen" class="btn-ghost">
+          KMU-Beratungsleistungen ansehen
+        </a>
+        <a href="/kontakt" class="btn-ghost">
+          Kontakt aufnehmen
+        </a>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Base>
