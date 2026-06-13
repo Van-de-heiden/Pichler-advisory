@@ -1,4 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="6" fill="#5A0F1B"/>
-  <text x="16" y="22" font-family="Georgia,serif" font-size="16" font-weight="bold" fill="#F8F5EF" text-anchor="middle">P</text>
+  <path
+    d="M16 2 L28 6.5 L28 17.5 C28 24.5 16 30 16 30 C16 30 4 24.5 4 17.5 L4 6.5 Z"
+    fill="#5A0F1B"
+  />
+  <path
+    d="M16 5.5 L25 9 L25 17.5 C25 22.5 16 27 16 27 C16 27 7 22.5 7 17.5 L7 9 Z"
+    fill="none"
+    stroke="#F8F5EF"
+    stroke-width="0.8"
+    opacity="0.25"
+  />
 </svg>
