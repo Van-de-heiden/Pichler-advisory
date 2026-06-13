@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240" fill="none">
+  <!-- Outer shield -->
+  <path
+    d="M100 8 L184 40 L184 128 C184 178 100 232 100 232 C100 232 16 178 16 128 L16 40 Z"
+    fill="white"
+    stroke="#5A0F1B"
+    stroke-width="6"
+    stroke-linejoin="round"
+  />
+  <!-- Inner shield (double border effect) -->
+  <path
+    d="M100 26 L168 54 L168 126 C168 168 100 214 100 214 C100 214 32 168 32 126 L32 54 Z"
+    fill="none"
+    stroke="#5A0F1B"
+    stroke-width="2.5"
+    stroke-linejoin="round"
+    opacity="0.35"
+  />
+  <!-- P letterform — clean geometric -->
+  <path
+    d="M78 72 L78 168 M78 72 L108 72 C122 72 132 82 132 96 C132 110 122 120 108 120 L78 120"
+    stroke="#5A0F1B"
+    stroke-width="11"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+</svg>
