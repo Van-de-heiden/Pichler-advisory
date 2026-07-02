@@ -31,7 +31,7 @@ const defaultJsonLd = {
   '@type': ['ProfessionalService', 'LocalBusiness'],
   name: 'Pichler Advisory',
   alternateName: 'Pichler Advisory KMU-Beratung',
-  description: 'Unternehmensberatung für KMU-Inhaber in der Schweiz. Betriebsanalyse, operative Verbesserung, Prozessoptimierung und digitale Systeme für Betriebe mit Substanz. Schwerpunkt Ostschweiz und St. Gallen.',
+  description: 'Digitale Betriebsstruktur für Schweizer KMU und Handwerksbetriebe: Prozessanalyse, Automatisierung von Anfragen, Offerten und Nachfassung, Anbindung von Bexio, CRM und Website. Schwerpunkt Ostschweiz und St. Gallen.',
   url: SITE,
   logo: `${SITE}/assets/shield.png`,
   image: `${SITE}/og-image.png`,
@@ -67,13 +67,11 @@ const defaultJsonLd = {
   },
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
-    name: 'KMU-Beratungsleistungen',
+    name: 'Leistungen für KMU und Handwerksbetriebe',
     itemListElement: [
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Betriebsanalyse', description: 'Strukturierter Blick auf Ihren Betrieb in 1–3 Tagen.' } },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Operative Verbesserung', description: 'Prozessoptimierung und Ablaufverbesserung für KMU.' } },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Digitale Systeme & Cockpit', description: 'Umsatzcockpit, Lead-Tracker und Projektübersicht für KMU.' } },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Aussenwirkung & Positionierung', description: 'Website-Neuaufbau und Markenkommunikation für KMU.' } },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Wachstum & Akquise', description: 'Kundengewinnungsprozesse und Lead-Management.' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Digitaler Betriebscheck', description: 'Analyse der Abläufe: wo Anfragen, Zeit und Geld im Betrieb verloren gehen — mit priorisiertem Massnahmenplan.' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Digitale Betriebsstruktur', description: 'Aufbau und Automatisierung der Abläufe: Anfragen, Offerten, Nachfassung, Bexio, CRM, Kalender und Website sauber verbunden.' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Laufender Betrieb', description: 'Betreuung, Messung und Weiterentwicklung der digitalen Betriebsstruktur im Monatsmodell.' } },
     ],
   },
   sameAs: [],
@@ -151,7 +149,7 @@ const allJsonLd = jsonLd ?? defaultJsonLd;
         if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
-    document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+    document.querySelectorAll('.reveal, .stagger').forEach((el) => io.observe(el));
 
     /* Nav scrolled state */
     const nav = document.getElementById('site-nav');
@@ -164,20 +162,15 @@ const allJsonLd = jsonLd ?? defaultJsonLd;
       document.getElementById('mobile-menu')?.classList.toggle('hidden');
     });
 
-    /* Contact modal open/close */
+    /* Contact modal open/close (Fallback: Kontaktseite, falls kein Modal vorhanden) */
     const modal = document.getElementById('contact-modal') as HTMLDialogElement | null;
     document.querySelectorAll('[data-open-contact]').forEach((btn) =>
-      btn.addEventListener('click', () => modal?.showModal())
+      btn.addEventListener('click', () => {
+        if (modal) modal.showModal();
+        else location.href = '/kontakt';
+      })
     );
-    document.getElementById('modal-close-btn')?.addEventListener('click', () => modal?.close());
     modal?.addEventListener('click', (e) => { if (e.target === modal) modal.close(); });
-
-    /* Contact form submit (simulated — wire up a real backend) */
-    document.getElementById('contact-form')?.addEventListener('submit', (e) => {
-      e.preventDefault();
-      document.getElementById('form-state')?.classList.add('hidden');
-      document.getElementById('success-state')?.classList.remove('hidden');
-    });
   </script>
 </body>
 </html>

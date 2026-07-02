@@ -29,8 +29,8 @@ export async function onRequest(context) {
 
   if (isPublic) return next();
 
-  // If no credentials configured, site is public
-  if (!env.AUTH_USERNAME || !env.AUTH_PASSWORD) return next();
+  // If no credentials or no session secret configured, site is public
+  if (!env.AUTH_USERNAME || !env.AUTH_PASSWORD || !env.SESSION_SECRET) return next();
 
   // Validate session cookie
   const cookieStr = request.headers.get('Cookie') || '';
@@ -43,8 +43,7 @@ export async function onRequest(context) {
       })
   );
 
-  const secret = env.SESSION_SECRET || 'pichler-advisory-secret-2026';
-  const expected = await createToken(secret);
+  const expected = await createToken(env.SESSION_SECRET);
 
   if (cookies[SESSION_COOKIE] === expected) return next();
 

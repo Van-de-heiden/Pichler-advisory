@@ -4,284 +4,158 @@ import Nav from '../components/layout/Nav.astro';
 import Footer from '../components/layout/Footer.astro';
 import ContactModal from '../components/ui/ContactModal.astro';
 
-const featured = {
-  id: 'betriebsanalyse',
-  icon: `<line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>`,
-  title: 'Betriebsanalyse',
-  lede: 'Der strukturierte Blick auf Ihren Betrieb — in 1 bis 3 Tagen.',
-  desc: 'Ich schaue mir Ihren Betrieb systematisch an: Aussenwirkung, digitale Präsenz, interne Abläufe, Kundenansprache und Kennzahlen. Das Ergebnis sind konkrete Quick Wins und ein priorisierter Massnahmenplan — keine Theorie, sondern direkt nutzbare Erkenntnisse.',
-  includes: [
-    'Analyse der Website und digitalen Präsenz',
-    'Bewertung interner Abläufe und Prozesse',
-    'Kennzahlen und Steuerungssituation',
-    'Quick Wins und priorisierter Massnahmenplan',
-    'Persönliches Feedbackgespräch',
-  ],
-  duration: '1–3 Tage Sprint',
-  price: 'Auf Anfrage',
-};
-
-const coreServices = [
+const angebote = [
   {
-    id: 'operative-verbesserung',
-    icon: `<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>`,
-    title: 'Operative Verbesserung',
-    lede: 'Reibung raus, täglich Zeit zurückgewinnen.',
-    desc: 'Viele Betriebe funktionieren gut — aber langsamer und aufwändiger als nötig. Ich schaue, wo Offertprozesse, Kundenkommunikation und Verwaltung unnötig Zeit fressen, und helfe dabei, das zu ändern.',
-    includes: ['Prozessanalyse und Optimierung', 'Vereinfachung von Offert- und Kundenprozessen', 'Digitale Organisation und Ablagestruktur', 'Aufbau klarerer Arbeitsabläufe'],
-    duration: 'Projektbasis',
-    price: 'CHF 2\'000 – 20\'000',
+    id: 'betriebscheck',
+    nummer: '01',
+    tag: 'Der Einstieg',
+    titel: 'Digitaler Betriebscheck',
+    lede: 'Wissen, wo es rausläuft — bevor Sie irgendetwas verändern.',
+    beschreibung: [
+      'Bevor sich Investitionen lohnen, muss klar sein, wo das Problem wirklich liegt. Beim Betriebscheck schaue ich mir an, wie Ihr Betrieb heute läuft: Wie kommt eine Anfrage rein, und was passiert dann? Wie entsteht eine Offerte, wer fasst nach? Wo wird dieselbe Information mehrfach von Hand angefasst?',
+      'Das mache ich nicht mit Fragebögen, sondern konkret: Ich schaue mir Ihre echten Abläufe, Werkzeuge und Beispiele an — vor Ort oder remote, ohne den Betrieb aufzuhalten.',
+    ],
+    liefergegenstand: [
+      'Klartext-Bericht: die 3–5 grössten Lecks, in Stunden und Franken gedacht',
+      'Priorisierter Massnahmenplan: was zuerst, was es bringt, was es kostet',
+      'Sofortmassnahmen, die Sie auch ohne mich umsetzen können',
+      'Persönliches Abschlussgespräch — keine Folienschlacht',
+    ],
+    rahmen: 'Fixer Rahmen. Preis vorab schriftlich. Keine Verpflichtung danach.',
+    hinweis: 'Der Bericht gehört Ihnen — auch wenn Sie danach mit jemand anderem umsetzen.',
   },
   {
-    id: 'digitale-systeme',
-    icon: `<rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>`,
-    title: 'Digitale Systeme & Cockpit',
-    lede: 'Die richtigen Zahlen. Auf einen Blick.',
-    desc: 'Ich baue einfache, visuelle Systeme — Umsatzcockpit, Lead-Tracker, Projektübersicht — die die Grundlage für klarere Entscheidungen schaffen. Ohne IT-Projekt, ohne Overkill.',
-    includes: ['Performance-Cockpit und Dashboard', 'Umsatz- und Auftragsübersicht', 'Lead- und Akquise-Tracking', 'Datenverbindung und Automatisierung'],
-    duration: 'Aufbau + optional Retainer',
-    price: 'CHF 2\'000 – 10\'000 Aufbau',
-  },
-];
-
-const selectiveServices = [
-  {
-    id: 'aussenwirkung',
-    icon: `<circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>`,
-    title: 'Aussenwirkung & Positionierung',
-    lede: 'Professionell. Glaubwürdig. Merkbar.',
-    desc: 'Ein Betrieb mit guter Substanz verdient einen Auftritt, der das zeigt. Ich verbessere Website, Positionierung und Angebotskommunikation — ohne Agenturkitsch.',
-    includes: ['Website-Analyse und Neuaufbau', 'Angebotskommunikation und Positionierung', 'Konsistentes Erscheinungsbild'],
-    duration: 'Projektbasis',
-    price: 'Auf Anfrage',
+    id: 'betriebsstruktur',
+    nummer: '02',
+    tag: 'Das Kernprojekt',
+    titel: 'Betriebsstruktur & Automatisierung',
+    lede: 'Die Abläufe, die von allein laufen.',
+    beschreibung: [
+      'Hier entsteht die eigentliche Struktur: Ich verbinde Ihre vorhandenen Werkzeuge — Bexio, E-Mail, Kalender, Website, Telefon — so, dass jeder Schritt vom ersten Kontakt bis zur bezahlten Rechnung einen festen Platz hat. Anfragen werden automatisch erfasst und bestätigt. Offerten entstehen aus Vorlagen statt am Sonntagabend. Nachfassen ist terminiert, nicht dem Zufall überlassen.',
+      'Gebaut wird mit bewährter, bezahlbarer Technik (z. B. Make als Automatisierungsebene) — nicht mit Speziallösungen, die nur ich warten kann. Alles wird dokumentiert und Ihrem Team so übergeben, dass es im Alltag ohne Informatikkenntnisse funktioniert. Wenn der Auftritt nach aussen das schwächste Glied ist, gehört auch eine neue Website dazu.',
+    ],
+    liefergegenstand: [
+      'Durchgängiger Prozess von Anfrage bis Rechnung',
+      'Automatisierungen für Erfassung, Bestätigung und Nachfassen',
+      'Offert- und Dokumentvorlagen, sauber angebunden an Bexio',
+      'Einfaches Betriebs-Cockpit mit Ihren echten Zahlen',
+      'Dokumentation und Einführung fürs Team',
+    ],
+    rahmen: 'Projektbasis, offeriert nach Massnahmenplan — Sie entscheiden pro Massnahme.',
+    hinweis: 'Umgesetzt wird nur, was sich gemäss Betriebscheck rechnet.',
   },
   {
-    id: 'wachstum',
-    icon: `<polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>`,
-    title: 'Wachstum & Akquise',
-    lede: 'Saubere Hebel statt leerer Versprechen.',
-    desc: 'Ich schaue, wie Ihr Betrieb heute Kunden gewinnt — und wo im Prozess Anfragen verloren gehen oder unnötig viel Zeit kosten. Keine teuren Kampagnen, keine Heilsversprechen.',
-    includes: ['Analyse Kundengewinnung und Vertrieb', 'Lead-Prozesse und Follow-up', 'Angebotsstruktur und Kommunikation'],
-    duration: 'Analyse + Umsetzung',
-    price: 'CHF 300 – 1\'000+/Monat',
-  },
-  {
-    id: 'turnaround',
-    icon: `<polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>`,
-    title: 'Turnaround-Unterstützung',
-    lede: 'Substanz erkennen und heben.',
-    desc: 'Betriebe mit guter Substanz, die gerade nicht rund laufen. Ich helfe dabei zu erkennen, was wirklich fehlt — und das gezielt anzugehen.',
-    includes: ['Tiefe Betriebsanalyse', 'Identifikation von Substanz und Schwächen', 'Sofortmassnahmen und Umsetzung'],
-    duration: 'Auf Anfrage',
-    price: 'Auf Anfrage',
+    id: 'laufender-betrieb',
+    nummer: '03',
+    tag: 'Die Begleitung',
+    titel: 'Laufender Betrieb',
+    lede: 'Damit die Struktur auch in sechs Monaten noch trägt.',
+    beschreibung: [
+      'Ein Ablauf ist erst dann gut, wenn er auch dann noch funktioniert, wenn sich Ihr Betrieb verändert: neue Mitarbeitende, neues Angebot, mehr Anfragen. Im Monatsmodell überwache ich die Systeme, behebe Störungen, passe Abläufe an und werte die Zahlen mit Ihnen aus.',
+      'Sie bekommen keine Hotline und kein Ticketsystem, sondern die Person, die Ihre Struktur gebaut hat — mit direktem Draht.',
+    ],
+    liefergegenstand: [
+      'Überwachung und Unterhalt aller aufgebauten Abläufe',
+      'Monatliche Kurzauswertung: Anfragen, Reaktionszeit, Nachfassquote',
+      'Kontingent für Anpassungen und neue Automatisierungen',
+      'Direkter Kontakt bei Problemen — keine Warteschleife',
+    ],
+    rahmen: 'Monatsmodell, transparent, jederzeit auf Monatsende kündbar.',
+    hinweis: 'Kein Abo-Zwang: Die Struktur gehört Ihnen und läuft auch ohne mich weiter.',
   },
 ];
 ---
 
 <Base
-  title="Leistungen – Beratung, Digitalisierung und Prozessoptimierung für KMU | Pichler Advisory"
-  description="Von der Betriebsanalyse über operative Verbesserung bis zu digitalen Systemen: Pichler Advisory hilft KMU-Inhabern in der Schweiz, Komplexität zu reduzieren und Wirkung zu erhöhen."
+  title="Leistungen – Betriebscheck, Betriebsstruktur und laufender Betrieb | Pichler Advisory"
+  description="Drei Leistungen, ein System: Digitaler Betriebscheck (Analyse), Aufbau der digitalen Betriebsstruktur mit Automatisierung (Make, Bexio, CRM) und laufende Betreuung. Für Schweizer Handwerks- und Gewerbebetriebe."
   breadcrumbs={[{ name: 'Startseite', url: '/' }, { name: 'Leistungen', url: '/leistungen/' }]}
 >
   <Nav currentPath="/leistungen" />
   <main>
 
     <!-- Page hero -->
-    <div class="max-w-[1240px] mx-auto px-10 pt-[140px] pb-16">
-      <div class="max-w-[680px] reveal">
+    <div class="max-w-[1240px] mx-auto px-6 md:px-10 pt-[130px] md:pt-[140px] pb-14">
+      <div class="max-w-[720px] reveal">
         <span class="eyebrow block mb-4">Leistungen</span>
         <h1 class="font-display font-medium text-ink m-0 mb-5"
-            style="font-size: clamp(3rem, 5vw, 4.5rem); line-height: 1.0; letter-spacing: -0.03em;">
-          Was ich für Ihren<br />Betrieb tun kann.
+            style="font-size: clamp(2.6rem, 5vw, 4.2rem); line-height: 1.02; letter-spacing: -0.03em;">
+          Drei Leistungen.<br />
+          <em class="italic text-bordeaux-700" style="font-style:italic;">Ein System.</em>
         </h1>
-        <p class="text-[19px] leading-[1.65] text-slate m-0 mb-5">
-          Von der ersten Analyse bis zur laufenden Begleitung — sechs Bereiche, die zusammen oder einzeln echte Wirkung entfalten.
-        </p>
-        <p class="text-[16px] leading-[1.7] text-slate m-0">
-          Pichler Advisory arbeitet mit KMU-Inhabern in der ganzen Schweiz zusammen, mit Schwerpunkt auf der Ostschweiz — Kanton St. Gallen, Thurgau und Umgebung. Alle Beratungsleistungen sind auf den konkreten Betrieb zugeschnitten: keine Standardofferten, keine Berater-Konzepte, die niemand umsetzt.
+        <p class="text-[17px] md:text-[19px] leading-[1.65] text-slate m-0">
+          Analyse, Aufbau, Betrieb — in dieser Reihenfolge, weil jede Stufe auf der vorherigen
+          aufbaut. Sie steigen mit dem Betriebscheck ein und entscheiden nach jedem Schritt neu.
+          Kein Paketzwang, keine Standardofferte.
         </p>
       </div>
     </div>
 
-    <!-- ═══ FEATURED: Betriebsanalyse ═══ -->
-    <div class="max-w-[1240px] mx-auto px-10 pb-16">
-      <div id={featured.id} class="featured-card reveal">
-        <div class="featured-card-inner">
-          <!-- Left -->
-          <div class="featured-left">
-            <div class="flex items-center gap-4 mb-6">
-              <span class="flex-shrink-0 inline-flex items-center justify-center w-14 h-14 rounded-xl bg-bordeaux-700 text-ivory">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" set:html={featured.icon} />
-              </span>
-              <span class="text-[11px] tracking-[0.14em] uppercase font-semibold text-bordeaux-700 bg-bordeaux-50 px-3 py-1.5 rounded-pill border border-bordeaux-100">
-                Idealer Einstieg
-              </span>
-            </div>
-            <h2 class="font-display font-medium text-ink mb-2"
-                style="font-size: clamp(1.8rem, 2.8vw, 2.5rem); line-height: 1.08; letter-spacing: -0.02em;">
-              {featured.title}
-            </h2>
-            <p class="text-[17px] font-medium text-bordeaux-700 mb-4 leading-snug">{featured.lede}</p>
-            <p class="text-[16px] leading-[1.7] text-slate mb-6">{featured.desc}</p>
-            <ul class="flex flex-col gap-2.5 mb-6">
-              {featured.includes.map(item => (
-                <li class="flex items-center gap-3 text-[14.5px] text-slate">
-                  <span class="flex-shrink-0 w-4 h-4 rounded-full bg-bordeaux-700 text-ivory flex items-center justify-center">
-                    <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
-                      <polyline points="20 6 9 17 4 12"/>
-                    </svg>
-                  </span>
-                  {item}
-                </li>
+    <!-- Angebote -->
+    {angebote.map((a, i) => (
+      <div id={a.id} class:list={[i % 2 === 1 ? 'bg-ivory border-y border-stone/20' : 'bg-white']}>
+        <div class="max-w-[1240px] mx-auto px-6 md:px-10 py-16 md:py-20">
+          <div class="grid lg:grid-cols-[1.2fr_0.8fr] gap-10 lg:gap-20 items-start reveal">
+
+            <!-- Text -->
+            <div>
+              <div class="flex items-center gap-4 mb-6">
+                <span class="font-display text-[40px] font-medium leading-none text-bordeaux-300">{a.nummer}</span>
+                <span class="text-[10.5px] tracking-[0.14em] uppercase font-semibold bg-bordeaux-700 text-ivory px-3 py-1.5 rounded-sm">{a.tag}</span>
+              </div>
+              <h2 class="font-display font-medium text-ink mb-2"
+                  style="font-size: clamp(1.8rem, 2.8vw, 2.5rem); line-height: 1.08; letter-spacing: -0.02em;">
+                {a.titel}
+              </h2>
+              <p class="text-[16px] md:text-[17px] font-medium text-bordeaux-700 mb-5 leading-snug">{a.lede}</p>
+              {a.beschreibung.map((abs) => (
+                <p class="text-[15.5px] leading-[1.75] text-slate mb-4">{abs}</p>
               ))}
-            </ul>
-          </div>
-
-          <!-- Right -->
-          <div class="featured-right">
-            <div class="flex flex-col gap-4 mb-8">
-              <div class="stat-block">
-                <span class="stat-label">Dauer</span>
-                <span class="font-display text-[32px] font-medium text-ink leading-none">{featured.duration}</span>
-              </div>
-              <div class="stat-block">
-                <span class="stat-label">Investition</span>
-                <span class="font-display text-[22px] font-medium text-slate leading-none">Auf Anfrage</span>
-                <span class="text-[12px] text-taupe mt-1">Keine Standardofferte. Ich schaue, was Ihr Betrieb braucht.</span>
-              </div>
             </div>
-            <a href="/kontakt" class="btn-primary btn-block">
-              Betriebsanalyse anfragen
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-              </svg>
-            </a>
-            <p class="text-[12px] text-taupe text-center mt-3">Kein Angebot von der Stange. Ich schaue mir Ihren Betrieb an.</p>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <!-- ═══ OPERATIVE LEISTUNGEN ═══ -->
-    <div class="bg-mist/40 border-y border-stone/20">
-      <div class="max-w-[1240px] mx-auto px-10 py-16">
-        <div class="mb-10 reveal">
-          <span class="eyebrow block mb-2">Operative Leistungen</span>
-          <h2 class="font-display font-medium text-ink"
-              style="font-size: clamp(1.6rem, 2.4vw, 2rem); line-height: 1.1; letter-spacing: -0.02em;">
-            Abläufe und Systeme, die wirklich funktionieren.
-          </h2>
-        </div>
-        <div class="grid md:grid-cols-2 gap-6">
-          {coreServices.map((s, i) => (
-            <div id={s.id} class="service-card reveal" style={`transition-delay: ${i * 60}ms`}>
-              <div class="flex items-start justify-between mb-5">
-                <span class="inline-flex items-center justify-center w-11 h-11 rounded-lg bg-bordeaux-50 text-bordeaux-700">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" set:html={s.icon} />
-                </span>
-                <div class="text-right">
-                  <span class="text-[11px] tracking-[0.1em] uppercase text-taupe block">{s.duration}</span>
-                </div>
-              </div>
-              <h3 class="font-display text-[22px] font-medium text-ink mb-1.5 leading-tight">{s.title}</h3>
-              <p class="text-[13.5px] font-medium text-bordeaux-700 mb-3">{s.lede}</p>
-              <p class="text-[14.5px] leading-[1.65] text-slate mb-4">{s.desc}</p>
-              <details class="service-details">
-                <summary class="flex items-center gap-2 cursor-pointer text-[13px] font-medium text-taupe hover:text-ink transition-colors select-none list-none">
-                  <svg class="chevron w-4 h-4 transition-transform duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="6 9 12 15 18 9"/>
-                  </svg>
-                  Was ist enthalten
-                </summary>
-                <ul class="mt-3 flex flex-col gap-2 pl-6">
-                  {s.includes.map(item => (
-                    <li class="flex items-center gap-2.5 text-[13.5px] text-slate">
-                      <span class="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-bordeaux-400"></span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </details>
-              <div class="mt-5 pt-4 border-t border-mist">
-                <button data-open-contact class="btn-ghost px-0 text-[13.5px]">
-                  Anfragen
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M7 17L17 7M7 7h10v10"/>
-                  </svg>
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-
-    <!-- ═══ SELEKTIVE LEISTUNGEN ═══ -->
-    <div class="max-w-[1240px] mx-auto px-10 py-16">
-      <div class="mb-10 reveal">
-        <span class="eyebrow eyebrow-gold block mb-2">Selektive Leistungen</span>
-        <h2 class="font-display font-medium text-ink"
-            style="font-size: clamp(1.6rem, 2.4vw, 2rem); line-height: 1.1; letter-spacing: -0.02em;">
-          Je nach Situation und Bedarf.
-        </h2>
-      </div>
-      <div class="grid md:grid-cols-3 gap-5">
-        {selectiveServices.map((s, i) => (
-          <div id={s.id} class="service-card selective reveal" style={`transition-delay: ${i * 60}ms`}>
-            <div class="flex items-start justify-between mb-5">
-              <span class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-gold-50 text-gold-700" style="background: rgba(181,141,78,0.08);">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" set:html={s.icon} />
-              </span>
-              <span class="text-[10px] tracking-[0.12em] uppercase font-semibold text-gold-700 border border-gold-500/40 px-2.5 py-1 rounded-pill"
-                    style="color: #8A6B2E; border-color: rgba(181,141,78,0.4);">
-                Selektiv
-              </span>
-            </div>
-            <h3 class="font-display text-[20px] font-medium text-ink mb-1.5 leading-tight">{s.title}</h3>
-            <p class="text-[12.5px] font-semibold text-gold-700 mb-3 tracking-wide" style="color: #8A6B2E;">{s.lede}</p>
-            <p class="text-[14px] leading-[1.65] text-slate mb-4">{s.desc}</p>
-            <details class="service-details">
-              <summary class="flex items-center gap-2 cursor-pointer text-[12.5px] font-medium text-taupe hover:text-ink transition-colors select-none list-none">
-                <svg class="chevron w-3.5 h-3.5 transition-transform duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="6 9 12 15 18 9"/>
-                </svg>
-                Was ist enthalten
-              </summary>
-              <ul class="mt-3 flex flex-col gap-2 pl-5">
-                {s.includes.map(item => (
-                  <li class="flex items-center gap-2 text-[13px] text-slate">
-                    <span class="flex-shrink-0 w-1.5 h-1.5 rounded-full" style="background: #B58D4E;"></span>
+            <!-- Liefergegenstand -->
+            <div class="bg-white border border-stone/50 rounded-xl p-7 shadow-sm lg:sticky lg:top-28">
+              <p class="text-[11px] tracking-[0.14em] uppercase text-taupe font-semibold mb-4">Das erhalten Sie</p>
+              <ul class="flex flex-col gap-3 m-0 mb-6 p-0 list-none">
+                {a.liefergegenstand.map((item) => (
+                  <li class="flex items-start gap-3 text-[14px] leading-[1.55] text-slate">
+                    <span class="flex-shrink-0 w-[15px] h-[15px] mt-[3px] rounded-sm bg-bordeaux-50 text-bordeaux-700 flex items-center justify-center">
+                      <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <polyline points="20 6 9 17 4 12"/>
+                      </svg>
+                    </span>
                     {item}
                   </li>
                 ))}
               </ul>
-            </details>
-            <div class="mt-5 pt-4 border-t border-stone/20 flex items-center justify-between">
-              <span class="text-[12px] text-taupe">{s.duration}</span>
-              <button data-open-contact class="text-taupe hover:text-ink transition-colors duration-[180ms]">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M7 17L17 7M7 7h10v10"/>
-                </svg>
+              <div class="border-t border-mist pt-4 mb-5">
+                <p class="text-[13px] leading-[1.55] text-ink font-medium m-0 mb-1.5">{a.rahmen}</p>
+                <p class="text-[12.5px] leading-[1.55] text-taupe m-0">{a.hinweis}</p>
+              </div>
+              <button data-open-contact class="btn-primary btn-block">
+                Betriebscheck anfragen
               </button>
             </div>
+
           </div>
-        ))}
+        </div>
       </div>
-    </div>
+    ))}
 
     <!-- CTA -->
-    <div class="bg-ivory border-t border-mist">
-      <div class="max-w-[1240px] mx-auto px-10 py-20 text-center reveal">
+    <div class="bg-white border-t border-mist">
+      <div class="max-w-[1240px] mx-auto px-6 md:px-10 py-20 text-center reveal">
         <h2 class="font-display font-medium text-ink m-0 mb-4"
-            style="font-size: clamp(2rem, 3vw, 2.6rem); line-height: 1.08; letter-spacing: -0.03em;">
-          Welches Thema passt zu Ihrem Betrieb?
+            style="font-size: clamp(1.9rem, 3vw, 2.6rem); line-height: 1.08; letter-spacing: -0.03em;">
+          Nicht sicher, was Ihr Betrieb braucht?
         </h2>
-        <p class="text-[17px] leading-[1.65] text-slate mb-8 max-w-[42ch] mx-auto">
-          Oft ist eine kurze Betriebsanalyse der beste Einstieg — sie zeigt, wo der Hebel am grössten ist.
+        <p class="text-[16px] md:text-[17px] leading-[1.65] text-slate mb-8 max-w-[46ch] mx-auto">
+          Genau dafür ist der Betriebscheck da: Er zeigt, wo der Hebel am grössten ist —
+          bevor Sie einen Franken in Umsetzung investieren.
         </p>
-        <a href="/kontakt" class="btn-primary btn-lg">
-          Für ein Erstgespräch kontaktieren
-        </a>
+        <button data-open-contact class="btn-primary btn-lg">
+          Betriebscheck anfragen
+        </button>
       </div>
     </div>
 
@@ -289,78 +163,3 @@ const selectiveServices = [
   <Footer />
   <ContactModal />
 </Base>
-
-<style>
-  /* Featured card */
-  .featured-card {
-    background: white;
-    border: 1.5px solid #E8E4DC;
-    border-left: 4px solid #5A0F1B;
-    border-radius: 14px;
-    overflow: hidden;
-    box-shadow: 0 2px 12px rgba(21,20,23,0.06);
-  }
-  .featured-card-inner {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 0;
-  }
-  @media (min-width: 768px) {
-    .featured-card-inner {
-      grid-template-columns: 1fr 280px;
-    }
-  }
-  .featured-left {
-    padding: 36px 32px;
-  }
-  .featured-right {
-    padding: 36px 32px;
-    background: #F8F5EF;
-    border-left: 1px solid #E8E4DC;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  @media (max-width: 767px) {
-    .featured-right {
-      border-left: none;
-      border-top: 1px solid #E8E4DC;
-    }
-  }
-  .stat-block {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-  .stat-label {
-    font-size: 10.5px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #8A8078;
-    font-weight: 600;
-  }
-
-  /* Service cards */
-  .service-card {
-    background: white;
-    border: 1px solid #EEEAE3;
-    border-radius: 12px;
-    padding: 26px;
-    box-shadow: 0 1px 4px rgba(21,20,23,0.05);
-    transition: transform 260ms cubic-bezier(0.2,0,0,1),
-                box-shadow 260ms cubic-bezier(0.2,0,0,1),
-                border-color 260ms cubic-bezier(0.2,0,0,1);
-  }
-  .service-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(21,20,23,0.08);
-    border-color: #D8D2C8;
-  }
-  .service-card.selective:hover {
-    border-color: rgba(181,141,78,0.3);
-  }
-
-  /* Details/summary */
-  details summary::-webkit-details-marker { display: none; }
-  details[open] .chevron { transform: rotate(180deg); }
-</style>

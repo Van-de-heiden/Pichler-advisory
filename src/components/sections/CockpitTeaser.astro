@@ -1,81 +1,97 @@
 ---
-const features = [
-  'Umsatz und Auftragsvolumen auf einen Blick',
-  'Lead-Tracking und Akquise-Pipeline',
-  'Projektfortschritt und offene Aufgaben',
-  'Operative Performance-Indikatoren',
-  'Monatliche Entwicklung und Trends',
+/**
+ * Beweis-Sektion: das Cockpit als codierte, ehrlich deklarierte Beispielansicht.
+ * Kein Fake-Screenshot, kein KI-Bild — eine echte UI, gebaut mit denselben Mitteln
+ * wie das spätere Kunden-Cockpit.
+ */
+const kpis = [
+  { label: 'Umsatz diesen Monat', value: 'CHF 48’200', trend: '+12% zum Vormonat', up: true },
+  { label: 'Offene Offerten', value: '7', trend: '2 zum Nachfassen fällig', up: false },
+  { label: 'Neue Anfragen', value: '14', trend: 'Ø Antwortzeit: 3 Std.', up: true },
+];
+const auftraege = [
+  { name: 'Umgebungsarbeiten Reihe EFH', status: 'In Arbeit', anteil: 68 },
+  { name: 'Badumbau Wohnung Rüti', status: 'Offerte angenommen', anteil: 15 },
+  { name: 'Unterhalt Siedlung Nord', status: 'Läuft monatlich', anteil: 100 },
 ];
 ---
 
-<section class="bg-ivory" id="cockpit">
-  <div class="max-w-[1240px] mx-auto px-10 py-24">
-    <div class="grid lg:grid-cols-2 gap-16 items-center">
+<section class="bg-white" id="cockpit">
+  <div class="max-w-[1240px] mx-auto px-6 md:px-10 py-20 md:py-24">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
-      <!-- Left: copy -->
+      <!-- Copy -->
       <div class="reveal">
-        <span class="eyebrow block mb-4">Performance Cockpit</span>
+        <span class="eyebrow block mb-4">Die Übersicht</span>
         <h2 class="font-display font-medium text-ink mt-4 mb-[18px]"
-            style="font-size: clamp(2.2rem, 3.4vw, 3rem); line-height: 1.08; letter-spacing: -0.03em;">
-          Ihr Betrieb.<br />
-          <em class="italic text-bordeaux-700">Klar im Blick.</em>
+            style="font-size: clamp(2rem, 3.4vw, 3rem); line-height: 1.08; letter-spacing: -0.03em;">
+          Sie spüren Ihren Betrieb.<br />
+          <em class="italic text-bordeaux-700" style="font-style:italic;">Jetzt sehen Sie ihn auch.</em>
         </h2>
-        <p class="text-[18px] leading-[1.65] text-slate mb-6">
-          Ich baue Unternehmern ein einfaches, visuelles Cockpit — keine komplizierte Software, kein IT-Projekt. Die Zahlen, die wirklich zählen, auf einen Blick. Zentral, aktuell, ohne technischen Aufwand.
+        <p class="text-[17px] md:text-[18px] leading-[1.7] text-slate mb-5">
+          Zum Aufbau gehört ein einfaches Cockpit: Umsatz, offene Offerten, Anfragen und fällige
+          Nachfassungen — auf einen Blick, auf dem Handy wie am Schreibtisch. Gespeist aus Ihren
+          echten Zahlen, nicht aus einer weiteren Excel-Liste.
+        </p>
+        <p class="text-[15px] leading-[1.7] text-slate mb-8">
+          Nebenan sehen Sie eine Beispielansicht — so ehrlich, wie wir auch zusammenarbeiten würden:
+          Das ist kein Foto und kein Kunden-Screenshot, sondern eine gebaute Vorschau. Ihr Cockpit
+          entsteht aus Ihrem Betrieb.
         </p>
 
-        <ul class="flex flex-col gap-3 mb-8 list-none p-0 m-0">
-          {features.map((f) => (
-            <li class="flex items-center gap-3 text-[15px] text-slate">
-              <span class="flex-shrink-0 w-5 h-5 rounded-full bg-bordeaux-50 text-bordeaux-700 flex items-center justify-center">
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="20 6 9 17 4 12"/>
-                </svg>
-              </span>
-              {f}
-            </li>
-          ))}
-        </ul>
-
         <button data-open-contact class="btn-primary">
-          Cockpit anfragen
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          Betriebscheck anfragen
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M5 12h14M12 5l7 7-7 7"/>
           </svg>
         </button>
       </div>
 
-      <!-- Right: cockpit photo -->
-      <div class="reveal">
-        <div class="rounded-xl overflow-hidden shadow-lg aspect-[4/3] relative bg-charcoal">
-          <img
-            src="/assets/cockpit-screen.jpg"
-            alt="Performance Cockpit auf Laptop"
-            class="w-full h-full object-cover"
-            onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
-          />
-          <!-- Fallback: the code mockup -->
-          <div class="absolute inset-0 hidden bg-charcoal border border-stone/10" style="display:none;">
-            <div class="flex items-center justify-between px-5 py-3 border-b border-white/10">
-              <div class="flex items-center gap-2">
-                <img src="/assets/shield.png" alt="" class="h-5 w-auto brightness-0 invert opacity-70" />
-                <span class="text-[12px] font-medium tracking-[0.12em] uppercase text-stone/70">Pichler Advisory Cockpit</span>
+      <!-- Codiertes Cockpit -->
+      <div class="reveal" style="transition-delay: 120ms;">
+        <div class="rounded-xl overflow-hidden shadow-lg border border-white/10 bg-charcoal">
+          <!-- Titelzeile -->
+          <div class="flex items-center justify-between px-5 py-3.5 border-b border-white/10">
+            <div class="flex items-center gap-2.5">
+              <img src="/assets/shield.png" alt="" width="18" height="21" class="h-[18px] w-auto brightness-0 invert opacity-70" />
+              <span class="text-[11.5px] font-medium tracking-[0.12em] uppercase text-stone/70">Betriebs-Cockpit</span>
+            </div>
+            <span class="text-[10px] tracking-[0.08em] uppercase text-stone/40 border border-white/15 rounded-sm px-2 py-1">Beispielansicht</span>
+          </div>
+
+          <!-- KPI-Zeile -->
+          <div class="grid grid-cols-3 gap-px bg-white/5">
+            {kpis.map((k) => (
+              <div class="bg-graphite px-4 py-4">
+                <p class="text-[10px] tracking-[0.08em] uppercase text-stone/50 m-0 mb-1.5 leading-snug">{k.label}</p>
+                <p class="font-display text-[21px] md:text-[24px] font-medium text-ivory leading-none m-0 mb-1.5">{k.value}</p>
+                <p class:list={['text-[10.5px] m-0 leading-snug', k.up ? 'text-positive' : 'text-bordeaux-300']}>{k.trend}</p>
               </div>
-              <span class="text-[11px] text-stone/40">Demo</span>
-            </div>
-            <div class="grid grid-cols-3 gap-px bg-white/5 m-4 rounded-lg overflow-hidden">
-              {[
-                { label: 'Umsatz MTD', value: 'CHF 48k', trend: '+12%' },
-                { label: 'Offene Aufträge', value: '7', trend: '+2' },
-                { label: 'Leads aktiv', value: '14', trend: '↑' },
-              ].map((kpi) => (
-                <div class="bg-graphite px-4 py-4">
-                  <p class="text-[10.5px] tracking-[0.1em] uppercase text-stone/50 mb-1">{kpi.label}</p>
-                  <p class="font-display text-[22px] font-medium text-ivory leading-none mb-1">{kpi.value}</p>
-                  <p class="text-[11px] text-gold-500">{kpi.trend}</p>
-                </div>
+            ))}
+          </div>
+
+          <!-- Auftragsliste -->
+          <div class="px-5 py-4">
+            <p class="text-[10px] tracking-[0.1em] uppercase text-stone/40 m-0 mb-3">Laufende Aufträge</p>
+            <ul class="m-0 p-0 list-none flex flex-col gap-3">
+              {auftraege.map((a) => (
+                <li>
+                  <div class="flex items-center justify-between gap-3 mb-1.5">
+                    <span class="text-[13px] text-ivory/90 truncate">{a.name}</span>
+                    <span class="text-[11px] text-stone/60 whitespace-nowrap flex-shrink-0">{a.status}</span>
+                  </div>
+                  <div class="h-1 rounded-full bg-white/8 overflow-hidden" style="background: rgba(255,255,255,0.08);">
+                    <div class="h-full rounded-full bg-bordeaux-300/80" style={`width: ${a.anteil}%`}></div>
+                  </div>
+                </li>
               ))}
-            </div>
+            </ul>
+          </div>
+
+          <!-- Fusszeile -->
+          <div class="flex items-center justify-between px-5 py-3 border-t border-white/10">
+            <span class="text-[11px] text-stone/50">Nachfassen heute fällig</span>
+            <span class="text-[13px] font-semibold text-ivory">2 Offerten</span>
           </div>
         </div>
       </div>

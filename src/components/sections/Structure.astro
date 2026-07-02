@@ -1,0 +1,100 @@
+---
+/**
+ * Lösungs-Sektion (dunkel): die digitale Betriebsstruktur als Kette.
+ * Zeigt, dass vorhandene Werkzeuge verbunden werden — kein IT-Grossprojekt.
+ */
+const kette = [
+  { schritt: 'Anfrage', detail: 'Telefon, Website, E-Mail, WhatsApp' },
+  { schritt: 'Erfassung', detail: 'Automatisch im System, nichts geht unter' },
+  { schritt: 'Offerte', detail: 'Vorlagen statt Sonntagabend' },
+  { schritt: 'Nachfassen', detail: 'Terminiert, nicht dem Zufall überlassen' },
+  { schritt: 'Auftrag & Rechnung', detail: 'Sauber in Bexio' },
+  { schritt: 'Übersicht', detail: 'Zahlen auf einen Blick' },
+];
+
+const prinzipien = [
+  {
+    titel: 'Ich verbinde, was Sie schon haben',
+    text: 'Bexio, Outlook, Kalender, Website, Telefon — die Werkzeuge sind meist da. Was fehlt, ist die Verbindung dazwischen. Genau die baue ich, mit bewährter Technik wie Make statt teurer Spezialsoftware.',
+  },
+  {
+    titel: 'Gebaut, um von Ihnen benutzt zu werden',
+    text: 'Keine Lösung, die nur ich verstehe. Jeder Ablauf wird so aufgebaut und dokumentiert, dass Ihr Team ihn im Alltag bedienen kann — ohne Informatikkenntnisse.',
+  },
+  {
+    titel: 'Betrieb statt Projektende',
+    text: 'Eine Struktur ist erst gut, wenn sie nach sechs Monaten noch läuft. Deshalb höre ich nicht bei der Übergabe auf, sondern betreue, messe und verbessere weiter — wenn Sie das wollen.',
+  },
+];
+---
+
+<section class="relative bg-charcoal text-ivory overflow-hidden" id="struktur">
+  <div class="absolute inset-0 pointer-events-none"
+       style="background: radial-gradient(80% 120% at 85% 0%, rgba(90,15,27,0.45), transparent 60%);"></div>
+
+  <div class="relative max-w-[1240px] mx-auto px-6 md:px-10 py-20 md:py-[104px]">
+
+    <div class="max-w-[680px] mb-14 reveal">
+      <span class="eyebrow eyebrow-light block mb-4">Die Lösung</span>
+      <h2 class="font-display font-medium text-ivory mt-4 mb-5"
+          style="font-size: clamp(2rem, 3.6vw, 3.1rem); line-height: 1.08; letter-spacing: -0.03em;">
+        Eine Betriebsstruktur,<br />die nichts vergisst.
+      </h2>
+      <p class="text-[17px] md:text-[18px] leading-[1.75] text-stone m-0">
+        Vom ersten Anruf bis zur bezahlten Rechnung: Jeder Schritt hat einen festen Platz,
+        jeder Übergang passiert automatisch oder mit klarer Zuständigkeit. Das ist keine Software,
+        die Sie kaufen — das ist Ihr Betrieb, sauber aufgebaut.
+      </p>
+    </div>
+
+    <!-- Prozesskette -->
+    <div class="mb-16 reveal" aria-label="Ablauf der digitalen Betriebsstruktur">
+      <ol class="chain m-0 p-0 list-none grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-x-4 gap-y-6">
+        {kette.map((k, i) => (
+          <li class="chain-item relative" style={`--i: ${i}`}>
+            <span class="flex items-center gap-2.5 mb-2">
+              <span class="font-display text-[15px] font-medium text-bordeaux-300 leading-none">{String(i + 1).padStart(2, '0')}</span>
+              <span class="chain-rule flex-1 h-px bg-white/15"></span>
+            </span>
+            <span class="block text-[15px] font-semibold text-ivory mb-1">{k.schritt}</span>
+            <span class="block text-[12.5px] leading-[1.5] text-stone/70">{k.detail}</span>
+          </li>
+        ))}
+      </ol>
+    </div>
+
+    <!-- Prinzipien -->
+    <div class="grid md:grid-cols-3 gap-8 lg:gap-12 border-t border-white/10 pt-12 stagger">
+      {prinzipien.map((p, i) => (
+        <div style={`--i: ${i}`}>
+          <h3 class="text-[16px] font-semibold text-ivory m-0 mb-3">{p.titel}</h3>
+          <p class="text-[14.5px] leading-[1.7] text-stone/80 m-0">{p.text}</p>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .chain-item {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 480ms cubic-bezier(0.16,1,0.3,1),
+                transform 480ms cubic-bezier(0.16,1,0.3,1);
+    transition-delay: calc(var(--i) * 90ms);
+  }
+  .chain-rule {
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 600ms cubic-bezier(0.16,1,0.3,1);
+    transition-delay: calc(var(--i) * 90ms + 150ms);
+  }
+  :global(.reveal.in) .chain-item { opacity: 1; transform: none; }
+  :global(.reveal.in) .chain-rule { transform: scaleX(1); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .chain-item { opacity: 1 !important; transform: none !important; }
+    .chain-rule { transform: scaleX(1) !important; }
+  }
+</style>

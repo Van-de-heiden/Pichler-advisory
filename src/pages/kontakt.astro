@@ -2,35 +2,37 @@
 import Base from '../layouts/Base.astro';
 import Nav from '../components/layout/Nav.astro';
 import Footer from '../components/layout/Footer.astro';
+import ContactForm from '../components/ui/ContactForm.astro';
 ---
 
 <Base
-  title="Kontakt – Pichler Advisory"
-  description="Kontaktieren Sie Pichler Advisory für ein unverbindliches Erstgespräch. Betriebsanalyse anfragen, Fragen stellen oder direkt schreiben – persönliche Antwort innerhalb von 24 Stunden."
+  title="Kontakt – Betriebscheck anfragen | Pichler Advisory"
+  description="Kontaktieren Sie Pichler Advisory für einen digitalen Betriebscheck oder ein unverbindliches Erstgespräch. Persönliche Antwort innert 24 Stunden – ohne Verpflichtung."
   breadcrumbs={[{ name: 'Startseite', url: '/' }, { name: 'Kontakt', url: '/kontakt/' }]}
 >
   <Nav currentPath="/kontakt" />
   <main>
 
-    <div class="max-w-[1240px] mx-auto px-10 pt-[140px] pb-24">
-      <div class="grid lg:grid-cols-[1fr_1.2fr] gap-16 items-start">
+    <div class="max-w-[1240px] mx-auto px-6 md:px-10 pt-[130px] md:pt-[140px] pb-24">
+      <div class="grid lg:grid-cols-[0.9fr_1.1fr] gap-12 lg:gap-16 items-start">
 
         <!-- Left: info -->
         <div class="reveal">
           <span class="eyebrow block mb-4">Kontakt</span>
           <h1 class="font-display font-medium text-ink m-0 mb-5"
-              style="font-size: clamp(2.8rem, 4.5vw, 4rem); line-height: 1.02; letter-spacing: -0.03em;">
-            Gespräch anfangen.
+              style="font-size: clamp(2.4rem, 4.5vw, 3.6rem); line-height: 1.02; letter-spacing: -0.03em;">
+            Reden wir über<br />Ihren Betrieb.
           </h1>
-          <p class="text-[18px] leading-[1.65] text-slate mb-10">
-            Ich antworte auf jede ernsthafte Anfrage — persönlich, direkt und ohne Warteliste.
+          <p class="text-[17px] leading-[1.68] text-slate mb-10">
+            Beschreiben Sie kurz, was Sie beschäftigt — den Rest klären wir im Gespräch.
+            Jede Anfrage beantworte ich persönlich, in der Regel am selben Tag.
           </p>
 
           <div class="flex flex-col gap-6">
             <div class="flex items-start gap-4">
               <span class="flex-shrink-0 w-10 h-10 rounded-md bg-bordeaux-50 text-bordeaux-700 flex items-center justify-center mt-0.5">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0 1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,6 12,13 2,6"/>
                 </svg>
               </span>
               <div>
@@ -43,7 +45,7 @@ import Footer from '../components/layout/Footer.astro';
 
             <div class="flex items-start gap-4">
               <span class="flex-shrink-0 w-10 h-10 rounded-md bg-bordeaux-50 text-bordeaux-700 flex items-center justify-center mt-0.5">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.43 2 2 0 0 1 3.58 1.25h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.8a16 16 0 0 0 6.29 6.29l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
                 </svg>
               </span>
@@ -52,108 +54,56 @@ import Footer from '../components/layout/Footer.astro';
                 <a href="tel:+41775383064" class="text-[16px] text-ink hover:text-bordeaux-700 transition-colors duration-[180ms] ease-standard">
                   +41 77 538 30 64
                 </a>
+                <p class="text-[12.5px] text-taupe m-0 mt-0.5">Nicht erreicht? Ich rufe zurück.</p>
               </div>
             </div>
 
             <div class="flex items-start gap-4">
               <span class="flex-shrink-0 w-10 h-10 rounded-md bg-bordeaux-50 text-bordeaux-700 flex items-center justify-center mt-0.5">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
                 </svg>
               </span>
               <div>
-                <p class="text-[11px] tracking-[0.1em] uppercase text-taupe font-semibold mb-1">Tätigkeitsbereich</p>
-                <p class="text-[16px] text-ink m-0">Schweizweit</p>
+                <p class="text-[11px] tracking-[0.1em] uppercase text-taupe font-semibold mb-1">Region</p>
+                <p class="text-[16px] text-ink m-0">Ostschweiz — schweizweit tätig</p>
               </div>
             </div>
 
             <div class="flex items-start gap-4">
               <span class="flex-shrink-0 w-10 h-10 rounded-md bg-bordeaux-50 text-bordeaux-700 flex items-center justify-center mt-0.5">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
                 </svg>
               </span>
               <div>
                 <p class="text-[11px] tracking-[0.1em] uppercase text-taupe font-semibold mb-1">Antwortzeit</p>
-                <p class="text-[16px] text-ink m-0">In der Regel innerhalb von 24 Stunden</p>
+                <p class="text-[16px] text-ink m-0">Innert 24 Stunden, persönlich</p>
               </div>
             </div>
           </div>
 
           <div class="mt-10 p-5 bg-mist rounded-xl border border-stone/50">
-            <p class="text-[14.5px] leading-[1.6] text-slate m-0">
-              <strong class="text-ink">Keine Verpflichtung.</strong> Ein erstes Gespräch dient dem Kennenlernen. Ich schaue, ob und wie ich helfen kann — ohne Druck, ohne Verpflichtung.
+            <p class="text-[14.5px] leading-[1.65] text-slate m-0">
+              <strong class="text-ink">Keine Verpflichtung.</strong> Das erste Gespräch dient dem
+              Kennenlernen. Wenn ich nicht der Richtige für Ihr Anliegen bin, sage ich Ihnen das —
+              und wenn möglich, wohin Sie sich stattdessen wenden können.
             </p>
           </div>
         </div>
 
         <!-- Right: form -->
-        <div class="reveal">
-          <div class="bg-white border border-mist rounded-xl p-8 shadow-sm">
+        <div class="reveal" style="transition-delay: 100ms;">
+          <div class="bg-white border border-stone/50 rounded-xl p-6 sm:p-8 shadow-sm">
             <h2 class="font-display font-medium text-ink mb-2"
-                style="font-size: 1.8rem; line-height: 1.1; letter-spacing: -0.02em;">
+                style="font-size: 1.7rem; line-height: 1.1; letter-spacing: -0.02em;">
               Anfrage senden
             </h2>
-            <p class="text-[15px] text-slate mb-6 leading-relaxed">
-              Beschreiben Sie kurz, was Sie beschäftigt — ich melde mich persönlich.
+            <p class="text-[14.5px] text-slate mb-6 leading-relaxed">
+              Pflichtfelder sind markiert — alles Weitere ist freiwillig,
+              hilft mir aber, das Gespräch vorzubereiten.
             </p>
-
-            <form id="contact-page-form" class="flex flex-col gap-4">
-              <input type="hidden" name="access_key" value="e6bc8d1f-3a67-4177-841b-ae7778b6a569" />
-              <input type="hidden" name="subject" value="Neue Anfrage – Pichler Advisory" />
-              <input type="hidden" name="from_name" value="Pichler Advisory Website" />
-              <input type="checkbox" name="botcheck" class="hidden" style="display:none" />
-
-              <div class="grid sm:grid-cols-2 gap-4">
-                <label class="flex flex-col gap-1.5">
-                  <span class="text-[11px] tracking-[0.1em] uppercase text-taupe font-semibold">Name *</span>
-                  <input type="text" name="name" placeholder="Ihr Name" required
-                    class="font-body text-[15px] text-ink px-3.5 py-3 border border-stone rounded-md bg-white outline-none transition-all duration-[180ms] ease-standard focus:border-bordeaux-700 focus:ring-2 focus:ring-bordeaux-50 placeholder:text-taupe"
-                  />
-                </label>
-                <label class="flex flex-col gap-1.5">
-                  <span class="text-[11px] tracking-[0.1em] uppercase text-taupe font-semibold">Firma / Betrieb</span>
-                  <input type="text" name="company" placeholder="Ihr Betrieb"
-                    class="font-body text-[15px] text-ink px-3.5 py-3 border border-stone rounded-md bg-white outline-none transition-all duration-[180ms] ease-standard focus:border-bordeaux-700 focus:ring-2 focus:ring-bordeaux-50 placeholder:text-taupe"
-                  />
-                </label>
-              </div>
-              <label class="flex flex-col gap-1.5">
-                <span class="text-[11px] tracking-[0.1em] uppercase text-taupe font-semibold">E-Mail *</span>
-                <input type="email" name="email" placeholder="ihre@firma.ch" required
-                  class="font-body text-[15px] text-ink px-3.5 py-3 border border-stone rounded-md bg-white outline-none transition-all duration-[180ms] ease-standard focus:border-bordeaux-700 focus:ring-2 focus:ring-bordeaux-50 placeholder:text-taupe"
-                />
-              </label>
-              <label class="flex flex-col gap-1.5">
-                <span class="text-[11px] tracking-[0.1em] uppercase text-taupe font-semibold">Telefon (optional)</span>
-                <input type="tel" name="phone" placeholder="+41 xx xxx xx xx"
-                  class="font-body text-[15px] text-ink px-3.5 py-3 border border-stone rounded-md bg-white outline-none transition-all duration-[180ms] ease-standard focus:border-bordeaux-700 focus:ring-2 focus:ring-bordeaux-50 placeholder:text-taupe"
-                />
-              </label>
-              <label class="flex flex-col gap-1.5">
-                <span class="text-[11px] tracking-[0.1em] uppercase text-taupe font-semibold">Was soll verbessert werden? *</span>
-                <textarea name="message" rows="4" required
-                  placeholder="Kurze Beschreibung Ihrer Situation oder Ihres Anliegens."
-                  class="font-body text-[15px] text-ink px-3.5 py-3 border border-stone rounded-md bg-white outline-none resize-none transition-all duration-[180ms] ease-standard focus:border-bordeaux-700 focus:ring-2 focus:ring-bordeaux-50 placeholder:text-taupe"
-                ></textarea>
-              </label>
-              <button type="submit" id="contact-page-submit" class="btn-primary btn-block mt-1">
-                Anfrage senden
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-              </button>
-            </form>
-
-            <div id="contact-page-success" class="hidden text-center py-8">
-              <span class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-positive-soft text-positive mb-4">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="20 6 9 17 4 12"/>
-                </svg>
-              </span>
-              <h3 class="font-display font-medium text-[24px] text-ink mb-2">Anfrage erhalten.</h3>
-              <p class="text-[15px] text-slate leading-relaxed">Vielen Dank. Ich melde mich innerhalb von 24 Stunden persönlich bei Ihnen.</p>
-            </div>
+            <ContactForm leadSource="kontaktseite" />
           </div>
         </div>
 
@@ -163,30 +113,3 @@ import Footer from '../components/layout/Footer.astro';
   </main>
   <Footer />
 </Base>
-
-<script>
-  document.getElementById('contact-page-form')?.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const form = e.target as HTMLFormElement;
-    const btn = document.getElementById('contact-page-submit') as HTMLButtonElement;
-    btn.disabled = true;
-    btn.textContent = 'Wird gesendet…';
-
-    const data = Object.fromEntries(new FormData(form));
-    const res = await fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
-    });
-    const json = await res.json();
-
-    if (json.success) {
-      document.getElementById('contact-page-form')?.classList.add('hidden');
-      document.getElementById('contact-page-success')?.classList.remove('hidden');
-    } else {
-      btn.disabled = false;
-      btn.textContent = 'Anfrage senden';
-      alert('Fehler beim Senden. Bitte versuchen Sie es erneut oder schreiben Sie direkt an info@pichler-advisory.ch');
-    }
-  });
-</script>

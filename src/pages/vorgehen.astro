@@ -4,255 +4,131 @@ import Nav from '../components/layout/Nav.astro';
 import Footer from '../components/layout/Footer.astro';
 import ContactModal from '../components/ui/ContactModal.astro';
 
-const phases = [
+const phasen = [
   {
     num: '01',
-    title: 'Verstehen',
-    subtitle: 'Den Betrieb kennenlernen',
-    desc: 'Am Anfang steht ein ehrliches Gespräch. Ich will verstehen, wie Ihr Betrieb wirklich funktioniert — nicht wie er auf dem Papier aussieht. Was sind Ihre Ziele? Wo drückt der Schuh? Was hat schon funktioniert, was nicht? Welche Engpässe nerven täglich? Dieses Gespräch ist keine Checkliste, sondern ein echtes Kennenlernen — und die Basis für alles, was folgt.',
-    duration: '1–2 Gespräche',
-    outcome: 'Klares Bild der Situation, erste Hypothesen',
-    bg: 'light',
+    titel: 'Analysieren',
+    untertitel: 'Verstehen, wie es heute wirklich läuft',
+    text: 'Am Anfang steht kein Konzept, sondern Zuhören und Hinschauen. Ich will wissen, wie eine Anfrage bei Ihnen wirklich reinkommt und was dann passiert — nicht, wie es auf dem Papier aussehen sollte. Dafür schaue ich mir echte Beispiele an: die letzte Offerte, die liegen blieb; den Ordner, in dem Rapporte landen; das Postfach am Montagmorgen. Vor Ort oder remote, in einem Umfang, der Ihren Betrieb nicht aufhält.',
+    dauer: 'Halber bis ganzer Tag im Betrieb, plus Auswertung',
+    ergebnis: 'Klartext-Bericht: die grössten Lecks, in Stunden und Franken',
   },
   {
     num: '02',
-    title: 'Analysieren',
-    subtitle: 'Schwächen und Potenziale sichtbar machen',
-    desc: 'Systematische Betrachtung des Betriebs aus mehreren Winkeln: Aussenwirkung und digitale Präsenz, interne Abläufe und Prozesse, Kundenansprache und Akquise, Kennzahlen und Steuerungssituation. Ich schaue, was funktioniert, was ineffizient ist und wo ungenutztes Potenzial liegt — ohne Vorurteile, aber mit klarem Blick.',
-    duration: '1–3 Tage',
-    outcome: 'Dokumentierte Schwachstellen und Stärken',
-    bg: 'mist',
+    titel: 'Priorisieren',
+    untertitel: 'Die richtigen Hebel zuerst',
+    text: 'Nicht alles auf einmal — das ist keine Floskel, sondern der Kern des Vorgehens. Aus der Analyse entsteht ein Massnahmenplan, sortiert nach Wirkung und Aufwand. Quick Wins, die in Tagen umgesetzt sind, stehen zuoberst. Grössere Umbauten kommen erst, wenn die schnellen Verbesserungen ihren Wert gezeigt haben. Sie entscheiden pro Massnahme — mit Preis und erwartetem Nutzen auf dem Tisch.',
+    dauer: 'Ein gemeinsames Gespräch',
+    ergebnis: 'Priorisierter Massnahmenplan mit klaren Kosten',
   },
   {
     num: '03',
-    title: 'Priorisieren',
-    subtitle: 'Die richtigen Hebel bestimmen',
-    desc: 'Nicht alles auf einmal. Auf Basis der Analyse bestimme ich, welche Massnahmen den grössten Impact bei welchem Aufwand haben. Ich trenne Quick Wins, die sofort umgesetzt werden können, von Projekten, die mehr Zeit brauchen. Das Ergebnis ist ein klarer, priorisierter Massnahmenplan.',
-    duration: '1 Workshop / Gespräch',
-    outcome: 'Priorisierter Massnahmenplan mit Quick Wins',
-    bg: 'light',
+    titel: 'Aufbauen',
+    untertitel: 'Umsetzen, im laufenden Betrieb',
+    text: 'Ich baue selbst — keine Weitergabe an ein Team, das Ihren Betrieb nicht kennt. Abläufe werden verbunden, Automatisierungen eingerichtet, Vorlagen erstellt, das Cockpit aufgesetzt. Jede Änderung wird so eingeführt, dass der Alltag weiterläuft: erst parallel getestet, dann umgestellt, dann dem Team gezeigt. Alles wird dokumentiert, verständlich und ohne Fachchinesisch.',
+    dauer: 'Je nach Umfang — typisch zwei bis sechs Wochen',
+    ergebnis: 'Funktionierende Struktur, dokumentiert und übergeben',
   },
   {
     num: '04',
-    title: 'Umsetzen',
-    subtitle: 'Konkrete Verbesserungen realisieren',
-    desc: 'Der Teil, der zählt. Ich setze die vereinbarten Massnahmen um — neue Website, verbesserter Offertprozess, aufgebautes Cockpit, strukturiertes Angebot, klarere Abläufe. Kein Konzept ohne Umsetzung. Kein Bericht, der in der Schublade landet.',
-    duration: 'Je nach Umfang',
-    outcome: 'Umgesetzte Massnahmen mit messbarer Wirkung',
-    bg: 'dark',
-  },
-  {
-    num: '05',
-    title: 'Messen',
-    subtitle: 'Wirkung nachvollziehen',
-    desc: 'Jede Massnahme braucht einen Massstab. Ich definiere einfache Messpunkte vorab: Hat sich die Angebotsannahme verbessert? Kommen mehr Anfragen? Hat sich der Verwaltungsaufwand reduziert? Lädt die Website schneller? Nach der Umsetzung wird das ehrlich überprüft — ohne Selbstbeweihräucherung.',
-    duration: 'Laufend',
-    outcome: 'Klare Vorher/Nachher-Vergleiche',
-    bg: 'mist',
-  },
-  {
-    num: '06',
-    title: 'Weiterentwickeln',
-    subtitle: 'Kontinuierlich verbessern',
-    desc: 'Ein Betrieb ist nie fertig. Auf Wunsch begleite ich Sie monatlich im Retainer: neue Massnahmen, Website-Weiterentwicklung, Cockpit-Pflege, strategisches Sparring, neue Wachstumsinitiativen. So bleibt der Betrieb in Bewegung — und die Verbesserung ist kein einmaliges Projekt, sondern ein dauerhafter Prozess.',
-    duration: 'Monatlich / laufend',
-    outcome: 'Kontinuierliche Betriebsverbesserung',
-    bg: 'light',
+    titel: 'Betreiben & messen',
+    untertitel: 'Ehrlich hinschauen, was es gebracht hat',
+    text: 'Vier Wochen nach der Umsetzung vergleichen wir die vorher definierten Messpunkte: Wie schnell wird auf Anfragen reagiert? Wie viele Offerten werden nachgefasst? Wie viele Bürostunden sind weggefallen? Die Zahlen entscheiden, nicht mein Eindruck. Danach wählen Sie: Die Struktur läuft selbstständig weiter — oder ich betreue sie im Monatsmodell und entwickle sie mit Ihrem Betrieb weiter.',
+    dauer: 'Laufend, mit fixem Messpunkt nach vier Wochen',
+    ergebnis: 'Messbarer Vorher-nachher-Vergleich',
   },
 ];
 ---
 
 <Base
-  title="Vorgehen – Strukturierte KMU-Beratung von der Analyse bis zur Umsetzung | Pichler Advisory"
-  description="In sechs klaren Schritten von der ersten Analyse zur messbaren Verbesserung: So arbeitet Pichler Advisory mit KMU-Inhabern in der Schweiz. Konkret, umsetzungsnah, ohne Konzepte in Schubladen."
+  title="Vorgehen – In vier Phasen zur digitalen Betriebsstruktur | Pichler Advisory"
+  description="Analysieren, priorisieren, aufbauen, betreiben: So entsteht bei Pichler Advisory eine digitale Betriebsstruktur für Schweizer KMU – mit klarem Ergebnis pro Phase und messbarem Vorher-nachher-Vergleich."
   breadcrumbs={[{ name: 'Startseite', url: '/' }, { name: 'Vorgehen', url: '/vorgehen/' }]}
 >
   <Nav currentPath="/vorgehen" />
   <main>
 
     <!-- Page hero -->
-    <div class="max-w-[1240px] mx-auto px-10 pt-[140px] pb-20">
-      <div class="max-w-[680px] reveal">
+    <div class="max-w-[1240px] mx-auto px-6 md:px-10 pt-[130px] md:pt-[140px] pb-16">
+      <div class="max-w-[700px] reveal">
         <span class="eyebrow block mb-4">Vorgehen</span>
         <h1 class="font-display font-medium text-ink m-0 mb-5"
-            style="font-size: clamp(3rem, 5vw, 4.5rem); line-height: 1.0; letter-spacing: -0.03em;">
-          Strukturiert.<br />
-          <em class="italic text-bordeaux-700" style="font-style:italic;">Ohne Umwege.</em>
+            style="font-size: clamp(2.6rem, 5vw, 4.2rem); line-height: 1.02; letter-spacing: -0.03em;">
+          Vier Phasen.<br />
+          <em class="italic text-bordeaux-700" style="font-style:italic;">Jede mit einem Ergebnis.</em>
         </h1>
-        <p class="text-[19px] leading-[1.65] text-slate m-0">
-          Mein Vorgehen folgt einer klaren Logik — von der Analyse bis zur Umsetzung. Sechs Phasen, die zusammen echte Wirkung entfalten.
+        <p class="text-[17px] md:text-[19px] leading-[1.65] text-slate m-0">
+          Sie wissen zu jedem Zeitpunkt, was gerade passiert, was es kostet und was Sie dafür in
+          der Hand haben. Und nach jeder Phase können Sie aussteigen — mit einem Resultat, das
+          auch ohne mich brauchbar ist.
         </p>
       </div>
     </div>
 
-    <!-- Phase navigator (sticky) -->
-    <div id="phase-nav" class="sticky top-[72px] z-20 border-b border-stone/20" style="background: rgba(245,241,235,0.92); backdrop-filter: blur(12px);">
-      <div class="max-w-[1240px] mx-auto px-10">
-        <div class="flex gap-1 overflow-x-auto py-2.5" style="scrollbar-width:none;">
-          {phases.map(p => (
-            <a
-              href={`#phase-${p.num}`}
-              class="phase-pill flex-shrink-0 flex items-center gap-2 px-4 py-1.5 rounded-full text-[12.5px] font-medium text-taupe hover:text-ink hover:bg-stone/40 transition-all duration-[180ms]"
-              data-phase={p.num}
-            >
-              <span class="font-display text-gold-700 text-[14px]">{p.num}</span>
-              {p.title}
-            </a>
-          ))}
-        </div>
-      </div>
-    </div>
+    <!-- Phasen -->
+    {phasen.map((p, i) => (
+      <div class:list={[i % 2 === 1 ? 'bg-ivory border-y border-stone/20' : 'bg-white']}>
+        <div class="max-w-[1240px] mx-auto px-6 md:px-10 py-16 md:py-[76px]">
+          <div class="grid lg:grid-cols-[170px_1fr_260px] gap-8 lg:gap-14 items-start reveal">
 
-    <!-- Phase sections -->
-    {phases.map((p, i) => (
-      <div
-        id={`phase-${p.num}`}
-        class={
-          p.bg === 'dark'
-            ? 'relative bg-charcoal overflow-hidden'
-            : p.bg === 'mist'
-            ? 'bg-mist/50 border-y border-stone/20'
-            : 'bg-white'
-        }
-      >
-        {p.bg === 'dark' && (
-          <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(60% 100% at 75% 0%, rgba(90,15,27,0.4), transparent 60%);" />
-        )}
+            <!-- Nummer -->
+            <div class="hidden lg:block">
+              <span class="font-display leading-none text-bordeaux-700/15 select-none block"
+                    style="font-size: clamp(5rem, 8vw, 7rem); font-weight: 500;">
+                {p.num}
+              </span>
+            </div>
 
-        <div class="relative max-w-[1240px] mx-auto px-10 py-[80px]">
+            <!-- Inhalt -->
+            <div>
+              <span class="text-[11px] tracking-[0.14em] uppercase text-taupe font-semibold block mb-3">
+                <span class="lg:hidden font-display text-[16px] text-bordeaux-300 normal-case tracking-normal mr-2">{p.num}</span>
+                {p.untertitel}
+              </span>
+              <h2 class="font-display font-medium text-ink mb-5"
+                  style="font-size: clamp(1.9rem, 3vw, 2.6rem); line-height: 1.07; letter-spacing: -0.02em;">
+                {p.titel}
+              </h2>
+              <p class="text-[16px] leading-[1.8] text-slate m-0">{p.text}</p>
+            </div>
 
-          {p.bg === 'dark' ? (
-            <!-- Dark featured layout (Phase 04) -->
-            <div class="reveal">
-              <div class="flex items-start justify-between flex-wrap gap-8">
-                <div class="max-w-[640px]">
-                  <div class="flex items-center gap-4 mb-6">
-                    <span class="font-display text-[72px] font-medium leading-none text-gold-500/40">{p.num}</span>
-                    <div>
-                      <span class="text-[11px] tracking-[0.14em] uppercase text-stone/50 block mb-1">{p.subtitle}</span>
-                      <h2 class="font-display font-medium text-ivory m-0"
-                          style="font-size: clamp(2.2rem, 3.5vw, 3rem); line-height: 1.05; letter-spacing: -0.02em;">
-                        {p.title}
-                      </h2>
-                    </div>
-                  </div>
-                  <p class="text-[18px] leading-[1.8] text-stone mb-8">{p.desc}</p>
-                  <button data-open-contact class="btn-primary">
-                    Jetzt anfragen
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                  </button>
-                </div>
-                <div class="flex flex-col gap-4 min-w-[200px]">
-                  <div class="border border-white/10 rounded-xl px-5 py-4 bg-white/5">
-                    <span class="text-[10px] tracking-[0.12em] uppercase text-stone/40 block mb-1.5">Dauer</span>
-                    <span class="text-[16px] font-medium text-ivory">{p.duration}</span>
-                  </div>
-                  <div class="border border-bordeaux-700/40 rounded-xl px-5 py-4 bg-bordeaux-900/20">
-                    <span class="text-[10px] tracking-[0.12em] uppercase text-bordeaux-300/60 block mb-1.5">Ergebnis</span>
-                    <span class="text-[15px] font-medium text-ivory">{p.outcome}</span>
-                  </div>
-                </div>
+            <!-- Meta -->
+            <div class="flex flex-col gap-3 lg:pt-2">
+              <div class:list={['rounded-lg px-4 py-3.5 border', i % 2 === 1 ? 'bg-white border-stone/40' : 'bg-ivory border-stone/40']}>
+                <span class="text-[10px] tracking-[0.1em] uppercase text-taupe block mb-1">Dauer</span>
+                <span class="text-[13.5px] font-medium text-ink leading-snug">{p.dauer}</span>
+              </div>
+              <div class="rounded-lg px-4 py-3.5 bg-bordeaux-50 border border-bordeaux-100">
+                <span class="text-[10px] tracking-[0.1em] uppercase text-bordeaux-300 block mb-1">Ergebnis</span>
+                <span class="text-[13.5px] font-medium text-bordeaux-800 leading-snug">{p.ergebnis}</span>
               </div>
             </div>
-          ) : (
-            <!-- Light layout -->
-            <div class="grid lg:grid-cols-[180px_1fr] gap-10 lg:gap-20 items-start reveal">
 
-              <!-- Left: number + meta -->
-              <div class="flex flex-col gap-4">
-                <span class="font-display leading-none text-gold-700/20 select-none"
-                      style="font-size: clamp(5rem, 8vw, 7rem); font-weight: 500;">
-                  {p.num}
-                </span>
-                <div class="flex flex-col gap-3">
-                  <div class={`rounded-lg px-4 py-3 ${p.bg === 'mist' ? 'bg-white border border-stone/30' : 'bg-mist border border-stone/30'}`}>
-                    <span class="text-[10px] tracking-[0.1em] uppercase text-taupe block mb-1">Dauer</span>
-                    <span class="text-[13.5px] font-medium text-ink">{p.duration}</span>
-                  </div>
-                  <div class="rounded-lg px-4 py-3 bg-bordeaux-50 border border-bordeaux-100">
-                    <span class="text-[10px] tracking-[0.1em] uppercase text-bordeaux-400 block mb-1">Ergebnis</span>
-                    <span class="text-[13.5px] font-medium text-bordeaux-800 leading-snug">{p.outcome}</span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Right: content -->
-              <div class="pt-2">
-                <span class="text-[11px] tracking-[0.12em] uppercase text-taupe font-semibold block mb-3">{p.subtitle}</span>
-                <h2 class="font-display font-medium text-ink mb-5"
-                    style="font-size: clamp(2rem, 3.2vw, 2.8rem); line-height: 1.07; letter-spacing: -0.02em;">
-                  {p.title}
-                </h2>
-                <p class="text-[17px] leading-[1.8] text-slate">{p.desc}</p>
-              </div>
-
-            </div>
-          )}
+          </div>
         </div>
       </div>
     ))}
 
     <!-- CTA -->
-    <div class="max-w-[1240px] mx-auto px-10 py-24 text-center reveal">
-      <span class="diamond-divider mb-8 inline-flex">
-        <span class="dd-rule"></span><span class="dd-dia"></span><span class="dd-rule"></span>
-      </span>
+    <div class="max-w-[1240px] mx-auto px-6 md:px-10 py-20 md:py-24 text-center reveal">
+      <span class="rule-divider mb-7"></span>
       <h2 class="font-display font-medium text-ink m-0 mb-4"
-          style="font-size: clamp(2rem, 3vw, 2.8rem); line-height: 1.08; letter-spacing: -0.03em;">
-        Bereit für den ersten Schritt?
+          style="font-size: clamp(1.9rem, 3vw, 2.7rem); line-height: 1.08; letter-spacing: -0.03em;">
+        Phase eins beginnt mit einem Gespräch.
       </h2>
-      <p class="text-[17px] leading-[1.65] text-slate mb-8 max-w-[42ch] mx-auto">
-        Die Betriebsanalyse ist der ideale Einstieg — kompakt, konkret und direkt umsetzbar.
+      <p class="text-[16px] md:text-[17px] leading-[1.65] text-slate mb-8 max-w-[46ch] mx-auto">
+        Der digitale Betriebscheck ist der Einstieg — fixer Rahmen, Preis vorab,
+        Resultat auch ohne Folgeauftrag brauchbar.
       </p>
-      <a href="/kontakt" class="btn-primary btn-lg">
-        Betriebsanalyse anfragen
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <button data-open-contact class="btn-primary btn-lg">
+        Betriebscheck anfragen
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M5 12h14M12 5l7 7-7 7"/>
         </svg>
-      </a>
+      </button>
     </div>
 
   </main>
   <Footer />
   <ContactModal />
 </Base>
-
-<script>
-  /* Phase navigator scrollspy */
-  const pills = document.querySelectorAll<HTMLAnchorElement>('.phase-pill');
-  const sections = document.querySelectorAll<HTMLElement>('[id^="phase-"]');
-
-  const io = new IntersectionObserver(
-    (entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          const id = e.target.id.replace('phase-', '');
-          pills.forEach(p => {
-            const active = p.dataset.phase === id;
-            p.style.background = active ? 'rgba(90,15,27,0.08)' : '';
-            p.style.color = active ? '#5A0F1B' : '';
-          });
-        }
-      });
-    },
-    { rootMargin: '-30% 0px -60% 0px' }
-  );
-
-  sections.forEach(s => io.observe(s));
-
-  /* Smooth scroll for phase pills */
-  const nav = document.getElementById('phase-nav');
-  pills.forEach(pill => {
-    pill.addEventListener('click', (e) => {
-      e.preventDefault();
-      const target = document.querySelector(pill.getAttribute('href')!);
-      if (target && nav) {
-        const offset = nav.offsetHeight + 72 + 16;
-        const top = (target as HTMLElement).getBoundingClientRect().top + window.scrollY - offset;
-        window.scrollTo({ top, behavior: 'smooth' });
-      }
-    });
-  });
-</script>

@@ -1,0 +1,68 @@
+---
+/**
+ * Einwand-Sektion: beantwortet die Fragen, die ein skeptischer Inhaber
+ * im Kopf hat, aber selten in ein Formular schreibt.
+ */
+const fragen = [
+  {
+    q: 'Brauche ich dafür neue Software?',
+    a: 'Meistens nicht. Bexio, Outlook, ein Kalender, eine Website — die Werkzeuge sind in den meisten Betrieben schon da. Ich verbinde sie so, dass sie zusammenarbeiten. Neue Werkzeuge kommen nur dazu, wenn sie sich klar rechnen, und ich erkläre vorher, warum.',
+  },
+  {
+    q: 'Ich bin nicht der Computer-Typ. Funktioniert das trotzdem?',
+    a: 'Gerade dann. Die Struktur wird so gebaut, dass sie im Alltag einfacher ist als vorher — nicht komplizierter. Eine Anfrage erfassen heisst dann: nichts tun, weil es automatisch passiert. Und für alles, was Sie selbst bedienen, gibt es eine kurze, verständliche Anleitung.',
+  },
+  {
+    q: 'Was kostet das?',
+    a: 'Der Betriebscheck hat einen fixen Rahmen, den Sie vor der Zusage schriftlich kennen. Umsetzungsprojekte offeriere ich nach dem Massnahmenplan — Sie entscheiden pro Massnahme, ob sie sich lohnt. Es gibt keine laufenden Kosten, denen Sie nicht ausdrücklich zugestimmt haben.',
+  },
+  {
+    q: 'Sie sind ziemlich jung. Warum sollte ich Ihnen meinen Betrieb anvertrauen?',
+    a: 'Stimmt — und genau das ist der Punkt. Prozessautomatisierung ist mein Beruf und meine Ausbildung, nicht ein Feld, auf das ich umgeschult habe. Ich arbeite mit der aktuellen Technik, weil ich nie mit einer anderen gearbeitet habe. Und weil ich am Anfang stehe, hängt mein Name an jedem einzelnen Projekt. Beim Betriebscheck riskieren Sie einen überschaubaren, vorher bekannten Betrag — danach entscheiden Sie anhand von Resultaten, nicht Versprechen.',
+  },
+  {
+    q: 'Wie schnell sehe ich etwas?',
+    a: 'Die ersten Massnahmen sind bewusst Quick Wins: Vieles davon läuft innerhalb der ersten zwei bis drei Wochen — etwa, dass jede Anfrage automatisch erfasst und bestätigt wird. Nach vier Wochen vergleichen wir ehrlich: Reaktionszeit, Bürostunden, nachgefasste Offerten.',
+  },
+];
+---
+
+<section class="bg-ivory border-y border-stone/20" id="fragen">
+  <div class="max-w-[860px] mx-auto px-6 md:px-10 py-20 md:py-24">
+
+    <div class="mb-12 reveal">
+      <span class="eyebrow block mb-4">Berechtigte Fragen</span>
+      <h2 class="font-display font-medium text-ink mt-4 m-0"
+          style="font-size: clamp(2rem, 3.4vw, 2.8rem); line-height: 1.08; letter-spacing: -0.03em;">
+        Was Sie sich vermutlich<br />gerade fragen.
+      </h2>
+    </div>
+
+    <div class="flex flex-col stagger">
+      {fragen.map((f, i) => (
+        <details class="faq-item group border-t border-stone/40" style={`--i: ${i}`}>
+          <summary class="flex items-center justify-between gap-6 cursor-pointer select-none py-6 list-none">
+            <span class="text-[16px] md:text-[17px] font-semibold text-ink leading-snug">{f.q}</span>
+            <span class="faq-icon flex-shrink-0 w-8 h-8 rounded-md border border-stone/60 text-slate flex items-center justify-center transition-all duration-[240ms] ease-standard group-hover:border-bordeaux-700 group-hover:text-bordeaux-700">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="12" y1="5" x2="12" y2="19" class="faq-vert"/><line x1="5" y1="12" x2="19" y2="12"/>
+              </svg>
+            </span>
+          </summary>
+          <p class="text-[15px] leading-[1.75] text-slate m-0 pb-7 max-w-[64ch]">{f.a}</p>
+        </details>
+      ))}
+      <div class="border-t border-stone/40"></div>
+    </div>
+
+    <p class="text-[15px] text-slate mt-10 reveal">
+      Eine Frage fehlt? <button data-open-contact class="text-bordeaux-700 font-semibold underline underline-offset-2 bg-transparent border-0 p-0 cursor-pointer">Stellen Sie sie direkt</button> — Sie erhalten eine ehrliche Antwort, auch wenn sie lautet: «Dafür bin ich nicht der Richtige.»
+    </p>
+
+  </div>
+</section>
+
+<style>
+  details.faq-item summary::-webkit-details-marker { display: none; }
+  details.faq-item[open] .faq-icon { transform: rotate(45deg); border-color: #5A0F1B; color: #5A0F1B; }
+</style>

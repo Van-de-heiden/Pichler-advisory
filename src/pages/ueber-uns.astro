@@ -4,40 +4,40 @@ import Nav from '../components/layout/Nav.astro';
 import Footer from '../components/layout/Footer.astro';
 import ContactModal from '../components/ui/ContactModal.astro';
 
-const values = [
+const haltung = [
   {
-    title: 'Unternehmerisch, nicht akademisch',
-    desc: 'Ich denke und handle wie ein Unternehmer — nicht wie ein Berater, der Konzepte abliefert. Was nicht umgesetzt wird, zählt nicht.',
+    titel: 'Umsetzung zählt, nicht Papier',
+    text: 'Ein Konzept, das in der Schublade landet, hat null Wirkung. Ich baue selbst, führe ein und bleibe dran, bis es im Alltag läuft — erst dann ist die Arbeit fertig.',
   },
   {
-    title: 'Substanz über Oberfläche',
-    desc: 'Mich interessieren echte Verbesserungen: bessere Prozesse, bessere Zahlen, bessere Steuerung — nicht nur ein schöneres Deckblatt.',
+    titel: 'Ehrlichkeit vor Gefälligkeit',
+    text: 'Wenn eine Massnahme sich für Ihren Betrieb nicht rechnet, sage ich das — auch wenn ich damit einen Auftrag nicht bekomme. Anders lässt sich Vertrauen nicht aufbauen, schon gar nicht als junger Anbieter.',
   },
   {
-    title: 'Ehrlichkeit vor Gefälligkeit',
-    desc: 'Ich sage, was wirklich los ist. Auch wenn es unbequem ist. Denn nur mit einer ehrlichen Analyse entsteht echte Verbesserung.',
+    titel: 'Ihre Werkzeuge, nicht meine Lieblinge',
+    text: 'Ich verkaufe keine Software und bekomme keine Provisionen. Empfohlen wird, was zu Ihrem Betrieb passt — im Zweifel das, was Sie schon haben.',
   },
   {
-    title: 'Nah am Betrieb',
-    desc: 'Ich will Betriebe wirklich kennenlernen: Prozesse, Zahlen, Engpässe, Potenziale. Nicht aus der Distanz, sondern von innen.',
+    titel: 'Verständlich oder gar nicht',
+    text: 'Jede Automatisierung, die ich baue, muss ich Ihnen in zwei Minuten erklären können. Wenn nicht, ist sie zu kompliziert für den Betriebsalltag.',
   },
 ];
 ---
 
 <Base
-  title="Über uns – Maurus Pichler, KMU-Berater aus der Schweiz | Pichler Advisory"
-  description="Pichler Advisory wurde von Maurus Pichler aus Ernetschwil, Kanton St. Gallen gegründet. Unternehmerische Beratung für KMU mit Substanz – persönlich, direkt und umsetzungsnah."
-  breadcrumbs={[{ name: 'Startseite', url: '/' }, { name: 'Über uns', url: '/ueber-uns/' }]}
+  title="Über mich – Maurus Pichler, Pichler Advisory | Digitale Betriebsstruktur für KMU"
+  description="Maurus Pichler, Gründer von Pichler Advisory aus Ernetschwil SG: Entwickler digitales Business EFZ, spezialisiert auf Prozessanalyse und Automatisierung für Schweizer Handwerks- und Gewerbebetriebe."
+  breadcrumbs={[{ name: 'Startseite', url: '/' }, { name: 'Über mich', url: '/ueber-uns/' }]}
   jsonLd={{
     '@context': 'https://schema.org',
     '@type': 'AboutPage',
     name: 'Über Pichler Advisory',
-    description: 'Maurus Pichler, Gründer von Pichler Advisory – KMU-Berater aus Ernetschwil, Kanton St. Gallen.',
+    description: 'Maurus Pichler, Gründer von Pichler Advisory – Prozessanalyse und digitale Betriebsstruktur für Schweizer KMU.',
     url: 'https://pichler-advisory.ch/ueber-uns/',
     mainEntity: {
       '@type': 'Person',
       name: 'Maurus Pichler',
-      jobTitle: 'Inhaber & Berater',
+      jobTitle: 'Gründer & Inhaber',
       worksFor: { '@type': 'Organization', name: 'Pichler Advisory', url: 'https://pichler-advisory.ch' },
       address: { '@type': 'PostalAddress', addressLocality: 'Ernetschwil', postalCode: '8725', addressCountry: 'CH', addressRegion: 'Kanton St. Gallen' },
       email: 'info@pichler-advisory.ch',
@@ -49,74 +49,71 @@ const values = [
   <main>
 
     <!-- Page hero -->
-    <div class="max-w-[1240px] mx-auto px-10 pt-[140px] pb-16">
-      <div class="max-w-[680px] reveal">
-        <span class="eyebrow block mb-4">Über Pichler Advisory</span>
+    <div class="max-w-[1240px] mx-auto px-6 md:px-10 pt-[130px] md:pt-[140px] pb-16">
+      <div class="max-w-[720px] reveal">
+        <span class="eyebrow block mb-4">Über mich</span>
         <h1 class="font-display font-medium text-ink m-0 mb-5"
-            style="font-size: clamp(3rem, 5vw, 4.5rem); line-height: 1.0; letter-spacing: -0.03em;">
-          Eine erste Generation.<br />
-          <em class="italic text-bordeaux-700">Ein klarer Anspruch.</em>
+            style="font-size: clamp(2.6rem, 5vw, 4.2rem); line-height: 1.02; letter-spacing: -0.03em;">
+          Jung ist kein Nachteil.<br />
+          <em class="italic text-bordeaux-700" style="font-style:italic;">Wenn man liefert.</em>
         </h1>
-        <p class="text-[19px] leading-[1.65] text-slate m-0">
-          Pichler Advisory ist aus Praxis entstanden: aus Unternehmertum, digitalem Business und dem Anspruch, echte Betriebe substanziell weiterzubringen.
+        <p class="text-[17px] md:text-[19px] leading-[1.65] text-slate m-0">
+          Pichler Advisory ist ein Ein-Personen-Betrieb — bewusst. Sie arbeiten mit der Person,
+          die analysiert, baut und verantwortet. Hier steht, wer das ist und wie ich denke.
         </p>
       </div>
     </div>
 
     <!-- Founder story -->
-    <div class="max-w-[1240px] mx-auto px-10 pb-20">
-      <div class="grid lg:grid-cols-2 gap-16 items-start">
+    <div class="max-w-[1240px] mx-auto px-6 md:px-10 pb-20">
+      <div class="grid lg:grid-cols-[0.85fr_1.15fr] gap-12 lg:gap-16 items-start">
 
-        <!-- Photo + quote plate -->
+        <!-- Photo -->
         <div class="reveal">
-          <div class="rounded-xl overflow-hidden shadow-md relative bg-mist border border-stone/50" style="aspect-ratio: 4/3;">
+          <div class="rounded-xl overflow-hidden shadow-md relative bg-mist border border-stone/50 max-w-[440px]" style="aspect-ratio: 4/5;">
             <img
               src="/assets/maurus_portrait.jpg"
               alt="Maurus Pichler, Gründer von Pichler Advisory"
-              class="w-full h-full object-cover" style="object-position: 50% 20%;"
-              onerror="this.style.display='none';"
+              width="1200" height="1600" loading="eager"
+              class="absolute inset-0 w-full h-full object-cover" style="object-position: 50% 20%;"
             />
-            <div class="absolute bottom-0 left-0 right-0 p-6" style="background: linear-gradient(to top, rgba(30,27,30,0.8) 0%, transparent 100%);">
-              <p class="font-display text-[19px] font-medium text-ivory/90 leading-snug tracking-tight mb-2">
-                „Gute Betriebe verdienen einen Auftritt, der ihrer Leistung gerecht wird."
-              </p>
-              <p class="text-[12px] text-stone/60">Maurus Pichler, Gründer</p>
+            <div class="absolute bottom-0 left-0 right-0 p-5"
+                 style="background: linear-gradient(to top, rgba(21,20,23,0.85) 0%, transparent 100%);">
+              <p class="text-[14px] font-semibold text-ivory m-0">Maurus Pichler</p>
+              <p class="text-[12px] text-stone/80 m-0">Gründer & Inhaber</p>
             </div>
-          </div>
-
-          <!-- Stats -->
-          <div class="grid grid-cols-3 gap-px bg-stone/30 rounded-xl overflow-hidden mt-4">
-            {[
-              { title: 'Eigene Projekte',   desc: 'Von Idee bis Umsetzung' },
-              { title: 'Digitale Praxis',   desc: 'Werkzeuge sinnvoll genutzt' },
-              { title: 'Echte Betriebe',    desc: 'Nah an Alltag und Wirkung' },
-            ].map((s) => (
-              <div class="bg-white px-4 py-4">
-                <span class="text-[13px] font-semibold text-ink leading-tight block mb-1">{s.title}</span>
-                <span class="text-[11px] leading-[1.4] text-taupe block">{s.desc}</span>
-              </div>
-            ))}
           </div>
         </div>
 
         <!-- Story -->
-        <div class="reveal">
+        <div class="reveal" style="transition-delay: 100ms;">
           <h2 class="font-display font-medium text-ink mb-5"
-              style="font-size: clamp(1.8rem, 2.4vw, 2.2rem); line-height: 1.1; letter-spacing: -0.02em;">
-            Wer steckt hinter Pichler Advisory?
+              style="font-size: clamp(1.7rem, 2.4vw, 2.2rem); line-height: 1.1; letter-spacing: -0.02em;">
+            Wer hinter Pichler Advisory steht
           </h2>
-          <div class="flex flex-col gap-4 text-[16px] leading-[1.75] text-slate">
-            <p>
-              Ich bin Maurus Pichler, Gründer von Pichler Advisory.
+          <div class="flex flex-col gap-4 text-[16px] leading-[1.78] text-slate">
+            <p class="m-0">
+              Ich bin Maurus Pichler, aufgewachsen in Ernetschwil im Kanton St. Gallen, Jahrgang 2006.
+              Unternehmerisch unterwegs bin ich seit ich siebzehn bin — angefangen mit einer eigenen
+              Kleidermarke, danach diverse kleinere Projekte, vor allem digitale.
             </p>
-            <p>
-              Ich absolviere die Ausbildung zum Entwickler digitales Business EFZ und baue parallel mit Dominus ein eigenes Unternehmen im Immobilienbereich auf. Ich kenne den Alltag eines eigenen Betriebs: Entscheidungen die hängen bleiben, Abläufe die nicht rund laufen, Tage die rum sind bevor man zu den wichtigen Dingen kommt.
+            <p class="m-0">
+              Beruflich stecke ich im letzten Jahr meiner Ausbildung zum <strong class="text-ink font-semibold">Entwickler
+              digitales Business EFZ</strong> — ein Beruf, den es genau deshalb gibt, weil Betriebe Menschen
+              brauchen, die Prozesse analysieren, Engpässe finden und digitale Abläufe bauen können.
+              Das ist keine Nebenqualifikation, die ich mir angelesen habe. Es ist das, was ich jeden
+              Tag mache: Abläufe zerlegen, Flaschenhälse identifizieren, automatisieren, messen.
             </p>
-            <p>
-              Ich bin nicht der Fachmann in Ihrem Handwerk – das sind Sie. Was ich mitbringe, ist ein klarer Blick von aussen: Ich kenne aktuelle digitale Werkzeuge, weiss wo KI wirklich Sinn macht und wo nicht, und ich kann einen Betrieb analysieren ohne Betriebsblindheit. Oft sieht man von draussen, was von innen längst normal geworden ist.
+            <p class="m-0">
+              Ich bin nicht der Fachmann in Ihrem Handwerk — das sind Sie, und das bleibt so.
+              Was ich mitbringe, ist der Blick von aussen ohne Betriebsblindheit, die aktuelle
+              Technik ohne Lernkurve und die Bereitschaft, selbst Hand anzulegen statt Empfehlungen
+              abzugeben. Von draussen sieht man oft, was drinnen längst normal geworden ist.
             </p>
-            <p>
-              Bei Pichler Advisory setze ich genau das ein – direkt, konkret, bei Betrieben wo es etwas verändert.
+            <p class="m-0">
+              Und ja: Ich bin am Anfang. Das heisst auch — jedes Projekt trägt meinen Namen, jede
+              Referenz muss ich mir verdienen, und ich kann mir keinen einzigen unzufriedenen
+              Kunden leisten. Sie dürfen das ruhig als Sicherheit verstehen.
             </p>
           </div>
         </div>
@@ -124,82 +121,76 @@ const values = [
       </div>
     </div>
 
-    <!-- Values -->
-    <div class="bg-ivory border-t border-mist">
-      <div class="max-w-[1240px] mx-auto px-10 py-20">
+    <!-- Haltung -->
+    <div class="bg-ivory border-y border-stone/20">
+      <div class="max-w-[1240px] mx-auto px-6 md:px-10 py-20">
         <div class="max-w-[560px] mb-12 reveal">
-          <span class="eyebrow block mb-4">Meine Haltung</span>
-          <h2 class="font-display font-medium text-ink mt-4"
-              style="font-size: clamp(2rem, 3vw, 2.6rem); line-height: 1.08; letter-spacing: -0.03em;">
-            Was mich antreibt.
+          <span class="eyebrow block mb-4">Arbeitsweise</span>
+          <h2 class="font-display font-medium text-ink mt-4 m-0"
+              style="font-size: clamp(1.9rem, 3vw, 2.6rem); line-height: 1.08; letter-spacing: -0.03em;">
+            Vier Grundsätze,<br />an denen Sie mich messen können.
           </h2>
         </div>
-        <div class="grid md:grid-cols-2 gap-6">
-          {values.map((v, i) => (
-            <div
-              class="bg-white border border-mist rounded-xl p-7 shadow-sm reveal"
-              style={`transition-delay: ${(i % 2) * 60}ms`}
-            >
-              <h3 class="font-body text-[17px] font-semibold text-ink mb-3">{v.title}</h3>
-              <p class="text-[15px] leading-[1.65] text-slate m-0">{v.desc}</p>
+        <div class="grid md:grid-cols-2 gap-5 stagger">
+          {haltung.map((v, i) => (
+            <div class="bg-white border border-stone/40 rounded-xl p-7 shadow-sm" style={`--i: ${i}`}>
+              <span class="font-display text-[18px] font-medium text-bordeaux-300 block mb-3">{String(i + 1).padStart(2, '0')}</span>
+              <h3 class="font-body text-[16.5px] font-semibold text-ink mb-2.5">{v.titel}</h3>
+              <p class="text-[14.5px] leading-[1.68] text-slate m-0">{v.text}</p>
             </div>
           ))}
         </div>
       </div>
     </div>
 
-    <!-- What drives me -->
-    <div class="relative bg-charcoal overflow-hidden">
-      <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(70% 110% at 80% 0%, rgba(90,15,27,0.5), transparent 60%);"></div>
-      <div class="relative max-w-[1240px] mx-auto px-10 py-24 reveal">
-        <div class="grid lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <span class="eyebrow eyebrow-gold block mb-4">Was mich antreibt</span>
-            <h2 class="font-display font-medium text-ivory mt-4 mb-5"
-                style="font-size: clamp(2rem, 3vw, 2.8rem); line-height: 1.1; letter-spacing: -0.03em;">
-              Wissen teilen.<br />
-              <em class="italic" style="font-style:italic;">Wirkung erzeugen.</em>
-            </h2>
-            <p class="text-[17px] leading-[1.7] text-stone mb-5">
-              Ich kenne die Möglichkeiten moderner Technologie — und ich kenne die Best Practices, wie man sie so einsetzt, dass sie wirklich etwas verändern. Dieses Wissen interessiert mich nicht als Selbstzweck, sondern als Werkzeug für echte Betriebe.
-            </p>
-            <p class="text-[17px] leading-[1.7] text-stone">
-              KMU-Inhaber arbeiten 50, 60 Stunden die Woche. Sie haben keine Zeit, sich durch Software-Demos zu kämpfen oder teure Agenturen zu briefen. Ich bringe das Wissen direkt — und setze um, was wirklich hilft.
-            </p>
-          </div>
-          <div class="flex flex-col gap-5">
-            {[
-              { icon: `<path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>`, label: 'Technologie-Expertise', text: 'KI, Automatisierung, digitale Systeme — ich kenne die Werkzeuge und wie man sie ohne IT-Abteilung einsetzt.' },
-              { icon: `<polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>`, label: 'Direkte Umsetzung', text: 'Kein Konzeptpapier. Ich setze konkrete Massnahmen um — von der Website bis zum Cockpit.' },
-              { icon: `<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>` , label: 'Auf Augenhöhe', text: 'Ich spreche mit Inhabern, nicht über sie. Ich verstehe den Betrieb zuerst — dann handle ich.' },
-            ].map(item => (
-              <div class="flex gap-4 items-start">
-                <span class="flex-shrink-0 w-10 h-10 rounded-lg bg-bordeaux-900/50 border border-bordeaux-700/30 text-bordeaux-300 flex items-center justify-center">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" set:html={item.icon} />
-                </span>
-                <div>
-                  <p class="text-[14px] font-semibold text-ivory/90 mb-1">{item.label}</p>
-                  <p class="text-[14px] leading-[1.6] text-stone/70">{item.text}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+    <!-- Werkzeuge / Kompetenz -->
+    <div class="max-w-[1240px] mx-auto px-6 md:px-10 py-20">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+        <div class="reveal">
+          <span class="eyebrow block mb-4">Womit ich arbeite</span>
+          <h2 class="font-display font-medium text-ink mt-4 mb-5"
+              style="font-size: clamp(1.9rem, 3vw, 2.5rem); line-height: 1.08; letter-spacing: -0.03em;">
+            Bewährte Technik,<br />unspektakulär eingesetzt.
+          </h2>
+          <p class="text-[16px] leading-[1.75] text-slate m-0">
+            Die Struktur entsteht aus Werkzeugen, die sich in Schweizer KMU bewährt haben:
+            Bexio für Offerten und Rechnungen, Make als Automatisierungsebene dazwischen,
+            saubere Formulare auf der Website, ein einfaches CRM, Kalender und E-Mail, die
+            zusammenspielen. KI kommt dort zum Einsatz, wo sie konkret Arbeit abnimmt —
+            etwa beim Vorformulieren von Antworten — und nirgendwo sonst.
+          </p>
+        </div>
+        <div class="grid sm:grid-cols-2 gap-4 stagger">
+          {[
+            { t: 'Bexio', d: 'Offerten, Rechnungen, Kontakte — sauber angebunden statt manuell nachgeführt.' },
+            { t: 'Make', d: 'Die Automatisierungsebene: verbindet Formulare, E-Mail, CRM und Bexio.' },
+            { t: 'Website & Formulare', d: 'Anfragen strukturiert erfassen statt als lose E-Mails und Zettel.' },
+            { t: 'Cockpit & Auswertung', d: 'Ihre Zahlen auf einen Blick — Umsatz, Offerten, Nachfassungen.' },
+          ].map((w, i) => (
+            <div class="border border-stone/40 rounded-xl p-5 bg-white" style={`--i: ${i}`}>
+              <p class="text-[14.5px] font-semibold text-ink m-0 mb-1.5">{w.t}</p>
+              <p class="text-[13px] leading-[1.6] text-slate m-0">{w.d}</p>
+            </div>
+          ))}
         </div>
       </div>
     </div>
 
     <!-- CTA -->
-    <div class="max-w-[1240px] mx-auto px-10 py-20 text-center reveal">
-      <h2 class="font-display font-medium text-ink m-0 mb-4"
-          style="font-size: clamp(2rem, 3vw, 2.6rem); line-height: 1.08; letter-spacing: -0.03em;">
-        Klingt das nach dem richtigen Partner?
-      </h2>
-      <p class="text-[17px] leading-[1.65] text-slate mb-8 max-w-[40ch] mx-auto">
-        Ich freue mich auf ein offenes Erstgespräch — unverbindlich, direkt und ohne Floskeln.
-      </p>
-      <a href="/kontakt" class="btn-primary btn-lg">
-        Kontakt für ein Erstgespräch
-      </a>
+    <div class="bg-ivory border-t border-stone/20">
+      <div class="max-w-[1240px] mx-auto px-6 md:px-10 py-20 text-center reveal">
+        <h2 class="font-display font-medium text-ink m-0 mb-4"
+            style="font-size: clamp(1.9rem, 3vw, 2.6rem); line-height: 1.08; letter-spacing: -0.03em;">
+          Lernen wir uns kennen.
+        </h2>
+        <p class="text-[16px] md:text-[17px] leading-[1.65] text-slate mb-8 max-w-[44ch] mx-auto">
+          Ein erstes Gespräch kostet nichts und verpflichtet zu nichts —
+          es zeigt nur, ob es passt.
+        </p>
+        <button data-open-contact class="btn-primary btn-lg">
+          Betriebscheck anfragen
+        </button>
+      </div>
     </div>
 
   </main>

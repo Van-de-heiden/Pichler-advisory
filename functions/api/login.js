@@ -22,9 +22,8 @@ export async function onRequestPost(context) {
   const validUser = env.AUTH_USERNAME;
   const validPass = env.AUTH_PASSWORD;
 
-  if (username === validUser && password === validPass && validUser && validPass) {
-    const secret = env.SESSION_SECRET || 'pichler-advisory-secret-2026';
-    const token = await createToken(secret);
+  if (username === validUser && password === validPass && validUser && validPass && env.SESSION_SECRET) {
+    const token = await createToken(env.SESSION_SECRET);
 
     const headers = new Headers({
       Location: from.startsWith('/') ? from : '/',

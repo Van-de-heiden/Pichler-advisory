@@ -4,57 +4,70 @@ import Nav from '../components/layout/Nav.astro';
 import Footer from '../components/layout/Footer.astro';
 import ContactModal from '../components/ui/ContactModal.astro';
 import Hero from '../components/sections/Hero.astro';
+import Problem from '../components/sections/Problem.astro';
+import Structure from '../components/sections/Structure.astro';
 import Services from '../components/sections/Services.astro';
 import Process from '../components/sections/Process.astro';
-import DarkBand from '../components/sections/DarkBand.astro';
 import CockpitTeaser from '../components/sections/CockpitTeaser.astro';
-import AboutTeaser from '../components/sections/AboutTeaser.astro';
+import Founder from '../components/sections/Founder.astro';
+import FAQ from '../components/sections/FAQ.astro';
 import CTABanner from '../components/sections/CTABanner.astro';
 ---
 
 <Base
-  title="Pichler Advisory – KMU-Beratung für Klarheit, Wachstum und operative Entlastung"
-  description="Pichler Advisory unterstützt KMU-Inhaber in der Schweiz dabei, Prozesse zu schärfen, digitale Lösungen sinnvoll einzusetzen und operative Klarheit zu gewinnen. Inhabergeführte Beratung aus der Ostschweiz."
+  title="Pichler Advisory – Digitale Betriebsstruktur für Schweizer KMU und Handwerksbetriebe"
+  description="Anfragen, die untergehen. Offerten ohne Nachfassen. Büroarbeit von Hand. Pichler Advisory analysiert, wo Ihr Betrieb Zeit und Aufträge verliert – und baut eine digitale Struktur, die zuverlässig läuft. Für Handwerks- und Gewerbebetriebe in der Schweiz."
 >
   <Nav currentPath="/" />
   <main>
     <Hero />
+    <Problem />
+    <Structure />
     <Services />
     <Process />
-    <DarkBand />
     <CockpitTeaser />
-    <AboutTeaser />
+    <Founder />
+    <FAQ />
     <CTABanner />
 
     <!-- SEO-Abschnitt: Für wen / regionale Relevanz -->
-    <section class="bg-mist/40 border-t border-stone/20">
-      <div class="max-w-[1240px] mx-auto px-10 py-20">
-        <div class="grid lg:grid-cols-3 gap-10 reveal">
-          <div>
+    <section class="bg-ivory border-t border-stone/20">
+      <div class="max-w-[1240px] mx-auto px-6 md:px-10 py-16 md:py-20">
+        <div class="grid md:grid-cols-3 gap-10 stagger">
+          <div style="--i: 0">
             <h2 class="font-display font-medium text-ink mb-4"
-                style="font-size: 1.5rem; line-height: 1.15; letter-spacing: -0.02em;">
+                style="font-size: 1.4rem; line-height: 1.15; letter-spacing: -0.02em;">
               Für wen ist Pichler Advisory?
             </h2>
-            <p class="text-[15px] leading-[1.7] text-slate">
-              Für KMU-Inhaber in der Schweiz, die ihren Betrieb gut kennen, aber im Tagesgeschäft kaum Zeit finden, ihn von aussen zu betrachten. Besonders häufig arbeite ich mit Betrieben aus der Ostschweiz — Kanton St. Gallen, Thurgau, Appenzell — die 5 bis 50 Mitarbeitende haben und spüren, dass irgendwo Reibung, Unübersicht oder ungenutztes Potenzial steckt.
+            <p class="text-[14.5px] leading-[1.7] text-slate m-0">
+              Für Inhaberinnen und Inhaber von Handwerks- und Gewerbebetrieben in der Schweiz —
+              Gartenbau, Sanitär, Heizung, Elektro, Schreinerei, Malerei und verwandte Branchen mit
+              rund 3 bis 15 Mitarbeitenden. Schwerpunkt Ostschweiz: Kanton St. Gallen, Thurgau,
+              Appenzell und Umgebung; Zusammenarbeit schweizweit möglich.
             </p>
           </div>
-          <div>
+          <div style="--i: 1">
             <h2 class="font-display font-medium text-ink mb-4"
-                style="font-size: 1.5rem; line-height: 1.15; letter-spacing: -0.02em;">
+                style="font-size: 1.4rem; line-height: 1.15; letter-spacing: -0.02em;">
               Welche Probleme löse ich?
             </h2>
-            <p class="text-[15px] leading-[1.7] text-slate">
-              Zu viele manuelle Abläufe, die täglich Zeit fressen. Keine klare Übersicht über Zahlen, Aufträge und Entwicklung. Eine Aussenwirkung, die der echten Qualität des Betriebs nicht gerecht wird. Oder einfach das Gefühl: Es müsste effizienter gehen — aber man kommt nicht dazu, es anzugehen.
+            <p class="text-[14.5px] leading-[1.7] text-slate m-0">
+              Anfragen, die auf Zetteln oder in WhatsApp untergehen. Offerten, die zu spät rausgehen
+              und nie nachgefasst werden. Doppelte Handarbeit zwischen E-Mail, Excel und Bexio.
+              Fehlende Übersicht über Zahlen, Aufträge und offene Arbeiten. Kurz: operative Lecks,
+              die jeden Monat Zeit und Aufträge kosten.
             </p>
           </div>
-          <div>
+          <div style="--i: 2">
             <h2 class="font-display font-medium text-ink mb-4"
-                style="font-size: 1.5rem; line-height: 1.15; letter-spacing: -0.02em;">
+                style="font-size: 1.4rem; line-height: 1.15; letter-spacing: -0.02em;">
               Wie unterscheidet sich der Ansatz?
             </h2>
-            <p class="text-[15px] leading-[1.7] text-slate">
-              Keine grossen Beratungskonzepte, die in der Schublade landen. Ich schaue mir Ihren Betrieb konkret an, priorisiere was wirklich zählt, und setze die Verbesserungen direkt um — persönlich, ohne Umweg über ein Team, das Ihren Betrieb nicht kennt.
+            <p class="text-[14.5px] leading-[1.7] text-slate m-0">
+              Keine Konzepte für die Schublade und keine Software-Verkäufe. Ich analysiere den
+              Betrieb konkret, verbinde die vorhandenen Werkzeuge — Bexio, Kalender, Website,
+              Formulare — zu einer funktionierenden Struktur und bleibe danach ansprechbar, damit
+              sie im Alltag auch läuft.
             </p>
           </div>
         </div>
