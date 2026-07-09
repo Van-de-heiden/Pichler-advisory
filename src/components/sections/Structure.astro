@@ -3,19 +3,29 @@
  * Lösungs-Sektion (dunkel): die digitale Betriebsstruktur als Kette.
  * Zeigt, dass vorhandene Werkzeuge verbunden werden — kein IT-Grossprojekt.
  */
-const kette = [
-  { schritt: 'Anfrage', detail: 'Telefon, Website, E-Mail, WhatsApp' },
-  { schritt: 'Erfassung', detail: 'Automatisch im System, nichts geht unter' },
-  { schritt: 'Offerte', detail: 'Vorlagen statt Sonntagabend' },
-  { schritt: 'Nachfassen', detail: 'Terminiert, nicht dem Zufall überlassen' },
-  { schritt: 'Auftrag & Rechnung', detail: 'Sauber in Bexio' },
-  { schritt: 'Übersicht', detail: 'Zahlen auf einen Blick' },
+const bereiche = [
+  {
+    thema: 'Kunden & Anfragen',
+    detail: 'Jede Anfrage erfasst und beantwortet — egal ob sie per Telefon, WhatsApp oder Website kommt. Nichts geht mehr unter.',
+  },
+  {
+    thema: 'Offerten & Aufträge',
+    detail: 'Vom Aufmass zur Offerte zum Auftrag, ohne dass etwas liegen bleibt. Nachgefasst wird immer — nicht nur, wenn Zeit ist.',
+  },
+  {
+    thema: 'Administration & Zahlungen',
+    detail: 'Rechnungen, Rapporte, Ablage: Jede Information wird einmal angefasst statt dreimal. Offene Zahlungen melden sich selbst.',
+  },
+  {
+    thema: 'Übersicht & Zahlen',
+    detail: 'Der ganze Betrieb auf einen Blick — Montagmorgen, in zwei Minuten, ohne eine einzige Liste von Hand.',
+  },
 ];
 
 const prinzipien = [
   {
     titel: 'Ich verbinde, was Sie schon haben',
-    text: 'Bexio, Outlook, Kalender, Website, Telefon — die Werkzeuge sind meist da. Was fehlt, ist die Verbindung dazwischen. Genau die baue ich, mit bewährter Technik wie Make statt teurer Spezialsoftware.',
+    text: 'Buchhaltung, E-Mail, Kalender, Website, Telefon — die Werkzeuge sind meist da. Was fehlt, ist die Verbindung dazwischen. Genau die baue ich, mit bewährter Automatisierungstechnik statt teurer Spezialsoftware.',
   },
   {
     titel: 'Gebaut, um von Ihnen benutzt zu werden',
@@ -41,23 +51,24 @@ const prinzipien = [
         Eine Betriebsstruktur,<br />die nichts vergisst.
       </h2>
       <p class="text-[17px] md:text-[18px] leading-[1.75] text-stone m-0">
-        Vom ersten Anruf bis zur bezahlten Rechnung: Jeder Schritt hat einen festen Platz,
-        jeder Übergang passiert automatisch oder mit klarer Zuständigkeit. Das ist keine Software,
-        die Sie kaufen — das ist Ihr Betrieb, sauber aufgebaut.
+        Ich bringe Struktur in den ganzen Betrieb — egal, wie er heute aussieht. Kein
+        vorgefertigter Ablauf, dem Sie sich anpassen müssen: Was bei Ihnen wichtig ist,
+        bekommt einen festen Platz und läuft automatisch oder mit klarer Zuständigkeit.
+        Das ist keine Software, die Sie kaufen — das ist Ihr Betrieb, sauber aufgebaut.
       </p>
     </div>
 
-    <!-- Prozesskette -->
-    <div class="mb-16 reveal" aria-label="Ablauf der digitalen Betriebsstruktur">
-      <ol class="chain m-0 p-0 list-none grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-x-4 gap-y-6">
-        {kette.map((k, i) => (
+    <!-- Oberthemen: die Bereiche des Betriebs -->
+    <div class="mb-16 reveal" aria-label="Bereiche der digitalen Betriebsstruktur">
+      <ol class="chain m-0 p-0 list-none grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-8">
+        {bereiche.map((b, i) => (
           <li class="chain-item relative" style={`--i: ${i}`}>
-            <span class="flex items-center gap-2.5 mb-2">
+            <span class="flex items-center gap-2.5 mb-3">
               <span class="font-display text-[15px] font-medium text-bordeaux-300 leading-none">{String(i + 1).padStart(2, '0')}</span>
               <span class="chain-rule flex-1 h-px bg-white/15"></span>
             </span>
-            <span class="block text-[15px] font-semibold text-ivory mb-1">{k.schritt}</span>
-            <span class="block text-[12.5px] leading-[1.5] text-stone/70">{k.detail}</span>
+            <span class="block font-display text-[19px] font-medium text-ivory mb-2 tracking-tight">{b.thema}</span>
+            <span class="block text-[13.5px] leading-[1.65] text-stone/75">{b.detail}</span>
           </li>
         ))}
       </ol>

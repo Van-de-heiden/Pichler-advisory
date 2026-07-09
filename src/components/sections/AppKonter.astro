@@ -1,0 +1,222 @@
+---
+/**
+ * App-Konter: positioniert Pichler Advisory bewusst NICHT als Konkurrenz zu Apps.
+ * Kernbotschaft: Eine App ist ein Werkzeug — wir sind herstellerunabhängig,
+ * setzen Apps sogar selbst auf und verbinden alles drumherum.
+ * Visual: Werkzeuge des Betriebs verbinden sich animiert mit dem Zentrum.
+ */
+const werkzeuge = [
+  { label: 'Telefon', x: 18.3, y: 16.3, delay: 0 },
+  { label: 'E-Mail', x: 76.9, y: 13.5, delay: 0.6 },
+  { label: 'Branchen-App', x: 87.5, y: 45.2, delay: 1.2 },
+  { label: 'Kalender', x: 79.8, y: 79.8, delay: 1.8 },
+  { label: 'Buchhaltung', x: 21.2, y: 82.7, delay: 2.4 },
+  { label: 'Website', x: 11.5, y: 49.0, delay: 3.0 },
+];
+
+const pfade = [
+  'M 110 100 Q 160 160 218 224',
+  'M 390 88 Q 340 150 292 216',
+  'M 432 240 Q 360 245 328 254',
+  'M 400 400 Q 340 340 302 300',
+  'M 128 415 Q 180 360 222 296',
+  'M 82 255 Q 150 258 192 260',
+];
+
+const luecken = [
+  'Die Anfrage kommt per WhatsApp, Telefon und Formular — und landet in drei verschiedenen Köpfen.',
+  'Die Offerte steht im einen Programm, der Kunde im anderen, der Termin im Kalender — nichts spricht miteinander.',
+  'Nachgefasst wird, wenn Zeit ist. Also nie.',
+];
+
+const vergleich = [
+  { thema: 'Anfragen', app: 'Sie tippen sie selbst ein', mit: 'laufen automatisch an einem Ort zusammen' },
+  { thema: 'Offerte', app: 'leere Vorlage zum Ausfüllen', mit: 'Entwurf entsteht direkt aus der Anfrage' },
+  { thema: 'Nachfassen', app: 'Erinnerung, die Sie wegklicken', mit: 'passiert von selbst, bis der Kunde antwortet' },
+  { thema: 'In sechs Monaten', app: 'läuft, wenn Sie es pflegen', mit: 'läuft, weil ich dranbleibe', moat: true },
+];
+---
+
+<section class="bg-ivory border-b border-stone/20 overflow-hidden" id="app-oder-struktur">
+  <div class="max-w-[1240px] mx-auto px-6 md:px-10 py-20 md:py-24">
+
+    <div class="grid lg:grid-cols-[1.05fr_0.95fr] gap-14 lg:gap-16 items-center mb-16 md:mb-20">
+
+      <!-- Copy -->
+      <div class="reveal">
+        <span class="eyebrow block mb-4">Die ehrliche Antwort</span>
+        <h2 class="font-display font-medium text-ink mt-4 mb-6"
+            style="font-size: clamp(2rem, 3.6vw, 3.1rem); line-height: 1.08; letter-spacing: -0.03em;">
+          Eine App ist ein Werkzeug.<br />
+          <em class="italic text-bordeaux-700" style="font-style:italic;">Kein Betrieb.</em>
+        </h2>
+
+        <p class="text-[16.5px] md:text-[17.5px] leading-[1.75] text-slate m-0 mb-4">
+          Branchen-Apps, Buchhaltungsprogramme, Planungstools — vieles davon ist gut.
+          Wenn Sie so etwas nutzen: behalten Sie es. <strong class="text-ink font-semibold">Ich
+          verkaufe Ihnen keine neue Software und rede Ihre nicht schlecht</strong> — im Gegenteil,
+          ich richte solche Programme selbst ein, wenn ein Betrieb eines braucht.
+        </p>
+        <p class="text-[16.5px] md:text-[17.5px] leading-[1.75] text-slate m-0 mb-6">
+          Nur: Eine App digitalisiert <em>eine</em> Aufgabe. Ihr Problem sitzt aber
+          <em>zwischen</em> den Aufgaben — dort, wo keine App hinreicht:
+        </p>
+
+        <ul class="m-0 mb-7 p-0 list-none flex flex-col gap-3.5">
+          {luecken.map((l) => (
+            <li class="relative pl-7 text-[15px] leading-[1.65] text-slate">
+              <span class="absolute left-0 top-[11px] w-[14px] h-[2px] bg-bordeaux-700"></span>
+              {l}
+            </li>
+          ))}
+        </ul>
+
+        <p class="font-display text-[20px] md:text-[22px] font-medium text-ink leading-snug border-l-[3px] border-bordeaux-700 pl-5 m-0 max-w-[50ch]">
+          Da setzt kein Programm an. Da setze ich an: herstellerunabhängig empfehle ich,
+          was Ihr Betrieb wirklich braucht — falls überhaupt — und verbinde alles drumherum.
+          Die App ist das Werkzeug. Ich baue die Werkstatt.
+        </p>
+      </div>
+
+      <!-- Visual: Werkzeuge verbinden sich mit dem Betrieb -->
+      <div class="reveal" style="transition-delay: 120ms;">
+        <div class="konter-stage relative w-full max-w-[520px] mx-auto aspect-square" data-tilt>
+          <div class="konter-tilt absolute inset-0">
+
+            <!-- Verbindungen -->
+            <svg viewBox="0 0 520 520" class="absolute inset-0 w-full h-full" fill="none" aria-hidden="true">
+              {pfade.map((d, i) => (
+                <path id={`kp-${i}`} d={d} pathLength="1"
+                      class="konter-path" style={`--i: ${i}`}
+                      stroke="#7A1D2B" stroke-opacity="0.35" stroke-width="1.5" />
+              ))}
+              {pfade.map((_, i) => (
+                <circle r="3" fill="#7A1D2B" class="konter-pulse">
+                  <animateMotion dur="3.2s" begin={`${i * 0.55}s`} repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="linear">
+                    <mpath href={`#kp-${i}`} />
+                  </animateMotion>
+                </circle>
+              ))}
+            </svg>
+
+            <!-- Werkzeug-Chips -->
+            {werkzeuge.map((w, i) => (
+              <div class="konter-chip absolute bg-white border border-stone/60 rounded-md shadow-sm px-3.5 py-2 whitespace-nowrap"
+                   style={`left: ${w.x}%; top: ${w.y}%; --float-delay: ${w.delay}s; --i: ${i};`}>
+                <span class="text-[12.5px] font-semibold text-slate tracking-[0.02em]">{w.label}</span>
+              </div>
+            ))}
+
+            <!-- Zentrum -->
+            <div class="konter-hub absolute left-1/2 top-1/2 w-[132px] h-[132px] rounded-full flex flex-col items-center justify-center text-center shadow-lg"
+                 style="background: radial-gradient(120% 120% at 30% 25%, #7A1D2B 0%, #5A0F1B 70%);">
+              <span class="text-[9px] tracking-[0.2em] uppercase text-ivory/70 font-semibold mb-1">Struktur</span>
+              <span class="font-display text-[19px] font-medium text-ivory leading-tight">Ihr<br />Betrieb</span>
+            </div>
+
+          </div>
+        </div>
+        <p class="text-[12.5px] text-taupe mt-5 text-center m-0">
+          Die Werkzeuge bleiben. Neu ist die Verbindung dazwischen.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Vergleich: App allein vs. mit Struktur -->
+    <div class="reveal">
+      <div class="bg-white border border-stone/50 rounded-xl overflow-hidden shadow-sm">
+        <div class="hidden md:grid grid-cols-[170px_1fr_1fr] gap-x-8 px-8 py-4 bg-mist/60 border-b border-stone/30">
+          <span></span>
+          <span class="text-[11px] tracking-[0.14em] uppercase font-semibold text-taupe">App allein</span>
+          <span class="text-[11px] tracking-[0.14em] uppercase font-semibold text-bordeaux-700">Mit Struktur drumherum</span>
+        </div>
+        {vergleich.map((v) => (
+          <div class:list={[
+            'grid md:grid-cols-[170px_1fr_1fr] gap-x-8 gap-y-1.5 px-6 md:px-8 py-5 border-b border-stone/20 last:border-b-0',
+            v.moat && 'bg-bordeaux-50/60'
+          ]}>
+            <span class="text-[14px] font-semibold text-ink">{v.thema}</span>
+            <span class="text-[14px] leading-[1.6] text-taupe">
+              <span class="md:hidden text-[10px] tracking-[0.12em] uppercase font-semibold block mb-0.5">App allein</span>
+              {v.app}
+            </span>
+            <span class:list={['text-[14px] leading-[1.6]', v.moat ? 'text-bordeaux-800 font-semibold' : 'text-ink font-medium']}>
+              <span class="md:hidden text-[10px] tracking-[0.12em] uppercase font-semibold text-bordeaux-700 block mb-0.5">Mit Struktur</span>
+              {v.mit}
+            </span>
+          </div>
+        ))}
+      </div>
+      <p class="text-[12px] tracking-[0.08em] uppercase text-taupe text-center mt-4 m-0">
+        Die letzte Zeile ist der Grund, warum eine App niemanden ersetzt
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  /* Verbindungen zeichnen sich beim Einblenden */
+  .konter-path {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    transition: stroke-dashoffset 900ms cubic-bezier(0.16,1,0.3,1);
+    transition-delay: calc(var(--i) * 120ms + 250ms);
+  }
+  :global(.reveal.in) .konter-path { stroke-dashoffset: 0; }
+
+  .konter-pulse { opacity: 0; }
+  :global(.reveal.in) .konter-pulse { opacity: 0.8; transition: opacity 400ms ease 1400ms; }
+
+  /* Chips schweben leicht (3D-Tiefe über translateZ) */
+  .konter-chip {
+    transform: translate(-50%, -50%) translateZ(18px);
+    animation: konter-float 5.5s ease-in-out infinite;
+    animation-delay: var(--float-delay);
+  }
+  .konter-hub {
+    transform: translate(-50%, -50%) translateZ(34px);
+  }
+  @keyframes konter-float {
+    0%, 100% { margin-top: 0; }
+    50% { margin-top: -5px; }
+  }
+
+  /* 3D-Bühne: sanfter Tilt zur Mausposition */
+  .konter-stage { perspective: 900px; }
+  .konter-tilt {
+    transform-style: preserve-3d;
+    transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+    transition: transform 300ms cubic-bezier(0.2, 0, 0, 1);
+    will-change: transform;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .konter-path { stroke-dashoffset: 0 !important; transition: none; }
+    .konter-pulse { display: none; }
+    .konter-chip { animation: none; }
+    .konter-tilt { transform: none !important; }
+  }
+</style>
+
+<script>
+  // Sanfter 3D-Tilt der Visualisierung zur Mausposition
+  const stage = document.querySelector<HTMLElement>('[data-tilt]');
+  const tilt = stage?.querySelector<HTMLElement>('.konter-tilt');
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (stage && tilt && !reduced && matchMedia('(pointer: fine)').matches) {
+    stage.addEventListener('pointermove', (e) => {
+      const r = stage.getBoundingClientRect();
+      const px = (e.clientX - r.left) / r.width - 0.5;
+      const py = (e.clientY - r.top) / r.height - 0.5;
+      tilt.style.setProperty('--ry', `${(px * 10).toFixed(2)}deg`);
+      tilt.style.setProperty('--rx', `${(-py * 10).toFixed(2)}deg`);
+    });
+    stage.addEventListener('pointerleave', () => {
+      tilt.style.setProperty('--rx', '0deg');
+      tilt.style.setProperty('--ry', '0deg');
+    });
+  }
+</script>
