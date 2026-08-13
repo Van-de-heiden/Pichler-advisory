@@ -1,25 +1,44 @@
-# CODING AGENTS: READ THIS FIRST
+# Pichler Advisory
 
-This is a **handoff bundle** from Claude Design (claude.ai/design).
+Production website for Pichler Advisory, built with Next.js-compatible Vinext and deployed as a Cloudflare Worker.
 
-A user mocked up designs in HTML/CSS/JS using an AI design tool, then exported this bundle so a coding agent can implement the designs for real.
+## Local development
 
-## What you should do — IMPORTANT
+Requirements:
 
-**Read the chat transcripts first.** There are 1 chat transcript(s) in `chats/`. The transcripts show the full back-and-forth between the user and the design assistant — they tell you **what the user actually wants** and **where they landed** after iterating. Don't skip them. The final HTML files are the output, but the chat is where the intent lives.
+- Node.js 22 or newer
+- npm
 
-**Find the primary design file under `project/` and read it top to bottom.** The chat transcripts will tell you which file the user was last iterating on. Then **follow its imports**: open every file it pulls in (shared components, CSS, scripts) so you understand how the pieces fit together before you start implementing.
+```bash
+npm ci
+cp .env.example .env.local
+npm run dev
+```
 
-**If anything is ambiguous, ask the user to confirm before you start implementing.** It's much cheaper to clarify scope up front than to build the wrong thing.
+Set both values in `.env.local`:
 
-## About the design files
+- `SITE_ACCESS_CODE`: the human-friendly code shared with visitors
+- `SITE_ACCESS_SECRET`: a separate random value of at least 32 characters used to sign the access cookie
 
-The design medium is **HTML/CSS/JS** — these are prototypes, not production code. Your job is to **recreate them pixel-perfectly** in whatever technology makes sense for the target codebase (React, Vue, native, whatever fits). Match the visual output; don't copy the prototype's internal structure unless it happens to fit.
+Never commit `.env.local` or production secret values.
 
-**Don't render these files in a browser or take screenshots unless the user asks you to.** Everything you need — dimensions, colors, layout rules — is spelled out in the source. Read the HTML and CSS directly; a screenshot won't tell you anything they don't.
+## Validation
 
-## Bundle contents
+```bash
+npm test
+npm run lint
+```
 
-- `README.md` — this file
-- `chats/` — conversation transcripts (read these!)
-- `project/` — the `Pichler Capital Group` project files (HTML prototypes, assets, components)
+## Cloudflare deployment
+
+The repository is prepared for Cloudflare Workers Builds. Connect the `main`
+branch to the Worker named `pichler-advisory`.
+
+- Build command: `npm run build`
+- Deploy command: `npx wrangler deploy`
+- Production branch: `main`
+- Required encrypted secrets: `SITE_ACCESS_CODE`, `SITE_ACCESS_SECRET`
+
+The access code is checked server-side. A successful check creates a signed, HttpOnly session cookie that expires when the browser session ends or after twelve hours, whichever happens first.
+
+The legal pages at `/impressum` and `/datenschutz` remain publicly accessible so visitors can review the provider and privacy information before entering a code.

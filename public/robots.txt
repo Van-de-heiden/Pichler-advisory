@@ -1,6 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /login
-Disallow: /api/
-
-Sitemap: https://pichler-advisory.ch/sitemap-index.xml
