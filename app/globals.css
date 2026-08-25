@@ -59,53 +59,6 @@ svg { width: 1em; height: 1em; fill: none; stroke: currentColor; stroke-width: 2
   .legal-footer-inner { padding-block: 20px; flex-direction: column; justify-content: center; gap: 10px; }
 }
 
-/* Password gate */
-.access-page { position: relative; min-height: 100svh; display: grid; place-items: center; overflow: hidden; isolation: isolate; color: white; }
-.access-background { position: absolute; z-index: -3; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: center; animation: accessDrift 18s ease-out both; }
-.access-shade { position: absolute; z-index: -2; inset: 0; background: linear-gradient(110deg, rgba(10,21,18,.7) 0%, rgba(10,18,16,.48) 45%, rgba(8,14,13,.6) 100%); }
-.access-shade::after { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 50% 49%, rgba(4,12,10,.03) 0%, rgba(4,11,9,.18) 41%, rgba(3,8,7,.38) 100%); }
-.access-panel { width: min(580px, calc(100% - 40px)); padding: 54px 55px 45px; border: 1px solid rgba(255,255,255,.18); border-radius: 5px; background: rgba(18,27,24,.5); box-shadow: 0 28px 90px rgba(0,0,0,.22); backdrop-filter: blur(14px) saturate(.82); text-align: center; animation: accessPanelIn .8s cubic-bezier(.2,.75,.2,1) both; }
-.access-brand { display: inline-flex; align-items: center; gap: 13px; margin-bottom: 35px; font-family: var(--serif); font-size: 18px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; }
-.access-brand img { width: 31px; height: auto; filter: brightness(0) invert(1); opacity: .96; }
-.access-lock { width: 34px; height: 34px; margin: 0 auto 20px; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.35); border-radius: 50%; color: #fff; }
-.access-lock svg { width: 15px; height: 15px; stroke-width: 1.6; }
-.access-eyebrow { margin: 0 0 11px; color: #e5c7cd; font-size: 9px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
-.access-panel h1 { margin: 0; font-family: var(--serif); font-size: clamp(38px, 4.6vw, 56px); font-weight: 500; letter-spacing: -.035em; line-height: 1; }
-.access-copy { max-width: 470px; margin: 19px auto 29px; color: rgba(255,255,255,.78); font-size: 12px; line-height: 1.72; }
-.access-form { width: min(390px, 100%); margin: 0 auto; text-align: left; }
-.access-form label { display: block; margin: 0 0 8px 2px; color: rgba(255,255,255,.72); font-size: 9px; font-weight: 700; letter-spacing: .07em; }
-.access-input-wrap { height: 55px; display: grid; grid-template-columns: 1fr 55px; border-radius: 4px; overflow: hidden; background: white; box-shadow: 0 10px 34px rgba(0,0,0,.17); }
-.access-input-wrap input { min-width: 0; padding: 0 17px; border: 0; background: white; color: var(--ink); font: inherit; font-size: 13px; outline: none; }
-.access-input-wrap input::placeholder { color: #938c89; }
-.access-input-wrap input:focus { box-shadow: inset 0 0 0 2px rgba(105,22,40,.4); }
-.access-input-wrap button { border: 0; background: var(--bordeaux); color: white; cursor: pointer; font-size: 22px; transition: background .2s ease; }
-.access-input-wrap button:hover { background: var(--bordeaux-dark); }
-.access-input-wrap button:disabled, .access-input-wrap input:disabled { cursor: wait; opacity: .8; }
-.access-message { min-height: 17px; margin: 9px 2px 0; color: #ffd8df; font-size: 9px; line-height: 1.45; opacity: 0; }
-.access-message.is-visible { opacity: 1; }
-.access-contact { display: inline-block; margin-top: 13px; color: rgba(255,255,255,.72); font-size: 9px; text-decoration: underline; text-decoration-color: rgba(255,255,255,.28); text-underline-offset: 4px; transition: color .2s ease; }
-.access-contact:hover { color: white; }
-.access-footnote { position: absolute; bottom: 20px; left: 50%; width: calc(100% - 40px); margin: 0; transform: translateX(-50%); color: rgba(255,255,255,.52); font-size: 8px; font-weight: 600; letter-spacing: .13em; text-align: center; text-transform: uppercase; }
-.access-footnote nav { display: inline-flex; align-items: center; gap: 8px; margin-left: 12px; }
-.access-footnote a { border-bottom: 1px solid rgba(255,255,255,.24); transition: color .2s ease, border-color .2s ease; }
-.access-footnote a:hover { color: white; border-color: rgba(255,255,255,.72); }
-.access-spinner { display: block; width: 17px; height: 17px; margin: auto; border: 2px solid rgba(255,255,255,.32); border-top-color: white; border-radius: 50%; animation: accessSpin .7s linear infinite; }
-@keyframes accessDrift { from { transform: scale(1.035); } to { transform: scale(1); } }
-@keyframes accessPanelIn { from { opacity: 0; transform: translateY(14px); } }
-@keyframes accessSpin { to { transform: rotate(360deg); } }
-
-@media (max-width: 620px) {
-  .access-panel { padding: 38px 23px 33px; background: rgba(16,25,22,.59); }
-  .access-brand { margin-bottom: 29px; font-size: 15px; }
-  .access-copy { font-size: 11px; }
-  .access-footnote { bottom: 13px; line-height: 1.8; }
-  .access-footnote nav { display: flex; justify-content: center; margin: 1px 0 0; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .access-background, .access-panel { animation: none; }
-}
-
 .shell { width: min(1180px, calc(100% - 48px)); margin-inline: auto; }
 .section { padding: 118px 0; }
 .section-soft { background: var(--ivory); border-block: 1px solid rgba(216,208,198,.55); }

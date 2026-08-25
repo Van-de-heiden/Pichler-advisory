@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-test("renders the production access gate and public legal pages", async () => {
+test("renders the public production homepage and legal pages", async () => {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
   workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}`);
   const { default: worker } = await import(workerUrl.href);
@@ -26,9 +26,11 @@ test("renders the production access gate and public legal pages", async () => {
     response.headers.get("content-type") ?? "",
     /^text\/html\b/i,
   );
-  const accessHtml = await response.text();
-  assert.match(accessHtml, /Geschützter Zugang/i);
-  assert.doesNotMatch(accessHtml, /codex-preview|prototype|prototyp/i);
+  const homeHtml = await response.text();
+  assert.match(homeHtml, /Weniger Arbeit drumherum/i);
+  assert.match(homeHtml, /Erstgespräch anfragen/i);
+  assert.doesNotMatch(homeHtml, /Geschützter Zugang|Zugangscode/i);
+  assert.doesNotMatch(homeHtml, /codex-preview|prototype|prototyp/i);
 
   const legalResponse = await worker.fetch(
     new Request("http://localhost/impressum", {

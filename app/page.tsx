@@ -1,11 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 
 import { ContactForm, LeakCalculator, MethodExplorer, MotionLayer, ProcessRunner } from "./experience";
-import { cookies } from "next/headers";
-import { AccessGate } from "./access-gate";
-import { accessCookie, hasValidAccessToken } from "./access-control";
-
-export const dynamic = "force-dynamic";
 
 const Arrow = () => (
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
@@ -67,11 +62,7 @@ const faqs = [
 
 const manifesto = "Ein guter Prozess fällt nicht auf. Die Arbeit fliesst. Informationen werden einmal erfasst. Und der nächste Schritt beginnt, ohne dass der Inhaber nachfassen muss.";
 
-export default async function Home() {
-  const cookieStore = await cookies();
-  const token = cookieStore.get(accessCookie.name)?.value;
-  if (!(await hasValidAccessToken(token))) return <AccessGate />;
-
+export default function Home() {
   return (
     <>
       <MotionLayer />
