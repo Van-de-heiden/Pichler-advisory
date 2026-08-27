@@ -10,6 +10,13 @@ const Check = () => (
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6" /></svg>
 );
 
+const Lock = () => (
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <rect x="3" y="11" width="18" height="10" rx="2" />
+    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+  </svg>
+);
+
 const signals = [
   ["Büroarbeit nach Feierabend", "Offerten, Rechnungen und Nachbearbeitung beginnen erst, wenn draussen längst Ruhe ist."],
   ["Offerten gehen zu spät raus", "Fehlende Angaben, Preise oder Freigaben bremsen – während der Kunde auf eine Antwort wartet."],
@@ -328,7 +335,19 @@ export default function Home() {
         </div>
         <div className="shell footer-base">
           <span>© 2026 Pichler Advisory</span>
-          <span className="footer-legal"><a href="/impressum">Impressum</a><a href="/datenschutz">Datenschutz</a></span>
+          <span className="footer-legal">
+            <a href="/impressum">Impressum</a>
+            <a href="/datenschutz">Datenschutz</a>
+            <a
+              className="footer-intern"
+              href="https://pichler-advisory-os.maurus-pichler.chatgpt.site"
+              aria-label="Interner Bereich"
+              title="Interner Bereich"
+            >
+              <Lock />
+              Intern
+            </a>
+          </span>
         </div>
       </footer>
     </>

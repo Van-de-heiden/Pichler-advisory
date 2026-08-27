@@ -29,6 +29,8 @@ test("renders the public production homepage and legal pages", async () => {
   const homeHtml = await response.text();
   assert.match(homeHtml, /Weniger Arbeit drumherum/i);
   assert.match(homeHtml, /Erstgespräch anfragen/i);
+  assert.match(homeHtml, /pichler-advisory-os\.maurus-pichler\.chatgpt\.site/i);
+  assert.match(homeHtml, /Interner Bereich/i);
   assert.doesNotMatch(homeHtml, /Geschützter Zugang|Zugangscode/i);
   assert.doesNotMatch(homeHtml, /codex-preview|prototype|prototyp/i);
 

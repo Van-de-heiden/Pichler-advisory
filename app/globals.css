@@ -308,6 +308,9 @@ footer { padding: 53px 0 24px; background: #171416; color: #ada4a7; }
 .footer-legal { display: flex; gap: 17px; }
 .footer-legal a { color: #a09a9c; transition: color .2s ease; }
 .footer-legal a:hover { color: white; }
+.footer-intern { display: inline-flex; align-items: center; gap: 5px; opacity: .58; }
+.footer-intern:hover, .footer-intern:focus-visible { opacity: 1; }
+.footer-intern svg { width: 10px; height: 10px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 
 /* Progressive motion */
 .motion-ready [data-reveal] { opacity: 0; transform: translateY(26px); transition: opacity .75s cubic-bezier(.2,.75,.2,1) var(--reveal-delay, 0ms), transform .75s cubic-bezier(.2,.75,.2,1) var(--reveal-delay, 0ms); }
