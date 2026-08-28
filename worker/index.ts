@@ -19,6 +19,18 @@ interface ExecutionContext {
   passThroughOnException(): void;
 }
 
+const PUBLIC_URLS = [
+  "https://pichler-advisory.ch/",
+  "https://pichler-advisory.ch/impressum",
+  "https://pichler-advisory.ch/datenschutz",
+] as const;
+
+const SITEMAP_XML = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${PUBLIC_URLS.map((url) => `  <url>\n    <loc>${url}</loc>\n  </url>`).join("\n")}
+</urlset>
+`;
+
 // Image security config. SVG sources with .svg extension auto-skip the
 // optimization endpoint on the client side (served directly, no proxy).
 // To route SVGs through the optimizer (with security headers), set
@@ -28,6 +40,19 @@ interface ExecutionContext {
 const worker = {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url);
+
+    if (
+      url.pathname === "/sitemap.xml" &&
+      (request.method === "GET" || request.method === "HEAD")
+    ) {
+      return new Response(request.method === "HEAD" ? null : SITEMAP_XML, {
+        headers: {
+          "cache-control": "public, max-age=3600",
+          "content-type": "application/xml; charset=utf-8",
+          "x-content-type-options": "nosniff",
+        },
+      });
+    }
 
     if (url.pathname === "/_vinext/image") {
       const allowedWidths = [...DEFAULT_DEVICE_SIZES, ...DEFAULT_IMAGE_SIZES];
