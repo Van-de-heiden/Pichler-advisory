@@ -26,6 +26,32 @@ img { display: block; max-width: 100%; }
 svg { width: 1em; height: 1em; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 ::selection { background: rgba(105,22,40,.14); }
 
+/* Brand reveal — isolated from the existing page and removed after opening. */
+.brand-intro { position: fixed; z-index: 1000; inset: 0; display: grid; place-items: center; overflow: hidden; color: var(--ivory); }
+.brand-intro-curtain { position: absolute; top: 0; bottom: 0; width: calc(50% + 1px); background-image: linear-gradient(145deg, #70172b 0%, var(--bordeaux) 45%, var(--bordeaux-dark) 100%); background-size: 100vw 100vh; background-repeat: no-repeat; will-change: transform; transition: transform .92s cubic-bezier(.76, 0, .24, 1); }
+.brand-intro-curtain-left { left: 0; background-position: left top; }
+.brand-intro-curtain-right { right: 0; background-position: right top; }
+.brand-intro-curtain i { position: absolute; top: 0; bottom: 0; width: 1px; opacity: 0; background: linear-gradient(180deg, transparent 4%, rgba(248,245,239,.25) 22%, #f2d9df 50%, rgba(248,245,239,.25) 78%, transparent 96%); box-shadow: 0 0 16px rgba(255,230,235,.32); transition: opacity .16s ease; }
+.brand-intro-curtain-left i { right: 0; }
+.brand-intro-curtain-right i { left: 0; }
+.brand-intro-phase-open .brand-intro-curtain-left { transform: translateX(-100%); }
+.brand-intro-phase-open .brand-intro-curtain-right { transform: translateX(100%); }
+.brand-intro-phase-open .brand-intro-curtain i { opacity: 1; }
+.brand-intro-mark { position: relative; z-index: 2; width: min(285px, 48vw); aspect-ratio: 435 / 508; opacity: 0; transform: translateY(-22px) scale(.965); transition: opacity .35s ease, transform .65s cubic-bezier(.22, 1, .36, 1); }
+.brand-intro-show-crest { opacity: 1; transform: translateY(-22px) scale(1); }
+.brand-intro-crest { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; fill: none; stroke: rgba(248,245,239,.86); stroke-width: 1.65; stroke-linecap: round; stroke-linejoin: round; }
+.brand-intro-crest path { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset .72s cubic-bezier(.65, 0, .35, 1); }
+.brand-intro-crest path + path { transition-delay: .11s; }
+.brand-intro-show-crest .brand-intro-crest path { stroke-dashoffset: 0; }
+.brand-intro-monogram-window { position: absolute; inset: 0; overflow: hidden; clip-path: inset(20.67% 25.98% 24.21% 25.75%); }
+.brand-intro-monogram { position: absolute; inset: 0; background: var(--ivory); opacity: 0; clip-path: inset(0 100% 0 0); mask: url('/shield.png') center / contain no-repeat; -webkit-mask: url('/shield.png') center / contain no-repeat; transition: clip-path .58s cubic-bezier(.22, 1, .36, 1), opacity .22s ease; }
+.brand-intro-show-monogram .brand-intro-monogram { opacity: .98; clip-path: inset(0 0 0 0); }
+.brand-intro-phase-open .brand-intro-mark { opacity: 0; transform: translateY(-22px) scale(1.025); transition: opacity .3s ease, transform .45s ease; }
+.brand-intro-caption { position: absolute; z-index: 2; top: calc(50% + min(285px, 48vw) * .55 - 22px); margin: 20px 0 0; font-family: Georgia, "Times New Roman", serif; font-size: 14px; letter-spacing: .26em; text-transform: uppercase; opacity: 0; transform: translateY(5px); transition: opacity .38s ease, transform .5s ease; }
+.brand-intro-phase-monogram .brand-intro-caption,
+.brand-intro-phase-settle .brand-intro-caption { opacity: 1; transform: translateY(0); }
+.brand-intro-phase-open .brand-intro-caption { opacity: 0; }
+
 /* Legal pages */
 .legal-page { min-height: 100svh; display: flex; flex-direction: column; background: var(--ivory); }
 .legal-header { border-bottom: 1px solid rgba(105,22,40,.11); background: rgba(248,245,239,.92); }

@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 
-import { ContactForm, LeakCalculator, MethodExplorer, MotionLayer, ProcessRunner } from "./experience";
+import { BrandReveal, ContactForm, LeakCalculator, MethodExplorer, MotionLayer, ProcessRunner } from "./experience";
 
 const Arrow = () => (
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
@@ -72,6 +72,7 @@ const manifesto = "Ein guter Prozess fällt nicht auf. Die Arbeit fliesst. Infor
 export default function Home() {
   return (
     <>
+      <BrandReveal />
       <MotionLayer />
       <header className="site-header" data-site-header>
         <div className="shell nav-wrap">
