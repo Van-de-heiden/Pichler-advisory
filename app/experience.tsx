@@ -3,6 +3,10 @@
 import { useEffect, useRef, useState } from "react";
 import type { CSSProperties, FormEvent } from "react";
 
+type BrandRevealPhase = "intro" | "crest" | "monogram" | "settle" | "open" | "done";
+
+const brandRevealOrder: BrandRevealPhase[] = ["intro", "crest", "monogram", "settle", "open", "done"];
+
 const processSteps = [
   { title: "Eingang", text: "Die Anfrage wird einmal erfasst – vollständig und am richtigen Ort.", benefit: "Kein Abtippen aus E-Mail oder Notiz" },
   { title: "Prüfung", text: "Pflichtangaben werden geprüft, bevor der Vorgang weiterläuft.", benefit: "Fehlende Angaben werden sofort sichtbar" },
@@ -20,6 +24,56 @@ const methodSteps = [
 
 function prefersReducedMotion() {
   return typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
+export function BrandReveal() {
+  const [phase, setPhase] = useState<BrandRevealPhase>("intro");
+
+  useEffect(() => {
+    const previousOverflow = document.body.style.overflow;
+    const timers: ReturnType<typeof setTimeout>[] = [];
+
+    if (prefersReducedMotion()) {
+      const frame = requestAnimationFrame(() => setPhase("done"));
+      return () => cancelAnimationFrame(frame);
+    }
+
+    document.body.style.overflow = "hidden";
+    timers.push(
+      setTimeout(() => setPhase("crest"), 160),
+      setTimeout(() => setPhase("monogram"), 610),
+      setTimeout(() => setPhase("settle"), 1080),
+      setTimeout(() => setPhase("open"), 1370),
+      setTimeout(() => {
+        setPhase("done");
+        document.body.style.overflow = previousOverflow;
+      }, 2280),
+    );
+
+    return () => {
+      timers.forEach(clearTimeout);
+      document.body.style.overflow = previousOverflow;
+    };
+  }, []);
+
+  if (phase === "done") return null;
+
+  const isAtLeast = (target: BrandRevealPhase) => brandRevealOrder.indexOf(phase) >= brandRevealOrder.indexOf(target);
+
+  return (
+    <div className={`brand-intro brand-intro-phase-${phase}`} aria-hidden="true">
+      <div className="brand-intro-curtain brand-intro-curtain-left"><i /></div>
+      <div className="brand-intro-curtain brand-intro-curtain-right"><i /></div>
+      <div className={`brand-intro-mark ${isAtLeast("crest") ? "brand-intro-show-crest" : ""} ${isAtLeast("monogram") ? "brand-intro-show-monogram" : ""}`}>
+        <svg className="brand-intro-crest" viewBox="0 0 435 508" role="presentation">
+          <path pathLength="1" d="M43 72 C118 69 167 51 217 21 C268 54 317 68 390 72 L390 286 C390 371 338 427 217 484 C95 427 43 371 43 286 Z" />
+          <path pathLength="1" d="M57 84 C125 80 171 63 217 38 C262 65 310 80 376 84 L376 283 C376 360 329 411 217 466 C104 411 57 360 57 283 Z" />
+        </svg>
+        <span className="brand-intro-monogram-window"><span className="brand-intro-monogram" /></span>
+      </div>
+      <p className="brand-intro-caption">Pichler Advisory</p>
+    </div>
+  );
 }
 
 const swissNumber = (value: number) => Math.round(value).toString().replace(/\B(?=(\d{3})+(?!\d))/g, "’");
