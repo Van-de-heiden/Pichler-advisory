@@ -340,7 +340,7 @@ export default function Home() {
             <a href="/datenschutz">Datenschutz</a>
             <a
               className="footer-intern"
-              href="https://pichler-advisory-os.maurus-pichler.chatgpt.site"
+              href="https://os.pichler-advisory.ch"
               aria-label="Interner Bereich"
               title="Interner Bereich"
             >
