@@ -26,7 +26,7 @@ img { display: block; max-width: 100%; }
 svg { width: 1em; height: 1em; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 ::selection { background: rgba(105,22,40,.14); }
 
-/* Brand reveal — isolated from the existing page and removed after opening. */
+/* Brand reveal — isolated from the existing page and removed after opening. Deployment revision: 2026-09-03. */
 .brand-intro { position: fixed; z-index: 1000; inset: 0; display: grid; place-items: center; overflow: hidden; color: var(--ivory); }
 .brand-intro-curtain { position: absolute; top: 0; bottom: 0; width: calc(50% + 1px); background-image: linear-gradient(145deg, #70172b 0%, var(--bordeaux) 45%, var(--bordeaux-dark) 100%); background-size: 100vw 100vh; background-repeat: no-repeat; will-change: transform; transition: transform .92s cubic-bezier(.76, 0, .24, 1); }
 .brand-intro-curtain-left { left: 0; background-position: left top; }
