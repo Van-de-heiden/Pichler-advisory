@@ -1,0 +1,48 @@
+{
+  "recommended_asset": "mac-draco.glb",
+  "source": "https://github.com/pmndrs/examples/tree/main/examples/floating-laptop",
+  "download": "https://raw.githubusercontent.com/pmndrs/examples/6ea1379e3163aa413970fea2e6b7b3e59b63d2c4/examples/floating-laptop/src/mac-draco.glb",
+  "license_evidence": "Repository-level MIT license; retained as pmndrs-LICENSE.txt. No separate author/license notice exists in downloaded GLB asset metadata. Do not describe as CC0.",
+  "license_url": "https://github.com/pmndrs/examples/blob/main/LICENSE",
+  "screen_source": "https://github.com/pmndrs/examples/blob/main/examples/mixing-html-and-webgl-w-occlusion/src/App.tsx",
+  "screen_css_source": "https://github.com/pmndrs/examples/blob/main/examples/mixing-html-and-webgl-w-occlusion/src/styles.css",
+  "screen_mesh": "Cube008_2 / screen.001",
+  "screen_dimensions_local": [
+    8.308799799558996,
+    5.381052871651922
+  ],
+  "html_overlay": {
+    "position": [
+      0,
+      0.05,
+      -0.09
+    ],
+    "rotation_x": "-Math.PI / 2",
+    "content_css_px": [
+      334,
+      216
+    ],
+    "wrapper_css_px": [
+      668,
+      432
+    ],
+    "wrapper_transform": "scale(0.5); transform-origin: top left"
+  },
+  "fallback": {
+    "file": "macbook-pro-16-front.png",
+    "source": "https://www.webmobilefirst.com/en/mockups/apple-macbook-pro-16-2021/",
+    "download": "https://www.webmobilefirst.com/img/mockups/mockup-apple-macbook-pro-16-2021-transparent.png",
+    "dimensions": [
+      800,
+      489
+    ],
+    "terms": "Personal/commercial use permitted, modification/cropping permitted, no attribution required; no standalone resale/redistribution.",
+    "screen_inner_rectangle_px": {
+      "x": 75,
+      "width": 650,
+      "y": 19,
+      "height": 420,
+      "note": "Measured transparent core at alpha below 10. Place HTML slightly wider underneath frame edges."
+    }
+  }
+}

@@ -1,0 +1,25 @@
+/* Original Brand Reveal animation, timings and drawing preserved. */
+.reveal { --ivory: #f8f5ef; --bordeaux: #691628; --bordeaux-dark: #51101e; --serif: Georgia, "Times New Roman", serif; }
+.reveal { position: fixed; z-index: 100; inset: 0; display: grid; place-items: center; overflow: hidden; color: var(--ivory); }
+.curtain { position: absolute; top: 0; bottom: 0; width: calc(50% + 1px); background-image: linear-gradient(145deg, #70172b 0%, var(--bordeaux) 45%, var(--bordeaux-dark) 100%); background-size: 100vw 100vh; background-repeat: no-repeat; will-change: transform; transition: transform .92s cubic-bezier(.76, 0, .24, 1); }
+.curtain-left { left: 0; background-position: left top; }
+.curtain-right { right: 0; background-position: right top; }
+.curtain i { position: absolute; top: 0; bottom: 0; width: 1px; opacity: 0; background: linear-gradient(180deg, transparent 4%, rgba(248, 245, 239, .25) 22%, #f2d9df 50%, rgba(248, 245, 239, .25) 78%, transparent 96%); box-shadow: 0 0 16px rgba(255, 230, 235, .32); transition: opacity .16s ease; }
+.curtain-left i { right: 0; }
+.curtain-right i { left: 0; }
+.reveal-open .curtain-left { transform: translateX(-100%); }
+.reveal-open .curtain-right { transform: translateX(100%); }
+.reveal-open .curtain i { opacity: 1; }
+.reveal-mark { position: relative; z-index: 2; width: min(285px, 48vw); aspect-ratio: 435 / 508; opacity: 0; transform: translateY(-22px) scale(.965); transition: opacity .35s ease, transform .65s cubic-bezier(.22, 1, .36, 1); }
+.show-crest { opacity: 1; transform: translateY(-22px) scale(1); }
+.crest-lines { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; fill: none; stroke: rgba(248, 245, 239, .86); stroke-width: 1.65; }
+.crest-lines path { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset .72s cubic-bezier(.65, 0, .35, 1); }
+.crest-lines path + path { transition-delay: .11s; }
+.show-crest .crest-lines path { stroke-dashoffset: 0; }
+.monogram { position: absolute; inset: 0; background: var(--ivory); opacity: 0; clip-path: inset(0 100% 0 0); mask: url('/brand-monogram.png') center / contain no-repeat; -webkit-mask: url('/brand-monogram.png') center / contain no-repeat; transition: clip-path .58s cubic-bezier(.22, 1, .36, 1), opacity .22s ease; }
+.show-monogram .monogram { opacity: .98; clip-path: inset(0 0 0 0); }
+.reveal-open .reveal-mark { opacity: 0; transform: translateY(-22px) scale(1.025); transition: opacity .3s ease, transform .45s ease; }
+.reveal-caption { position: absolute; z-index: 2; top: calc(50% + min(285px, 48vw) * .55 - 22px); margin: 20px 0 0; font-family: var(--serif); font-size: 14px; letter-spacing: .26em; text-transform: uppercase; opacity: 0; transform: translateY(5px); transition: opacity .38s ease, transform .5s ease; }
+.reveal-monogram .reveal-caption,
+.reveal-settle .reveal-caption { opacity: 1; transform: translateY(0); }
+.reveal-open .reveal-caption { opacity: 0; }

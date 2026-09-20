@@ -21,6 +21,18 @@ interface ExecutionContext {
 
 const PUBLIC_URLS = [
   "https://pichler-advisory.ch/",
+  "https://pichler-advisory.ch/leistungen/prozesse-automatisierung",
+  "https://pichler-advisory.ch/leistungen/apps-it-projekte",
+  "https://pichler-advisory.ch/leistungen/websites",
+  "https://pichler-advisory.ch/leistungen/betrieb-betreuung",
+  "https://pichler-advisory.ch/branchen/handwerk-bau",
+  "https://pichler-advisory.ch/branchen/handel-logistik",
+  "https://pichler-advisory.ch/branchen/dienstleistungen",
+  "https://pichler-advisory.ch/branchen/immobilien-bewirtschaftung",
+  "https://pichler-advisory.ch/branchen/produktion-gewerbe",
+  "https://pichler-advisory.ch/branchen/weitere-betriebe",
+  "https://pichler-advisory.ch/ueber-mich",
+  "https://pichler-advisory.ch/agb",
   "https://pichler-advisory.ch/impressum",
   "https://pichler-advisory.ch/datenschutz",
 ] as const;
@@ -40,6 +52,19 @@ ${PUBLIC_URLS.map((url) => `  <url>\n    <loc>${url}</loc>\n  </url>`).join("\n"
 const worker = {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url);
+
+    if (
+      url.pathname === "/robots.txt" &&
+      (request.method === "GET" || request.method === "HEAD")
+    ) {
+      return new Response(request.method === "HEAD" ? null : "User-agent: *\nAllow: /\nSitemap: https://pichler-advisory.ch/sitemap.xml\n", {
+        headers: {
+          "cache-control": "public, max-age=3600",
+          "content-type": "text/plain; charset=utf-8",
+          "x-content-type-options": "nosniff",
+        },
+      });
+    }
 
     if (
       url.pathname === "/sitemap.xml" &&

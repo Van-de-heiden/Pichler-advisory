@@ -1,40 +1,13 @@
-/* eslint-disable @next/next/no-img-element */
+import type { ReactNode } from 'react';
+import { SiteHeader, SiteFooter } from './new-site';
 
-import type { ReactNode } from "react";
-import Link from "next/link";
+const legalPages = [{href:'/agb',label:'AGB'},{href:'/datenschutz',label:'Datenschutz'},{href:'/impressum',label:'Impressum'}];
 
-type LegalShellProps = {
-  eyebrow: string;
-  title: string;
-  children: ReactNode;
-};
-
-export function LegalShell({ eyebrow, title, children }: LegalShellProps) {
-  return (
-    <div className="legal-page">
-      <header className="legal-header">
-        <div className="shell legal-nav">
-          <Link className="brand" href="/" aria-label="Pichler Advisory – Startseite">
-            <img src="/shield.png" alt="" width="32" height="39" />
-            <span className="brand-name">Pichler Advisory</span>
-          </Link>
-          <Link className="text-link" href="/">Zur Website <span aria-hidden="true">→</span></Link>
-        </div>
-      </header>
-      <main className="shell legal-main">
-        <p className="eyebrow">{eyebrow}</p>
-        <h1>{title}</h1>
-        <div className="legal-content">{children}</div>
-      </main>
-      <footer className="legal-footer">
-        <div className="shell legal-footer-inner">
-          <span>© 2026 Pichler Advisory</span>
-          <nav aria-label="Rechtliches">
-            <Link href="/impressum">Impressum</Link>
-            <Link href="/datenschutz">Datenschutz</Link>
-          </nav>
-        </div>
-      </footer>
-    </div>
-  );
+export function LegalShell({eyebrow,title,current,children}:{eyebrow:string;title:string;current:string;children:ReactNode}) {
+  return <><SiteHeader/><main id="inhalt" className="legal-main wrap">
+    <p className="overline">{eyebrow}</p><h1>{title}</h1>
+    <p className="legal-date">Stand: <time dateTime="2026-09-20">20. September 2026</time></p>
+    <nav className="legal-navigation" aria-label="Rechtliche Seiten">{legalPages.map(page=><a key={page.href} href={page.href} aria-current={current===page.href?'page':undefined}>{page.label}</a>)}</nav>
+    <div className="legal-content">{children}</div>
+  </main><SiteFooter/></>;
 }
