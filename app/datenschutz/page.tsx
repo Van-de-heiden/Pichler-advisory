@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { LegalShell } from '../legal-shell';
 import { LegalContact } from '../legal-company';
+import { company } from '../company';
 
 export const metadata: Metadata = {
   title: 'Datenschutz – Pichler Advisory',
@@ -12,6 +13,7 @@ export default function DatenschutzPage() {
     <section>
       <h2>1. Verantwortlich für die Datenbearbeitung</h2>
       <LegalContact />
+      <p>Verantwortlich ist {company.owner} als Inhaber des eingetragenen Einzelunternehmens {company.name} mit Sitz in {company.registeredOffice}.</p>
       <p>Diese Erklärung beschreibt die Bearbeitung von Personendaten beim Besuch dieser Website und bei der Kontaktaufnahme mit Pichler Advisory. Massgebend ist insbesondere das Schweizer Datenschutzgesetz (DSG). Für die Bearbeitung von Kundendaten im Rahmen eines Projekts werden die jeweiligen Aufgaben und Datenschutzpflichten zusätzlich vertraglich geregelt.</p>
     </section>
     <section>

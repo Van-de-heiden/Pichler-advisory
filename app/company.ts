@@ -1,0 +1,21 @@
+// Registered business details supplied by the owner from Zefix, 30 September 2026.
+export const company = {
+  name: 'Pichler Advisory',
+  legalForm: 'Einzelunternehmen',
+  owner: 'Maurus Nic Ramon Pichler',
+  contactName: 'Maurus Pichler',
+  street: 'Häberlibodenstrasse 17',
+  postalCode: '8725',
+  locality: 'Ernetschwil',
+  registeredOffice: 'Gommiswald',
+  canton: 'St. Gallen',
+  country: 'Schweiz',
+  uid: 'CHE-441.807.781',
+  commercialRegisterId: 'CH-320-1106943-8',
+  ehraId: '1769822',
+  status: 'aktiv',
+  email: 'info@pichler-advisory.ch',
+  phone: '+41 77 538 30 64',
+  phoneHref: 'tel:+41775383064',
+  url: 'https://pichler-advisory.ch',
+} as const;

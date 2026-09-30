@@ -10,7 +10,7 @@ export const metadata = {
 export default function AboutPage() {
   return <><PageMotion /><SiteHeader /><main id="inhalt">
     <section className="about-hero wrap">
-      <div><p className="overline">Maurus Pichler · Gründer</p><h1>Ihr Betrieb<br />hat mehr drauf.<br /><span>Machen wir etwas daraus.</span></h1><p>Sie holen mich dazu, wenn Sie weiterkommen wollen. Ich finde heraus, was Sie ausbremst, und setze die Verbesserung mit Ihnen um.</p><a href="/#anfrage" className="button">Vorhaben besprechen <Arrow /></a></div>
+      <div><p className="overline">Maurus Pichler · Gründer & Inhaber</p><h1>Ihr Betrieb<br />hat mehr drauf.<br /><span>Machen wir etwas daraus.</span></h1><p>Sie holen mich dazu, wenn Sie weiterkommen wollen. Ich finde heraus, was Sie ausbremst, und setze die Verbesserung mit Ihnen um.</p><a href="/#anfrage" className="button">Vorhaben besprechen <Arrow /></a></div>
       <figure><img src="/maurus-portrait.jpg" width="1200" height="1600" alt="Maurus Pichler" /><figcaption>Maurus Pichler · Beratung und Umsetzung</figcaption></figure>
     </section>
     <section className="about-position wrap">

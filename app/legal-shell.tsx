@@ -6,7 +6,7 @@ const legalPages = [{href:'/agb',label:'AGB'},{href:'/datenschutz',label:'Datens
 export function LegalShell({eyebrow,title,current,children}:{eyebrow:string;title:string;current:string;children:ReactNode}) {
   return <><SiteHeader/><main id="inhalt" className="legal-main wrap">
     <p className="overline">{eyebrow}</p><h1>{title}</h1>
-    <p className="legal-date">Stand: <time dateTime="2026-09-20">20. September 2026</time></p>
+    <p className="legal-date">Stand: <time dateTime="2026-09-30">30. September 2026</time></p>
     <nav className="legal-navigation" aria-label="Rechtliche Seiten">{legalPages.map(page=><a key={page.href} href={page.href} aria-current={current===page.href?'page':undefined}>{page.label}</a>)}</nav>
     <div className="legal-content">{children}</div>
   </main><SiteFooter/></>;

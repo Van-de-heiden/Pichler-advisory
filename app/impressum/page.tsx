@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { LegalShell } from "../legal-shell";
 import { LegalContact } from "../legal-company";
+import { company } from "../company";
 
 export const metadata: Metadata = {
   title: "Impressum – Pichler Advisory",
@@ -16,8 +17,23 @@ export default function ImpressumPage() {
       </section>
 
       <section>
+        <h2>Unternehmens- und Registerangaben</h2>
+        <dl className="company-details">
+          <div><dt>Eingetragene Firma</dt><dd>{company.name}</dd></div>
+          <div><dt>Rechtsform</dt><dd>{company.legalForm}</dd></div>
+          <div><dt>Inhaber</dt><dd>{company.owner}</dd></div>
+          <div><dt>Sitz</dt><dd>{company.registeredOffice}, Kanton {company.canton}</dd></div>
+          <div><dt>Handelsregister</dt><dd>Kanton {company.canton}</dd></div>
+          <div><dt>Status</dt><dd>Im Handelsregister eingetragen · {company.status}</dd></div>
+          <div><dt>UID</dt><dd>{company.uid}</dd></div>
+          <div><dt>CH-ID</dt><dd>{company.commercialRegisterId}</dd></div>
+          <div><dt>EHRA-ID</dt><dd>{company.ehraId}</dd></div>
+        </dl>
+      </section>
+
+      <section>
         <h2>Tätigkeit</h2>
-        <p>Pichler Advisory ist ein Einzelunternehmen von Maurus Nic Ramon Pichler. Das Angebot umfasst Beratung und Prozessoptimierung, Automatisierung, Apps und IT-Projekte sowie die Erstellung, den Betrieb und die Betreuung von Websites und Anwendungen.</p>
+        <p>{company.name} ist das im Handelsregister des Kantons {company.canton} eingetragene Einzelunternehmen von {company.owner} mit Sitz in {company.registeredOffice}. Das Angebot umfasst Beratung und Prozessoptimierung, Automatisierung, Apps und IT-Projekte sowie die Erstellung, den Betrieb und die Betreuung von Websites und Anwendungen.</p>
       </section>
 
       <section>
