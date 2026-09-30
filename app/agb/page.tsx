@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { LegalShell } from '../legal-shell';
 import { LegalContact } from '../legal-company';
+import { company } from '../company';
 
 export const metadata: Metadata = {
   title: 'AGB – Pichler Advisory',
@@ -12,6 +13,7 @@ export default function AgbPage() {
     <section>
       <h2>1. Anbieter und Geltungsbereich</h2>
       <LegalContact />
+      <p>Vertragspartner ist {company.owner}, handelnd unter der im Handelsregister des Kantons {company.canton} eingetragenen Firma {company.name} ({company.legalForm}, UID {company.uid}), nachfolgend «Pichler Advisory».</p>
       <p>Diese Allgemeinen Geschäftsbedingungen (AGB) regeln Aufträge von Geschäftskunden an Pichler Advisory für Beratung, Prozessoptimierung, Automatisierung, Apps und IT-Projekte sowie Websites, Hosting, Wartung und Betreuung. Sie gelten, wenn sie vor Vertragsabschluss zur Verfügung gestellt und in die Vereinbarung einbezogen wurden.</p>
       <p>Individuelle Vereinbarungen im Angebot oder Projektvertrag gehen diesen AGB vor. Zwingende gesetzliche Vorschriften bleiben vorbehalten. Die blosse Nutzung dieser Website und eine unverbindliche Anfrage begründen noch keinen kostenpflichtigen Auftrag.</p>
     </section>

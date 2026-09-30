@@ -8,7 +8,34 @@ import "@fontsource/newsreader/500-italic.css";
 import "./globals.css";
 import "./refinement.css";
 import { BRAND_REVEAL_BOOTSTRAP } from "./brand-reveal-session";
+import { company } from "./company";
 
+const organization = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  '@id': `${company.url}/#organization`,
+  name: company.name,
+  legalName: company.name,
+  url: company.url,
+  logo: `${company.url}/shield.png`,
+  description: 'Eingetragenes Einzelunternehmen für Beratung, Prozessoptimierung, Automatisierung, Apps, IT-Projekte und Websites.',
+  email: company.email,
+  telephone: company.phone,
+  identifier: [
+    { '@type': 'PropertyValue', propertyID: 'UID', value: company.uid },
+    { '@type': 'PropertyValue', propertyID: 'CH-ID', value: company.commercialRegisterId },
+    { '@type': 'PropertyValue', propertyID: 'EHRA-ID', value: company.ehraId },
+  ],
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: company.street,
+    postalCode: company.postalCode,
+    addressLocality: company.locality,
+    addressRegion: company.canton,
+    addressCountry: 'CH',
+  },
+  founder: { '@type': 'Person', name: company.owner },
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://pichler-advisory.ch"),
@@ -24,6 +51,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="de" suppressHydrationWarning>
       <head>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organization).replace(/</g, '\\u003c') }} />
         <script dangerouslySetInnerHTML={{ __html: BRAND_REVEAL_BOOTSTRAP }} />
         <noscript><style>{".reveal { display: none; }"}</style></noscript>
       </head>

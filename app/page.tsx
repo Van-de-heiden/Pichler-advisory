@@ -21,7 +21,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ l
         <div className="hero-personal wrap" aria-labelledby="personal-title">
           <a className="personal-identity" href="/ueber-mich" aria-label="Mehr über Maurus Pichler">
             <span className="personal-portrait"><img src="/maurus-portrait.jpg" width="1200" height="1600" alt="Maurus Pichler" loading="lazy" /></span>
-            <span className="personal-name"><strong>Maurus Pichler</strong><span>Gründer · Ihr Ansprechpartner</span><span className="personal-more">Lernen Sie mich kennen <Arrow /></span></span>
+            <span className="personal-name"><strong>Maurus Pichler</strong><span>Inhaber · Ihr Ansprechpartner</span><span className="personal-more">Lernen Sie mich kennen <Arrow /></span></span>
           </a>
           <div className="personal-promise">
             <h2 id="personal-title">Ihr Betrieb ist Chefsache.<br /><span>Auch bei mir.</span></h2>
@@ -39,7 +39,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ l
       <SavingsExample />
       <section className="founder-section wrap" id="maurus">
         <div className="founder-image founder-image-onsite" data-enter><img src="/hero-consultation-authentic.jpeg" width="1086" height="1448" alt="Maurus Pichler bei der Arbeit vor Ort am Besprechungstisch" loading="lazy" /></div>
-        <div className="founder-text" data-enter><p className="overline">Maurus Pichler · Gründer</p><h2>Sie wollen weiterkommen.<br />Dafür bin ich da.</h2><p>Mein beruflicher Hintergrund liegt am Schweizer Finanzplatz. Hohe Ansprüche an Tempo, Präzision und verlässliche Abläufe prägen meine Arbeit.</p><p>Mit Pichler Advisory bringe ich diesen Anspruch in Ihren Betrieb. Ich hinterfrage, was Sie ausbremst, entwickle die Lösung und setze sie mit Ihnen um.</p><a href="/ueber-mich" className="text-link">Was mich antreibt <Arrow /></a></div>
+        <div className="founder-text" data-enter><p className="overline">Maurus Pichler · Gründer & Inhaber</p><h2>Sie wollen weiterkommen.<br />Dafür bin ich da.</h2><p>Mein beruflicher Hintergrund liegt am Schweizer Finanzplatz. Hohe Ansprüche an Tempo, Präzision und verlässliche Abläufe prägen meine Arbeit.</p><p>Mit Pichler Advisory bringe ich diesen Anspruch in Ihren Betrieb. Ich hinterfrage, was Sie ausbremst, entwickle die Lösung und setze sie mit Ihnen um.</p><a href="/ueber-mich" className="text-link">Was mich antreibt <Arrow /></a></div>
       </section>
       <Enquiry initialTopic={topic} />
     </main><SiteFooter />

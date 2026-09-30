@@ -299,3 +299,19 @@ html[data-brand-reveal="seen"] .reveal{display:none}
 @media(max-width:900px){.new-footer .footer-tools{margin-left:auto}}
 @media(max-width:600px){.new-footer nav{gap:16px}.footer-tools{gap:0}.internal-access{width:40px;height:44px}.legal-content address,.legal-content ul{font-size:16px}.legal-navigation{gap:10px 20px;font-size:14px}}
 @media print{.new-header,.new-footer,.skip-link,.legal-navigation{display:none}.legal-main{width:100%;max-width:none;padding:0}.legal-content{max-width:none}.legal-content section{break-inside:avoid}.legal-content a{color:inherit}}
+
+/* Registered company identity and legal details. */
+.footer-company{min-width:0}
+.footer-company .wordmark{font-size:23px}
+.footer-company p{margin-top:5px;font-size:12px;line-height:1.6}
+.footer-company a:hover{color:var(--wine)}
+.contact-business{margin-top:22px;font-style:normal;font-size:14px;line-height:1.8;color:var(--muted)}
+.contact-business strong{color:var(--ink);font-weight:600}
+.contact-company-link{display:inline-flex;align-items:center;gap:8px;margin-top:12px;font-size:13px;color:var(--wine);min-height:44px}
+.contact-company-link svg{width:16px;height:16px}
+.company-details{margin:0;font-size:17px;line-height:1.7}
+.company-details>div{display:grid;grid-template-columns:190px minmax(0,1fr);gap:24px;padding:13px 0;border-bottom:1px solid var(--line)}
+.company-details dt{font-weight:600;color:var(--ink)}
+.company-details dd{margin:0;color:var(--muted);overflow-wrap:anywhere}
+@media(max-width:900px){.footer-company{width:100%}}
+@media(max-width:600px){.footer-company .wordmark{font-size:24px}.company-details{font-size:16px}.company-details>div{grid-template-columns:1fr;gap:3px;padding:12px 0}.contact-business{font-size:13px}}
