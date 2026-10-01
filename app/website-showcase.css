@@ -1,0 +1,99 @@
+/* The whole composition scales with its own column, including offsets and tilt. */
+.service-example.example-websites {
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  max-width: 680px;
+  width: 100%;
+  justify-self: center;
+}
+
+.website-showcase {
+  container-type: inline-size;
+  width: 100%;
+  min-width: 0;
+}
+
+.website-stack {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  aspect-ratio: 1;
+  overflow: visible;
+}
+
+.website-preview {
+  --offset-x: 0cqw;
+  --offset-y: 0cqw;
+  --delay: 150ms;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 54%;
+  aspect-ratio: 4 / 5;
+  border-radius: 3px;
+  background: #fbfaf7;
+  box-shadow: 0 2px 3px #17201d12, 0 16px 32px -14px #17201d30;
+  transform: translate(-50%, -50%) translate(var(--offset-x), var(--offset-y))
+    perspective(240cqw) rotateX(22deg) rotateY(-12deg) rotateZ(-16deg);
+  transform-origin: center;
+  backface-visibility: hidden;
+}
+
+.website-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: inherit;
+  user-select: none;
+}
+
+.website-preview-garden {
+  --offset-x: -10cqw;
+  --offset-y: 8cqw;
+  --delay: 0ms;
+  z-index: 1;
+}
+
+.website-preview-hotel { z-index: 2; }
+
+.website-preview-architecture {
+  --offset-x: 10cqw;
+  --offset-y: -8cqw;
+  --delay: 180ms;
+  z-index: 3;
+}
+
+.website-showcase[data-motion="waiting"] .website-preview { opacity: 0; }
+.website-showcase[data-motion="enter"] .website-preview {
+  animation: website-stack-arrive 1000ms cubic-bezier(.2, .75, .25, 1) var(--delay) both;
+}
+
+@keyframes website-stack-arrive {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) translate(var(--offset-x), calc(var(--offset-y) + 9cqw))
+      perspective(240cqw) rotateX(30deg) rotateY(-12deg) rotateZ(-12deg) scale(.96);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) translate(var(--offset-x), var(--offset-y))
+      perspective(240cqw) rotateX(22deg) rotateY(-12deg) rotateZ(-16deg);
+  }
+}
+
+@media (min-width: 901px) {
+  .service-hero-websites .service-hero-grid {
+    grid-template-columns: minmax(0, .88fr) minmax(0, 1.12fr);
+    gap: 26px;
+    padding-block: 22px 35px;
+  }
+}
+
+@media (max-width: 900px) {
+  .service-hero-websites .service-hero-grid { gap: 15px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .website-showcase[data-motion] .website-preview { animation: none; opacity: 1; }
+}
