@@ -75,7 +75,7 @@ export function enquiryMail(enquiry: Enquiry, reference: string) {
     subject: `${meeting ? 'Terminanfrage · kostenloses Erstgespräch' : 'Website-Anfrage'} – ${enquiry.name}`,
     text: [meeting ? 'NEUE TERMINANFRAGE – NOCH NICHT BESTÄTIGT' : 'NEUE NACHRICHT VON DER WEBSITE', '',
       `Name: ${enquiry.name}`, `E-Mail: ${enquiry.email}`, `Unternehmen: ${enquiry.company || '–'}`, `Telefon: ${enquiry.phone || '–'}`, `Thema: ${enquiry.topic || '–'}`, '',
-      ...(meeting ? [`Gespräch: ${enquiry.format === 'phone' ? 'Telefon' : 'Video'} · ca. 30 Minuten`, 'Wunschtermine (Europe/Zurich, Schweizer Zeit):', ...enquiry.slots.map((slot, i) => `${i + 1}. ${when.format(slotInstant(slot))}`), '', 'Kostenlos und unverbindlich. Bitte einen Termin per Antwort bestätigen oder eine Alternative vorschlagen. Es wurde kein Kalendereintrag erstellt.', 'Bei Video: den Gesprächslink mit der Bestätigung senden.', ''] : []),
+      ...(meeting ? [`Gespräch: ${enquiry.format === 'phone' ? 'Telefon' : 'Video'} · ca. 30 Minuten`, 'Wunschtermine (Europe/Zurich, Schweizer Zeit):', ...enquiry.slots.map((slot, i) => `${i + 1}. ${when.format(slotInstant(slot))}`), '', 'Kostenlos und unverbindlich. Bitte einen Wunschtermin über den persönlichen Bestätigungslink unten bestätigen. Es wurde noch kein Kalendereintrag erstellt.', 'Nach Bestätigung werden Kalender und Einladung automatisch erstellt; bei Video mit einem eigenen kMeet-Link.', ''] : []),
       'Anliegen:', enquiry.message || '(Kein zusätzliches Anliegen angegeben)', '', `Referenz: ${reference}`,
       'Datenschutzhinweis zur Kenntnis genommen.',
     ].join('\n'),

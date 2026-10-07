@@ -23,5 +23,21 @@
         "period": 60
       }
     }
+  ],
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "BOOKINGS",
+        "class_name": "BookingDesk"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "booking-desk-v1",
+      "new_sqlite_classes": [
+        "BookingDesk"
+      ]
+    }
   ]
 }

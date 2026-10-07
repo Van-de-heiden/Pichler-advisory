@@ -1,8 +1,9 @@
 import nodemailer from 'nodemailer';
+import { registerBooking, type BookingEnv } from './bookings.ts';
 import { ENQUIRY_EMAIL, EnquiryError, enquiryMail, validateEnquiry } from '../lib/enquiry.ts';
 
 type Limiter = { limit(input: { key: string }): Promise<{ success: boolean }> };
-export type EnquiryEnv = { MAIL_PASSWORD?: string; ENQUIRY_LIMITER?: Limiter; ENQUIRY_TOTAL_LIMITER?: Limiter };
+export type EnquiryEnv = BookingEnv & { MAIL_PASSWORD?: string; ENQUIRY_LIMITER?: Limiter; ENQUIRY_TOTAL_LIMITER?: Limiter };
 type Mail = ReturnType<typeof enquiryMail>;
 type Send = (mail: Mail, env: EnquiryEnv) => Promise<void>;
 const MAX_BYTES = 20000;
@@ -62,7 +63,12 @@ export async function handleEnquiry(request: Request, env: EnquiryEnv, send: Sen
     const reference = crypto.randomUUID();
     // Await SMTP acceptance before reporting success. Never automatically retry
     // an ambiguous SMTP failure; there is no durable outbox in this simple form.
-    await send(enquiryMail(enquiry, reference), env);
+    const mail = enquiryMail(enquiry, reference);
+    if (enquiry.kind === 'meeting') {
+      const approvalLink = await registerBooking(env, enquiry, reference);
+      mail.text += `\n\nTERMIN BESTÄTIGEN\n${approvalLink}\n\nDiesen persönlichen Link nicht weiterleiten. Eine Wunschzeit auswählen und bestätigen; danach erstellt Infomaniak den Kalendereintrag und versendet die Einladung. Bei Video wird ein eigener kMeet-Link ergänzt, bei Telefon die Kundennummer. Beim blossen Öffnen des Links wird nichts gebucht.`;
+    }
+    await send(mail, env);
     return json({ ok: true, reference });
   } catch (error) {
     if (error instanceof EnquiryError) return json({ error: error.message }, 400);

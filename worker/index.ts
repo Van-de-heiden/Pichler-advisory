@@ -3,6 +3,8 @@ import { handleImageOptimization, DEFAULT_DEVICE_SIZES, DEFAULT_IMAGE_SIZES } fr
 import handler from "vinext/server/app-router-entry";
 
 import { handleEnquiry, type EnquiryEnv } from "./enquiries";
+import { handleBooking } from "./bookings";
+export { BookingDesk } from "./bookings";
 
 interface Env extends EnquiryEnv {
   ASSETS: { fetch(request: Request): Promise<Response> };
@@ -55,6 +57,7 @@ const worker = {
     const url = new URL(request.url);
 
     if (url.pathname === "/api/enquiries") return handleEnquiry(request, env);
+    if (url.pathname.startsWith("/api/bookings/")) return handleBooking(request, env);
 
     if (
       url.pathname === "/robots.txt" &&

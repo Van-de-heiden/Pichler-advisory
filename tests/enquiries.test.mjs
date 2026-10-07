@@ -30,7 +30,7 @@ test('rejects header injection, bad address, honeypot, missing consent and overs
 test('mail always goes to the owner, replies go to visitor, times and manual confirmation are explicit', async () => {
   const mail = enquiryMail(validateEnquiry(meeting, now), 'request-test');
   assert.equal(mail.to, ENQUIRY_EMAIL); assert.equal(mail.from.address, ENQUIRY_EMAIL); assert.equal(mail.replyTo.address, message.email);
-  assert.match(mail.text, /NOCH NICHT BESTÄTIGT/); assert.match(mail.text, /20.10.2026, 10:00/); assert.match(mail.text, /02.11.2026, 14:00/); assert.match(mail.text, /kein Kalendereintrag/);
+  assert.match(mail.text, /NOCH NICHT BESTÄTIGT/); assert.match(mail.text, /20.10.2026, 10:00/); assert.match(mail.text, /02.11.2026, 14:00/); assert.match(mail.text, /noch kein Kalendereintrag/);
   const composer = nodemailer.createTransport({ streamTransport: true, buffer: true });
   const result = await composer.sendMail(mail);
   const mime = result.message.toString();
