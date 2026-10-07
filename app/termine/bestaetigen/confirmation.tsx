@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
 import type { Enquiry } from '../../../lib/enquiry';
 import './confirmation.css';
 
@@ -39,7 +40,7 @@ export function BookingConfirmation() {
     finally { inflight.current = false; setBusy(false); requestAnimationFrame(() => result.current?.focus()); }
   }
 
-  return <main id="inhalt" className="booking-page"><a href="/" className="booking-wordmark">Pichler Advisory</a><section className="booking-panel" aria-busy={busy}>
+  return <main id="inhalt" className="booking-page"><Link href="/" className="booking-wordmark">Pichler Advisory</Link><section className="booking-panel" aria-busy={busy}>
     <p className="overline">Persönliche Terminbestätigung</p><h1>{booking?.status === 'confirmed' ? 'Der Termin steht.' : 'Welche Zeit passt dir?'}</h1>
     {busy && !booking && <p role="status">Anfrage wird geladen …</p>}
     {error && <div className="booking-alert" role="alert" ref={result} tabIndex={-1}>{error}</div>}

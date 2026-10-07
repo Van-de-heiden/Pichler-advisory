@@ -1,14 +1,18 @@
 /* eslint-disable @next/next/no-img-element */
 import { SiteHeader, SiteFooter, PageMotion } from '../new-site';
+import { pageMetadata, pageSchema, breadcrumbSchema, organizationId, personId } from '../seo';
+import { StructuredData } from '../structured-data';
+import { company } from '../company';
 import { Arrow } from '../ui';
 
-export const metadata = {
-  title: 'Maurus Pichler | Pichler Advisory',
-  description: 'Maurus Pichler verbindet Erfahrung vom Schweizer Finanzplatz mit direkter Umsetzung: Abläufe verbessern, digitale Lösungen entwickeln und Ihren Betrieb voranbringen.',
-};
+export const metadata = pageMetadata('/ueber-mich', 'Maurus Pichler | Pichler Advisory', 'Maurus Pichler verbindet Erfahrung vom Schweizer Finanzplatz mit direkter Umsetzung: Abläufe verbessern, digitale Lösungen entwickeln und Ihren Betrieb voranbringen.');
 
 export default function AboutPage() {
-  return <><PageMotion /><SiteHeader /><main id="inhalt">
+  return <><StructuredData data={[
+    { ...pageSchema('/ueber-mich', 'Maurus Pichler', 'ProfilePage'), mainEntity: { '@id': personId } },
+    { '@context': 'https://schema.org', '@type': 'Person', '@id': personId, name: company.contactName, alternateName: company.owner, url: `${company.url}/ueber-mich`, image: `${company.url}/maurus-portrait.jpg`, jobTitle: 'Gründer und Inhaber', worksFor: { '@id': organizationId } },
+    breadcrumbSchema('/ueber-mich', 'Über Maurus Pichler'),
+  ]} /><PageMotion /><SiteHeader /><main id="inhalt">
     <section className="about-hero wrap">
       <div><p className="overline">Maurus Pichler · Gründer & Inhaber</p><h1>Ihr Betrieb<br />hat mehr drauf.<br /><span>Machen wir etwas daraus.</span></h1><p>Sie holen mich dazu, wenn Sie weiterkommen wollen. Ich finde heraus, was Sie ausbremst, und setze die Verbesserung mit Ihnen um.</p><a href="/#anfrage" className="button">Vorhaben besprechen <Arrow /></a></div>
       <figure><img src="/maurus-portrait.jpg" width="1200" height="1600" alt="Maurus Pichler" /><figcaption>Maurus Pichler · Beratung und Umsetzung</figcaption></figure>

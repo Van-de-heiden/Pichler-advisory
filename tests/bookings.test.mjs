@@ -110,4 +110,13 @@ test('public enquiry emails the approval link only to the owner and returns just
   let mail;
   const response = await handleEnquiry(new Request('https://pichler-advisory.ch/api/enquiries', { method: 'POST', headers: { origin: 'https://pichler-advisory.ch', 'content-type': 'application/json' }, body: JSON.stringify({ ...enquiry(), privacy: true, website: '' }) }), env, async value => { mail = value; });
   assert.equal(response.status, 200); assert.equal(mail.to, 'info@pichler-advisory.ch'); assert.match(mail.text, /termine\/bestaetigen#id=/); assert.doesNotMatch(await response.text(), /token=|tokenHash/); assert.equal(h.creates(), 0);
+  assert.doesNotMatch(mail.text, /Kundennummer/);
+});
+
+test('meeting requests fail clearly before storage or mail when calendar setup is missing', async () => {
+  const h = harness();
+  const env = { ...h.env, INFOMANIAK_CALENDAR_TOKEN: undefined, MAIL_PASSWORD: 'test', ENQUIRY_LIMITER: { limit: async () => ({ success: true }) }, ENQUIRY_TOTAL_LIMITER: { limit: async () => ({ success: true }) } };
+  const response = await handleEnquiry(new Request('https://pichler-advisory.ch/api/enquiries', { method: 'POST', headers: { origin: 'https://pichler-advisory.ch', 'content-type': 'application/json' }, body: JSON.stringify({ ...enquiry(), privacy: true }) }), env, async () => assert.fail('must not send'));
+  assert.equal(response.status, 503);
+  assert.equal(h.values.size, 0);
 });

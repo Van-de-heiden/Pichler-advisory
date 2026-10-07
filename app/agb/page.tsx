@@ -1,12 +1,12 @@
-import type { Metadata } from 'next';
+import { pageMetadata } from '../seo';
 import { LegalShell } from '../legal-shell';
 import { LegalContact } from '../legal-company';
 import { company } from '../company';
 
-export const metadata: Metadata = {
-  title: 'AGB – Pichler Advisory',
-  description: 'Allgemeine Geschäftsbedingungen für Beratung, Prozessoptimierung, IT-Projekte, Websites und Betreuung.',
-};
+export const metadata = pageMetadata('/agb',
+  'AGB – Pichler Advisory',
+  'Allgemeine Geschäftsbedingungen für Beratung, Prozessoptimierung, IT-Projekte, Websites und Betreuung.',
+);
 
 export default function AgbPage() {
   return <LegalShell eyebrow="Rechtliches" title="AGB" current="/agb">

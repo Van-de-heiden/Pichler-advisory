@@ -17,7 +17,11 @@ export function Enquiry({ initialTopic }: { initialTopic?: string }) {
   const result = useRef<HTMLDivElement>(null);
   const inFlight = useRef(false);
   const meeting = kind === 'meeting';
-  useEffect(() => { setBounds({ min: zurichDate(), max: zurichDate(new Date(Date.now() + 179 * 86400000)) }); }, []);
+  useEffect(() => {
+    // Resolve date limits after hydration: a cached/server render may be from a previous day.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setBounds({ min: zurichDate(), max: zurichDate(new Date(Date.now() + 179 * 86400000)) });
+  }, []);
   useEffect(() => { if (status === 'success' || status === 'error') result.current?.focus(); }, [status]);
   const updateSlot = (index: number, key: keyof Slot, value: string) => setSlots(current => current.map((slot, i) => i === index ? { ...slot, [key]: value } : slot));
 

@@ -1,12 +1,12 @@
-import type { Metadata } from 'next';
+import { pageMetadata } from '../seo';
 import { LegalShell } from '../legal-shell';
 import { LegalContact } from '../legal-company';
 import { company } from '../company';
 
-export const metadata: Metadata = {
-  title: 'Datenschutz – Pichler Advisory',
-  description: 'Wie Pichler Advisory Personendaten auf dieser Website und bei Anfragen bearbeitet.',
-};
+export const metadata = pageMetadata('/datenschutz',
+  'Datenschutz – Pichler Advisory',
+  'Wie Pichler Advisory Personendaten auf dieser Website und bei Anfragen bearbeitet.',
+);
 
 export default function DatenschutzPage() {
   return <LegalShell eyebrow="Rechtliches" title="Datenschutzerklärung" current="/datenschutz">

@@ -10,6 +10,10 @@ Im Cloudflare-Dashboard **Workers & Pages → pichler-advisory → Settings → 
 - Wert: gültiges Infomaniak-Geräte-/Mailpasswort für `info@pichler-advisory.ch`.
 - **Deploy** wählen. Das Secret vom separaten OS-Worker wird nicht übernommen.
 
+Der SMTP-Versand verwendet dieselbe direkte, zertifikatsgeprüfte TLS-Verbindung
+zu `mail.infomaniak.com:465` wie der OS-Worker. Damit wird Nodemailers zusätzliche
+DNS/IP-Auflösung umgangen, die im Worker zu Verbindungsfehlern führte.
+
 ### 2. Infomaniak-Kalenderzugang
 
 Im [Infomaniak Token Manager](https://manager.infomaniak.com/v3/ng/accounts/token/list)
@@ -22,6 +26,9 @@ Name beispielsweise „Pichler Advisory Website – Termine“, Berechtigungen:
 Den Token direkt als **Secret `INFOMANIAK_CALENDAR_TOKEN`** beim Website-Worker
 hinterlegen und deployen. Weder Mailpasswort noch API-Token in Chat, Git oder
 öffentliche Frontend-Variablen schreiben.
+
+Ohne Kalender-Token bzw. Buchungsspeicher nimmt die Website keine Terminanfragen
+an und meldet einen klaren Fehler. Reine Nachrichten benötigen nur den Mailzugang.
 
 Standardmässig verwendet die Website den in Infomaniak als Standard markierten
 Kalender. Bei genau einem verfügbaren Kalender wird dieser verwendet. Bei mehreren
@@ -119,6 +126,14 @@ Bestätigungsberechtigung, persistente Zustände, doppelte und parallele
 Bestätigungen, Konflikte, Telefon/Video, Kalenderpayload und Fehlerfälle sowie
 nach dem Produktionsbuild die bestehenden Seiten. `npx tsc --noEmit` prüft die
 Typen. Zusätzliche lokale Runtime-/Browserprüfungen ersetzen keine Live-Abnahme.
+
+Stand 7. Oktober 2026: 17 Backendtests und 6 Tests der gerenderten Website bestehen;
+Produktionsbuild, TypeScript und Lint der neuen Formular-/Terminmodule sind grün.
+Der bestehende globale Lint meldet weiterhin ältere Link-Regelverletzungen auf
+anderen Seiten. Die tatsächliche lokale workerd-Runtime mit SQLite Durable Object
+wurde für Speicherung, Berechtigung und parallele Bestätigung geprüft; die externe
+Kalender-API war dabei simuliert. Bestehende SEO-Metadaten, Weiterleitungen und
+Crawler-Regeln sind in der Änderung erhalten.
 
 Verwendete Protokollquellen:
 

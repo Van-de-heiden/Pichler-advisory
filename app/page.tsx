@@ -1,13 +1,19 @@
 /* eslint-disable @next/next/no-img-element */
+import { pageMetadata, pageSchema } from './seo';
+import { StructuredData } from './structured-data';
+import { CompanyQuestions } from './company-questions';
 import { BrandReveal } from './brand-reveal';
 import { SiteHeader, SiteFooter, SummitVisual, ProcessStory, BusinessSelector, Enquiry, PageMotion, SavingsExample } from './new-site';
 import { Arrow } from './ui';
-import { offerings, enquiryTopics } from './new-content';
+import { offerings, enquiryTopics, businessWorlds } from './new-content';
+
+export const metadata = pageMetadata('/', 'Pichler Advisory | Digitalisierung & Umsetzung für Schweizer KMU', 'Prozessoptimierung, Automatisierung, Apps und Websites für Schweizer KMU. Persönlich mit Maurus Pichler aus Ernetschwil SG. Kostenloses Erstgespräch.');
 
 export default async function Home({ searchParams }: { searchParams: Promise<{ leistung?: string }> }) {
   const query = await searchParams;
   const topic = query.leistung && Object.prototype.hasOwnProperty.call(enquiryTopics, query.leistung) ? enquiryTopics[query.leistung] : undefined;
   return <>
+    <StructuredData data={pageSchema('/', 'Pichler Advisory – Beratung und Umsetzung für Schweizer KMU')} />
     <BrandReveal /><PageMotion /><SiteHeader />
     <main id="inhalt">
       <section className="hero hero-advisory hero-summit" id="top" aria-labelledby="hero-title">
@@ -35,13 +41,14 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ l
         <div className="offerings">{offerings.map(service => <a className="offering" href={`/leistungen/${service.slug}`} key={service.slug} data-enter><span className="offering-number">{service.number}</span><h3>{service.name}</h3><p>{service.short}</p><span className="round-arrow"><Arrow /></span></a>)}</div>
         <div className="direct-note"><p><strong>Sie wissen schon, was Sie brauchen?</strong><br />Dann setzen wir direkt um. Ohne vorgängige Betriebsanalyse.</p><a href="#anfrage" className="text-link">Projekt besprechen <Arrow /></a></div>
       </section>
-      <section className="business-section wrap" id="branchen"><BusinessSelector /></section>
+      <section className="business-section wrap" id="branchen"><BusinessSelector /><nav className="industry-links" aria-label="Alle Branchen">{businessWorlds.map(world => <a href={`/branchen/${world.slug}`} key={world.slug}>{world.name}</a>)}</nav></section>
       <ProcessStory />
       <SavingsExample />
       <section className="founder-section wrap" id="maurus">
         <div className="founder-image founder-image-onsite" data-enter><img src="/hero-consultation-authentic.jpeg" width="1086" height="1448" alt="Maurus Pichler bei der Arbeit vor Ort am Besprechungstisch" loading="lazy" /></div>
         <div className="founder-text" data-enter><p className="overline">Maurus Pichler · Gründer & Inhaber</p><h2>Sie wollen weiterkommen.<br />Dafür bin ich da.</h2><p>Mein beruflicher Hintergrund liegt am Schweizer Finanzplatz. Hohe Ansprüche an Tempo, Präzision und verlässliche Abläufe prägen meine Arbeit.</p><p>Mit Pichler Advisory bringe ich diesen Anspruch in Ihren Betrieb. Ich hinterfrage, was Sie ausbremst, entwickle die Lösung und setze sie mit Ihnen um.</p><a href="/ueber-mich" className="text-link">Was mich antreibt <Arrow /></a></div>
       </section>
+      <CompanyQuestions />
       <Enquiry initialTopic={topic} />
     </main><SiteFooter />
   </>;

@@ -9,11 +9,13 @@ import "./globals.css";
 import "./refinement.css";
 import { BRAND_REVEAL_BOOTSTRAP } from "./brand-reveal-session";
 import { company } from "./company";
+import { organizationId, personId, websiteId } from "./seo";
+import { StructuredData } from "./structured-data";
 
 const organization = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  '@id': `${company.url}/#organization`,
+  '@id': organizationId,
   name: company.name,
   legalName: company.name,
   url: company.url,
@@ -34,7 +36,9 @@ const organization = {
     addressRegion: company.canton,
     addressCountry: 'CH',
   },
-  founder: { '@type': 'Person', name: company.owner },
+  founder: { '@id': personId },
+  areaServed: { '@type': 'Country', name: company.country },
+  contactPoint: { '@type': 'ContactPoint', contactType: 'Anfragen', email: company.email, telephone: company.phone, availableLanguage: 'de' },
 };
 
 export const metadata: Metadata = {
@@ -49,9 +53,9 @@ export const dynamic = "force-dynamic";
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="de" suppressHydrationWarning>
+    <html lang="de-CH" suppressHydrationWarning>
       <head>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organization).replace(/</g, '\\u003c') }} />
+        <StructuredData data={[organization, { '@context': 'https://schema.org', '@type': 'WebSite', '@id': websiteId, url: `${company.url}/`, name: company.name, inLanguage: 'de-CH', publisher: { '@id': organizationId } }]} />
         <script dangerouslySetInnerHTML={{ __html: BRAND_REVEAL_BOOTSTRAP }} />
         <noscript><style>{".reveal { display: none; }"}</style></noscript>
       </head>

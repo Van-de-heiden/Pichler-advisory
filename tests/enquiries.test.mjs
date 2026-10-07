@@ -1,5 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
+import { EventEmitter } from 'node:events';
+import { smtpSocket } from '../worker/smtp-socket.ts';
 import nodemailer from 'nodemailer';
 import { validateEnquiry, enquiryMail, slotInstant, ENQUIRY_EMAIL } from '../lib/enquiry.ts';
 import { handleEnquiry } from '../worker/enquiries.ts';
@@ -57,4 +59,24 @@ test('API rejects cross-origin, wrong method, oversized/chunked requests, missin
   assert.equal((await handleEnquiry(request({ ...message, privacy: false }), env(), send)).status, 400);
   const limited = env(); limited.ENQUIRY_LIMITER.limit = async () => ({ success: false });
   const response = await handleEnquiry(request(), limited, send); assert.equal(response.status, 429); assert.equal(response.headers.get('retry-after'), '60');
+});
+
+test('SMTP hands off only a verified TLS socket for the fixed Infomaniak hostname',async()=>{
+  class Socket extends EventEmitter {authorized=true;destroyed=false;destroy(){this.destroyed=true;}}
+  const socket=new Socket();let options;let calls=0;
+  const result=new Promise((resolve,reject)=>smtpSocket({host:'untrusted.example'},(error,value)=>{calls++;if(error)reject(error);else resolve(value);},given=>{options=given;queueMicrotask(()=>socket.emit('secureConnect'));return socket;}));
+  assert.deepEqual(await result,{connection:socket,secured:true});
+  assert.deepEqual(options,{host:'mail.infomaniak.com',port:465,servername:'mail.infomaniak.com',rejectUnauthorized:true});
+  assert.equal(calls,1);assert.equal(socket.destroyed,false);
+});
+test('SMTP rejects unverified TLS and preserves network errors without duplicate completion',async()=>{
+  class Socket extends EventEmitter {authorized=false;destroyed=false;destroy(){this.destroyed=true;}}
+  for(const mode of ['unverified','error','close']){
+    const socket=new Socket();let calls=0;const original=Object.assign(new Error('connection refused'),{code:'ECONNREFUSED'});
+    const outcome=await new Promise(resolve=>smtpSocket({},(error,value)=>{calls++;resolve({error,value});},()=>{
+      queueMicrotask(()=>{socket.emit(mode==='unverified'?'secureConnect':mode,original);socket.emit('error',original);});return socket;
+    }));
+    assert.equal(outcome.value,undefined);assert.equal(calls,1);assert.equal(socket.destroyed,true);
+    assert.equal(outcome.error.code,mode==='unverified'?'ETLS':mode==='close'?'ECONNRESET':'ECONNREFUSED');
+  }
 });
