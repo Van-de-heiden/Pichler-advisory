@@ -1,12 +1,12 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "../seo";
 import { LegalShell } from "../legal-shell";
 import { LegalContact } from "../legal-company";
 import { company } from "../company";
 
-export const metadata: Metadata = {
-  title: "Impressum – Pichler Advisory",
-  description: "Impressum und Anbieterangaben von Pichler Advisory.",
-};
+export const metadata = pageMetadata('/impressum',
+  "Impressum – Pichler Advisory",
+  "Impressum und Anbieterangaben von Pichler Advisory.",
+);
 
 export default function ImpressumPage() {
   return (
