@@ -1,15 +1,25 @@
 /* eslint-disable @next/next/no-img-element */
+import { pageMetadata, pageSchema, breadcrumbSchema, organizationId } from '../../seo';
+import { StructuredData } from '../../structured-data';
+import { company } from '../../company';
 import { notFound } from 'next/navigation';
 import { SiteHeader, SiteFooter, PageMotion } from '../../new-site';
 import { ServiceExample } from '../../new-service-visuals';
 import { serviceCopy } from '../../service-copy';
 import { offerings } from '../../new-content';
 import { Arrow, Icon } from '../../ui';
-export async function generateMetadata({params}:{params:Promise<{slug:string}>}) { const {slug}=await params; const s=Object.prototype.hasOwnProperty.call(serviceCopy,slug)?serviceCopy[slug]:undefined; return {title:s?`${s.label} | Pichler Advisory`:'Seite nicht gefunden', description:s?.lead}; }
+export async function generateMetadata({params}:{params:Promise<{slug:string}>}) { const {slug}=await params; const s=Object.prototype.hasOwnProperty.call(serviceCopy,slug)?serviceCopy[slug]:undefined; return s ? pageMetadata(`/leistungen/${slug}`, `${s.label} für Schweizer KMU | Pichler Advisory`, s.lead) : { title: 'Seite nicht gefunden', robots: { index: false } }; }
 export default async function ServicePage({params}:{params:Promise<{slug:string}>}) {
   const {slug}=await params; const s=Object.prototype.hasOwnProperty.call(serviceCopy,slug)?serviceCopy[slug]:undefined; if(!s)notFound();
   const enquiry=`/?leistung=${slug}#anfrage`;
-  return <><PageMotion /><SiteHeader /><main id="inhalt"><section className={`service-hero wrap${slug === 'websites' ? ' service-hero-websites' : ''}`}><a href="/#leistungen" className="breadcrumb">Leistungen <span>/</span> {s.label}</a><div className="service-hero-grid"><div><p className="overline">{s.label}</p><h1>{s.title.split('\n').map((line,i)=><span key={line}>{line}{i===0&&<br/>}</span>)}</h1><p className="service-lead">{s.lead}</p><a className="button" href={enquiry}>Vorhaben besprechen <Arrow /></a></div><ServiceExample slug={slug} /></div><nav className="page-jumps" aria-label="Auf dieser Seite"><a href="#ansatzpunkte">Ansatzpunkte</a><a href="#ergebnis">Die Veränderung</a><a href="#umfang">Umfang & Kosten</a><a href="#vorgehen">Zusammenarbeit</a></nav></section>
+  const path = `/leistungen/${slug}`;
+  const serviceId = `${company.url}${path}#service`;
+  const schema = [
+    { ...pageSchema(path, s.label), mainEntity: { '@id': serviceId } },
+    breadcrumbSchema(path, s.label),
+    { '@context': 'https://schema.org', '@type': 'Service', '@id': serviceId, name: s.label, description: s.lead, url: `${company.url}${path}`, provider: { '@id': organizationId }, areaServed: { '@type': 'Country', name: company.country } },
+  ];
+  return <><StructuredData data={schema} /><PageMotion /><SiteHeader /><main id="inhalt"><section className={`service-hero wrap${slug === 'websites' ? ' service-hero-websites' : ''}`}><a href="/#leistungen" className="breadcrumb">Leistungen <span>/</span> {s.label}</a><div className="service-hero-grid"><div><p className="overline">{s.label}</p><h1>{s.title.split('\n').map((line,i)=><span key={line}>{line}{i===0&&<br/>}</span>)}</h1><p className="service-lead">{s.lead}</p><a className="button" href={enquiry}>Vorhaben besprechen <Arrow /></a></div><ServiceExample slug={slug} /></div><nav className="page-jumps" aria-label="Auf dieser Seite"><a href="#ansatzpunkte">Ansatzpunkte</a><a href="#ergebnis">Die Veränderung</a><a href="#umfang">Umfang & Kosten</a><a href="#vorgehen">Zusammenarbeit</a></nav></section>
   <section className="service-situations wrap" id="ansatzpunkte"><div className="section-heading" data-enter><p className="overline">Wo wir ansetzen</p><h2>Kommt Ihnen das<br />bekannt vor?</h2></div><div className="situation-grid">{s.situations.map((c,i)=><article key={c.title} data-enter><span className="small-number">0{i+1}</span><h3>{c.title}</h3><p>{c.text}</p></article>)}</div></section>
   <section className="service-result" id="ergebnis"><div className="wrap"><div className="result-heading" data-enter><p className="overline">Was sich ändern kann</p><h2>{s.resultTitle.split('\n').map((line,i)=><span key={line}>{line}{i===0&&<br/>}</span>)}</h2><p>{s.resultText}</p></div><div className="before-after"><article><span>Die Ausgangslage</span><p>{s.before}</p></article><div className="change-arrow"><Arrow /></div><article><span>Der bessere Ablauf</span><p>{s.after}</p></article></div><p className="example-disclaimer">Illustratives Beispiel. Die konkrete Lösung entwickeln wir für Ihre Ausgangslage.</p></div></section>
   <section className="scope-section wrap" id="umfang"><div className="scope-included" data-enter><p className="overline">Was Sie erhalten</p><h2>Ein klarer Auftrag.<br />Ein greifbares Ergebnis.</h2><ul>{s.included.map(v=><li key={v}><Icon name="check" /><span>{v}</span></li>)}</ul></div><div className="scope-cost" data-enter><h3>Sie bestimmen den Umfang.</h3><p>{s.scope}</p><h3>Was bestimmt die Kosten?</h3><p>{s.cost}</p><ul>{s.factors.map(f=><li key={f}>{f}</li>)}</ul>{slug==='websites'&&<a href="/leistungen/betrieb-betreuung" className="text-link">Mehr zu Betrieb & Betreuung <Arrow /></a>}</div></section>

@@ -3,8 +3,7 @@ import { handleImageOptimization, DEFAULT_DEVICE_SIZES, DEFAULT_IMAGE_SIZES } fr
 import handler from "vinext/server/app-router-entry";
 
 interface Env {
-  ASSETS: Fetcher;
-  DB: D1Database;
+  ASSETS: { fetch(request: Request): Promise<Response> };
   IMAGES: {
     input(stream: ReadableStream): {
       transform(options: Record<string, unknown>): {
@@ -43,6 +42,25 @@ ${PUBLIC_URLS.map((url) => `  <url>\n    <loc>${url}</loc>\n  </url>`).join("\n"
 </urlset>
 `;
 
+// Search crawlers are explicitly welcome. The wildcard keeps the existing
+// policy for other crawlers, including training bots, unchanged.
+const ROBOTS_TXT = `User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: Googlebot
+User-agent: Bingbot
+User-agent: *
+Allow: /
+Disallow: /api/
+Sitemap: https://pichler-advisory.ch/sitemap.xml
+`;
+
+const LEGACY_PAGES: Record<string, string> = {
+  '/kontakt': '/#anfrage',
+  '/ueber-uns': '/ueber-mich',
+  '/leistungen': '/#leistungen',
+};
+const PUBLIC_PATHS = new Set(PUBLIC_URLS.map(url => new URL(url).pathname));
+
 // Image security config. SVG sources with .svg extension auto-skip the
 // optimization endpoint on the client side (served directly, no proxy).
 // To route SVGs through the optimizer (with security headers), set
@@ -53,11 +71,25 @@ const worker = {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url);
 
+    if (request.method === 'GET' || request.method === 'HEAD') {
+      const path = url.pathname.replace(/\/+$/, '') || '/';
+      const legacy = Object.prototype.hasOwnProperty.call(LEGACY_PAGES, path) ? LEGACY_PAGES[path] : undefined;
+      if (legacy || (path !== url.pathname && PUBLIC_PATHS.has(path)) || url.hostname === 'www.pichler-advisory.ch') {
+        const target = new URL(legacy || path, url);
+        target.search = url.search;
+        if (url.hostname === 'www.pichler-advisory.ch') {
+          target.protocol = 'https:';
+          target.host = 'pichler-advisory.ch';
+        }
+        return Response.redirect(target.href, 308);
+      }
+    }
+
     if (
       url.pathname === "/robots.txt" &&
       (request.method === "GET" || request.method === "HEAD")
     ) {
-      return new Response(request.method === "HEAD" ? null : "User-agent: *\nAllow: /\nSitemap: https://pichler-advisory.ch/sitemap.xml\n", {
+      return new Response(request.method === "HEAD" ? null : ROBOTS_TXT, {
         headers: {
           "cache-control": "public, max-age=3600",
           "content-type": "text/plain; charset=utf-8",

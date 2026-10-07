@@ -315,3 +315,11 @@ html[data-brand-reveal="seen"] .reveal{display:none}
 .company-details dd{margin:0;color:var(--muted);overflow-wrap:anywhere}
 @media(max-width:900px){.footer-company{width:100%}}
 @media(max-width:600px){.footer-company .wordmark{font-size:24px}.company-details{font-size:16px}.company-details>div{grid-template-columns:1fr;gap:3px;padding:12px 0}.contact-business{font-size:13px}}
+
+/* Public company context and crawlable links complement the interactive selector. */
+.industry-links{display:flex;flex-wrap:wrap;gap:12px 24px;margin-top:28px;font-size:14px}
+.industry-links a{text-decoration:underline;text-underline-offset:4px}
+.company-questions{padding-top:72px;padding-bottom:88px}
+.company-questions .working-steps article{min-width:0}
+.company-questions .working-steps p{line-height:1.75}
+.company-questions .text-link{margin-top:16px}
