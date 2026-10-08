@@ -42,4 +42,4 @@ The existing production dependencies, Worker name and Cloudflare build setup
 are retained. The entry animation runs once per browser tab session.
 
 The Matterhorn asset is attributed and licensed on `/impressum#bildnachweise`.
-The enquiry form prepares a local email draft; it does not submit data to a server.
+The enquiry form submits messages and free, non-binding first-meeting requests directly to the server. Mail is sent via the existing Infomaniak mailbox. See `MAIL-SETUP.md` for the required production secret and release check.

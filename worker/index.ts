@@ -2,7 +2,11 @@
 import { handleImageOptimization, DEFAULT_DEVICE_SIZES, DEFAULT_IMAGE_SIZES } from "vinext/server/image-optimization";
 import handler from "vinext/server/app-router-entry";
 
-interface Env {
+import { handleEnquiry, type EnquiryEnv } from "./enquiries";
+import { handleBooking } from "./bookings";
+export { BookingDesk } from "./bookings";
+
+interface Env extends EnquiryEnv {
   ASSETS: { fetch(request: Request): Promise<Response> };
   IMAGES: {
     input(stream: ReadableStream): {
@@ -71,6 +75,8 @@ const worker = {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url);
 
+    if (url.pathname === "/api/enquiries") return handleEnquiry(request, env);
+    if (url.pathname.startsWith("/api/bookings/")) return handleBooking(request, env);
     if (request.method === 'GET' || request.method === 'HEAD') {
       const path = url.pathname.replace(/\/+$/, '') || '/';
       const legacy = Object.prototype.hasOwnProperty.call(LEGACY_PAGES, path) ? LEGACY_PAGES[path] : undefined;

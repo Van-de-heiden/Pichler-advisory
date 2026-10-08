@@ -21,7 +21,8 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ l
           <p className="overline">Beratung & Umsetzung für Schweizer Unternehmen</p>
           <h1 id="hero-title"><span className="hero-cause">Was jeden Tag Zeit kostet,</span><span className="hero-effect">kostet jedes Jahr Geld.</span></h1>
           <p className="hero-lead">Doppelte Arbeit. Ständige Rückfragen. Büroarbeit nach Feierabend. Wir bringen Ordnung in Ihre Abläufe und bauen die Lösungen, die Ihrem Team Zeit zurückgeben.</p>
-          <div className="hero-actions"><a className="button" href="#anfrage">Potenzial besprechen <Arrow /></a><a className="quiet-link" href="#leistungen">Was wir für Sie tun <span aria-hidden="true">↓</span></a></div>
+          <div className="hero-actions"><a className="button" href="#anfrage">Kostenloses Erstgespräch</a><a className="quiet-link" href="#leistungen">Was wir für Sie tun <span aria-hidden="true">↓</span></a></div>
+          <p className="hero-meeting-note">Ca. 30 Minuten · Unverbindlich · Persönlich mit Maurus Pichler</p>
         </div>
         </div><div className="hero-landscape"><SummitVisual priority /></div>
         <div className="hero-personal wrap" aria-labelledby="personal-title">

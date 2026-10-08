@@ -3,5 +3,41 @@
   "name": "pichler-advisory",
   "main": "./worker/index.ts",
   "compatibility_date": "2026-05-22",
-  "compatibility_flags": ["nodejs_compat"]
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "ratelimits": [
+    {
+      "name": "ENQUIRY_LIMITER",
+      "namespace_id": "2026100701",
+      "simple": {
+        "limit": 5,
+        "period": 60
+      }
+    },
+    {
+      "name": "ENQUIRY_TOTAL_LIMITER",
+      "namespace_id": "2026100702",
+      "simple": {
+        "limit": 30,
+        "period": 60
+      }
+    }
+  ],
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "BOOKINGS",
+        "class_name": "BookingDesk"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "booking-desk-v1",
+      "new_sqlite_classes": [
+        "BookingDesk"
+      ]
+    }
+  ]
 }
