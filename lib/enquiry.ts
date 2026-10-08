@@ -1,5 +1,11 @@
 export const TIME_ZONE = 'Europe/Zurich';
 export const ENQUIRY_EMAIL = 'info@pichler-advisory.ch';
+export const MEETING_MINUTES = 30;
+export const MEETING_START_TIMES = Array.from({ length: (19 * 60 - MEETING_MINUTES - 7 * 60) / 15 + 1 }, (_, i) => {
+  const minutes = 7 * 60 + i * 15;
+  return `${String(Math.floor(minutes / 60)).padStart(2, '0')}:${String(minutes % 60).padStart(2, '0')}`;
+});
+export const isMeetingStartTime = (time: string) => MEETING_START_TIMES.includes(time);
 export type Slot = { date: string; time: string };
 export type Enquiry = {
   kind: 'meeting' | 'message'; name: string; email: string; company: string;
@@ -56,6 +62,7 @@ export function validateEnquiry(input: unknown, now = Date.now()): Enquiry {
     slots = data.slots.map(value => {
       if (!value || typeof value !== 'object' || Array.isArray(value)) throw new EnquiryError('Bitte prüfen Sie Ihre Wunschtermine.');
       const slot = { date: field(value as Record<string, unknown>, 'date', 10, true), time: field(value as Record<string, unknown>, 'time', 5, true) };
+      if (!isMeetingStartTime(slot.time)) throw new EnquiryError('Bitte wählen Sie eine Startzeit im 15-Minuten-Takt zwischen 07:00 und 18:30 Uhr (Schweizer Zeit). Das Gespräch endet spätestens um 19:00 Uhr.');
       const instant = slotInstant(slot);
       if (!Number.isFinite(instant) || instant <= now || instant > now + 180 * 86400000) throw new EnquiryError('Bitte wählen Sie gültige, zukünftige Termine innerhalb der nächsten sechs Monate (Schweizer Zeit).');
       return slot;
@@ -67,7 +74,7 @@ export function validateEnquiry(input: unknown, now = Date.now()): Enquiry {
 
 export function enquiryMail(enquiry: Enquiry, reference: string) {
   const meeting = enquiry.kind === 'meeting';
-  const when = new Intl.DateTimeFormat('de-CH', { timeZone: TIME_ZONE, weekday: 'long', day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+  const when = new Intl.DateTimeFormat('de-CH', { timeZone: TIME_ZONE, weekday: 'long', day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' });
   return {
     from: { name: 'Pichler Advisory · Website', address: ENQUIRY_EMAIL },
     to: ENQUIRY_EMAIL,

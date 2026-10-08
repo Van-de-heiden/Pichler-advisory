@@ -60,6 +60,23 @@ test('phone appointments have no video link; conflicts and expired slots do not 
   const old = await setup(h, { ...enquiry(), slots: [{ date: '2026-01-01', time: '10:00' }, enquiry().slots[1]] });
   assert.equal((await old.call('confirm', { selected: 0 })).status, 409);
 });
+test('owner confirmation also enforces the daily time window for older pending requests', async () => {
+  const h = harness();
+  h.desk.calendar.target = async () => assert.fail('invalid time must not contact calendar');
+  for (const time of ['06:45', '10:07', '18:45', '19:00']) {
+    const data = enquiry(); data.slots[0].time = time;
+    const b = await setup(h, data);
+    assert.equal((await b.call('confirm', { selected: 0 })).status, 409);
+  }
+  assert.equal(h.creates(), 0);
+});
+test('out-of-hours public requests never enter storage or send mail', async () => {
+  const h = harness();
+  const env = { ...h.env, MAIL_PASSWORD: 'test', ENQUIRY_LIMITER: { limit: async () => ({ success: true }) }, ENQUIRY_TOTAL_LIMITER: { limit: async () => ({ success: true }) } };
+  const data = enquiry(); data.slots[0].time = '18:45';
+  const response = await handleEnquiry(new Request('https://pichler-advisory.ch/api/enquiries', { method: 'POST', headers: { origin: 'https://pichler-advisory.ch', 'content-type': 'application/json' }, body: JSON.stringify({ ...data, privacy: true }) }), env, async () => assert.fail('must not send'));
+  assert.equal(response.status, 400); assert.equal(h.values.size, 0);
+});
 test('ambiguous provider failures never cause automatic duplicate invitations', async () => {
   const h = harness(), b = await setup(h); let attempts = 0;
   h.desk.calendar.create = async () => { attempts++; throw new CalendarError('Unklar', true); };

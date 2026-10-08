@@ -26,6 +26,19 @@ test('meeting requires 2–3 distinct future slots and phone for phone calls', (
   assert.throws(() => validateEnquiry({ ...meeting, format: 'phone' }, now));
   assert.equal(validateEnquiry({ ...meeting, format: 'phone', phone: '+41 79 123 45 67' }, now).format, 'phone');
 });
+test('appointments fit 07:00–19:00 Zurich time on every weekday, including weekends', () => {
+  for (let day = 12; day <= 18; day++) {
+    const date = `2026-10-${day}`;
+    const slots = [{ date, time: '07:00' }, { date, time: '18:30' }];
+    assert.deepEqual(validateEnquiry({ ...meeting, slots }, now).slots, slots);
+  }
+  for (const time of ['00:00', '06:45', '07:01', '10:07', '18:31', '18:45', '19:00', '23:45', '7:00']) {
+    assert.throws(() => validateEnquiry({ ...meeting, slots: [{ date: '2026-10-20', time }, meeting.slots[1]] }, now), /15-Minuten-Takt/, time);
+  }
+  for (const time of ['07:15', '07:30', '07:45', '12:00', '18:15']) {
+    assert.equal(validateEnquiry({ ...meeting, slots: [{ date: '2026-10-20', time }, meeting.slots[1]] }, now).slots[0].time, time);
+  }
+});
 test('rejects header injection, bad address, honeypot, missing consent and oversized input', () => {
   for (const change of [{ name: 'Max\r\nBcc: other@example.com' }, { email: 'max@example.ch,other@example.com' }, { website: 'spam' }, { privacy: false }, { kind: 'other' }, { message: 'x'.repeat(3001) }, { name: {} }]) assert.throws(() => validateEnquiry({ ...message, ...change }, now));
 });

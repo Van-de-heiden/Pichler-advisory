@@ -1,4 +1,4 @@
-import { slotInstant, type Enquiry } from '../lib/enquiry.ts';
+import { isMeetingStartTime, slotInstant, type Enquiry } from '../lib/enquiry.ts';
 import { CalendarError, InfomaniakCalendar, createMeetingUrl, type CalendarEnv } from './calendar.ts';
 
 type Storage = {
@@ -91,6 +91,7 @@ export class BookingDesk {
     const input = await request.json() as { selected?: unknown };
     if (!Number.isInteger(input.selected) || Number(input.selected) < 0 || Number(input.selected) >= booking.enquiry.slots.length) return response({ error: 'Bitte einen der Wunschtermine auswählen.' }, 400);
     const selected = Number(input.selected), slot = booking.enquiry.slots[selected];
+    if (!isMeetingStartTime(slot.time) || !Number.isFinite(slotInstant(slot))) return response({ error: 'Bitte eine gültige Wunschzeit zwischen 07:00 und 18:30 Uhr im 15-Minuten-Takt auswählen (Schweizer Zeit).' }, 409);
     if (slotInstant(slot) <= Date.now()) return response({ error: 'Dieser Wunschtermin liegt bereits in der Vergangenheit.' }, 409);
     const calendar = await this.calendar.target();
     if (!await this.calendar.available(calendar.id, slot)) return response({ error: `Im Kalender „${calendar.name}“ liegt zu dieser Zeit bereits ein Termin. Bitte eine andere Wunschzeit wählen.` }, 409);

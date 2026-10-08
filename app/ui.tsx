@@ -15,6 +15,8 @@ package:<><path d="m12 3 9 5v9l-9 5-9-5V8l9-5ZM3 8l9 5 9-5M12 13v9M7.5 5.5l9 5"/
 shop:<><path d="M3 10h18l-2-7H5l-2 7ZM4 10v11h16V10M9 21v-7h6v7"/><path d="M3 10a3 3 0 0 0 6 0 3 3 0 0 0 6 0 3 3 0 0 0 6 0"/></>,
 truck:<><path d="M10 17h4V5H2v12h2M14 9h4l4 4v4h-2"/><circle cx="7" cy="17" r="3"/><circle cx="17" cy="17" r="3"/></>,
 check:<path d="m5 12 4 4L19 6"/>,clock:<><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></>,
+calendar:<><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></>,
+chevron:<path d="m9 5 7 7-7 7"/>,
 file:<><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></>,
 plus:<path d="M12 5v14M5 12h14"/>,menu:<path d="M4 7h16M4 12h16M4 17h16"/>,close:<path d="m6 6 12 12M6 18 18 6"/>
 };
