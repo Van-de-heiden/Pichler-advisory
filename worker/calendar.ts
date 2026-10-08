@@ -16,7 +16,12 @@ const time = (value: string) => Date.parse(/[zZ]|[+-]\d{2}:?\d{2}$/.test(value) 
 export class InfomaniakCalendar {
   env: CalendarEnv;
   request: typeof fetch;
-  constructor(env: CalendarEnv, request: typeof fetch = fetch) { this.env = env; this.request = request; }
+  constructor(env: CalendarEnv, request: typeof fetch = fetch) {
+    this.env = env;
+    // Workers' native fetch rejects a CalendarClient instance as its receiver.
+    // Node-based mocks do not expose this runtime constraint.
+    this.request = request.bind(globalThis);
+  }
 
   async api(path: string, body?: object): Promise<Record<string, unknown>> {
     if (!this.env.INFOMANIAK_CALENDAR_TOKEN) throw new CalendarError('Der Kalenderzugang ist noch nicht eingerichtet.');
@@ -24,8 +29,11 @@ export class InfomaniakCalendar {
     try {
       response = await this.request(API + path, { method: body ? 'POST' : 'GET',
         headers: { authorization: `Bearer ${this.env.INFOMANIAK_CALENDAR_TOKEN}`, 'content-type': 'application/json' },
-        ...(body ? { body: JSON.stringify(body) } : {}), signal: AbortSignal.timeout(7000), redirect: 'error' });
+        ...(body ? { body: JSON.stringify(body) } : {}), signal: AbortSignal.timeout(7000), redirect: 'manual' });
     } catch { throw new CalendarError(body ? 'Das Ergebnis der Kalendererstellung ist unklar. Bitte den Kalender prüfen, bevor ein weiterer Termin erstellt wird.' : 'Der Kalender ist momentan nicht erreichbar.', !!body); }
+    // This Workers runtime supports manual/follow, but not redirect: 'error'.
+    // Reject redirects explicitly so the token is never forwarded elsewhere.
+    if (response.status >= 300 && response.status < 400) throw new CalendarError('Infomaniak hat die Kalenderanfrage umgeleitet. Die Verbindung muss geprüft werden; Zugangsdaten wurden nicht weitergeleitet.', !!body);
     if (!response.ok) throw new CalendarError(response.status === 401 || response.status === 403 ? 'Der Kalenderzugang fehlt oder hat nicht die nötigen Rechte.' : 'Infomaniak konnte die Kalenderanfrage nicht bestätigen.', !!body && (response.status >= 500 || response.status === 408));
     try {
       const result = await response.json() as Record<string, unknown>;
