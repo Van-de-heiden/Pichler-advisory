@@ -76,6 +76,12 @@ abschliessend geprüft werden.
 Der Kunde schlägt zwei bis drei verschiedene zukünftige Termine in **Schweizer
 Zeit / Europe/Zurich** vor und wählt Video oder Telefon. Telefon erfordert eine
 Rufnummer. Erstgespräche dauern 30 Minuten, sind kostenlos und unverbindlich.
+Alle sieben Wochentage sind wählbar, jeweils von 07:00 bis 19:00 Uhr. Startzeiten
+liegen im 15-Minuten-Takt zwischen 07:00 und 18:30 Uhr, damit das Gespräch bis
+19:00 Uhr endet. Die Website zeigt einen deutschsprachigen Kalender und Zeiten
+im 24-Stunden-Format, unabhängig von der Gerätesprache. Servervalidierung und
+Bestätigung prüfen dasselbe Zeitfenster. Es handelt sich um Wunschzeiten;
+die tatsächliche Kalenderbelegung wird erst bei der persönlichen Bestätigung geprüft.
 
 Die Website speichert die Terminanfrage und sendet sie direkt an
 `info@pichler-advisory.ch`. Die Mail enthält einen geheimen Bestätigungslink für
@@ -127,7 +133,7 @@ Bestätigungen, Konflikte, Telefon/Video, Kalenderpayload und Fehlerfälle sowie
 nach dem Produktionsbuild die bestehenden Seiten. `npx tsc --noEmit` prüft die
 Typen. Zusätzliche lokale Runtime-/Browserprüfungen ersetzen keine Live-Abnahme.
 
-Stand 7. Oktober 2026: 17 Backendtests und 6 Tests der gerenderten Website bestehen;
+Stand 8. Oktober 2026: 20 Backendtests und 6 Tests der gerenderten Website bestehen;
 Produktionsbuild, TypeScript und Lint der neuen Formular-/Terminmodule sind grün.
 Der bestehende globale Lint meldet weiterhin ältere Link-Regelverletzungen auf
 anderen Seiten. Die tatsächliche lokale workerd-Runtime mit SQLite Durable Object

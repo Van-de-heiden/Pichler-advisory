@@ -3,7 +3,9 @@ import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { company } from './company';
 import './enquiry.css';
 import { Icon } from './ui';
-import { zurichDate, type Slot } from '../lib/enquiry';
+import { validateEnquiry, zurichDate, type Slot } from '../lib/enquiry';
+
+import { MeetingSlots } from './meeting-slots';
 
 export function Enquiry({ initialTopic }: { initialTopic?: string }) {
   const [kind, setKind] = useState<'meeting' | 'message'>('meeting');
@@ -12,28 +14,47 @@ export function Enquiry({ initialTopic }: { initialTopic?: string }) {
   const [slots, setSlots] = useState<Slot[]>([{ date: '', time: '' }, { date: '', time: '' }]);
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
   const [error, setError] = useState('');
+  const [validationFailed, setValidationFailed] = useState(false);
   const [reference, setReference] = useState('');
-  const [bounds, setBounds] = useState({ min: '', max: '' });
+  const [bounds, setBounds] = useState({ min: '', max: '', now: 0 });
+  const slotPicker = useRef<HTMLFieldSetElement>(null);
   const result = useRef<HTMLDivElement>(null);
   const inFlight = useRef(false);
   const meeting = kind === 'meeting';
   useEffect(() => {
-    // Resolve date limits after hydration: a cached/server render may be from a previous day.
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setBounds({ min: zurichDate(), max: zurichDate(new Date(Date.now() + 179 * 86400000)) });
+    // Refresh in Zurich after hydration and across midnight in a long-open form.
+    const refresh = () => {
+      const now = Date.now();
+      setBounds({ min: zurichDate(new Date(now)), max: zurichDate(new Date(now + 179 * 86400000)), now });
+    };
+    refresh();
+    const timer = setInterval(refresh, 60000);
+    return () => clearInterval(timer);
   }, []);
-  useEffect(() => { if (status === 'success' || status === 'error') result.current?.focus(); }, [status]);
-  const updateSlot = (index: number, key: keyof Slot, value: string) => setSlots(current => current.map((slot, i) => i === index ? { ...slot, [key]: value } : slot));
+  useEffect(() => {
+    if (status === 'error') {
+      const incomplete = slotPicker.current?.querySelector<HTMLButtonElement>('[aria-invalid="true"]:not(:disabled)');
+      if (incomplete) { incomplete.focus(); return; }
+    }
+    if (status === 'success' || status === 'error') result.current?.focus();
+  }, [status]);
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (inFlight.current) return;
     const data = new FormData(event.currentTarget);
-    inFlight.current = true; setStatus('sending'); setError('');
+    const payload = { kind, topic, format, slots: meeting ? slots : [], name: data.get('name'), email: data.get('email'), company: data.get('company'), phone: data.get('phone'), message: data.get('message'), website: data.get('website'), privacy: data.get('privacy') === 'on' };
+    try {
+      if (meeting && slots.some(slot => !slot.date || !slot.time)) throw new Error('Bitte wählen Sie für jeden Wunschtermin ein Datum und eine Uhrzeit. Zwei Vorschläge genügen.');
+      validateEnquiry(payload);
+    } catch (cause) {
+      setValidationFailed(true); setError(cause instanceof Error ? cause.message : 'Bitte prüfen Sie Ihre Angaben.'); setStatus('error'); return;
+    }
+    inFlight.current = true; setStatus('sending'); setError(''); setValidationFailed(false);
     try {
       const response = await fetch('/api/enquiries', {
         method: 'POST', headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ kind, topic, format, slots: meeting ? slots : [], name: data.get('name'), email: data.get('email'), company: data.get('company'), phone: data.get('phone'), message: data.get('message'), website: data.get('website'), privacy: data.get('privacy') === 'on' }),
+        body: JSON.stringify(payload),
       });
       const body = await response.json();
       if (!response.ok || body.ok !== true) throw new Error(typeof body.error === 'string' ? body.error : 'Der Versand konnte nicht bestätigt werden. Bitte kontaktieren Sie mich direkt.');
@@ -62,7 +83,7 @@ export function Enquiry({ initialTopic }: { initialTopic?: string }) {
         <form className="enquiry-form" onSubmit={submit} aria-busy={status === 'sending'}>
           <fieldset className="enquiry-fields" disabled={status === 'sending'}>
             {meeting && <>
-              <fieldset className="slot-picker"><legend>Ihre Wunschtermine <span>· Schweizer Zeit</span></legend>{slots.map((slot, i) => <div className="slot-row" key={i}><span className="slot-number" aria-hidden="true">0{i + 1}</span><label>Datum {i + 1}<input type="date" name={`date-${i}`} required value={slot.date} min={bounds.min} max={bounds.max} onChange={e => updateSlot(i, 'date', e.target.value)} /></label><label>Uhrzeit {i + 1}<input type="time" name={`time-${i}`} required step="900" value={slot.time} onChange={e => updateSlot(i, 'time', e.target.value)} /></label>{i === 2 && <button type="button" className="remove-slot" aria-label="Dritten Wunschtermin entfernen" onClick={() => setSlots(current => current.slice(0, 2))}><Icon name="close" />Entfernen</button>}</div>)}{slots.length < 3 && <button type="button" className="add-slot" onClick={() => setSlots(current => [...current, { date: '', time: '' }])}>+ Dritte Wunschzeit hinzufügen</button>}</fieldset>
+              <MeetingSlots slots={slots} onChange={setSlots} bounds={bounds} invalid={status === 'error'} fieldsetRef={slotPicker} />
               <label>Wie möchten Sie sprechen?<select name="format" value={format} onChange={e => setFormat(e.target.value as 'video' | 'phone')}><option value="video">Video · Link folgt mit der Einladung</option><option value="phone">Telefon · Ich rufe Sie an</option></select></label>
             </>}
             <div className="form-pair"><label>Ihr Name *<input name="name" autoComplete="name" required maxLength={100} /></label><label>E-Mail *<input name="email" type="email" autoComplete="email" required maxLength={254} /></label></div>
@@ -74,7 +95,7 @@ export function Enquiry({ initialTopic }: { initialTopic?: string }) {
             <button className="button enquiry-submit" type="submit">{status === 'sending' ? 'Wird gesendet …' : meeting ? 'Kostenloses Erstgespräch anfragen' : 'Nachricht senden'}</button>
           </fieldset>
           <p className="form-note">{meeting ? 'Kostenlos und unverbindlich. Der Termin gilt erst nach meiner persönlichen Bestätigung. Es entsteht kein kostenpflichtiger Auftrag.' : 'Ihre Nachricht wird direkt an Pichler Advisory gesendet.'}</p>
-          {status === 'error' && <div ref={result} tabIndex={-1} role="alert" className="enquiry-error"><strong>Versand nicht bestätigt</strong><p>{error}</p><a href={`mailto:${company.email}`}>{company.email}</a><a href={company.phoneHref}>{company.phone}</a></div>}
+          {status === 'error' && <div ref={result} tabIndex={-1} role="alert" className="enquiry-error"><strong>{validationFailed ? 'Bitte prüfen Sie Ihre Wunschtermine und Angaben' : 'Versand nicht bestätigt'}</strong><p>{error}</p><a href={`mailto:${company.email}`}>{company.email}</a><a href={company.phoneHref}>{company.phone}</a></div>}
           <noscript><p>Bitte aktivieren Sie JavaScript, um das Formular zu senden, oder kontaktieren Sie mich unter {company.email}.</p></noscript>
         </form>
       </>}
