@@ -133,13 +133,30 @@ Bestätigungen, Konflikte, Telefon/Video, Kalenderpayload und Fehlerfälle sowie
 nach dem Produktionsbuild die bestehenden Seiten. `npx tsc --noEmit` prüft die
 Typen. Zusätzliche lokale Runtime-/Browserprüfungen ersetzen keine Live-Abnahme.
 
-Stand 8. Oktober 2026: 20 Backendtests und 6 Tests der gerenderten Website bestehen;
+Stand 8. Oktober 2026: 20 Backendtests, 2 Tests mit der echten Workers-Laufzeit
+und 6 Tests der gerenderten Website bestehen;
 Produktionsbuild, TypeScript und Lint der neuen Formular-/Terminmodule sind grün.
 Der bestehende globale Lint meldet weiterhin ältere Link-Regelverletzungen auf
 anderen Seiten. Die tatsächliche lokale workerd-Runtime mit SQLite Durable Object
 wurde für Speicherung, Berechtigung und parallele Bestätigung geprüft; die externe
 Kalender-API war dabei simuliert. Bestehende SEO-Metadaten, Weiterleitungen und
 Crawler-Regeln sind in der Änderung erhalten.
+
+### Kalender-Verbindungsfehler vom 8. Oktober 2026
+
+Der Kalenderclient muss natives `fetch` an `globalThis` binden. Ein Aufruf als
+Methode des Clients löste im Worker `Illegal invocation` aus. Zusätzlich
+akzeptiert die im Projekt verwendete workerd-Version `redirect: 'error'` nicht.
+Der Client verwendet deshalb `manual` und lehnt HTTP-Weiterleitungen ausdrücklich
+ab, ohne Zugangsdaten an ein anderes Ziel weiterzugeben. Bei einer Weiterleitung
+nach einem Schreibaufruf bleibt das Ergebnis vorsichtshalber unklar; es erfolgt
+kein automatischer zweiter Schreibversuch.
+
+`tests/calendar-runtime.test.mjs` führt den Kalenderclient mit dem nativen
+Workers-`fetch` und derselben Compatibility-Konfiguration wie Produktion aus.
+Nur Infomaniaks Antworten werden simuliert. Der Test deckt Kalenderliste,
+Profil, Belegungsprüfung, Erstellung und abgewiesene Weiterleitungen ab.
+Damit werden Laufzeitfehler erkannt, die reine Node-Fetch-Mocks nicht abbilden.
 
 Verwendete Protokollquellen:
 
