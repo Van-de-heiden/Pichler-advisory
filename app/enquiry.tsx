@@ -20,6 +20,7 @@ export function Enquiry({ initialTopic }: { initialTopic?: string }) {
   const slotPicker = useRef<HTMLFieldSetElement>(null);
   const result = useRef<HTMLDivElement>(null);
   const inFlight = useRef(false);
+  const submission = useRef<{fingerprint:string;id:string}|null>(null);
   const meeting = kind === 'meeting';
   useEffect(() => {
     // Refresh in Zurich after hydration and across midnight in a long-open form.
@@ -51,10 +52,18 @@ export function Enquiry({ initialTopic }: { initialTopic?: string }) {
       setValidationFailed(true); setError(cause instanceof Error ? cause.message : 'Bitte prüfen Sie Ihre Angaben.'); setStatus('error'); return;
     }
     inFlight.current = true; setStatus('sending'); setError(''); setValidationFailed(false);
+    const fingerprint = Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(JSON.stringify(payload))))).map(b=>b.toString(16).padStart(2,'0')).join('');
+    if (submission.current?.fingerprint !== fingerprint) {
+      try {
+        const saved = JSON.parse(sessionStorage.getItem('pa-enquiry-reference') || 'null');
+        submission.current = saved?.fingerprint === fingerprint ? saved : {fingerprint,id:crypto.randomUUID()};
+        sessionStorage.setItem('pa-enquiry-reference',JSON.stringify(submission.current));
+      } catch { submission.current = {fingerprint,id:crypto.randomUUID()}; }
+    }
     try {
       const response = await fetch('/api/enquiries', {
         method: 'POST', headers: { 'content-type': 'application/json' },
-        body: JSON.stringify(payload),
+        body: JSON.stringify({...payload,requestId:submission.current!.id}),
       });
       const body = await response.json();
       if (!response.ok || body.ok !== true) throw new Error(typeof body.error === 'string' ? body.error : 'Der Versand konnte nicht bestätigt werden. Bitte kontaktieren Sie mich direkt.');
@@ -77,7 +86,7 @@ export function Enquiry({ initialTopic }: { initialTopic?: string }) {
       <a className="contact-company-link" href="/impressum">Firmen- und Registerangaben</a>
     </div>
     <div className="enquiry-card">
-      {status === 'success' ? <div ref={result} tabIndex={-1} className="enquiry-success" role="status"><span className="success-icon"><Icon name="check" /></span><p className="overline">Vielen Dank für Ihr Vertrauen</p><h3>{meeting ? 'Ihre Terminanfrage ist gesendet.' : 'Ihre Nachricht ist gesendet.'}</h3><p>{meeting ? 'Nach meiner Bestätigung erhalten Sie Ihre Kalendereinladung per E-Mail. Bei Video enthält sie den kMeet-Link; bei Telefon rufe ich Sie zur bestätigten Zeit an.' : 'Ich melde mich persönlich bei Ihnen über die angegebene E-Mail-Adresse.'}</p>{meeting && <div className="submitted-slots"><strong>Ihre Wunschzeiten · Schweizer Zeit</strong>{slots.map((slot, i) => <span key={i}>{slot.date.split('-').reverse().join('.')} · {slot.time} Uhr</span>)}</div>}<p className="form-note">{meeting ? 'Das Erstgespräch ist kostenlos und unverbindlich.' : 'Ihre Anfrage ist unverbindlich.'}</p><p className="enquiry-reference">Referenz: {reference}</p></div> : <>
+      {status === 'success' ? <div ref={result} tabIndex={-1} className="enquiry-success" role="status"><span className="success-icon"><Icon name="check" /></span><p className="overline">Vielen Dank für Ihr Vertrauen</p><h3>{meeting ? 'Ihre Terminanfrage ist erfasst.' : 'Ihre Nachricht ist erfasst.'}</h3><p>{meeting ? 'Nach meiner Bestätigung erhalten Sie Ihre Kalendereinladung per E-Mail. Bei Video enthält sie den kMeet-Link; bei Telefon rufe ich Sie zur bestätigten Zeit an.' : 'Ich melde mich persönlich bei Ihnen über die angegebene E-Mail-Adresse.'}</p>{meeting && <div className="submitted-slots"><strong>Ihre Wunschzeiten · Schweizer Zeit</strong>{slots.map((slot, i) => <span key={i}>{slot.date.split('-').reverse().join('.')} · {slot.time} Uhr</span>)}</div>}<p className="form-note">{meeting ? 'Das Erstgespräch ist kostenlos und unverbindlich.' : 'Ihre Anfrage ist unverbindlich.'}</p><p className="enquiry-reference">Referenz: {reference}</p></div> : <>
         <div className="enquiry-choice" role="group" aria-label="Art der Kontaktaufnahme"><button type="button" aria-pressed={meeting} disabled={status === 'sending'} onClick={() => { setKind('meeting'); setStatus('idle'); }}>Erstgespräch anfragen</button><button type="button" aria-pressed={!meeting} disabled={status === 'sending'} onClick={() => { setKind('message'); setStatus('idle'); }}>Nachricht senden</button></div>
         <div className="enquiry-form-heading"><h3>{meeting ? 'Wann passt es Ihnen?' : 'Was haben Sie vor?'}</h3><p>{meeting ? 'Schlagen Sie zwei oder drei Zeiten vor. Ich bestätige Ihren Termin persönlich.' : 'Ein konkretes Problem oder eine Idee genügt.'}</p></div>
         <form className="enquiry-form" onSubmit={submit} aria-busy={status === 'sending'}>

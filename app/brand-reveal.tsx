@@ -34,7 +34,6 @@ export function BrandReveal() {
       }
     }
     if (!playThisMount.current) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setPhase("done");
       return;
     }

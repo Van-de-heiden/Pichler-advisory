@@ -45,3 +45,6 @@ next-env.d.ts
 # Local Worker secrets
 .dev.vars*
 *.tsbuildinfo
+
+playwright-report/
+test-results/

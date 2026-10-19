@@ -4,7 +4,12 @@ import { registerBooking, type BookingEnv } from './bookings.ts';
 import { ENQUIRY_EMAIL, EnquiryError, enquiryMail, validateEnquiry } from '../lib/enquiry.ts';
 
 type Limiter = { limit(input: { key: string }): Promise<{ success: boolean }> };
-export type EnquiryEnv = BookingEnv & { MAIL_PASSWORD?: string; ENQUIRY_LIMITER?: Limiter; ENQUIRY_TOTAL_LIMITER?: Limiter };
+export type IntakeBinding = {
+ receive(input: {id:string;enquiry:unknown}):Promise<{ok:boolean;reference:string}>;
+ claimNotification(id:string):Promise<boolean>;
+ notification(id:string,status:string):Promise<void>;
+};
+export type EnquiryEnv = BookingEnv & { PA_OS?: IntakeBinding; MAIL_PASSWORD?: string; ENQUIRY_LIMITER?: Limiter; ENQUIRY_TOTAL_LIMITER?: Limiter };
 type Mail = ReturnType<typeof enquiryMail>;
 type Send = (mail: Mail, env: EnquiryEnv) => Promise<void>;
 const MAX_BYTES = 20000;
@@ -53,24 +58,37 @@ export async function handleEnquiry(request: Request, env: EnquiryEnv, send: Sen
   if (request.headers.get('content-type')?.split(';')[0].trim() !== 'application/json') return json({ error: 'Ungültiges Anfrageformat.' }, 415);
   if (Number(request.headers.get('content-length')) > MAX_BYTES) return json({ error: 'Die Anfrage ist zu lang.' }, 413);
   try {
-    if (!env.MAIL_PASSWORD || !env.ENQUIRY_LIMITER || !env.ENQUIRY_TOTAL_LIMITER) return json({ error: unavailable }, 503);
+    if (!env.PA_OS || !env.ENQUIRY_LIMITER || !env.ENQUIRY_TOTAL_LIMITER) return json({ error: unavailable }, 503);
     // A public form has no account identifier; use Cloudflare's trusted client IP.
     // These bindings limit per location; they are spam mitigation, not exact quotas.
     const limited = await env.ENQUIRY_LIMITER.limit({ key: `enquiry:ip:${request.headers.get('cf-connecting-ip') || 'local'}` });
     if (!limited.success) return json({ error: 'Zu viele Anfragen. Bitte warten Sie eine Minute und versuchen Sie es erneut.' }, 429, { 'retry-after': '60' });
-    const enquiry = validateEnquiry(await readBody(request));
+    const input = await readBody(request);
+    const enquiry = validateEnquiry(input);
+    const reference = (input as Record<string,unknown>).requestId;
+    if (typeof reference !== 'string' || !/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(reference)) return json({error:'Bitte laden Sie das Formular neu und senden Sie die Anfrage erneut.'},400);
     if (enquiry.kind === 'meeting' && (!env.BOOKINGS || !env.INFOMANIAK_CALENDAR_TOKEN)) return json({ error: 'Die Online-Terminanfrage ist momentan nicht verfügbar. Bitte kontaktieren Sie mich direkt per E-Mail oder Telefon.' }, 503);
     const total = await env.ENQUIRY_TOTAL_LIMITER.limit({ key: 'pichler-advisory:enquiries' });
     if (!total.success) return json({ error: 'Der Versand ist gerade ausgelastet. Bitte versuchen Sie es in einer Minute erneut.' }, 429, { 'retry-after': '60' });
-    const reference = crypto.randomUUID();
-    // Await SMTP acceptance before reporting success. Never automatically retry
-    // an ambiguous SMTP failure; there is no durable outbox in this simple form.
+    // Confirmation means durable receipt. Email is an independent notification.
+    // RPC is a private service binding; the OS does not expose a public intake API.
+    const receipt = await env.PA_OS.receive({id:reference,enquiry});
+    if (!receipt.ok || receipt.reference !== reference) throw new Error('Receipt not confirmed');
+    let claimed = false;
+    try { claimed = await env.PA_OS.claimNotification(reference); } catch { /* Receipt remains durable and visible in OS. */ }
+    if (!claimed) return json({ok:true,reference});
     const mail = enquiryMail(enquiry, reference);
+    try {
     if (enquiry.kind === 'meeting') {
       const approvalLink = await registerBooking(env, enquiry, reference);
       mail.text += `\n\nTERMIN BESTÄTIGEN\n${approvalLink}\n\nDiesen persönlichen Link nicht weiterleiten. Eine Wunschzeit auswählen und bestätigen; danach erstellt Infomaniak den Kalendereintrag und versendet die Einladung. Bei Video wird ein eigener kMeet-Link ergänzt, bei Telefon die angegebene Telefonnummer. Beim blossen Öffnen des Links wird nichts gebucht.`;
     }
     await send(mail, env);
+    await env.PA_OS.notification(reference,'sent');
+    } catch {
+      // Never repeat ambiguous SMTP sends. The OS shows the unresolved notice.
+      await env.PA_OS.notification(reference,'uncertain').catch(()=>{});
+    }
     return json({ ok: true, reference });
   } catch (error) {
     if (error instanceof EnquiryError) return json({ error: error.message }, 400);

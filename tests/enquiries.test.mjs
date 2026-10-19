@@ -1,3 +1,4 @@
+import { intakeMock } from './fixtures/intake.mjs';
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { EventEmitter } from 'node:events';
@@ -9,8 +10,8 @@ import { handleEnquiry } from '../worker/enquiries.ts';
 const now = Date.UTC(2026, 9, 7, 9);
 const message = { kind: 'message', name: 'Max Muster', email: 'max@example.ch', company: 'Muster AG', phone: '', topic: '', message: 'Wir möchten die Rapporte vereinfachen.', privacy: true, website: '' };
 const meeting = { ...message, kind: 'meeting', message: '', format: 'video', slots: [{ date: '2026-10-20', time: '10:00' }, { date: '2026-11-02', time: '14:00' }] };
-const env = () => ({ MAIL_PASSWORD: 'test-only-not-a-secret', ENQUIRY_LIMITER: { limit: async () => ({ success: true }) }, ENQUIRY_TOTAL_LIMITER: { limit: async () => ({ success: true }) } });
-const request = (data = message, headers = {}) => new Request('https://pichler-advisory.ch/api/enquiries', { method: 'POST', headers: { origin: 'https://pichler-advisory.ch', 'content-type': 'application/json', 'cf-connecting-ip': '192.0.2.1', ...headers }, body: JSON.stringify(data) });
+const env = () => ({ PA_OS: intakeMock(), MAIL_PASSWORD: 'test-only-not-a-secret', ENQUIRY_LIMITER: { limit: async () => ({ success: true }) }, ENQUIRY_TOTAL_LIMITER: { limit: async () => ({ success: true }) } });
+const request = (data = message, headers = {}) => new Request('https://pichler-advisory.ch/api/enquiries', { method: 'POST', headers: { origin: 'https://pichler-advisory.ch', 'content-type': 'application/json', 'cf-connecting-ip': '192.0.2.1', ...headers }, body: JSON.stringify({requestId:"12345678-1234-4123-8123-123456789abc",...data}) });
 
 test('Zurich wall-clock times survive summer/winter change and reject invalid/ambiguous dates', () => {
   assert.equal(slotInstant(meeting.slots[0]), Date.UTC(2026, 9, 20, 8));
@@ -51,7 +52,7 @@ test('mail always goes to the owner, replies go to visitor, times and manual con
   const mime = result.message.toString();
   assert.match(mime, /Reply-To: Max Muster <max@example.ch>/); assert.match(mime, /To: info@pichler-advisory.ch/);
 });
-test('API awaits acceptance, never reports success on transport failure and reveals no secrets', async () => {
+test('API confirms durable intake and separates uncertain mail delivery without revealing secrets', async () => {
   let sends = 0; let release;
   const pending = handleEnquiry(request(), env(), async mail => { sends++; assert.equal(mail.to, ENQUIRY_EMAIL); await new Promise(resolve => { release = resolve; }); });
   while (!release) await new Promise(resolve => setTimeout(resolve, 0));
@@ -59,7 +60,7 @@ test('API awaits acceptance, never reports success on transport failure and reve
   await Promise.resolve(); assert.equal(settled, false); release();
   const success = await pending; assert.equal(success.status, 200); assert.equal((await success.json()).ok, true); assert.equal(sends, 1);
   const failure = await handleEnquiry(request(), env(), async () => { throw new Error('provider error with secret'); });
-  assert.equal(failure.status, 502); assert.doesNotMatch(await failure.text(), /provider error|secret|"ok":true/);
+  assert.equal(failure.status, 200); assert.doesNotMatch(await failure.text(), /provider error|secret/);
 });
 test('API rejects cross-origin, wrong method, oversized/chunked requests, missing setup and rate limits without sending', async () => {
   const send = async () => assert.fail('must not send');
@@ -92,4 +93,19 @@ test('SMTP rejects unverified TLS and preserves network errors without duplicate
     assert.equal(outcome.value,undefined);assert.equal(calls,1);assert.equal(socket.destroyed,true);
     assert.equal(outcome.error.code,mode==='unverified'?'ETLS':mode==='close'?'ECONNRESET':'ECONNREFUSED');
   }
+});
+
+test('durable intake failure never reports success or sends mail; replay sends once',async()=>{
+ const h=env();h.PA_OS.receive=async()=>{throw new Error('private storage failure');};
+ const failed=await handleEnquiry(request(),h,async()=>assert.fail('must not send before durable receipt'));
+ assert.equal(failed.status,502);assert.doesNotMatch(await failed.text(),/private storage/);
+ const fresh=env();let sends=0;const responses=await Promise.all([handleEnquiry(request(),fresh,async()=>{sends++;}),handleEnquiry(request(),fresh,async()=>{sends++;})]);
+ for(const r of responses)assert.equal(r.status,200);assert.equal(sends,1);assert.equal(fresh.PA_OS.records.size,1);
+ assert.equal((await handleEnquiry(request({...message,message:'changed payload'}),fresh,async()=>assert.fail('conflicting replay'))).status,502);
+});
+test('missing request reference is rejected and uncertain notifications are never sent twice',async()=>{
+ const h=env();assert.equal((await handleEnquiry(request({...message,requestId:null}),h,async()=>assert.fail())).status,400);
+ let sends=0;const send=async()=>{sends++;throw new Error('lost SMTP acknowledgement');};
+ assert.equal((await handleEnquiry(request(),h,send)).status,200);assert.equal((await handleEnquiry(request(),h,send)).status,200);
+ assert.equal(sends,1);assert.equal([...h.PA_OS.records.values()][0].notification,'uncertain');
 });
