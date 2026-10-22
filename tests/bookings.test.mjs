@@ -1,3 +1,4 @@
+import { intakeMock } from './fixtures/intake.mjs';
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { BookingDesk, handleBooking, registerBooking } from '../worker/bookings.ts';
@@ -5,7 +6,7 @@ import { InfomaniakCalendar, CalendarError } from '../worker/calendar.ts';
 import { handleEnquiry } from '../worker/enquiries.ts';
 import { zurichDate, slotInstant } from '../lib/enquiry.ts';
 
-const enquiry = () => ({ kind: 'meeting', name: 'Test Kunde', email: 'kunde@example.ch', company: 'Beispiel AG', phone: '+41 79 123 45 67', message: 'Rapporte vereinfachen.', topic: 'Abläufe verbessern', format: 'video', slots: [{ date: zurichDate(new Date(Date.now() + 3 * 86400000)), time: '10:00' }, { date: zurichDate(new Date(Date.now() + 4 * 86400000)), time: '14:00' }] });
+const enquiry = () => ({ requestId: crypto.randomUUID(), kind: 'meeting', name: 'Test Kunde', email: 'kunde@example.ch', company: 'Beispiel AG', phone: '+41 79 123 45 67', message: 'Rapporte vereinfachen.', topic: 'Abläufe verbessern', format: 'video', slots: [{ date: zurichDate(new Date(Date.now() + 3 * 86400000)), time: '10:00' }, { date: zurichDate(new Date(Date.now() + 4 * 86400000)), time: '14:00' }] });
 function harness() {
   const values = new Map(); let alarm = null, queue = Promise.resolve();
   const state = { storage: {
@@ -13,7 +14,7 @@ function harness() {
     delete: async key => values.delete(key), list: async () => structuredClone(values),
     getAlarm: async () => alarm, setAlarm: async value => { alarm = value; },
   }, blockConcurrencyWhile: callback => { const next = queue.then(callback); queue = next.catch(() => {}); return next; } };
-  const env = { INFOMANIAK_CALENDAR_TOKEN: 'test-token' };
+  const env = { PA_OS: intakeMock(), INFOMANIAK_CALENDAR_TOKEN: 'test-token' };
   const desk = new BookingDesk(state, env);
   env.BOOKINGS = { idFromName: name => name, get: () => ({ fetch: request => desk.fetch(request) }) };
   let creates = 0;
