@@ -232,7 +232,7 @@ html[data-brand-reveal="seen"] .reveal{display:none}
 .summit-visual img{width:100%;height:auto;display:block}
 .hero-landscape .summit-visual{height:100%;overflow:hidden;mask-image:linear-gradient(to right,transparent 0%,#000 21%),linear-gradient(to bottom,#000 83%,transparent 100%);mask-composite:intersect}
 .hero-landscape .summit-visual img{width:120%;max-width:none;margin-left:-5%}
-.hero-summit+.offering-section{border-top:0;padding-top:36px}
+.hero-summit+.offering-section{border-top:0;padding-top:112px}
 .hero-personal{position:relative;z-index:2;display:grid;grid-template-columns:.7fr 1.4fr;align-items:center;gap:40px;padding-block:32px 36px;border-top:1px solid var(--line)}
 .personal-identity{display:flex;align-items:center;gap:22px;width:fit-content}
 .personal-portrait{display:block;flex:none;width:100px;height:124px;border-radius:18px;overflow:hidden;background:#deddd8}
@@ -269,11 +269,11 @@ html[data-brand-reveal="seen"] .reveal{display:none}
  .hero.hero-summit{min-height:0;display:flex;flex-direction:column;gap:0}
  .hero-summit-inner{min-height:0;display:block}.hero-summit .hero-copy{width:100%;max-width:none;padding:40px 0 0}.hero-summit .hero-lead{max-width:550px}
  .hero-landscape{position:relative;right:auto;top:auto;bottom:auto;width:100%;height:auto;max-width:none;margin-top:0;flex:1 0 180px;min-height:180px}.hero-landscape .summit-visual{position:absolute;inset:0;height:100%;display:flex;align-items:flex-end;mask-image:linear-gradient(to bottom,#000 79%,transparent 100%);mask-composite:add}.hero-landscape .summit-visual img{width:100%;height:100%;max-width:100%;margin-left:0;max-height:510px;object-fit:contain;object-position:right bottom}
- .hero-summit+.offering-section{padding-top:34px}
+ .hero-summit+.offering-section{padding-top:88px}
 }
 @media(max-width:600px){
  .hero-summit .hero-copy{padding-top:31px}.hero-landscape{padding-top:4px}.hero-landscape .summit-visual img{width:115%;max-width:none;margin-left:-15%;max-height:340px;object-fit:contain;object-position:bottom right}
- .hero-summit+.offering-section{padding-top:42px}
+ .hero-summit+.offering-section{padding-top:64px}
  .flow-opportunity .flow-step-2{margin-left:8px}.flow-opportunity .flow-step-3{margin-left:16px}
 }
 
