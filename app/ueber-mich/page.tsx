@@ -11,12 +11,12 @@ export const metadata = pageMetadata('/ueber-mich', 'Maurus Pichler | Pichler Ad
 export default function AboutPage() {
   return <><StructuredData data={[
     { ...pageSchema('/ueber-mich', 'Maurus Pichler', 'ProfilePage'), mainEntity: { '@id': personId } },
-    { '@context': 'https://schema.org', '@type': 'Person', '@id': personId, name: company.contactName, alternateName: company.owner, url: `${company.url}/ueber-mich`, image: `${company.url}/maurus-portrait.jpg`, jobTitle: 'Gründer und Inhaber', worksFor: { '@id': organizationId } },
+    { '@context': 'https://schema.org', '@type': 'Person', '@id': personId, name: company.contactName, alternateName: company.owner, url: `${company.url}/ueber-mich`, image: `${company.url}/maurus-portrait-20261025.webp`, jobTitle: 'Gründer und Inhaber', worksFor: { '@id': organizationId } },
     breadcrumbSchema('/ueber-mich', 'Über Maurus Pichler'),
   ]} /><PageMotion /><SiteHeader /><main id="inhalt">
     <section className="about-hero wrap">
       <div><p className="overline">Maurus Pichler · Gründer & Inhaber</p><h1>Ihr Betrieb<br />hat mehr drauf.<br /><span>Machen wir etwas daraus.</span></h1><p>Sie holen mich dazu, wenn Sie weiterkommen wollen. Ich finde heraus, was Sie ausbremst, und setze die Verbesserung mit Ihnen um.</p><Link href="/#anfrage" className="button">Vorhaben besprechen <Arrow /></Link></div>
-      <figure><img src="/maurus-portrait.jpg" width="1200" height="1600" alt="Maurus Pichler" /><figcaption>Maurus Pichler · Beratung und Umsetzung</figcaption></figure>
+      <figure><img src="/maurus-portrait-20261025.webp" width="1254" height="1254" alt="Maurus Pichler" /><figcaption>Maurus Pichler · Beratung und Umsetzung</figcaption></figure>
     </section>
     <section className="about-position wrap">
       <h2>«Das machen wir<br />schon immer so.»<br />Genau da fange ich an.</h2>

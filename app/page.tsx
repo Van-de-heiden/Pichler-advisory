@@ -27,7 +27,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ l
         </div><div className="hero-landscape"><SummitVisual priority /></div>
         <div className="hero-personal wrap" aria-labelledby="personal-title">
           <a className="personal-identity" href="/ueber-mich" aria-label="Mehr über Maurus Pichler">
-            <span className="personal-portrait"><img src="/maurus-portrait.jpg" width="1200" height="1600" alt="Maurus Pichler" loading="lazy" /></span>
+            <span className="personal-portrait"><img src="/maurus-portrait-20261025.webp" width="1254" height="1254" alt="Maurus Pichler" loading="lazy" /></span>
             <span className="personal-name"><strong>Maurus Pichler</strong><span>Inhaber · Ihr Ansprechpartner</span><span className="personal-more">Lernen Sie mich kennen <Arrow /></span></span>
           </a>
           <div className="personal-promise">
