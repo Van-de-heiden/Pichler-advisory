@@ -38,7 +38,7 @@ export default function ImpressumPage() {
 
       <section>
         <h2>Inhalte und externe Links</h2>
-        <p>Diese Website informiert über die Leistungen von Pichler Advisory. Massgebend für einen Auftrag sind das vereinbarte Angebot und die einbezogenen <a href="/agb">AGB</a>. Die interaktiven Beispiele veranschaulichen mögliche Lösungen; der Rechner zeigt den Gegenwert von Arbeitszeit anhand der gewählten Angaben.</p>
+        <p>Diese Website informiert über die Leistungen von Pichler Advisory. Massgebend für einen Auftrag sind das vereinbarte Angebot und die einbezogenen <a href="/agb">AGB</a>. Illustrative Ansichten im Leistungsbereich zeigen mögliche Lösungen und sind keine Kundenreferenzen.</p>
         <p>Externe Links führen zu eigenständigen Angeboten anderer Betreiber. Hinweise auf fehlerhafte Inhalte oder Links nehmen wir unter der oben angegebenen E-Mail-Adresse entgegen. Gesetzliche Haftungsansprüche bleiben unberührt.</p>
       </section>
 
@@ -51,11 +51,9 @@ export default function ImpressumPage() {
 
       <section id="bildnachweise">
         <h2>Bildnachweise</h2>
-        <p>
-          Matterhorn: <a href="https://commons.wikimedia.org/wiki/File:Matterhorn_Monte_Cervino.jpg" target="_blank" rel="noreferrer">«Matterhorn Monte Cervino»</a> von Belappetit / Rene Reichelt, Wikimedia Commons.
-          {' '}Lizenz: <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noreferrer">CC BY-SA 3.0</a>.
-          {' '}Bearbeitung für diese Website: Hintergrund mithilfe von KI freigestellt, Bildausschnitt angepasst und als WebP ausgegeben. Die bearbeitete Bilddatei steht ebenfalls unter CC BY-SA 3.0.
-        </p>
+        <p>Porträt von Maurus Pichler: bereitgestelltes Bildmaterial von Pichler Advisory.</p>
+        <p>Die Landschaftsillustration und die fiktiven Website-Beispiele wurden für diesen Auftritt mit KI-Unterstützung gestaltet. Die App- und Prozessansichten sind illustrative Gestaltungsbeispiele. Sie zeigen keine realen Kundenprojekte und sind keine Kundenreferenzen.</p>
+        <p>Ein Teil der verwendeten Symbole basiert auf <a href="https://lucide.dev/license" target="_blank" rel="noreferrer">Lucide</a> (ISC-Lizenz). Die lokal bereitgestellten Schriften Manrope und Newsreader werden unter der SIL Open Font License verwendet; das P-Signet basiert auf Newsreader. Die <a href="/licenses/Newsreader-OFL.txt">Lizenz für Newsreader</a> und die <a href="/licenses/Manrope-OFL.txt">Lizenz für Manrope</a> sind hier abrufbar.</p>
       </section>
 
       <section>

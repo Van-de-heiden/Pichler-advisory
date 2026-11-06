@@ -1,45 +1,45 @@
 # Pichler Advisory
 
-Production website for Pichler Advisory, built with Next.js-compatible Vinext and deployed as a Cloudflare Worker.
+Public website built with Next.js-compatible Vinext and a Cloudflare Worker. The
+November 2026 migration uses the exact Sites v14 design with the existing PA OS
+intake and manually confirmed booking workflow.
 
-## Local development
+## Development and validation
 
-Requirements:
-
-- Node.js 22 or newer
-- npm
+Use Node.js >=22.13.0 and npm.
 
 ```bash
 npm ci
 npm run dev
 ```
 
-## Validation
-
 ```bash
-npm test
+npx tsc --noEmit
 npm run lint
+npm test
+npx playwright install --with-deps chromium
+npm run test:ui
 ```
 
-## Cloudflare deployment
+Tests use local fixtures and mocks. They do not send live emails or calendar
+invitations. `PA_BROWSER_EXECUTABLE` can select an installed Chromium browser.
 
-The repository is prepared for Cloudflare Workers Builds. Connect the `main`
-branch to the Worker named `pichler-advisory`.
+## Migration and release
 
-- Build command: `npm run build`
-- Deploy command: `npx wrangler deploy`
-- Production branch: `main`
+Read [the migration handoff](docs/SITES-V14-MIGRATION.md) before pushing this
+candidate. It is prepared locally; **it has not been published**. The release
+branch triggered both Cloudflare Workers Builds and Pages. Actual production and
+preview branch settings and commands must be checked before any push, including
+a pull-request branch.
 
-The production website is publicly accessible. Changes merged into `main` are
-built and deployed through the connected Cloudflare Worker.
+Expected build command: `npm run build`. Worker configuration is retained in
+`wrangler.jsonc`, including its name, PA OS binding and BookingDesk identity.
+Do not replace this repository with the standalone Sites preview or static export.
 
-## September 2026 redesign
+Public routes are `/`, `/ueber-mich`, `/agb`, `/impressum` and `/datenschutz`.
+Former service/industry pages redirect to relevant homepage sections. Private
+`/termine/bestaetigen` stays available and excluded from search. Blog comes later.
 
-The approved design study was transferred on 20 September 2026. The source and
-images of the previous public website remain available on the branch
-`archive/pre-redesign-2026-09-20` (commit `633adc8627ab20f17f97b6cb3a75b8b4d84de421`).
-The existing production dependencies, Worker name and Cloudflare build setup
-are retained. The entry animation runs once per browser tab session.
-
-The Matterhorn asset is attributed and licensed on `/impressum#bildnachweise`.
-The enquiry form submits messages and free, non-binding first-meeting requests directly to the server. Mail is sent via the existing Infomaniak mailbox. See `MAIL-SETUP.md` for the required production secret and release check.
+See [MAIL-SETUP.md](MAIL-SETUP.md) for mail/calendar configuration and
+[docs/OS_INTAKE.md](docs/OS_INTAKE.md) for durable intake behavior. All production
+secrets remain external. Updated font licenses are served under `/licenses/`.

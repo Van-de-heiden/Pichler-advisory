@@ -1,48 +1,158 @@
 {
-  "recommended_asset": "mac-draco.glb",
-  "source": "https://github.com/pmndrs/examples/tree/main/examples/floating-laptop",
-  "download": "https://raw.githubusercontent.com/pmndrs/examples/6ea1379e3163aa413970fea2e6b7b3e59b63d2c4/examples/floating-laptop/src/mac-draco.glb",
-  "license_evidence": "Repository-level MIT license; retained as pmndrs-LICENSE.txt. No separate author/license notice exists in downloaded GLB asset metadata. Do not describe as CC0.",
-  "license_url": "https://github.com/pmndrs/examples/blob/main/LICENSE",
-  "screen_source": "https://github.com/pmndrs/examples/blob/main/examples/mixing-html-and-webgl-w-occlusion/src/App.tsx",
-  "screen_css_source": "https://github.com/pmndrs/examples/blob/main/examples/mixing-html-and-webgl-w-occlusion/src/styles.css",
-  "screen_mesh": "Cube008_2 / screen.001",
-  "screen_dimensions_local": [
-    8.308799799558996,
-    5.381052871651922
-  ],
-  "html_overlay": {
-    "position": [
-      0,
-      0.05,
-      -0.09
-    ],
-    "rotation_x": "-Math.PI / 2",
-    "content_css_px": [
-      334,
-      216
-    ],
-    "wrapper_css_px": [
-      668,
-      432
-    ],
-    "wrapper_transform": "scale(0.5); transform-origin: top left"
-  },
-  "fallback": {
-    "file": "macbook-pro-16-front.png",
-    "source": "https://www.webmobilefirst.com/en/mockups/apple-macbook-pro-16-2021/",
-    "download": "https://www.webmobilefirst.com/img/mockups/mockup-apple-macbook-pro-16-2021-transparent.png",
-    "dimensions": [
-      800,
-      489
-    ],
-    "terms": "Personal/commercial use permitted, modification/cropping permitted, no attribution required; no standalone resale/redistribution.",
-    "screen_inner_rectangle_px": {
-      "x": 75,
-      "width": 650,
-      "y": 19,
-      "height": 420,
-      "note": "Measured transparent core at alpha below 10. Place HTML slightly wider underneath frame edges."
+  "source_library_file": "libfile_25fda547426881919a85fa3039417bfa",
+  "source_commit": "e257d8938b114d5e0cea4b8279199886db14ba32",
+  "source_archive_sha256": "59c88aa925e69a62696cb6506318c1f428f4fdee2476722c678f64e70f561b07",
+  "license_notes": "Supplied design assets and existing portrait/concept material; source disclosures retained in /impressum#bildnachweise. Font licenses retained in public/licenses. Historical unused laptop mockup provenance is available in Git history.",
+  "assets": [
+    {
+      "path": "public/brand/pichler-mark-dark.svg",
+      "sha256": "3e2bf83bc44359a923991b3beafb28f770edf3ee3771ac59133e82a1c9f1aec0",
+      "source": "Sites v14, unchanged"
+    },
+    {
+      "path": "public/brand/pichler-mark-light.svg",
+      "sha256": "a25beaa5bbd3a9cf96a3911b7ca471f326bb355a6d494a2b3c8cfaccc8e6f5bc",
+      "source": "Sites v14, unchanged"
+    },
+    {
+      "path": "public/brand/pichler-wordmark-dark.svg",
+      "sha256": "08bf06cdea311b31a6120db6b3d69d80c192e04b528cff15923db88894d0adfa",
+      "source": "Sites v14, unchanged"
+    },
+    {
+      "path": "public/brand/pichler-wordmark-light.svg",
+      "sha256": "8238569a4ddd5ef34cef430352e24fdbd029ab2fb683e63f053e9a63be696d79",
+      "source": "Sites v14, unchanged"
+    },
+    {
+      "path": "public/favicon.ico",
+      "sha256": "3098f9c1237af69446e4db1bc3aec2eb5f88f72af9f882c59a7c86dbe386ad9c",
+      "source": "Sites v14, unchanged"
+    },
+    {
+      "path": "public/file.svg",
+      "sha256": "1e0ae4d1a1ddfa36752988647b731e4abf150c414d069ec83c96fb0aaeff0307",
+      "source": "Sites v14, unchanged"
+    },
+    {
+      "path": "public/globe.svg",
+      "sha256": "d051a8c47936990a9085693d307bb7cea1bc1b6d7ed956bcbaacf674f4ec96b9",
+      "source": "Sites v14, unchanged"
+    },
+    {
+      "path": "public/hero-consultation-authentic.jpeg",
+      "sha256": "6e2e83ade3ffbbaf3fb93c11f2ee7cd52e7e53e73b084be0895a5ea845337307",
+      "source": "Sites v14, unchanged"
+    },
+    {
+      "path": "public/hero-consultation-v2.webp",
+      "sha256": "323f3d1f970ebf8df37258c097769e4f06c4956d4f6f57d61455f0496ef643d3",
+      "source": "Sites v14, unchanged"
+    },
+    {
+      "path": "public/hero-consultation-v3.webp",
+      "sha256": "e7a8e47f12cd90ca31d7294c64a5ca6567d9f280b96834668131c67357dc8c30",
+      "source": "Sites v14, unchanged"
+    },
+    {
+      "path": "public/hero-consultation.webp",
+      "sha256": "fb3a0375517c47194dc58dd631fc8caf166ba9fa9440af6d1b135b8d29203f2f",
+      "source": "Sites v14, unchanged"
+    },
+    {
+      "path": "public/licenses/Manrope-OFL.txt",
+      "sha256": "d826ab6583b12c26807d8716a545bdbbb672df04f48608a364ba9efdbe501c30",
+      "source": "Sites v14, unchanged"
+    },
+    {
+      "path": "public/licenses/Newsreader-OFL.txt",
+      "sha256": "26028ec4e13b650065fa525a09532176f8a668b76ff849ea01c564a7480f91e7",
+      "source": "Sites v14, unchanged"
+    },
+    {
+      "path": "public/maurus-portrait-20261025.webp",
+      "sha256": "84d13ade6d0d43529246626514e35f89f0931a7af6b7975472d6496d71cddff8",
+      "source": "Sites v14, unchanged"
+    },
+    {
+      "path": "public/maurus-portrait.jpg",
+      "sha256": "539a4f86184af88c2a82d5eee954231f59429696a69a7b2fe83fb6dc344bfdc3",
+      "source": "Sites v14, unchanged"
+    },
+    {
+      "path": "public/pichler-current-wordmark.png",
+      "sha256": "e2ea5a9faa7ead0644f0dbc7360cfa87d98ba7f03831fce9b96bec2a5f4a8c3c",
+      "source": "Sites v14, unchanged"
+    },
+    {
+      "path": "public/pichler-favicon-v10.ico",
+      "sha256": "3098f9c1237af69446e4db1bc3aec2eb5f88f72af9f882c59a7c86dbe386ad9c",
+      "source": "Sites v14, unchanged"
+    },
+    {
+      "path": "public/pichler-favicon-v13.ico",
+      "sha256": "3098f9c1237af69446e4db1bc3aec2eb5f88f72af9f882c59a7c86dbe386ad9c",
+      "source": "Sites v14, unchanged"
+    },
+    {
+      "path": "public/pichler-mark-v10.svg",
+      "sha256": "cbda84d69495c9e9df5fcf3acf7af84ed9a6af47baad6d75a68c357d85f77f33",
+      "source": "Sites v14, unchanged"
+    },
+    {
+      "path": "public/pichler-mark-v13.svg",
+      "sha256": "cbda84d69495c9e9df5fcf3acf7af84ed9a6af47baad6d75a68c357d85f77f33",
+      "source": "Sites v14, unchanged"
+    },
+    {
+      "path": "public/pichler-touch-icon-v10.png",
+      "sha256": "2dac4e29fcc239c1c197efd3e88fb2388841f9f5e127ad330b08276047fd1a37",
+      "source": "Sites v14, unchanged"
+    },
+    {
+      "path": "public/pichler-touch-icon-v13.png",
+      "sha256": "2dac4e29fcc239c1c197efd3e88fb2388841f9f5e127ad330b08276047fd1a37",
+      "source": "Sites v14, unchanged"
+    },
+    {
+      "path": "public/planning-landscape-v10.png",
+      "sha256": "0fafc054d99edc436333a4b24291ea51761ac0f7c3554a1812f25329da36f374",
+      "source": "Sites v14, unchanged"
+    },
+    {
+      "path": "public/planning-model-v1.png",
+      "sha256": "20036090e65e6931c5a15ae6f67a68a33b1307c10e90f80b558f918f9b3cc9bd",
+      "source": "Sites v14, unchanged"
+    },
+    {
+      "path": "public/process-workshop.webp",
+      "sha256": "4599cb384125f463e96b50ab2066f72169bb4dd2f590b79b1047d726742f6371",
+      "source": "Sites v14, unchanged"
+    },
+    {
+      "path": "public/sme-environment.webp",
+      "sha256": "dce752695882c68d40e47c5c01f2eafe559c4c6efbc2a5ae54838a63dcb88dd1",
+      "source": "Sites v14, unchanged"
+    },
+    {
+      "path": "public/website-concepts/aurel.webp",
+      "sha256": "900ffc336cf5f02382fc4d4bb5b6ecd88ebe3930552dbb09f533a8bfd362c130",
+      "source": "Sites v14, unchanged"
+    },
+    {
+      "path": "public/website-concepts/gruenraum.webp",
+      "sha256": "371d6ff1cfd4cbf5ec760eac5eb1fe3f53d2ffb1cd0a2cf64c2cebaea97fa5fd",
+      "source": "Sites v14, unchanged"
+    },
+    {
+      "path": "public/website-concepts/studio-nord.webp",
+      "sha256": "8d6aa3e005a5126ac39d17878de356c0d000d07a0475418daa40199a56d4e3dd",
+      "source": "Sites v14, unchanged"
+    },
+    {
+      "path": "public/window.svg",
+      "sha256": "decf1cf7bb22b5c99c4857cfcd5718ce5465c4454166317589c83fc73df74b66",
+      "source": "Sites v14, unchanged"
     }
-  }
+  ]
 }

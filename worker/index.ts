@@ -24,16 +24,6 @@ interface ExecutionContext {
 
 const PUBLIC_URLS = [
   "https://pichler-advisory.ch/",
-  "https://pichler-advisory.ch/leistungen/prozesse-automatisierung",
-  "https://pichler-advisory.ch/leistungen/apps-it-projekte",
-  "https://pichler-advisory.ch/leistungen/websites",
-  "https://pichler-advisory.ch/leistungen/betrieb-betreuung",
-  "https://pichler-advisory.ch/branchen/handwerk-bau",
-  "https://pichler-advisory.ch/branchen/handel-logistik",
-  "https://pichler-advisory.ch/branchen/dienstleistungen",
-  "https://pichler-advisory.ch/branchen/immobilien-bewirtschaftung",
-  "https://pichler-advisory.ch/branchen/produktion-gewerbe",
-  "https://pichler-advisory.ch/branchen/weitere-betriebe",
   "https://pichler-advisory.ch/ueber-mich",
   "https://pichler-advisory.ch/agb",
   "https://pichler-advisory.ch/impressum",
@@ -55,13 +45,21 @@ User-agent: Bingbot
 User-agent: *
 Allow: /
 Disallow: /api/
+Disallow: /termine/
 Sitemap: https://pichler-advisory.ch/sitemap.xml
 `;
 
+// Known former content pages now lead to their relevant section in the new site.
+// Keep booking confirmation and API paths outside this map.
 const LEGACY_PAGES: Record<string, string> = {
   '/kontakt': '/#anfrage',
   '/ueber-uns': '/ueber-mich',
   '/leistungen': '/#leistungen',
+  '/leistungen/prozesse-automatisierung': '/?leistung=prozesse-automatisierung#leistungen',
+  '/leistungen/apps-it-projekte': '/?leistung=apps-it-projekte#leistungen',
+  '/leistungen/websites': '/?leistung=websites#leistungen',
+  '/leistungen/betrieb-betreuung': '/?leistung=betrieb-betreuung#leistungen',
+  ...Object.fromEntries(['handwerk-bau','handel-logistik','dienstleistungen','immobilien-bewirtschaftung','produktion-gewerbe','weitere-betriebe','sanitaer','heizung','gartenbau','immobilien','coiffeur','grosshandel','detailhandel','transport'].map(slug => [`/branchen/${slug}`, '/#spielraum'])),
 };
 const PUBLIC_PATHS = new Set(PUBLIC_URLS.map(url => new URL(url).pathname));
 
@@ -82,7 +80,8 @@ const worker = {
       const legacy = Object.prototype.hasOwnProperty.call(LEGACY_PAGES, path) ? LEGACY_PAGES[path] : undefined;
       if (legacy || (path !== url.pathname && PUBLIC_PATHS.has(path)) || url.hostname === 'www.pichler-advisory.ch') {
         const target = new URL(legacy || path, url);
-        target.search = url.search;
+        // Preserve campaign parameters; the legacy mapping owns its service topic.
+        for (const [key, value] of url.searchParams) if (!target.searchParams.has(key)) target.searchParams.append(key, value);
         if (url.hostname === 'www.pichler-advisory.ch') {
           target.protocol = 'https:';
           target.host = 'pichler-advisory.ch';

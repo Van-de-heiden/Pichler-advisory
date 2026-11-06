@@ -1,0 +1,90 @@
+{
+  "baseline": "61003aa142bd90176ab9fe049b5731e21665177f",
+  "files": [
+    {
+      "path": "package.json",
+      "sha256": "7474ae6d63d85be379ef7477cbbe22560fdf89c5f92a2159f0ffa3537a0b5084",
+      "matches_baseline": true,
+      "baseline_and_candidate_git_blob": "81809c3369d0c70909109cbeea68ba24530a19c0"
+    },
+    {
+      "path": "package-lock.json",
+      "sha256": "31feacb35740f4396e0f45a37df2f8450e75daed67a9a4aa7b5a155ae5620f64",
+      "matches_baseline": true,
+      "baseline_and_candidate_git_blob": "1268b9f742a218e04799562e9feecd6d567acc0f"
+    },
+    {
+      "path": "wrangler.jsonc",
+      "sha256": "810420a85721e8c8a6b6b3c11edb8873d50fe487733832923c475f46da902a19",
+      "matches_baseline": true,
+      "baseline_and_candidate_git_blob": "9fe046f0fec8f9fb146539116a65983c890633e8"
+    },
+    {
+      "path": "lib/enquiry.ts",
+      "sha256": "5710fdf95c1cbe3d1b40aef3dba1c17b08b326fda99b6ecfa7309c6f5106ea29",
+      "matches_baseline": true,
+      "baseline_and_candidate_git_blob": "8f0838b2a0215415dec4f8237f5dc7ea104de705"
+    },
+    {
+      "path": "worker/enquiries.ts",
+      "sha256": "ef538a4cd8edf9c74c17228609e8df945e599560931a7cc237f2b3f7211d9bc6",
+      "matches_baseline": true,
+      "baseline_and_candidate_git_blob": "42909101ef99799dbe7991f4aaafa5bcd0cc2cad"
+    },
+    {
+      "path": "worker/bookings.ts",
+      "sha256": "a0f64bc339404a1e1513f46707094badbc9886ed5224744556b4bcc76eb93b93",
+      "matches_baseline": true,
+      "baseline_and_candidate_git_blob": "818ea281268bc6786b22339490c65b1e962be566"
+    },
+    {
+      "path": "worker/calendar.ts",
+      "sha256": "1f4de6e2ef116746cf980ba9fa67d866de4a80b15908c17b9c7a616b11c1e912",
+      "matches_baseline": true,
+      "baseline_and_candidate_git_blob": "8678d8119d2e8c25afcad8ab998e747a5ad6edc5"
+    },
+    {
+      "path": "worker/smtp-socket.ts",
+      "sha256": "49ce5944e27ea587a4b44ade494f7d4732d98309cfadbb8177855e46ea973bd8",
+      "matches_baseline": true,
+      "baseline_and_candidate_git_blob": "238654508d94a21fd821f81d11dd25c43034d419"
+    },
+    {
+      "path": "tests/enquiries.test.mjs",
+      "sha256": "bf83d800c5d45b33414d573fd988875d8e1787d09d8908cfd51d8f566f81d9de",
+      "matches_baseline": true,
+      "baseline_and_candidate_git_blob": "1049112b6cc76b31aba388fa16f9476e0adfc917"
+    },
+    {
+      "path": "tests/bookings.test.mjs",
+      "sha256": "894c000d1af5fd39a784265113c22b607e58d77d7fc9d411eba975d7b7e3cb54",
+      "matches_baseline": true,
+      "baseline_and_candidate_git_blob": "283268d2b13d03b98b1301f8b72113b5bdf9fa78"
+    },
+    {
+      "path": "tests/calendar-runtime.test.mjs",
+      "sha256": "2108cc85e1bdcebf0d009e558f59a09ab5c6ad74e64488f87d8cb5eeb1f54d0e",
+      "matches_baseline": true,
+      "baseline_and_candidate_git_blob": "cd1a13d893e7fc608e88d620370dcab22381fb4b"
+    },
+    {
+      "path": "app/termine/bestaetigen/confirmation.css",
+      "sha256": "2b5b5cc7cbbbbac0764bf6b778c9831e5df347d20bc167b2a0871573b4fce47c",
+      "matches_baseline": true,
+      "baseline_and_candidate_git_blob": "35170f18f7f274bfc6d884ec3088373dd2611611"
+    },
+    {
+      "path": "app/termine/bestaetigen/confirmation.tsx",
+      "sha256": "912eeff75151a9884359a294c8894a997c87d57037e56ee9e66e8670ba9d58c4",
+      "matches_baseline": true,
+      "baseline_and_candidate_git_blob": "4a398b61f0488b1a02bec331768df5576386d8e5"
+    },
+    {
+      "path": "app/termine/bestaetigen/page.tsx",
+      "sha256": "97eb3bd5a4686b824d7ba980c7293bd4f5fe0ca3ce75292ead93056dc515741b",
+      "matches_baseline": true,
+      "baseline_and_candidate_git_blob": "ee3891e66978981c5bed53ba9c25ae30f1091fa5"
+    }
+  ],
+  "hash_scope": "SHA-256 values cover the local baseline/candidate Windows worktree bytes. Git blob IDs are portable across text line-ending conversion."
+}
