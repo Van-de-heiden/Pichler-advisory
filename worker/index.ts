@@ -4,9 +4,11 @@ import handler from "vinext/server/app-router-entry";
 
 import { handleEnquiry, type EnquiryEnv } from "./enquiries";
 import { handleBooking } from "./bookings";
+import { handleRebranding, isRebrandingEnabled, REBRANDING_PUBLIC_URLS, type RebrandingEnv } from "./rebranding";
+import rebrandingHtml from "../public/rebranding/index.html?raw";
 export { BookingDesk } from "./bookings";
 
-interface Env extends EnquiryEnv {
+interface Env extends EnquiryEnv, RebrandingEnv {
   ASSETS: { fetch(request: Request): Promise<Response> };
   IMAGES: {
     input(stream: ReadableStream): {
@@ -46,6 +48,12 @@ ${PUBLIC_URLS.map((url) => `  <url>\n    <loc>${url}</loc>\n  </url>`).join("\n"
 </urlset>
 `;
 
+const REBRANDING_SITEMAP_XML = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${REBRANDING_PUBLIC_URLS.map((url) => `  <url>\n    <loc>${url}</loc>\n  </url>`).join("\n")}
+</urlset>
+`;
+
 // Search crawlers are explicitly welcome. The wildcard keeps the existing
 // policy for other crawlers, including training bots, unchanged.
 const ROBOTS_TXT = `User-agent: OAI-SearchBot
@@ -77,6 +85,8 @@ const worker = {
 
     if (url.pathname === "/api/enquiries") return handleEnquiry(request, env);
     if (url.pathname.startsWith("/api/bookings/")) return handleBooking(request, env);
+    const rebrandingResponse = handleRebranding(request, env, rebrandingHtml);
+    if (rebrandingResponse) return rebrandingResponse;
     if (request.method === 'GET' || request.method === 'HEAD') {
       const path = url.pathname.replace(/\/+$/, '') || '/';
       const legacy = Object.prototype.hasOwnProperty.call(LEGACY_PAGES, path) ? LEGACY_PAGES[path] : undefined;
@@ -108,7 +118,7 @@ const worker = {
       url.pathname === "/sitemap.xml" &&
       (request.method === "GET" || request.method === "HEAD")
     ) {
-      return new Response(request.method === "HEAD" ? null : SITEMAP_XML, {
+      return new Response(request.method === "HEAD" ? null : (isRebrandingEnabled(env) ? REBRANDING_SITEMAP_XML : SITEMAP_XML), {
         headers: {
           "cache-control": "public, max-age=3600",
           "content-type": "application/xml; charset=utf-8",

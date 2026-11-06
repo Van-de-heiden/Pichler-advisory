@@ -43,3 +43,7 @@ are retained. The entry animation runs once per browser tab session.
 
 The Matterhorn asset is attributed and licensed on `/impressum#bildnachweise`.
 The enquiry form submits messages and free, non-binding first-meeting requests directly to the server. Mail is sent via the existing Infomaniak mailbox. See `MAIL-SETUP.md` for the required production secret and release check.
+
+## Optional rebranding holding page
+
+The existing website remains the default. Setting `REBRANDING_MODE=on` enables a static holding homepage and temporary redirects for known marketing pages. Enquiry and booking handlers, legal pages, confirmation links and unknown-page behavior remain unchanged. No binding or migration changes are required. See [the cutover and rollback plan](docs/rebranding-cutover.md) before enabling it. No deployment was performed as part of preparation.

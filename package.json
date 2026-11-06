@@ -9,7 +9,7 @@
     "dev": "vite",
     "build": "vinext build",
     "start": "vinext start",
-    "test": "node --experimental-strip-types --test tests/enquiries.test.mjs tests/bookings.test.mjs tests/calendar-runtime.test.mjs && npm run build && node --test tests/rendered-html.test.mjs",
+    "test": "node --experimental-strip-types --test tests/enquiries.test.mjs tests/bookings.test.mjs tests/calendar-runtime.test.mjs tests/rebranding.test.mjs && npm run build && node --test tests/rendered-html.test.mjs tests/rebranding-rendered.test.mjs",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
     "test:ui": "playwright test"
   },
