@@ -6,6 +6,9 @@
   "compatibility_flags": [
     "nodejs_compat"
   ],
+  "vars": {
+    "REBRANDING_MODE": "on"
+  },
   "ratelimits": [
     {
       "name": "ENQUIRY_LIMITER",
