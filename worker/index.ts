@@ -4,7 +4,7 @@ import handler from "vinext/server/app-router-entry";
 
 import { handleEnquiry, type EnquiryEnv } from "./enquiries";
 import { handleBooking } from "./bookings";
-import { handleRebranding, isRebrandingEnabled, REBRANDING_PUBLIC_URLS, type RebrandingEnv } from "./rebranding";
+import { handleRebranding, isRebrandingEnabled, REBRANDING_MODE_HEADER, REBRANDING_PUBLIC_URLS, type RebrandingEnv } from "./rebranding";
 import rebrandingHtml from "../public/rebranding/index.html?raw";
 export { BookingDesk } from "./bookings";
 
@@ -138,7 +138,11 @@ const worker = {
       }, allowedWidths);
     }
 
-    return handler.fetch(request, env, ctx);
+    // The browser guard is mode-gated by Worker state, never by a client header.
+    const headers = new Headers(request.headers);
+    headers.delete(REBRANDING_MODE_HEADER);
+    if (isRebrandingEnabled(env)) headers.set(REBRANDING_MODE_HEADER, 'on');
+    return handler.fetch(new Request(request, { headers }), env, ctx);
   },
 };
 

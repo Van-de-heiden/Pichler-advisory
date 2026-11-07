@@ -37,3 +37,27 @@ test('active sitemap contains only holding and legal pages, robots policy stays 
   assert.match(robots, /Disallow: \/api\/\n/);
   assert.doesNotMatch(robots, /Disallow: \/\n/);
 });
+
+test('built Worker blocks old Flight payloads and mode-gates the early browser guard', async () => {
+  for (const path of ['/.rsc?_rsc', '/ueber-mich.rsc?_rsc', '/leistungen/websites.rsc?_rsc']) {
+    const response = await render(path);
+    assert.equal(response.status, 302, path);
+    assert.equal(response.headers.get('cache-control'), 'no-store');
+    assert.equal(new URL(response.headers.get('location')).pathname, '/');
+  }
+  for (const path of ['/impressum', '/datenschutz', '/agb']) {
+    const active = await (await render(path)).text();
+    assert.match(active, /id="pa-rebranding-navigation"/);
+    const inactive = await (await render(path, 'GET', 'off')).text();
+    assert.doesNotMatch(inactive, /id="pa-rebranding-navigation"/);
+    const flight = await render(`${path}.rsc?_rsc`);
+    assert.equal(flight.status, 200, path);
+    assert.match(flight.headers.get('content-type'), /text\/x-component/);
+  }
+  const spoofed = await worker.fetch(new Request('https://pichler-advisory.ch/impressum', { headers: { 'x-pichler-rebranding-mode': 'on' } }), { ...env, REBRANDING_MODE: 'off' }, { waitUntil() {}, passThroughOnException() {} });
+  assert.doesNotMatch(await spoofed.text(), /id="pa-rebranding-navigation"/);
+  const oldRsc = await render('/.rsc?_rsc', 'GET', 'off');
+  assert.equal(oldRsc.status, 200);
+  assert.match(oldRsc.headers.get('content-type'), /text\/x-component/);
+  assert.match(await oldRsc.text(), /Was jeden Tag Zeit kostet/);
+});

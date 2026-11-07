@@ -56,3 +56,29 @@ test('www retains canonical hostname and does not rewrite a confirmation link', 
   assert.equal(response.headers.get('location'), 'https://pichler-advisory.ch/?leistung=websites');
   assert.equal(handleRebranding(new Request('https://www.pichler-advisory.ch/termine/bestaetigen?token=example'), enabled, html), null);
 });
+
+test('Vinext transport URLs redirect to clean holding documents without caching Flight data', () => {
+  for (const method of ['GET', 'HEAD']) {
+    for (const path of ['/.rsc?_rsc=stale&utm_source=test', '/leistungen/websites.rsc?_rsc=stale', '/ueber-mich.rsc/', '/kontakt.rsc?_rsc=stale']) {
+      const response = handleRebranding(request(path, method), enabled, html);
+      assert.equal(response.status, 302, path);
+      const target = new URL(response.headers.get('location'));
+      assert.equal(target.pathname, '/');
+      assert.equal(target.searchParams.has('_rsc'), false);
+      assert.equal(response.headers.get('cache-control'), 'no-store');
+      if (path.startsWith('/.rsc')) assert.equal(target.searchParams.get('utm_source'), 'test');
+      if (path.startsWith('/kontakt')) assert.equal(target.hash, '#anfrage');
+    }
+  }
+  for (const path of ['/.rsc', '/ueber-mich.rsc', '/leistungen/websites.rsc']) {
+    assert.equal(handleRebranding(request(path), {}, html), null);
+    assert.equal(handleRebranding(request(path, 'POST'), enabled, html), null);
+  }
+  for (const path of ['/impressum.rsc', '/datenschutz.rsc', '/agb.rsc', '/termine/bestaetigen.rsc', '/api/enquiries.rsc', '/unknown.rsc']) {
+    assert.equal(handleRebranding(request(path), enabled, html), null, path);
+  }
+  const canonical = handleRebranding(new Request('https://www.pichler-advisory.ch/.rsc?_rsc=x'), enabled, html);
+  assert.equal(canonical.headers.get('location'), 'https://pichler-advisory.ch/');
+  assert.equal(canonical.status, 302);
+  assert.equal(canonical.headers.get('cache-control'), 'no-store');
+});

@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
+import { REBRANDING_MODE_HEADER, REBRANDING_NAVIGATION_SCRIPT } from "../worker/rebranding";
 import "@fontsource/manrope/400.css";
 import "@fontsource/manrope/500.css";
 import "@fontsource/manrope/600.css";
@@ -51,10 +53,12 @@ export const metadata: Metadata = {
 
 export const dynamic = "force-dynamic";
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  const rebrandingEnabled = (await headers()).get(REBRANDING_MODE_HEADER) === 'on';
   return (
     <html lang="de-CH" suppressHydrationWarning>
       <head>
+        {rebrandingEnabled && <script id="pa-rebranding-navigation" dangerouslySetInnerHTML={{ __html: REBRANDING_NAVIGATION_SCRIPT }} />}
         <StructuredData data={[organization, { '@context': 'https://schema.org', '@type': 'WebSite', '@id': websiteId, url: `${company.url}/`, name: company.name, inLanguage: 'de-CH', publisher: { '@id': organizationId } }]} />
         <script dangerouslySetInnerHTML={{ __html: BRAND_REVEAL_BOOTSTRAP }} />
         <noscript><style>{".reveal { display: none; }"}</style></noscript>
