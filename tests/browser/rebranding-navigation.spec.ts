@@ -44,7 +44,7 @@ test('legal client navigation stays usable while marketing and home anchors leav
   await page.waitForFunction(() => typeof (window as Window & { __VINEXT_RSC_NAVIGATE__?: unknown }).__VINEXT_RSC_NAVIGATE__ === 'function');
   await page.locator('footer').getByRole('link', { name: 'AGB', exact: true }).click();
   await expect(page).toHaveURL('http://localhost:4181/agb');
-  await expect(page.locator('h1')).toContainText('Allgemeine Geschäftsbedingungen');
+  await expect(page.locator('h1')).toHaveText('AGB');
   await page.getByRole('link', { name: 'Über Pichler', exact: true }).click();
   await expect(page.locator('h1')).toHaveText(holding);
   await page.goBack();
