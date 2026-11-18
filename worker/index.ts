@@ -6,9 +6,11 @@ import { handleEnquiry, type EnquiryEnv } from "./enquiries";
 import { handleBooking } from "./bookings";
 import { handleRebranding, isRebrandingEnabled, REBRANDING_MODE_HEADER, REBRANDING_PUBLIC_URLS, type RebrandingEnv } from "./rebranding";
 import rebrandingHtml from "../public/rebranding/index.html?raw";
+import { handleMaintenance, privateResponse, type MaintenanceEnv } from "./maintenance";
+import maintenanceHtml from "./maintenance.html?raw";
 export { BookingDesk } from "./bookings";
 
-interface Env extends EnquiryEnv, RebrandingEnv {
+interface Env extends EnquiryEnv, RebrandingEnv, MaintenanceEnv {
   ASSETS: { fetch(request: Request): Promise<Response> };
   IMAGES: {
     input(stream: ReadableStream): {
@@ -146,4 +148,16 @@ const worker = {
   },
 };
 
-export default worker;
+export default {
+  async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
+    const maintenance = await handleMaintenance(request, env, maintenanceHtml);
+    if (maintenance) return maintenance;
+    if (env.MAINTENANCE_MODE === 'on') {
+      const url = new URL(request.url);
+      if (url.pathname === '/login') return privateResponse(Response.redirect(new URL('/',url).href,303));
+      if (!url.pathname.startsWith('/api/') && /\.(?:js|css|svg|png|jpg|jpeg|webp|avif|ico|woff2?|map)$/i.test(url.pathname)) return privateResponse(await env.ASSETS.fetch(request));
+      return privateResponse(await worker.fetch(request, {...env, REBRANDING_MODE: 'off'}, ctx));
+    }
+    return worker.fetch(request,env,ctx);
+  }
+};

@@ -6,8 +6,10 @@
   "compatibility_flags": [
     "nodejs_compat"
   ],
+  "assets": { "binding": "ASSETS", "run_worker_first": true },
   "vars": {
-    "REBRANDING_MODE": "on"
+    "REBRANDING_MODE": "on",
+    "MAINTENANCE_MODE": "on"
   },
   "ratelimits": [
     {
