@@ -1,0 +1,101 @@
+/* The original v1/v2 headline, given the full width of the opening. */
+.v6 .v7-hero {
+  background: var(--paper);
+  padding-top: clamp(54px, 5.5vw, 88px);
+}
+.v7-hero-content {
+  text-align: center;
+  padding-bottom: 62px;
+}
+.v6 .v7-hero .v6-eyebrow {
+  justify-content: center;
+  margin-bottom: 26px;
+}
+.v6 .v7-hero h1 {
+  font-family: 'Baskerville Old Face', Baskerville, 'Times New Roman', serif;
+  font-size: clamp(88px, 8.9vw, 138px);
+  font-weight: 400;
+  letter-spacing: -.045em;
+  line-height: .99;
+  color: var(--ink);
+  margin: 0;
+}
+.v7-title-line {
+  white-space: nowrap;
+  color: inherit;
+}
+.v7-hero-word {
+  position: relative;
+  display: inline-block;
+  isolation: isolate;
+  color: inherit;
+}
+.v7-hero-word::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  left: 0;
+  right: 0;
+  bottom: .025em;
+  height: .075em;
+  background: var(--lavender);
+  transform: rotate(-2deg);
+  transform-origin: left center;
+  animation: v7-underline-in 1s cubic-bezier(.22, 1, .36, 1) .2s both;
+}
+.v6 .v7-lead {
+  font-size: 21px;
+  line-height: 1.6;
+  letter-spacing: -.025em;
+  color: var(--ink);
+  margin: 30px auto 0;
+}
+.v6 .v7-description {
+  max-width: 540px;
+  margin: 18px auto 0;
+  font-size: 14px;
+  line-height: 1.85;
+  color: #66735e;
+  text-wrap: pretty;
+}
+.v7-hero .v6-actions {
+  justify-content: center;
+  gap: 27px;
+  margin-top: 28px;
+}
+.v6 .v7-hero .v6-reassurance {
+  justify-content: center;
+  margin-top: 20px;
+}
+@keyframes v7-underline-in {
+  from { transform: rotate(-2deg) scaleX(0); }
+  to { transform: rotate(-2deg) scaleX(1); }
+}
+@media (max-width: 900px) {
+  .v6 .v7-hero h1 { font-size: clamp(72px, 10.8vw, 98px); }
+  .v6 .v7-lead { font-size: 20px; }
+  .v7-hero-content { padding-bottom: 48px; }
+}
+@media (max-width: 700px) {
+  .v6 .v7-hero { padding-top: 44px; }
+  .v6 .v7-hero .v6-eyebrow { font-size: 9px; letter-spacing: .025em; margin-bottom: 25px; gap: 7px; }
+  .v6 .v7-hero h1 { font-size: clamp(48px, 13.8vw, 86px); line-height: 1.04; }
+  .v6 .v7-lead { margin-top: 25px; font-size: 16px; line-height: 1.7; }
+  .v6 .v7-description { font-size: 13px; max-width: 410px; margin-top: 17px; line-height: 1.85; }
+  .v7-hero .v6-actions { flex-direction: column; gap: 8px; margin-top: 26px; }
+  .v7-hero .v6-button { min-height: 54px; font-size: 12px; padding: 16px 22px; width: auto; }
+  .v6 .v7-hero .v6-link { min-height: 42px; font-size: 12px; }
+  .v6 .v7-hero .v6-reassurance { margin-top: 12px; font-size: 9px; gap: 5px; line-height: 1.6; }
+  .v7-hero-content { padding-bottom: 36px; }
+}
+@media (max-width: 380px) {
+  .v6 .v7-hero { padding-top: 36px; }
+  .v6 .v7-hero .v6-eyebrow { font-size: 8px; letter-spacing: 0; gap: 5px; }
+  .v6 .v7-hero h1 { font-size: 13.8vw; }
+  .v6 .v7-lead { font-size: 14px; }
+  .v6 .v7-description { font-size: 12px; }
+  .v6 .v7-hero .v6-reassurance { font-size: 8px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .v7-hero-word::after { animation: none; }
+}

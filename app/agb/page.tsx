@@ -14,7 +14,7 @@ export default function AgbPage() {
       <h2>1. Anbieter und Geltungsbereich</h2>
       <LegalContact />
       <p>Vertragspartner ist {company.owner}, handelnd unter der im Handelsregister des Kantons {company.canton} eingetragenen Firma {company.name} ({company.legalForm}, UID {company.uid}), nachfolgend «Pichler Advisory».</p>
-      <p>Diese Allgemeinen Geschäftsbedingungen (AGB) regeln Aufträge von Geschäftskunden an Pichler Advisory für Beratung, Prozessoptimierung, Automatisierung, Apps und IT-Projekte sowie Websites, Hosting, Wartung und Betreuung. Sie gelten, wenn sie vor Vertragsabschluss zur Verfügung gestellt und in die Vereinbarung einbezogen wurden.</p>
+      <p>Diese Allgemeinen Geschäftsbedingungen (AGB) regeln Aufträge von Geschäftskunden an Pichler Advisory für Unternehmensberatung, die Verbesserung von Prozessen und Zusammenarbeit, Apps und IT-Projekte sowie Websites, Hosting, Wartung und Betreuung. Sie gelten, wenn sie vor Vertragsabschluss zur Verfügung gestellt und in die Vereinbarung einbezogen wurden.</p>
       <p>Individuelle Vereinbarungen im Angebot oder Projektvertrag gehen diesen AGB vor. Zwingende gesetzliche Vorschriften bleiben vorbehalten. Die blosse Nutzung dieser Website und eine unverbindliche Anfrage begründen noch keinen kostenpflichtigen Auftrag.</p>
     </section>
     <section>
@@ -57,7 +57,7 @@ export default function AgbPage() {
     <section>
       <h2>9. Verantwortung und Haftung</h2>
       <p>Für Pflichtverletzungen, Mängel und Schäden gelten die gesetzlichen Bestimmungen und die im jeweiligen Auftrag zulässig vereinbarten Regelungen. Diese AGB schliessen die Haftung für Absicht, grobe Fahrlässigkeit, Personenschäden oder andere zwingende Haftungstatbestände nicht aus.</p>
-      <p>Vertraglich geschuldet sind die vereinbarten Leistungen und zugesicherten Eigenschaften. Wirtschaftliche Ziele und Messgrössen können im Projekt festgelegt werden. Rechenbeispiele auf der Website und allgemeine Leistungsbeschreibungen ersetzen keine solche individuelle Vereinbarung.</p>
+      <p>Vertraglich geschuldet sind die vereinbarten Leistungen und zugesicherten Eigenschaften. Wirtschaftliche Ziele und Messgrössen können im Projekt festgelegt werden. Rechenbeispiele, Einsparpotenziale und Projektprognosen auf der Website ersetzen keine solche individuelle Vereinbarung und sind keine Zusicherung eines bestimmten wirtschaftlichen Ergebnisses. Welches Potenzial in Ihrem Betrieb besteht, wird anhand Ihrer Ausgangslage geprüft.</p>
     </section>
     <section>
       <h2>10. Laufzeit und Beendigung</h2>

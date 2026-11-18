@@ -1,0 +1,86 @@
+/* The existing floating paper cards now carry the three outcomes. */
+.v11-home .v7-hero-content { padding-bottom: 54px; }
+.v6.v11-home .v7-description { max-width: 610px; margin-top: 24px; }
+.v11-home .v7-hero .v6-actions { margin-top: 26px; }
+.v11-home .v8-ambient-lines { opacity: .55; }
+.v11-home .v8-ambient-halo { opacity: .45; }
+
+.v11-hero-outcomes {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: min(1600px,100vw);
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+.v11-outcome {
+  --tilt: -7deg;
+  position: absolute;
+  width: 172px;
+  min-height: 150px;
+  padding: 24px 23px 23px;
+  text-align: left;
+  border: 1px solid #fffffc;
+  border-radius: 28px;
+  color: #46573f;
+  background: linear-gradient(145deg,#f6f8ed,#e9efdf);
+  box-shadow: 4px 6px 0 #dae1cb70,0 16px 32px #34462f09,inset 0 1px 0 #ffffff;
+  transform: rotate(var(--tilt));
+  animation: v11-outcome-float 10s ease-in-out infinite;
+}
+.v11-outcome>svg { display: block; width: 26px; height: 26px; margin-bottom: 17px; color: #7a916a; }
+.v11-outcome strong { display: block; font-size: 19px; line-height: 1.35; font-weight: 600; letter-spacing: -.025em; }
+.v11-outcome>span>span { display: block; font-size: 12px; line-height: 1.6; margin-top: 2px; }
+.outcome-time { left: clamp(28px,4.5vw,78px); top: 27%; }
+.outcome-cost { --tilt: 7deg; right: clamp(28px,6vw,100px); top: 7%; background: linear-gradient(145deg,#f4f4ff,#e7ebfb); color: #485578; box-shadow: 4px 6px 0 #d5ddf37a,0 16px 32px #46547e08,inset 0 1px 0 #ffffff; animation-delay: -3s; }
+.outcome-cost>svg { color: #8799c5; }
+.outcome-growth { --tilt: -5deg; right: clamp(28px,4vw,70px); top: 59%; background: linear-gradient(145deg,#fbf9ee,#f0eddd); color: #5d6049; box-shadow: 4px 6px 0 #e3dfcb70,0 16px 32px #50513b08,inset 0 1px 0 #ffffff; animation-delay: -6s; }
+.outcome-growth>svg { color: #8d9670; }
+@keyframes v11-outcome-float {
+  0%,100% { transform: translateY(0) rotate(var(--tilt)); }
+  50% { transform: translateY(-7px) rotate(calc(var(--tilt) + 1deg)); }
+}
+
+@media (min-width: 1600px) {
+  .v11-home .v7-hero { padding-top: 44px; }
+  .v11-home .v7-hero-content { padding-bottom: 65px; }
+  .v11-outcome { width: 182px; min-height: 162px; padding: 26px; }
+}
+@media (min-width: 1051px) and (max-width: 1199px) {
+  .v11-outcome { width: 151px; min-height: 140px; padding: 20px 18px; }
+  .outcome-time { left: 27px; }.outcome-cost { right: 35px; }.outcome-growth { right: 26px; }
+  .v11-outcome strong { font-size: 17px; }
+  .v11-outcome>span>span { font-size: 11px; }
+  .v6.v11-home .v7-description { max-width: 580px; }
+}
+@media (max-width: 1050px) {
+  .v11-hero-outcomes { position: relative; display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 16px; top: auto; left: auto; width: min(480px,100%); height: auto; margin: 28px auto 0; transform: none; }
+  .v11-outcome { position: relative; inset: auto; width: auto; min-height: 106px; padding: 14px 12px; text-align: center; border-radius: 21px; --tilt: -3deg; }
+  .v11-outcome>svg { width: 21px; height: 21px; margin: 0 auto 9px; }
+  .v11-outcome strong { font-size: 15px; }.v11-outcome>span>span { font-size: 11px; line-height: 1.45; }
+  .outcome-cost { --tilt: 2deg; }.outcome-growth { --tilt: -2deg; }
+  .v11-home .v8-ambient-lines { opacity: .3; }
+  .v6.v11-home .v7-description { margin-top: 26px; }
+}
+@media (max-width: 700px) {
+  .v11-home .v7-hero-content { padding-bottom: 45px; }
+  .v11-hero-outcomes { gap: 9px; margin-top: 23px; max-width: 350px; }
+  .v11-outcome { min-height: 91px; padding: 12px 5px 13px; border-radius: 18px; box-shadow: 2px 4px 0 #dbe1cf70,0 9px 20px #34462f06; }
+  .outcome-cost { box-shadow: 2px 4px 0 #d5ddf370,0 9px 20px #46547e06; }.outcome-growth { box-shadow: 2px 4px 0 #e3dfcb70,0 9px 20px #50513b06; }
+  .v11-outcome>svg { width: 18px; height: 18px; margin-bottom: 7px; }
+  .v11-outcome strong { font-size: 13px; }.v11-outcome>span>span { font-size: 10px; margin-top: 2px; }
+  .v6.v11-home .v7-description { margin-top: 24px; font-size: 12px; max-width: 380px; }
+  .v11-home .v7-hero .v6-actions { margin-top: 20px; }
+}
+@media (max-width: 380px) {
+  .v11-hero-outcomes { gap: 7px; margin-top: 21px; }
+  .v11-outcome { padding-inline: 3px; min-height: 88px; }
+  .v11-outcome strong { font-size: 12px; }.v11-outcome>span>span { font-size: 9px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .v11-outcome { animation: none; }
+}

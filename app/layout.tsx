@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import { headers } from "next/headers";
-import { REBRANDING_MODE_HEADER, REBRANDING_NAVIGATION_SCRIPT } from "../worker/rebranding";
 import "@fontsource/manrope/400.css";
 import "@fontsource/manrope/500.css";
 import "@fontsource/manrope/600.css";
@@ -9,7 +7,8 @@ import "@fontsource/newsreader/500.css";
 import "@fontsource/newsreader/500-italic.css";
 import "./globals.css";
 import "./refinement.css";
-import { BRAND_REVEAL_BOOTSTRAP } from "./brand-reveal-session";
+import "./ci-revision.css";
+import "./v10-design.css";
 import { company } from "./company";
 import { organizationId, personId, websiteId } from "./seo";
 import { StructuredData } from "./structured-data";
@@ -21,7 +20,7 @@ const organization = {
   name: company.name,
   legalName: company.name,
   url: company.url,
-  logo: `${company.url}/shield.png`,
+  logo: `${company.url}/brand/pichler-mark-dark.svg`,
   description: 'Eingetragenes Einzelunternehmen für Beratung, Prozessoptimierung, Automatisierung, Apps, IT-Projekte und Websites.',
   email: company.email,
   telephone: company.phone,
@@ -48,20 +47,16 @@ export const metadata: Metadata = {
   title: "Pichler Advisory | Beratung & Umsetzung",
   description: "Was jeden Tag Zeit kostet, kostet jedes Jahr Geld. Pichler Advisory verbindet Beratung mit Umsetzung: bessere Abläufe, Automatisierung, Apps und Websites für Schweizer Unternehmen.",
   robots: { index: true, follow: true },
-  icons: { icon: "/favicon.png", shortcut: "/favicon.png" },
+  icons: { icon: [{ url: "/pichler-mark-v13.svg", type: "image/svg+xml" }, { url: "/pichler-favicon-v13.ico" }], shortcut: "/pichler-favicon-v13.ico", apple: "/pichler-touch-icon-v13.png" },
 };
 
 export const dynamic = "force-dynamic";
 
-export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  const rebrandingEnabled = (await headers()).get(REBRANDING_MODE_HEADER) === 'on';
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="de-CH" suppressHydrationWarning>
       <head>
-        {rebrandingEnabled && <script id="pa-rebranding-navigation" dangerouslySetInnerHTML={{ __html: REBRANDING_NAVIGATION_SCRIPT }} />}
         <StructuredData data={[organization, { '@context': 'https://schema.org', '@type': 'WebSite', '@id': websiteId, url: `${company.url}/`, name: company.name, inLanguage: 'de-CH', publisher: { '@id': organizationId } }]} />
-        <script dangerouslySetInnerHTML={{ __html: BRAND_REVEAL_BOOTSTRAP }} />
-        <noscript><style>{".reveal { display: none; }"}</style></noscript>
       </head>
       <body>{children}</body>
     </html>

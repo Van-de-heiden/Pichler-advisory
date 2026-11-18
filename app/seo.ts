@@ -14,9 +14,9 @@ export function pageMetadata(path: string, title: string, description: string): 
     openGraph: {
       type: 'website', locale: 'de_CH', siteName: company.name,
       url, title, description,
-      images: [{ url: `${company.url}/shield.png`, alt: company.name }],
+      images: [{ url: `${company.url}/maurus-portrait-20261025.webp`, alt: company.name }],
     },
-    twitter: { card: 'summary', title, description, images: [`${company.url}/shield.png`] },
+    twitter: { card: 'summary', title, description, images: [`${company.url}/maurus-portrait-20261025.webp`] },
   };
 }
 

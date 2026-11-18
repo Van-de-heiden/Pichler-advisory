@@ -4,13 +4,11 @@ import handler from "vinext/server/app-router-entry";
 
 import { handleEnquiry, type EnquiryEnv } from "./enquiries";
 import { handleBooking } from "./bookings";
-import { handleRebranding, isRebrandingEnabled, REBRANDING_MODE_HEADER, REBRANDING_PUBLIC_URLS, type RebrandingEnv } from "./rebranding";
-import rebrandingHtml from "../public/rebranding/index.html?raw";
 import { handleMaintenance, privateResponse, type MaintenanceEnv } from "./maintenance";
 import maintenanceHtml from "./maintenance.html?raw";
 export { BookingDesk } from "./bookings";
 
-interface Env extends EnquiryEnv, RebrandingEnv, MaintenanceEnv {
+interface Env extends EnquiryEnv, MaintenanceEnv {
   ASSETS: { fetch(request: Request): Promise<Response> };
   IMAGES: {
     input(stream: ReadableStream): {
@@ -28,16 +26,6 @@ interface ExecutionContext {
 
 const PUBLIC_URLS = [
   "https://pichler-advisory.ch/",
-  "https://pichler-advisory.ch/leistungen/prozesse-automatisierung",
-  "https://pichler-advisory.ch/leistungen/apps-it-projekte",
-  "https://pichler-advisory.ch/leistungen/websites",
-  "https://pichler-advisory.ch/leistungen/betrieb-betreuung",
-  "https://pichler-advisory.ch/branchen/handwerk-bau",
-  "https://pichler-advisory.ch/branchen/handel-logistik",
-  "https://pichler-advisory.ch/branchen/dienstleistungen",
-  "https://pichler-advisory.ch/branchen/immobilien-bewirtschaftung",
-  "https://pichler-advisory.ch/branchen/produktion-gewerbe",
-  "https://pichler-advisory.ch/branchen/weitere-betriebe",
   "https://pichler-advisory.ch/ueber-mich",
   "https://pichler-advisory.ch/agb",
   "https://pichler-advisory.ch/impressum",
@@ -50,12 +38,6 @@ ${PUBLIC_URLS.map((url) => `  <url>\n    <loc>${url}</loc>\n  </url>`).join("\n"
 </urlset>
 `;
 
-const REBRANDING_SITEMAP_XML = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${REBRANDING_PUBLIC_URLS.map((url) => `  <url>\n    <loc>${url}</loc>\n  </url>`).join("\n")}
-</urlset>
-`;
-
 // Search crawlers are explicitly welcome. The wildcard keeps the existing
 // policy for other crawlers, including training bots, unchanged.
 const ROBOTS_TXT = `User-agent: OAI-SearchBot
@@ -65,13 +47,21 @@ User-agent: Bingbot
 User-agent: *
 Allow: /
 Disallow: /api/
+Disallow: /termine/
 Sitemap: https://pichler-advisory.ch/sitemap.xml
 `;
 
+// Known former content pages now lead to their relevant section in the new site.
+// Keep booking confirmation and API paths outside this map.
 const LEGACY_PAGES: Record<string, string> = {
   '/kontakt': '/#anfrage',
   '/ueber-uns': '/ueber-mich',
   '/leistungen': '/#leistungen',
+  '/leistungen/prozesse-automatisierung': '/?leistung=prozesse-automatisierung#leistungen',
+  '/leistungen/apps-it-projekte': '/?leistung=apps-it-projekte#leistungen',
+  '/leistungen/websites': '/?leistung=websites#leistungen',
+  '/leistungen/betrieb-betreuung': '/?leistung=betrieb-betreuung#leistungen',
+  ...Object.fromEntries(['handwerk-bau','handel-logistik','dienstleistungen','immobilien-bewirtschaftung','produktion-gewerbe','weitere-betriebe','sanitaer','heizung','gartenbau','immobilien','coiffeur','grosshandel','detailhandel','transport'].map(slug => [`/branchen/${slug}`, '/#spielraum'])),
 };
 const PUBLIC_PATHS = new Set(PUBLIC_URLS.map(url => new URL(url).pathname));
 
@@ -87,14 +77,13 @@ const worker = {
 
     if (url.pathname === "/api/enquiries") return handleEnquiry(request, env);
     if (url.pathname.startsWith("/api/bookings/")) return handleBooking(request, env);
-    const rebrandingResponse = handleRebranding(request, env, rebrandingHtml);
-    if (rebrandingResponse) return rebrandingResponse;
     if (request.method === 'GET' || request.method === 'HEAD') {
       const path = url.pathname.replace(/\/+$/, '') || '/';
       const legacy = Object.prototype.hasOwnProperty.call(LEGACY_PAGES, path) ? LEGACY_PAGES[path] : undefined;
       if (legacy || (path !== url.pathname && PUBLIC_PATHS.has(path)) || url.hostname === 'www.pichler-advisory.ch') {
         const target = new URL(legacy || path, url);
-        target.search = url.search;
+        // Preserve campaign parameters; the legacy mapping owns its service topic.
+        for (const [key, value] of url.searchParams) if (!target.searchParams.has(key)) target.searchParams.append(key, value);
         if (url.hostname === 'www.pichler-advisory.ch') {
           target.protocol = 'https:';
           target.host = 'pichler-advisory.ch';
@@ -120,7 +109,7 @@ const worker = {
       url.pathname === "/sitemap.xml" &&
       (request.method === "GET" || request.method === "HEAD")
     ) {
-      return new Response(request.method === "HEAD" ? null : (isRebrandingEnabled(env) ? REBRANDING_SITEMAP_XML : SITEMAP_XML), {
+      return new Response(request.method === "HEAD" ? null : SITEMAP_XML, {
         headers: {
           "cache-control": "public, max-age=3600",
           "content-type": "application/xml; charset=utf-8",
@@ -140,13 +129,10 @@ const worker = {
       }, allowedWidths);
     }
 
-    // The browser guard is mode-gated by Worker state, never by a client header.
-    const headers = new Headers(request.headers);
-    headers.delete(REBRANDING_MODE_HEADER);
-    if (isRebrandingEnabled(env)) headers.set(REBRANDING_MODE_HEADER, 'on');
-    return handler.fetch(new Request(request, { headers }), env, ctx);
+    return handler.fetch(request, env, ctx);
   },
 };
+
 
 export default {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
@@ -156,7 +142,7 @@ export default {
       const url = new URL(request.url);
       if (url.pathname === '/login') return privateResponse(Response.redirect(new URL('/',url).href,303));
       if (!url.pathname.startsWith('/api/') && /\.(?:js|css|svg|png|jpg|jpeg|webp|avif|ico|woff2?|map)$/i.test(url.pathname)) return privateResponse(await env.ASSETS.fetch(request));
-      return privateResponse(await worker.fetch(request, {...env, REBRANDING_MODE: 'off'}, ctx));
+      return privateResponse(await worker.fetch(request, env, ctx));
     }
     return worker.fetch(request,env,ctx);
   }

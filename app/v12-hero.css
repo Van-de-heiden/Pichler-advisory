@@ -1,0 +1,57 @@
+/* A centred statement with a clear, quiet route to the first conversation. */
+.v12-home .v7-hero { padding-top: clamp(36px,5svh,56px); }
+.v12-home .v7-hero-content { min-height: 500px; padding-bottom: 74px; }
+.v12-home .v7-hero .v6-eyebrow { margin-bottom: 30px; }
+.v6.v12-home .v7-hero h1 {
+  font-size: clamp(58px,5.8vw,94px);
+  line-height: 1.12;
+  letter-spacing: -.043em;
+  max-width: 1080px;
+  margin-inline: auto;
+}
+.v12-headline-line { display: block; white-space: nowrap; }
+.v12-headline-tail { display: inline; }
+.v12-home .v7-hero-word::after { height: .07em; bottom: .035em; }
+.v6.v12-home .v7-description { max-width: 570px; font-size: 15px; line-height: 1.85; margin-top: 31px; }
+.v12-home .v7-hero .v6-actions { margin-top: 29px; }
+.v6.v12-home .v7-hero .v6-button { min-height: 56px; padding-inline: 27px; }
+.v6.v12-home .v7-hero .v6-reassurance { margin-top: 17px; font-size: 10px; }
+.v12-home .v8-ambient-lines { opacity: .35; }
+.v12-home .outcome-time { top: 25%; }
+.v12-home .outcome-cost { top: 3%; }
+.v12-home .outcome-growth { top: 60%; }
+
+@media (min-width: 1600px) {
+  .v12-home .v7-hero-content { min-height: 560px; padding-bottom: 90px; }
+  .v12-home .v7-hero .v6-eyebrow { margin-bottom: 34px; }
+  .v6.v12-home .v7-description { margin-top: 35px; }
+}
+@media (max-width: 1050px) {
+  .v12-home .v7-hero { padding-top: 35px; }
+  .v12-home .v7-hero-content { min-height: 0; padding-bottom: 55px; }
+  .v12-home .v7-hero .v6-eyebrow { margin-bottom: 26px; }
+  .v6.v12-home .v7-hero h1 { font-size: clamp(45px,6.5vw,67px); }
+  .v12-home .v11-hero-outcomes { margin-top: 31px; }
+  .v12-home .v11-outcome { top: auto; }
+  .v6.v12-home .v7-description { margin-top: 29px; font-size: 14px; }
+}
+@media (max-width: 700px) {
+  .v12-home .v7-hero { padding-top: 26px; }
+  .v12-home .v7-hero-content { padding-bottom: 49px; }
+  .v12-home .v7-hero .v6-eyebrow { margin-bottom: 21px; }
+  .v6.v12-home .v7-hero h1 { font-size: clamp(32px,10vw,65px); line-height: 1.14; letter-spacing: -.045em; }
+  .v12-headline-tail { display: block; }
+  .v12-home .v11-hero-outcomes { margin-top: 26px; }
+  .v6.v12-home .v7-description { max-width: 380px; margin-top: 25px; font-size: 12px; line-height: 1.85; }
+  .v12-home .v7-hero .v6-actions { margin-top: 22px; }
+  .v6.v12-home .v7-hero .v6-button { min-height: 52px; padding-inline: 23px; }
+  .v6.v12-home .v7-hero .v6-reassurance { margin-top: 13px; font-size: 8px; gap: 4px; }
+  .v12-home .v7-hero .v6-reassurance svg { width: 11px; height: 11px; }
+}
+@media (max-width: 380px) {
+  .v12-home .v7-hero { padding-top: 18px; }
+  .v12-home .v11-hero-outcomes { margin-top: 22px; }
+  .v6.v12-home .v7-description { margin-top: 21px; }
+  .v12-home .v7-hero .v6-actions { margin-top: 19px; }
+  .v6.v12-home .v7-hero .v6-reassurance { font-size: 7px; }
+}

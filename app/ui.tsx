@@ -2,6 +2,8 @@ import type { ReactNode } from 'react';
 export function Arrow(){ return <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7"/></svg>; }
 // Lucide icon geometry (ISC). https://lucide.dev/license
 const paths:Record<string,ReactNode>={
+pause:<><path d="M9 5v14M15 5v14"/></>,play:<path d="m8 4 12 8-12 8Z"/>,
+coins:<><ellipse cx="9" cy="6" rx="6" ry="3"/><path d="M3 6v4c0 1.66 2.69 3 6 3 1.1 0 2.14-.15 3-.4M3 10v4c0 1.66 2.69 3 6 3h1M15 6v2"/><ellipse cx="16" cy="12" rx="5" ry="2.5"/><path d="M11 12v4c0 1.38 2.24 2.5 5 2.5s5-1.12 5-2.5v-4M11 16v3c0 1.38 2.24 2.5 5 2.5s5-1.12 5-2.5v-3"/></>,
 process:<><rect x="3" y="3" width="6" height="6" rx="1"/><rect x="15" y="15" width="6" height="6" rx="1"/><path d="M6 9v9h9M15 6h3v9M9 6h6"/></>,
 code:<><path d="m16 18 6-6-6-6M8 6l-6 6 6 6m6-14-4 16"/></>,
 web:<><rect x="2" y="3" width="20" height="18" rx="2"/><path d="M2 9h20M8 9v12"/></>,
